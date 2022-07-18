@@ -1,0 +1,38 @@
+---
+title: "Estadística"
+output: html_document
+date: ''
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+---
+
+Martes, Viernes y Sábado, 9 a 11 hs., Facultad de Ciencias Económicas, UBA, Sede Paternal. **Segundo Cuatrimestre de 2022**
+
+Profesor a cargo: *Esteban Rodríguez*. Colaboran en el curso: *Catalina Capilla, Ignacio Caro Solís, Luca Giovacchini, Ariel Krysa*. 
+
+---
+
+[Introducción y normas del Curso](0_Introduccion.html)
+
+
+### Clases Teóricas
+
+[¿Qué es la Estadística?](0_Introduccion2.html)
+
+[Estadística Descriptiva](1_Est_Descriptiva.html)
+
+
+
+### Prácticas
+
+[Práctica 0 (Repaso)](Practica-0.html)
+
+[Práctica 1](Practica1.pdf)
+
+### Respuestas
+
+[Respuestas Práctica 0](Respuestas_P0.html)
