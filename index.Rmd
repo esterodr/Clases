@@ -48,3 +48,15 @@ Profesor a cargo: *Esteban Rodríguez*. Colaboran en el curso: *Catalina Capilla
 [Respuestas Práctica 1 (Ejercicios 30 al 36)](Práctica_1_Resuelta_(Ejercicios_30_al_36).xlsx)
 
 [Respuestas Práctica 2](Respuestas_P2.pdf)
+
+### TP en R
+
+Video instructivo (Próximamente)
+
+[Acceso a la Plataforma - Primera Parte](https://mybinder.org/v2/gh/esterodr/TP_Estadistica/master?urlpath=rstudio)
+
+[Acceso a la Plataforma - Segunda Parte](https://mybinder.org/v2/gh/esterodr/TP2_Estadistica/master?urlpath=rstudio)
+
+[Enunciados - Primera Parte](TP_Primera_Parte.docx)
+
+[Enunciados - Segunda Parte](TP_Segunda_Parte.docx)
