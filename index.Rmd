@@ -35,6 +35,8 @@ Profesor a cargo: *Esteban Rodríguez*. Colaboran en el curso: *Catalina Capilla
 
 [Práctica 1 (Archivos Auxiliares)](Práctica_1_Archivos_Auxiliares.zip)
 
+[Práctica 2](Práctica2.pdf)
+
 ### Respuestas
 
 [Respuestas Práctica 0](Respuestas_P0.html)
@@ -44,3 +46,5 @@ Profesor a cargo: *Esteban Rodríguez*. Colaboran en el curso: *Catalina Capilla
 [Respuestas Práctica 1 (Ejercicios 16 al 29)](Práctica_1_Resuelta_(Ejercicios_16_al_29).xlsx)
 
 [Respuestas Práctica 1 (Ejercicios 30 al 36)](Práctica_1_Resuelta_(Ejercicios_30_al_36).xlsx)
+
+[Respuestas Práctica 2](Respuestas_P2.pdf)
