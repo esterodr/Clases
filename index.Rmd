@@ -31,7 +31,7 @@ Profesor a cargo: *Esteban Rodríguez*. Colaboran en el curso: *Catalina Capilla
 
 [Práctica 0 (Repaso)](Practica-0.html)
 
-[Práctica 1](Practica1.pdf)
+[Práctica 1](Práctica1.pdf)
 
 [Práctica 1 (Archivos Auxiliares)](Práctica_1_Archivos_Auxiliares.zip)
 
