@@ -33,6 +33,14 @@ Profesor a cargo: *Esteban Rodríguez*. Colaboran en el curso: *Catalina Capilla
 
 [Práctica 1](Practica1.pdf)
 
+[Práctica 1 (Archivos Auxiliares)](Práctica_1_Archivos_Auxiliares.zip)
+
 ### Respuestas
 
 [Respuestas Práctica 0](Respuestas_P0.html)
+
+[Respuestas Práctica 1 (Ejercicios 1 al 15)](Respuestas_P1.html)
+
+[Respuestas Práctica 1 (Ejercicios 16 al 29)](Práctica_1_Resuelta_(Ejercicios_16_al_29).xlsx)
+
+[Respuestas Práctica 1 (Ejercicios 30 al 36)](Práctica_1_Resuelta_(Ejercicios_30_al_36).xlsx)

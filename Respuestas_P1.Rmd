@@ -1,0 +1,208 @@
+---
+title: "Respuestas Práctica 1"
+author: ''
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+```
+
+#### Ejercicio 1
+
+a) Categórica. 
+b) Numérica continua. 
+c) Numérica discreta. 
+d) Categórica. 
+e) Numérica discreta. 
+f) Numérica continua. 
+g) Numérica discreta. 
+h) Numérica discreta. 
+i) Categórica ordinal. 
+j) Numérica discreta. 
+k) Numérica discreta. 
+l) Categórica. 
+m) Categórica.
+n) Categórica. 
+o) Categórica. 
+p) Numérica discreta. 
+q) Numérica discreta.
+
+#### Ejercicio 2
+
+a) $1.614.984
+b) $57.769,27
+
+#### Ejercicio 3
+
+a) 25% por encima, 75% por debajo. 
+b) 50% por encima, 50% por debajo. 
+c) 80% por encima, 20% por debajo. 
+d) 16% por encima, 84% por debajo. 
+
+#### Ejercicio 4
+
+Partimos de la primer expresión y desarrollamos el cuadrado del binomio:
+
+$s^2=\frac{\sum_{i=1}^n(x_i-\overline{x})^2}{n-1}=\frac{\sum_{i=1}^n(x_i^2-2x_i\overline{x}+\overline{x}^2)}{n-1}=\frac{\sum_{i=1}^nx_i^2-2\overline{x}\sum_{i=1}^nx_i+\sum_{i=1}^n\overline{x}^2}{n-1}$
+
+Extrayendo las constantes fuera de la sumatoria y aplicando la definición: $\overline{x}=\frac{\sum_{i=1}^nx_i}{n}$
+
+$s^2=\frac{\sum_{i=1}^nx_i^2-2\overline{x}\sum_{i=1}^nx_i+n\overline{x}^2}{n-1}=$
+
+$s^2=\frac{\sum_{i=1}^nx_i^2-2(\frac{\sum_{i=1}^nx_i}{n})\sum_{i=1}^nx_i+n(\frac{\sum_{i=1}^nx_i}{n})^2}{n-1}=$
+
+$s^2=\frac{\sum_{i=1}^nx_i^2-2(\frac{(\sum_{i=1}^nx_i)^2}{n})+(\frac{(\sum_{i=1}^nx_i)^2}{n})}{n-1}=$
+
+$s^2=\frac{\sum_{i=1}^nx_i^2-\frac{(\sum_{i=1}^nx_i)^2}{n}}{n-1}$
+
+#### Ejercicio 5
+
+a) $s^2$ = 3,123377 
+b) $s^2$ = 9,023333 
+c) $s^2$ = 9,785714
+
+#### Ejercicio 6
+
+a) Disminuye 
+b) $\overline{x}=73,6$
+c) Aumenta
+
+Demostración del ejercicio 6 c:
+
+Con la información disponible para la muestra de 24 alumnos podemos calcular: 
+
+$\sum_{i=1}^{24}x_i$ y $\sum_{i=1}^{24}x_i^2$
+
+Primero, utilizamos la información de la media muestral: 
+
+$\overline{x}=74$ --> $\frac{\sum_{i=1}^{24}x_i}{24}=74$ --> $\sum_{i=1}^{24}x_i=24*74=1.776$
+
+Luego, utilizamos el dato del desvío estándar y la fórmula alternativa de la varianza: 
+
+$s^2=(8,9)^2=\frac{\sum_{i=1}^{24}x_i^2-\frac{(\sum_{i=1}^{24}x_i)^2}{24}}{24-1}=\frac{\sum_{i=1}^{24}x_i^2-\frac{1.776^2}{24}}{23}$
+
+Despejando obtenemos: 
+
+$\sum_{i=1}^{24}x_i^2=(8,9)^2*23+\frac{1.776^2}{24}=133.245,83$
+
+Con estos datos ya podemos calcular la varianza de la nueva muestra (25 alumnos):
+
+$s^2=\frac{\sum_{i=1}^{25}x_i^2-\frac{(\sum_{i=1}^{25}x_i)^2}{25}}{25-1}=\frac{(\sum_{i=1}^{24}x_i^2+64^2)-\frac{(\sum_{i=1}^{24}x_i+64)^2}{25}}{24}$
+
+$s^2=\frac{(133.245,83+64^2)-\frac{(1.776+64)^2}{25}}{24}=79,90958$
+
+$s=\sqrt[2]{79,90958}=8,9392$
+
+#### Ejercicio 7
+
+a) z = 2 
+b) z = -3 
+c) z = -2 
+d) z = 1,667
+
+#### Ejercicio 8
+
+Se considera outlier cuando el valor z es menor a -3 o mayor a 3. 
+a) Z=0,727. No es outlier. 
+b) Z=-3,273. Outlier. 
+c) Z=1,364. No es Outlier. 
+d) Z=3,727. Outlier. 
+
+#### Ejercicio 9
+
+```{r}
+datos <- c(145,147,149,152,153,154,154,156,157,158,162,162,162,163,163,164,164,165,167,167,
+           168,169,169,171,171,171,172,173,174,174,175,176,176,178,179,181,181,183,185,186)
+```
+
+a)
+
+Mediana = `r median(datos)`
+
+Q1 = `r quantile(datos,.25)`
+
+Q3 = `r quantile(datos,.75)`
+
+Mínimo = `r min(datos)`
+
+Máximo = `r max(datos)`
+
+
+b)
+
+
+```{r}
+boxplot(datos)
+```
+
+
+c)
+
+| Rango de valores | Cantidad de Alumnos |
+|:----------------:|:-------------------:|
+| [140,150) | 3 |
+| [150,160) | 7 |
+| [160,170) | 13 |
+| [170,180) | 12 |
+| [180,190) | 5 |
+
+d)
+
+```{r}
+library(tidyverse)
+data.frame(x=datos) %>% ggplot(aes(x=x)) +
+  geom_histogram(bins=5,breaks=c(140,150,160,170,180,190),fill="blue",color="black") +
+  labs(x="",y="") +
+  theme(panel.grid.major.x = element_blank(),
+        panel.grid.minor.x = element_blank())
+```
+
+#### Ejercicio 10
+
+Opción d. 
+
+
+#### Ejercicio 11
+
+Opción d. 
+ 
+#### Ejercicio 12
+
+Opción c.
+
+#### Ejercicio 13
+
+a) Q1 aproximadamente 5; Mediana aproximadamente 15; Q3 aproximadamente 35. 
+
+b) Mayor. 
+
+#### Ejercicio 14
+
+a) a y 2; b y 3; c y 1. 
+
+b)
+
+i. Aproximadamente 1,5. 
+
+ii. Aproximadamente 1 y 2. 
+
+iii. Aproximadamente 1. 
+
+iv. Sesgada. 
+
+v. 50% y 75%. 
+
+vi. Si. 
+
+#### Ejercicio 15
+
+En el histograma son evidentes la distribución bimodal y los valores más frecuentes. En el 
+Box Plot son evidentes los extremos, mediana, Q1 y Q3.
+
+
+#### Las respuestas a los ejercicios 16 al 36 se encuentran en un archivo excel.
+
+
+
+
