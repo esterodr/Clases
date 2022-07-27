@@ -25,6 +25,8 @@ Profesor a cargo: *Esteban Rodríguez*. Colaboran en el curso: *Catalina Capilla
 
 [Estadística Descriptiva](1_Est_Descriptiva.html)
 
+[Probabilidades](2_Probabilidades.html)
+
 
 
 ### Prácticas

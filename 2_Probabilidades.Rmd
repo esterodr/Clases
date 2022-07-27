@@ -1,0 +1,446 @@
+---
+title: "Probabilidades"
+subtitle: ""
+author: "Esteban Rodriguez"
+date: "Última Actualización: `r Sys.Date()`"
+output:
+  xaringan::moon_reader:
+    css: [default, metropolis, metropolis-fonts]
+    lib_dir: libs
+    nature:
+      titleSlideClass: ["left", "bottom", "inverse"]
+      highlightStyle: github
+      countIncrementalSlides: false
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+```
+
+# Probabilidades
+
+- El cálculo de probabilidades tiene su origen en los juegos de azar (contribuciones de Galileo, Fermat, Pascal, S. XVII).
+
+- La formalización matemática (número de casos favorables/número de casos posibles) viene de la mano de Laplace recién a inicios del S. XIX.
+
+- A pesar que se trata de una idea bastante intuitiva se demoró mucho en el tiempo. La idea imperante era que los resultados que dependen del azar eran imprevisibles.
+
+--
+
+- Es a partir del S. XIX que la administración del Estado incorpora el cálculo de probabilidades a las estadísticas recopiladas y abre un abanico de posibilidades.
+
+- Rápidamente las compañías de seguros comienzan a utilizar las estadísticas de mortalidad y la teoría de probabilidades para estimar las esperanzas de vida y establecer las primas de seguros de forma más precisa de lo que lo venían haciendo.
+
+---
+
+# Procesos Aleatorios 
+
+- Un **proceso aleatorio** es un proceso en el que sabemos que resultados pueden ocurrir, pero no sabemos que resultado particular va a ocurrir.
+
+--
+
+- El resultado de un experimento aleatorio depende del azar.
+
+- Ejemplos: arrojo una moneda, arrojo un dado, Spotify modo aleatorio de una playlist, si el índice de bolsa Merval sube, baja o no varía respecto al días anterior, número de asistentes a la clase de estadística, etc.
+
+--
+
+- Pero **el hecho de que un fenómeno sea aleatorio y por ende, impredecible en un resultado concreto, no significa que no se pueda tener algún conocimiento del mismo**. Surge la probabildad como disciplina.
+
+---
+
+# Probabilidades
+
+- **Andrei Nikolaivich Kolmogorov** (1903-1987)
+
+“El valor epistemológico de la teoría de probabilidades se funda en el hecho de que los fenómenos aleatorios engendran a gran escala una regularidad estricta, donde lo aleatorio de cierta forma, ha desaparecido”
+
+---
+
+# Probabilidades
+
+Algunas primeras definiciones:
+
+- Se denomina **espacio muestral** S a la descripción de todos los resultados posibles.
+
+- Un **evento** E es un subconjunto del espacio muestral S
+
+- La **probabilidad** es un número que se asigna a un evento y se denota P(E)
+
+.center[
+```{r fig.height=4}
+library(tidyverse)
+ggplot() +
+  geom_path(aes(x=c(0,1,1,0,0),y=c(0,0,1,1,0)), color="red", size=2)  +
+  labs(x="",y="") + 
+  annotate("path",
+           x=0.25+0.2*cos(seq(0,2*pi,length.out=100)),
+           y=0.5+0.2*sin(seq(0,2*pi,length.out=100)), color="blue") +
+  geom_point(aes(x=c(0.15,0.3),y=c(0.4,0.55)), color="blue", size=2) +
+  geom_point(aes(x=c(0.85,0.53,0.6),y=c(0.2,0.8,0.5)), color="red", size=2) +
+  geom_text(aes(x=0.95,y=0.95,label="S"),color="red", size=10) +
+  geom_text(aes(x=0.45,y=0.65,label="E"),color="blue", size=10) +
+  theme(panel.background = element_blank(),
+        axis.text = element_blank(),
+        axis.ticks = element_blank())
+```
+]
+
+---
+
+# Repaso de Conjuntos
+
+Definimos $\overline{E}$ al **Complemento** de un Evento $E$ como todos los elementos del Espacio Muestral $S$ que no pertenecen a $E$
+
+$\overline{E}=\{x /x \in S, x \notin E \}$
+
+.center[
+```{r fig.height=4}
+library(tidyverse)
+library(ggforce)
+data.frame(x = c(0.25), y = c(0.5),labels = c('A')) %>% 
+  ggplot() +
+  geom_rect(aes(xmin=0, xmax=1, ymin=0, ymax=1), color="red", size=2, fill="lightblue") +
+    geom_circle(aes(x0 = x, y0 = y, r = 0.15), size = 1, colour = 'grey', fill="white") +
+  labs(x="",y="") + 
+  geom_text(aes(x=0.95,y=0.95,label="S"),color="red", size=10) +
+  geom_text(aes(x=0.45,y=0.65,label="E"),color="blue", size=10) +
+  theme(panel.background = element_blank(),
+        axis.text = element_blank(),
+        axis.ticks = element_blank(),
+        legend.position = "null")
+```
+]
+
+En particular, $(\overline{S})=\emptyset$ y $(\overline{\emptyset})=S$
+
+---
+
+# Repaso de Conjuntos
+
+Definimos $A \cup B$ a la **Unión** de de dos (o más) conjuntos como todos los elementos del Espacio Muestral $S$ que pertenecen a $A$ **ó** a $B$
+
+$A \cup B =\{x /(x \in A) ó (x \in B) \}$
+
+.center[
+```{r fig.height=4}
+library(tidyverse)
+library(ggforce)
+data.frame(x = c(0.4, 0.6), y = c(0.5, 0.5),labels = c('A', 'B')) %>% 
+  ggplot() +
+  geom_rect(aes(xmin=0, xmax=1, ymin=0, ymax=1), color="red", size=2, fill="white") +
+    geom_circle(aes(x0 = x, y0 = y, r = 0.15),
+                size = 1, colour = 'grey', fill="lightblue") +
+  labs(x="",y="") + 
+  geom_text(aes(x=0.95,y=0.95,label="S"),color="red", size=10) +
+  geom_text(aes(x=0.25,y=0.65,label="A"),color="blue", size=10) +
+  geom_text(aes(x=0.75,y=0.65,label="B"),color="blue", size=10) +
+  theme(panel.background = element_blank(),
+        axis.text = element_blank(),
+        axis.ticks = element_blank(),
+        legend.position = "null")
+```
+]
+
+En particular, $(E \cup \overline{E})=S$
+
+---
+
+# Repaso de Conjuntos
+
+Definimos $A \cap B$ a la **Intersección** de de dos (o más) conjuntos como todos los elementos del Espacio Muestral $S$ que pertenecen a $A$ **y** a $B$
+
+$A \cap B =\{x /(x \in A) y (x \in B) \}$
+
+.center[
+```{r fig.height=4}
+library(tidyverse)
+library(ggforce)
+data.frame(x = c(0.4, 0.6), y = c(0.5, 0.5),labels = c('A', 'B')) %>% 
+  ggplot() +
+  geom_rect(aes(xmin=0, xmax=1, ymin=0, ymax=1), color="red", size=2, fill="white") +
+    geom_circle(aes(x0 = x, y0 = y, r = 0.15), alpha=.3,
+                size = 1, colour = 'grey', fill="blue") +
+  labs(x="",y="") + 
+  geom_text(aes(x=0.95,y=0.95,label="S"),color="red", size=10) +
+  geom_text(aes(x=0.25,y=0.65,label="A"),color="blue", size=10) +
+  geom_text(aes(x=0.75,y=0.65,label="B"),color="blue", size=10) +
+  theme(panel.background = element_blank(),
+        axis.text = element_blank(),
+        axis.ticks = element_blank(),
+        legend.position = "null")
+```
+]
+
+En particular, $(E \cap \overline{E})=\emptyset$
+
+---
+
+# Repaso de Conjuntos
+
+Decimos que **A está incluido en B** $A \subset B$ cuando todos los elementos de $A$ pertenecen a $B$
+
+$A \subset B \implies \forall x \in A, x \in B$
+
+.center[
+```{r fig.height=4}
+library(tidyverse)
+library(ggforce)
+data.frame(x = c(0.5, 0.5), y = c(0.5, 0.5),labels = c('A', 'B'),r=c(0.3,0.15)) %>% 
+  ggplot() +
+  geom_rect(aes(xmin=0, xmax=1, ymin=0, ymax=1), color="red", size=2, fill="white") +
+    geom_circle(aes(x0 = x, y0 = y, r = r, fill=labels), alpha=.3,
+                size = 1, colour = 'grey') +
+  labs(x="",y="") + 
+  geom_text(aes(x=0.95,y=0.95,label="S"),color="red", size=10) +
+  geom_text(aes(x=0.35,y=0.65,label="A"),color="blue", size=10) +
+  geom_text(aes(x=0.80,y=0.65,label="B"),color="blue", size=10) +
+  theme(panel.background = element_blank(),
+        axis.text = element_blank(),
+        axis.ticks = element_blank(),
+        legend.position = "null")
+```
+]
+
+---
+
+# Repaso de Conjuntos
+
+Decimos que **A y B son disjuntos o mutuamente excluyentes** cuando $A \cap B = \emptyset$ 
+
+.center[
+```{r fig.height=4}
+library(tidyverse)
+library(ggforce)
+data.frame(x = c(0.25, 0.75), y = c(0.5, 0.5),labels = c('A', 'B')) %>% 
+  ggplot() +
+  geom_rect(aes(xmin=0, xmax=1, ymin=0, ymax=1), color="red", size=2, fill="white") +
+    geom_circle(aes(x0 = x, y0 = y, r = 0.15, fill=labels), alpha=.3,
+                size = 1, colour = 'grey') +
+  labs(x="",y="") + 
+  geom_text(aes(x=0.95,y=0.95,label="S"),color="red", size=10) +
+  geom_text(aes(x=0.35,y=0.70,label="A"),color="blue", size=10) +
+  geom_text(aes(x=0.80,y=0.70,label="B"),color="blue", size=10) +
+  theme(panel.background = element_blank(),
+        axis.text = element_blank(),
+        axis.ticks = element_blank(),
+        legend.position = "null")
+```
+]
+
+Si $A_1, A_2,..A_k$ representan $k$ eventos **disjuntos o mutuamente excluyentes** y además $(A_1 \cup A_2 \cup ... \cup A_k)=S$, se los denomina **colectivamente exhaustivos**.
+
+---
+
+# Probabilidad: Postulados
+
+Hay tres **Postulados/Axiomas** en los que se basan las leyes de la **Teoría de Probabilidades**
+
+--
+
+1) **No Negatividad**. La probabilidad de un evento E cualquiera en un espacio muestral S es mayor o igual a cero: $P(E)\ge0$
+
+--
+
+2) **Normalización**. La probabilidad del espacio muestral es 1: $P(S)=1$
+
+--
+
+3) **Aditividad**. $Si A \cap B = \emptyset \implies P(A \cup B) = P(A) + P(B)$
+
+---
+
+# Derivaciones de los postulados
+
+$P(E) \le 1$
+
+Demostración:
+
+--
+
+Como $E$ y $\overline{E}$ son disjuntos y $(E \cup \overline{E})=S$, de los 3 postulados se deduce que:
+
+--
+
+$P(E \cup \overline{E})=P(E)+P(\overline{E})=P(S)=1$
+
+--
+
+$P(E)=1-P(\overline{E}) \implies P(E) \le 1$
+
+---
+
+# Derivaciones de los postulados
+
+$P(\emptyset)=0$
+
+Demostración:
+
+--
+
+Como $S \cup \emptyset=S$
+
+$P(S) + P(\emptyset)=P(S) \implies 1+P(\emptyset)=1 \implies P(\emptyset)=0$
+
+---
+
+# Derivaciones de los postulados
+
+$A \subset B \implies P(A) \le P(B)$
+
+Demostración:
+
+--
+
+Podemos definir a $B$ como la unión de dos conjuntos disjuntos, $A$ más la parte de $B$ que no está en $A$:
+
+$B=A \cup (B \cap \overline{A})$
+
+Aplicando los postulados: 
+
+$P(B)=P(A) + P(B \cap \overline{A}) \implies P(A)=P(B)-P(B \cap \overline{A}) \implies P(A) \le P(B)$
+
+---
+
+# Derivaciones de los postulados
+
+**Regla de la Suma:** $P(A \cup B) = P(A) + P(B) - P(A \cap B)$
+
+Demostración:
+
+--
+
+Escribimos a $A$ y $B$ como la unión de conjuntos disjuntos:
+
+$A=(A \cap B) \cup (A \cap \overline{B})$ y $B=(A \cap B) \cup (B \cap \overline{A})$
+
+--
+
+$P(A)=P(A \cap B) + P(A \cap \overline{B})$ y $P(B)=P(A \cap B) + P(B \cap \overline{A})$
+
+--
+
+$P(A)+P(B)=P(A \cap B) + P(A \cap \overline{B}) + P(A \cap B) + P(B \cap \overline{A})$
+
+--
+
+$P(A)+P(B)-P(A \cap B)= P(A \cap \overline{B}) + P(A \cap B) + P(B \cap \overline{A})$
+
+--
+
+$P(A)+P(B)-P(A \cap B)= P(A \cup B)$
+
+---
+
+# Algunos ejemplos
+
+Experimento: arrojo un dado
+
+El espacio muestral es $S=\{1, 2, 3, 4, 5, 6\}$
+
+Cada elemento listado en el espacio muestral se lo llama **resultado básico**.
+
+Estos **resultados básicos** son mutuamente excluyentes ya que no pueden ocurrir simultáneamente.
+
+¿Cuál es la probabilidad de ocurrencia de cada resultado básico?
+
+--
+
+En principio, no tenemos motivos para suponer que un resultado básico es más probable que otro. Es decir, $P(1)=P(2)=...=P(6)=p$
+
+--
+
+Pero además, los axiomas nos dicen que $P(S)=1$ y que, al ser eventos disjuntos:
+
+$P(S)=P(1)+P(2)+P(3)+P(4)+P(5)+P(6)=6*p=1$
+
+$\implies p=1/6$
+
+
+---
+
+# Algunos ejemplos
+
+Consideremos el evento **A="Sale el 1 o sale el 6"**
+
+--
+
+Se lo puede descomponer en dos eventos o resultados básicos:
+
+A1="Sale el 1", A2="Sale el 6"
+
+$A=A1 \cup A2$
+
+$P(A)=P(A1)+P(A2)=1/6+1/6=1/3$
+
+--
+
+O calcular la probabilidad mediante la regla:
+
+$$ P(A)=\frac{\text{# resultados básicos favorables a A} }{\text{# resultados básicos}}=\frac{2}{6}=\frac{1}{3} $$
+
+Ver **Reglas de Conteo** en la Práctica 2 y en este [Video](https://www.youtube.com/watch?v=ZtEl4Vz7SFI)
+
+---
+
+# Distribuciones de Probabilidad
+
+- Una **distribución de probabilidad** lista todos los posibles resultados y las probabilidades asociadas a estos. 
+
+- Debe con los siguientes requisitos:
+
+  + Los eventos listados o resultados básicos, $e_1, e_2,…,e_k$ deben ser disjuntos y colectivamente exhaustivos.
+  
+  + La probabilidad de cualquier evento $E$ del espacio muestra $S$ es tal que
+  
+  $$P(E)=\sum_{e_i \in E}P(e_i)$$
+  
+---
+
+# Algunos ejemplos
+
+Sigamos con el ejemplo de arrojar un dado. ¿Qué pasa si lo arrojo sucesivamente? ¿Cuál va a ser la **frecuencia relativa** de cada resultado? Depende de cuantas veces lo tire:
+
+--
+
+| Resultado Básico | n=10 | n=20 | n=50 | n=infinito |
+|:----:|:----:|:----:|:----:|:----:|
+| 1 | 0.10 | 0.20 | 0.22 | 0.167 |
+| 2 | 0 | 0.15 | 0.12 | 0.167 |
+| 3 | 0.10 | 0.10 | 0.14 | 0.167 |
+| 4 | 0.20 | 0.25 | 0.14 | 0.167 |
+| 5 | 0.30 | 0.15 | 0.14 | 0.167 |
+| 6 | 0.30 | 0.15 | 0.24 | 0.167 |
+| Total | 1 | 1 | 1 | 1 |
+
+**Regularidad estadística**: al aumentar el número de veces que se repite un experimento aleatorio, la frecuencia relativa de cada uno de los resultados tiende a un determinado valor. $P(E)=\displaystyle \lim_{n \to \infty} \frac{f_E}{n}$
+
+---
+
+# Algunos ejemplos
+
+¿Realmente se cumple esta regularidad? Hay que probar:
+
+--
+
+Arrojo un dado. Evento **E="Sale el 1"**
+
+```{r fig.height=4}
+library(gganimate)
+set.seed(123)
+dado <- data.frame(N=seq(1:5000),
+                   Uno=sample(c(0,1),5000,replace = TRUE, prob = c(5/6,1/6))) %>% 
+  mutate(Uno=cumsum(Uno)/N)
+dado %>%
+  ggplot( aes(x=N, y=Uno)) +
+    geom_line(color="blue", size=1) +
+    geom_point(color="blue", size=1) +
+  labs(x="",y="") +
+  geom_hline(yintercept = 1/6, color="red") +
+    transition_reveal(N) +
+  theme(panel.background = element_blank())
+```
+
+El resultado de la tirada de un dado es imposible de acertar, pero el resultado de varios miles de tiradas puede conocerse con casi absoluta certeza. 
+
+En el **Trabajo Práctico en R** se realizan numerosos experimentos como este.
