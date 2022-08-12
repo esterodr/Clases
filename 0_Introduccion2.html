@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Introducción a la Estadística</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Esteban Rodriguez" />
+    <script src="libs/header-attrs-2.14/header-attrs.js"></script>
+    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/metropolis.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/metropolis-fonts.css" rel="stylesheet" />
+    <script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+    <script src="libs/viz-1.8.2/viz.js"></script>
+    <link href="libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet" />
+    <script src="libs/grViz-binding-1.0.9/grViz.js"></script>
+  </head>
+  <body>
+    <textarea id="source">
+class: left, bottom, inverse, title-slide
+
+.title[
+# Introducción a la Estadística
+]
+.author[
+### Esteban Rodriguez
+]
+.date[
+### Última Actualización: 2022-08-12
+]
+
+---
+
+
+
+
+# ¿Qué es la Estadística?
+
+Es un **término que suena familiar** (medios de comunicación que citan cierto **estudio estadístico, encuestas electorales,  partidos de fútbol**, etc.) Curiosidad: aunque la disciplina es la estadística, en estos casos hablamos de estadísticas en plural (simplemente recopilación de datos). 
+
+--
+
+**Etimología**: proviene del latín **statisticum collegium** (“Consejo de Estado”) y de su derivado italiano statista (“hombre de Estado o político”). En 1749, el alemán Gottfried Achenwall comenzó a utilizar la palabra alemana statistik para designar el **análisis de datos que recopilaba el Estado**. Por lo tanto, los orígenes de la estadística están relacionados con el gobierno y sus cuerpos administrativos (v.gr. La gran epidemia de cólera de 1854; la enfermera Florence Nightingale en la guerra de Crimea de 1853)
+
+---
+
+# ¿Qué es la Estadística?
+
+Muchas definiciones y muy variadas 
+
+--
+
+Posible definición: **Es una disciplina que trabaja con datos cuyo objetivo consiste en hacer inferencia, mediante técnicas matemáticas y teoría de probabilidades**.  
+
+--
+
+La estadística es una **disciplina imperialista** que puede ser aplicada a casi cualquier ciencia. Se valen de la estadística para entender e interpretar cuestiones que hacen a sus objetos de estudio. 
+
+---
+
+# ¿Una disciplina controversial?
+
+Tiene mala prensa, a veces se la considera poco seria (Huff, 2011,“Cómo mentir con estadísticas”).  Y lo peor es que hay motivos…
+
+--
+
+*“El 25 % de la población argentina accede a transacciones para tenencia en moneda extranjera... En particular, el funcionario detalló que 4.798.952 personas accedieron a la compra del dólar ahorro por un monto de 3061 millones de dólares.*
+
+*...[U]n ex director del Indec señaló que las declaraciones del funcionario representan “una nueva prueba de la ligereza con que el Gobierno maneja las estadísticas”...“aquél es el número de operaciones registradas, no de personas”. Además, “dado que una persona autorizada a comprar por la AFIP pudo haber realizado 12 compras en el año, el total de personas sería de unas 400.000, o sea el 1% de la población total o el 2% de la PEA...".* 
+
+[Extraído de un artículo de La Nación](http://www.lanacion.com.ar/1758015-para-capitanich-el-cepo-no-existe)
+
+---
+
+# ¿Una disciplina controversial?
+
+![](Imagenes/intro_covid.jpg)
+
+---
+
+# ¿Una disciplina controversial?
+
+![](Imagenes/intro_covid2.jpg)
+
+[Fuente: usuario de Twitter @fernandezpablo](https://twitter.com/fernandezpablo/status/1249493191944032256?s=09)
+
+---
+
+# ¿Una disciplina controversial?
+
+No sólo en Argentina...
+
+![](Imagenes/whitehouse_growth.jpg)
+
+---
+
+# ¿Una disciplina controversial?
+
+- ¿Es una rama de la matemática? 
+
+- Fuerte contraste de la estadística vs. la solidez y certidumbre de la matemática.
+
+- La estadística estudia como recoger datos (¿cuántos?, ¿de qué forma?) y cómo analizarlos para obtener información que permita responder las preguntas que uno se plantea.
+
+- Se trata de avanzar en el conocimiento a partir de la observación y el análisis de la realidad, de manera objetiva. **Es la esencia del método científico**.
+
+---
+
+# Aproximación a un problema estadístico
+Experimento: **Evaluar la efectividad de los stents en el tratamiento de pacientes con riesgo cerebrovascular**. Los stents son dispositivos que se colocan dentro de los vasos sanguíneos y ayudan en la recuperación del paciente después de eventos cardíacos. Además reducen el riesgo de un ataque cardíaco adicional o muerte. Muchos médicos sostienen que puede haber beneficios similares para los pacientes de riesgo de accidente cerebrovascular.
+
+--
+
+La pregunta clave que los investigadores se hacen es **¿puede el uso de los stents reducir el riego de un accidente cerebrovascular?**
+
+--
+
+Los investigadores que hicieron esta pregunta recopilaron datos de 451 pacientes en situación de riesgo. Cada paciente voluntario fue asignado al azar a uno de dos grupos:
+
+--
+
+- **Grupo de tratamiento**. Los pacientes en el grupo de tratamiento recibieron un stent y atención médica. La atención médica incluye medicamentos, manejo de los factores de riesgo y ayuda en la adquisición de nuevos hábitos saludables.
+
+- **Grupo de control**. Los pacientes en el grupo de control recibieron el mismo manejo médico que el grupo de tratado, sin recibir los stents
+
+---
+
+# Aproximación a un problema estadístico
+
+
+
+.pull-left[
+
+| Paciente|Grupo       |0-30 Días  |0-365 Días |
+|--------:|:-----------|:----------|:----------|
+|        1|Tratamiento |Ataque     |Ataque     |
+|        2|Tratamiento |Ataque     |Ataque     |
+|       46|Tratamiento |Sin ataque |Sin ataque |
+|       47|Tratamiento |Sin ataque |Sin ataque |
+|      225|Control     |Ataque     |Ataque     |
+|      226|Control     |Ataque     |Ataque     |
+|      253|Control     |Sin ataque |Sin ataque |
+|      254|Control     |Sin ataque |Sin ataque |
+]
+
+.pull-right[
+.center[0-30 Días]
+
+|            | Sin ataque| Ataque|
+|:-----------|----------:|------:|
+|Control     |        214|     13|
+|Tratamiento |        191|     33|
+|Sum         |        405|     46|
+
+.center[0-365 Días]
+
+|            | Sin ataque| Ataque|
+|:-----------|----------:|------:|
+|Control     |        199|     28|
+|Tratamiento |        179|     45|
+|Sum         |        378|     73|
+]
+
+---
+
+# Aproximación a un problema estadístico
+
+- Del grupo de tratamiento, `\(\frac{45}{224}=20\%\)` tuvieron un accidente cardiovascular.
+
+- Del grupo de control, `\(\frac{28}{227}=12\%\)` tuvieron un accidente cardiovascular.
+
+--
+
+**Sorpresa**: 8 p.p. más de pacientes en el grupo de tratamiento tuvieron un accidente cerebrovascular
+
+--
+
+ - Es contrario a lo que los médicos esperaban
+
+ - Esta diferencia que muestran los datos entre grupos, ¿es “real” o  “estadísticamente significativa”?
+
+**Esta última pregunta es donde la estadística como ciencia hace su aporte.**
+
+---
+
+# Aproximación a un problema estadístico
+
+- Supongamos que tenemos una moneda, y la arrojamos 100 veces. La probabilidad de obtener una cara en un lanzamiento cualquiera es de 50%. Pero eso no quiere decir que vamos a observar exactamente 50 caras. Este tipo de fluctuación es parte de casi cualquier proceso generador de datos. 
+
+--
+
+- ¿Es posible que los 8 p.p. de diferencia en el estudio del stent sea atribuible a la variación natural de casi cualquier proceso?
+
+- Claramente cuanto mayor sea la diferencia que se observa (para un tamaño de muestra dado) menos creíble resulta que la diferencia se deba al azar.
+
+- Luego la pregunta es: ¿es la diferencia lo suficientemente grande como para rechazar la idea de que fue el azar el culpable de esa diferencia?
+
+--
+
+- Aún no contamos con las herramientas estadísticas para abordar esta pregunta pero la conclusión del estudio fue: “la evidencia fue convincente del daño de los stents en este estudio de pacientes con riesgo de accidente cerebrovascular.”
+
+---
+
+# Primera aproximación a los datos
+
+- La descripción de los datos es el primer paso en cualquier análisis.
+
+--
+
+- Hay tres conceptos básicos en un conjunto de datos.
+
+  +   Observaciones
+  
+  +   Variables
+  
+  +   Matriz de datos
+
+--
+
+.center[Datos de los alumnos de un curso]
+
+
+|semester |sex   | exam1| exam2| exam3| course_grade|
+|:--------|:-----|-----:|-----:|-----:|------------:|
+|2002-1   |Man   |  89.0|  83.5|  92.0|      77.1197|
+|2001-1   |Man   |  87.3|  81.0|  78.5|      85.7367|
+|2001-1   |Man   |  83.5|  60.5|  78.0|      73.6333|
+|2001-1   |Woman |  79.5|  56.0|  81.0|      68.2500|
+|2000-2   |Man   |  88.9|  67.0|  76.0|      80.5554|
+|2000-1   |Woman |  56.0|  45.0|  61.0|      58.6308|
+
+---
+
+# Primera aproximación a los datos
+
+<div id="htmlwidget-5c8b69782fc233378a79" style="width:504px;height:150px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-5c8b69782fc233378a79">{"x":{"diagram":"digraph {\n  graph [layout = dot, rankdir = TB]\n  \n  node [shape = rectangle]        \n  rec1 [label = \"Tipo de Variable\"]\n  rec2 [label = \"Numérica\", color = Red, fontcolor = Red]\n  rec3 [label =  \"Categórica\", color = Red, fontcolor = Red]\n  \n  # edge definitions with the node IDs\n  rec1 -> rec2\n  rec1 -> rec3\n  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+
+- **Variables numéricas** (o cuantitativas). Son sensibles a la suma, resta, etc, i.e se pueden realizar operaciones matemáticas con este tipo de variables. Por ej., en la tabla anterior, la nota de los exámenes.
+
+- **Variables categóricas** (o cualitativas). Variables que toman un número limitado de categorias. Las categorías pueden estar identificadas con números pero carece de sentido realizar operaciones matemáticas con este tipo de variables. Por ej., en la tabla anterior CTYFIPS el sexo o el semestre.
+
+---
+
+# Primera aproximación a los datos
+
+<div id="htmlwidget-1fd63e9e5405e60c5956" style="width:504px;height:250px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-1fd63e9e5405e60c5956">{"x":{"diagram":"digraph {\n  graph [layout = dot, rankdir = TB]\n  \n  node [shape = rectangle]        \n  rec1 [label = \"Tipo de Variable\"]\n  rec2 [label = \"Numérica\", color = Red, fontcolor = Red]\n  rec3 [label =  \"Categórica\"]\n  rec4 [label =  \"Continua\", color = Red, fontcolor = Red]\n  rec5 [label =  \"Discreta\", color = Red, fontcolor = Red]\n  \n  # edge definitions with the node IDs\n  rec1 -> rec2\n  rec1 -> rec3\n  rec2 -> rec4\n  rec2 -> rec5\n  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+
+- **Continua**: Puede tomar cualquier valor real. Por ejemplo, nota promedio.
+
+- **Discreta**: Se utilizan para contar. Sólo toman valores enteros. Por ej. La cantidad de clases a la que asistió el alumno.
+
+---
+
+# Primera aproximación a los datos
+
+<div id="htmlwidget-58a0b5073d726e7d1a7c" style="width:504px;height:250px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-58a0b5073d726e7d1a7c">{"x":{"diagram":"digraph {\n  graph [layout = dot, rankdir = TB]\n  \n  node [shape = rectangle]        \n  rec1 [label = \"Tipo de Variable\"]\n  rec2 [label = \"Numérica\"]\n  rec3 [label =  \"Categórica\", color = Red, fontcolor = Red]\n  rec4 [label =  \"Continua\"]\n  rec5 [label =  \"Discreta\"]\n  rec6 [label =  \"Ordinal\", color = Red, fontcolor = Red]\n  rec7 [label =  \"Sólo categórica\", color = Red, fontcolor = Red]\n  \n  # edge definitions with the node IDs\n  rec1 -> rec2\n  rec1 -> rec3\n  rec2 -> rec4\n  rec2 -> rec5\n  rec3 -> rec6\n  rec3 -> rec7\n  \n  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+
+- **Ordinal**: El orden de la categorías es relevante. Por ej. encuestas de satisfacción, máximo nivel educativo alcanzado, etc.
+
+- **Sólo categórica**: No hay orden en las categorías. Por ej. estado civil, sexo, etc.
+
+---
+
+# Estructura de los Datos
+
+- Hay básicamente dos tipos de estructura de datos:
+
+  + Datos de **corte transversal** (cross-section)
+  
+  + Datos temporales o de **series de tiempo**.
+
+- También están los **datos en panel** que es una combinación de los datos transversales con los datos temporales.
+
+---
+
+# Datos de Corte Transversal
+
+- Un conjunto de datos transversales consiste en una muestra de individuos, familias, empresas, ciudades, unidades gubernamentales, países, etc. en un punto del tiempo.
+
+--
+
+- Los datos transversales son ampliamente usados en economía, en marketing y otras ciencias sociales.
+Particularmente en microeconomía: economía laboral, organización industrial, finanzas públicas, economía de la salud, estudios de mercado,etc.
+
+--
+
+- Los datos transversales nos permiten estudiar relaciones entre variables analizando diferencias a través de los individuos, firmas, u otras unidades económicas.
+
+---
+
+# Datos de Series de Tiempo
+
+- Los datos de series de tiempo son datos correspondientes a una sola unidad (firma, país, etc.) observados para múltiples períodos de tiempo.
+
+--
+
+- Ejemplo 1: la tasa de inflación anual de la economía X desde 1980 hasta el 2015
+
+- Ejemplo 2: la tasa de desempleo anual de la economía X desde 1980 hasta 2015
+
+- Ejemplo 3 : la tasa de inflación, la tasa de desempleo y el crecimiento de la economía X
+
+- A diferencia de los datos de corte transversal, el **orden cronológico** de las observaciones contiene información potencialmente importante
+
+---
+
+# Datos de Panel
+
+- **Datos de panel** (también llamados **datos longitudinales**) son datos donde cada unidad (individuo, firma, ciudad, etc.) se observa más de un período de tiempo. El número de unidades se denota por N y el nro de períodos de tiempo se denota con T.  El número de observaciones totales está dado por NxT.
+
+- Algunos distinguen también los **pooled cross-section**. Se trata de un mix de datos de corte transversal para más de un período de tiempo, donde no necesariamente deben contarse con exactamente los mismos individuos en todos los períodos de tiempo que se observan.
+
+---
+
+# Censo vs. Muestra
+
+- Una de las actividades de la estadística es la de extraer conclusiones (inferir) sobre el **todo** mirando sólo una **parte**.
+
+--
+
+- Pero, no sería mejor disponer del “todo” (llamado población), que sólo de una parte (muestra), i.e. realizar un censo?
+
+  + Mucho más oneroso que un muestreo
+  + La logística es muchísimo más compleja
+  + La población de interés puede estar cambiando permanentemente.
+  + En algunos casos hasta puede resultar impracticable censar.
+
+--
+
+- El muestreo es la solución natural: **conocer el todo mirando sólo una parte**.
+
+---
+
+# Muestreo
+
+![](Imagenes/Comida.jpg)
+- Cuando uno degusta y decimos que le falta sal, lo que estamos haciendo es un **análisis exploratorio**.
+
+- Cuando luego de degustar concluimos que le falta sal a toda la preparación estamos haciendo **inferencia**.
+
+- Para que al degustar podamos concluir que el plato puede ser servido, la muestra que tomamos en nuestra cuchara debe ser representativa, i.e. previamente deberíamos haber revuelto bien para que todos los ingredientes y condimentos se mezclen de manera que lo que se degusta sea una **muestra representativa** de toda la comida.
+
+---
+
+# Landon vs. Roosevelt, EE.UU. (1936)
+
+.pull-left[
+![](Imagenes/Landon_FDR.jpg)
+]
+
+.pull-right[
+Elección presidencial en EE.UU. 1936, Landon vs. Roosevelt. Una encuesta publicada por Literary Digest Mostraba que Landon ganaba 57% a 43%.
+
+- Fue el mayor sondeo electoral.
+- Enviaron 10 millones de cuestionarios
+- Recibieron 2.3 millones de respuestas
+]
+--
+
+- Pero Roosevelt ganó con el 61% de los votos. 
+
+--
+
+- Muestra sesgada: la encuesta se realizó sobre aquellos que poseían teléfonos y/o autos, i.e. en base a estos registros realizaron la encuesta. No se trataba de una muestra representativa de la población americana.
+
+--
+
+- En contraste, una empresa que había sido creada recientemente por George Gallup, acertó el resultado consultando menos de 5000 personas, pero se aseguró de que se tratase de una muestra representativa.
+
+---
+
+# PASO en Agosto de 2019 en Argentina
+
+- Las encuestas auguraban un triunfo de Macri pero ganó ampliamente Alberto Fernández.
+
+--
+
+- “Dos semanas después de la elección, la mayoría de las compañías frenaron la difusión de sondeos... y **contemplan la posibilidad de modificar la metodología de trabajo** de campo para intentar obtener resultados que se acerquen más a la realidad.”
+
+- “Una de esas hipótesis, coinciden los consultores, es que hubo una falla importante en una de las metodologías comúnmente utilizadas para hacer encuestas: **los llamados a teléfonos fijos**. Calificada por algunos como "obsoleta", esa herramienta de investigación otrora representativa hoy tiene un sesgo marcado pues el teléfono fijo fue reemplazado masivamente por el celular y quienes aún lo usan suelen ser adultos mayores pertenecientes a sectores medios y altos. Por eso, las consultoras evalúan hacer ajustes en el uso de esa herramienta, combinarla con otra más confiable o reemplazarla.”
+
+[Artículo de La Nación](https://www.lanacion.com.ar/politica/los-encuestadores-evaluan-cambios-superar-papelon-paso-nid2280291)
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

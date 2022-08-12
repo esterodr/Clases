@@ -1,0 +1,1348 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Probabilidades</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Esteban Rodriguez" />
+    <script src="libs/header-attrs-2.14/header-attrs.js"></script>
+    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/metropolis.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/metropolis-fonts.css" rel="stylesheet" />
+    <script src="libs/kePrint-0.0.1/kePrint.js"></script>
+    <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+    <script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+    <script src="libs/viz-1.8.2/viz.js"></script>
+    <link href="libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet" />
+    <script src="libs/grViz-binding-1.0.9/grViz.js"></script>
+  </head>
+  <body>
+    <textarea id="source">
+class: left, bottom, inverse, title-slide
+
+.title[
+# Probabilidades
+]
+.author[
+### Esteban Rodriguez
+]
+.date[
+### Última Actualización: 2022-08-12
+]
+
+---
+
+
+
+
+# Probabilidades
+
+- El cálculo de probabilidades tiene su origen en los juegos de azar (contribuciones de Galileo, Fermat, Pascal, S. XVII).
+
+- La formalización matemática (número de casos favorables/número de casos posibles) viene de la mano de Laplace recién a inicios del S. XIX.
+
+- A pesar que se trata de una idea bastante intuitiva se demoró mucho en el tiempo. La idea imperante era que los resultados que dependen del azar eran imprevisibles.
+
+--
+
+- Es a partir del S. XIX que la administración del Estado incorpora el cálculo de probabilidades a las estadísticas recopiladas y abre un abanico de posibilidades.
+
+- Rápidamente las compañías de seguros comienzan a utilizar las estadísticas de mortalidad y la teoría de probabilidades para estimar las esperanzas de vida y establecer las primas de seguros de forma más precisa de lo que lo venían haciendo.
+
+---
+
+# Procesos Aleatorios 
+
+- Un **proceso aleatorio** es un proceso en el que sabemos que resultados pueden ocurrir, pero no sabemos que resultado particular va a ocurrir.
+
+--
+
+- El resultado de un experimento aleatorio depende del azar.
+
+- Ejemplos: arrojo una moneda, arrojo un dado, Spotify modo aleatorio de una playlist, si el índice de bolsa Merval sube, baja o no varía respecto al días anterior, número de asistentes a la clase de estadística, etc.
+
+--
+
+- Pero **el hecho de que un fenómeno sea aleatorio y por ende, impredecible en un resultado concreto, no significa que no se pueda tener algún conocimiento del mismo**. Surge la probabildad como disciplina.
+
+---
+
+# Probabilidades
+
+- **Andrei Nikolaivich Kolmogorov** (1903-1987)
+
+“El valor epistemológico de la teoría de probabilidades se funda en el hecho de que los fenómenos aleatorios engendran a gran escala una regularidad estricta, donde lo aleatorio de cierta forma, ha desaparecido”
+
+---
+
+# Probabilidades
+
+Algunas primeras definiciones:
+
+- Se denomina **espacio muestral** S a la descripción de todos los resultados posibles.
+
+- Un **evento** E es un subconjunto del espacio muestral S
+
+- La **probabilidad** es un número que se asigna a un evento y se denota P(E)
+
+.center[
+![](2_Probabilidades_files/figure-html/unnamed-chunk-1-1.png)&lt;!-- --&gt;
+]
+
+---
+
+# Repaso de Conjuntos
+
+Definimos `\(\overline{E}\)` al **Complemento** de un Evento `\(E\)` como todos los elementos del Espacio Muestral `\(S\)` que no pertenecen a `\(E\)`
+
+`\(\overline{E}=\{x /x \in S, x \notin E \}\)`
+
+.center[
+![](2_Probabilidades_files/figure-html/unnamed-chunk-2-1.png)&lt;!-- --&gt;
+]
+
+En particular, `\((\overline{S})=\emptyset\)` y `\((\overline{\emptyset})=S\)`
+
+---
+
+# Repaso de Conjuntos
+
+Definimos `\(A \cup B\)` a la **Unión** de de dos (o más) conjuntos como todos los elementos del Espacio Muestral `\(S\)` que pertenecen a `\(A\)` **ó** a `\(B\)`
+
+`\(A \cup B =\{x /(x \in A) ó (x \in B) \}\)`
+
+.center[
+![](2_Probabilidades_files/figure-html/unnamed-chunk-3-1.png)&lt;!-- --&gt;
+]
+
+En particular, `\((E \cup \overline{E})=S\)`
+
+---
+
+# Repaso de Conjuntos
+
+Definimos `\(A \cap B\)` a la **Intersección** de de dos (o más) conjuntos como todos los elementos del Espacio Muestral `\(S\)` que pertenecen a `\(A\)` **y** a `\(B\)`
+
+`\(A \cap B =\{x /(x \in A) y (x \in B) \}\)`
+
+.center[
+![](2_Probabilidades_files/figure-html/unnamed-chunk-4-1.png)&lt;!-- --&gt;
+]
+
+En particular, `\((E \cap \overline{E})=\emptyset\)`
+
+---
+
+# Repaso de Conjuntos
+
+Decimos que **A está incluido en B** `\(A \subset B\)` cuando todos los elementos de `\(A\)` pertenecen a `\(B\)`
+
+`\(A \subset B \implies \forall x \in A, x \in B\)`
+
+.center[
+![](2_Probabilidades_files/figure-html/unnamed-chunk-5-1.png)&lt;!-- --&gt;
+]
+
+---
+
+# Repaso de Conjuntos
+
+Decimos que **A y B son disjuntos o mutuamente excluyentes** cuando `\(A \cap B = \emptyset\)` 
+
+.center[
+![](2_Probabilidades_files/figure-html/unnamed-chunk-6-1.png)&lt;!-- --&gt;
+]
+
+Si `\(A_1, A_2,..A_k\)` representan `\(k\)` eventos **disjuntos o mutuamente excluyentes** y además `\((A_1 \cup A_2 \cup ... \cup A_k)=S\)`, se los denomina **colectivamente exhaustivos**.
+
+---
+
+# Probabilidad: Postulados
+
+Hay tres **Postulados/Axiomas** en los que se basan las leyes de la **Teoría de Probabilidades**
+
+--
+
+1) **No Negatividad**. La probabilidad de un evento E cualquiera en un espacio muestral S es mayor o igual a cero: `\(P(E)\ge0\)`
+
+--
+
+2) **Normalización**. La probabilidad del espacio muestral es 1: `\(P(S)=1\)`
+
+--
+
+3) **Aditividad**. `\(Si A \cap B = \emptyset \implies P(A \cup B) = P(A) + P(B)\)`
+
+---
+
+# Derivaciones de los postulados
+
+`\(P(E) \le 1\)`
+
+Demostración:
+
+--
+
+Como `\(E\)` y `\(\overline{E}\)` son disjuntos y `\((E \cup \overline{E})=S\)`, de los 3 postulados se deduce que:
+
+--
+
+`\(P(E \cup \overline{E})=P(E)+P(\overline{E})=P(S)=1\)`
+
+--
+
+`\(P(E)=1-P(\overline{E}) \implies P(E) \le 1\)`
+
+---
+
+# Derivaciones de los postulados
+
+`\(P(\emptyset)=0\)`
+
+Demostración:
+
+--
+
+Como `\(S \cup \emptyset=S\)`
+
+`\(P(S) + P(\emptyset)=P(S) \implies 1+P(\emptyset)=1 \implies P(\emptyset)=0\)`
+
+---
+
+# Derivaciones de los postulados
+
+`\(A \subset B \implies P(A) \le P(B)\)`
+
+Demostración:
+
+--
+
+Podemos definir a `\(B\)` como la unión de dos conjuntos disjuntos, `\(A\)` más la parte de `\(B\)` que no está en `\(A\)`:
+
+`\(B=A \cup (B \cap \overline{A})\)`
+
+Aplicando los postulados: 
+
+`\(P(B)=P(A) + P(B \cap \overline{A}) \implies P(A)=P(B)-P(B \cap \overline{A}) \implies P(A) \le P(B)\)`
+
+---
+
+# Derivaciones de los postulados
+
+**Regla de la Suma:** `\(P(A \cup B) = P(A) + P(B) - P(A \cap B)\)`
+
+Demostración:
+
+--
+
+Escribimos a `\(A\)` y `\(B\)` como la unión de conjuntos disjuntos:
+
+`\(A=(A \cap B) \cup (A \cap \overline{B})\)` y `\(B=(A \cap B) \cup (B \cap \overline{A})\)`
+
+--
+
+`\(P(A)=P(A \cap B) + P(A \cap \overline{B})\)` y `\(P(B)=P(A \cap B) + P(B \cap \overline{A})\)`
+
+--
+
+`\(P(A)+P(B)=P(A \cap B) + P(A \cap \overline{B}) + P(A \cap B) + P(B \cap \overline{A})\)`
+
+--
+
+`\(P(A)+P(B)-P(A \cap B)= P(A \cap \overline{B}) + P(A \cap B) + P(B \cap \overline{A})\)`
+
+--
+
+`\(P(A)+P(B)-P(A \cap B)= P(A \cup B)\)`
+
+---
+
+# Algunos ejemplos
+
+Experimento: arrojo un dado
+
+El espacio muestral es `\(S=\{1, 2, 3, 4, 5, 6\}\)`
+
+Cada elemento listado en el espacio muestral se lo llama **resultado básico**.
+
+Estos **resultados básicos** son mutuamente excluyentes ya que no pueden ocurrir simultáneamente.
+
+¿Cuál es la probabilidad de ocurrencia de cada resultado básico?
+
+--
+
+En principio, no tenemos motivos para suponer que un resultado básico es más probable que otro. Es decir, `\(P(1)=P(2)=...=P(6)=p\)`
+
+--
+
+Pero además, los axiomas nos dicen que `\(P(S)=1\)` y que, al ser eventos disjuntos:
+
+`\(P(S)=P(1)+P(2)+P(3)+P(4)+P(5)+P(6)=6*p=1\)`
+
+`\(\implies p=1/6\)`
+
+
+---
+
+# Algunos ejemplos
+
+Consideremos el evento **A="Sale el 1 o sale el 6"**
+
+--
+
+Se lo puede descomponer en dos eventos o resultados básicos:
+
+A1="Sale el 1", A2="Sale el 6"
+
+`\(A=A1 \cup A2\)`
+
+`\(P(A)=P(A1)+P(A2)=1/6+1/6=1/3\)`
+
+--
+
+O calcular la probabilidad mediante la regla:
+
+$$ P(A)=\frac{\text{# resultados básicos favorables a A} }{\text{# resultados básicos}}=\frac{2}{6}=\frac{1}{3} $$
+
+Ver **Reglas de Conteo** en la Práctica 2 y en este [Video](https://www.youtube.com/watch?v=ZtEl4Vz7SFI)
+
+---
+
+# Distribuciones de Probabilidad
+
+- Una **distribución de probabilidad** lista todos los posibles resultados y las probabilidades asociadas a estos. 
+
+- Debe con los siguientes requisitos:
+
+  + Los eventos listados o resultados básicos, `\(e_1, e_2,…,e_k\)` deben ser disjuntos y colectivamente exhaustivos.
+  
+  + La probabilidad de cualquier evento `\(E\)` del espacio muestra `\(S\)` es tal que
+  
+  `$$P(E)=\sum_{e_i \in E}P(e_i)$$`
+  
+---
+
+# Probabilidades
+
+Sigamos con el ejemplo de arrojar un dado. ¿Qué pasa si lo arrojo sucesivamente? ¿Cuál va a ser la **frecuencia relativa** de cada resultado? Depende de cuantas veces lo tire:
+
+--
+
+| Resultado Básico | n=10 | n=20 | n=50 | n=infinito |
+|:----:|:----:|:----:|:----:|:----:|
+| 1 | 0.10 | 0.20 | 0.22 | 0.167 |
+| 2 | 0 | 0.15 | 0.12 | 0.167 |
+| 3 | 0.10 | 0.10 | 0.14 | 0.167 |
+| 4 | 0.20 | 0.25 | 0.14 | 0.167 |
+| 5 | 0.30 | 0.15 | 0.14 | 0.167 |
+| 6 | 0.30 | 0.15 | 0.24 | 0.167 |
+| Total | 1 | 1 | 1 | 1 |
+
+**Regularidad estadística**: al aumentar el número de veces que se repite un experimento aleatorio, la frecuencia relativa de cada uno de los resultados tiende a un determinado valor. `\(P(E)=\displaystyle \lim_{n \to \infty} \frac{f_E}{n}\)`
+
+---
+
+# Probabilidades
+
+¿Realmente se cumple esta regularidad? Hay que probar:
+
+--
+
+Arrojo un dado. Evento **E="Sale el 1"**
+
+
+```
+## NULL
+```
+
+El resultado de la tirada de un dado es imposible de acertar, pero el resultado de varios miles de tiradas puede conocerse con casi absoluta certeza. 
+
+En el **Trabajo Práctico en R** se realizan numerosos experimentos como este.
+
+---
+
+# Probabilidades
+
+No existe una única interpretación para la probabilidad, pero las distintas interpretaciones coinciden en sus reglas y axiomas.
+
+.pull-left[
+**Enfoque Frecuentista**
+
+- La probabilidad de un evento es la proporción de veces que el evento ocurre en el largo plazo, i.e. después de haber repetido el experimento muchas veces. Por eso es el **límite de la frecuencia relativa** de dicho evento. 
+]
+
+.pull-right[
+**Enfoque Bayesiano**
+
+- Para un bayesiano la probabilidad se interpreta como el grado de creencia o de convicción con respecto a la ocurrencia de determinado evento. **Interpretación subjetiva de la probabilidad**.
+
+- Las técnicas bayesianas se popularizaron en las dos últimas décadas gracias a la informática.
+]
+
+---
+
+# Probabilidades: Enfoque frecuentista
+
+**Bernoulli** (1654-1705) establece los fundamentos del cálculo de probabilidades en “El arte de la conjetura”. Existen dos tipos de situaciones según Bernoulli:
+
+- Las situaciones vinculadas a los juegos de azar donde **las probabilidades se conocen a priori**. Se trata del **enfoque clásico** de probabilidades que opera con eventos **equiprobables**. Si al realizar un experimento aleatorio pueden ocurrir n resultados posibles y todos tienen igual posibilidad de ocurrir, entonces la probabilidad de cada uno de los resultados es `\(1/n\)`
+
+- Las situaciones en que las **probabilidades se definen a posteriori**, después de un gran número de ensayos, en base a los resultados observados. Probabilidad empírica. Se trata del enfoque de frecuencia relativa.
+
+---
+
+# Algunos ejemplos
+
+Experimento: se arroja una moneda; `\(S=\{cara, ceca\}\)`. ¿Cuál de los siguientes eventos les sorprendería más?
+
+- ¿Exactamente 3 caras en 10 tiradas?
+
+- ¿Exactamente 3 caras en 100 tiradas?
+
+- ¿Exactamente 3 caras en 1000 tiradas?
+
+--
+
+Arrojo una moneda no cargada 200 veces. ¿Cuál es la mejor conjetura que pueden hacer respecto a la cantidad de caras/cecas en la muestra?
+
+---
+
+# Algunos ejemplos
+
+Supongamos que arrojamos una moneda 6 veces y obtuvimos 6 caras.
+
+--
+
+¿Cuál creen que es la probabilidad de obtener una cara en la próxima tirada?
+
+- Menor a 0.5
+
+- Mayor a 0.5
+
+- 0.5
+
+--
+
+**La falacia del jugador**: suponer que el proceso aleatorio se compensa con lo que ocurrió en el pasado. **El azar no tiene memoria**. Interpretación equivocada de la Ley de los grandes números.
+
+**La ley de los grandes números**, afirma que después de un gran número de tiradas uno espera 50% caras y 50% cecas, y que cada vez que arrojo la moneda tengo igual probabilidad de que salga cara o que salga ceca, independientemente de lo que haya ocurrido en las tiradas anteriores.
+
+---
+
+# Ley de los grandes números
+
+**Intuición (presentación informal de la ley)**
+
+- La interpretación de frecuencia relativa descansa en la idea de que un experimento se efectúa y se repite muchas veces, y aprox. bajo las mismas condiciones.
+
+- Cuanto más veces repito un experimento para calcular la probabilidad de ocurrencia de determinado evento, la **frecuencia relativa o proporción** de los resultados favorables se aproxima al verdadero valor de probabilidad del evento.
+
+- La ley de los grandes números se cumple en el límite de la frecuencia relativa, pero no tiene porque cumplirse en un número finito de observaciones
+
+Ver en el **Trabajo Práctico en R** distintos experimentos con esta idea.
+
+---
+
+# Más ejemplos
+
+- ¿Cuál es la probabilidad de que una carta elegida al azar sea de corazones?
+
+- ¿Cuál es la probabilidad que una carta elegida al azar sea figura (J, Q o K)?
+
+- ¿Y que sea figura y de corazones? Calcularla de dos maneras distintas.
+
+![](Imagenes/mazocartas.jpg)
+
+---
+
+# Más ejemplos
+
+Se extrae una carta de un mazo de naipes de Póker. Considere los siguientes eventos:
+
+- A="Sale una carta de Corazones"
+
+- B="Sale una figura"
+
+- C="Sale una carta roja"
+
+- D="Sale un trébol"
+
+Hallar:
+
+`\(P(A \cup B)\)`
+
+`\(P(C \cup D)\)`
+
+`\(P(A \cup C)\)`
+
+`\(P(\overline{B})\)`
+
+---
+
+# Más ejemplos
+
+En un colegio secundario los alumnos se enrolan en deportes con las siguientes proporciones: en fútbol el 50%, en básquet el 20% y en ambas el 15%. 
+
+Cuál es la probabilidad de que un estudiante elegido al azar...
+
+- Juegue futbol o básquet
+
+- No juegue ninguno de estos deportes.
+
+Representar el problema mediante un diagrama de Venn
+
+---
+
+# Más ejemplos
+
+Un sistema puede tener tres defectos: `\(D_1, D_2 \text{ y } D_3\)`. Suponga que:
+
+`\(P(D_1)=0.12, P(D_2)=0.07, P(D_3)=0.05, P(D_1 \cup D_2)=0.13\)`
+
+`\(P(D_1 \cup D_3)=0.14, P(D_2 \cup D_3)=0.10, P(D_1 \cap D_2 \cap D_3)=0.01\)`
+
+- ¿Cuál es la probabilidad de que el sistema no tenga defecto del tipo 1?
+
+- ¿Cuál es la probabilidad de que el sistema tenga defectos tipo 1 y 2 al mismo tiempo?
+
+- ¿Cuál es la probabilidad de que el sistema tenga defectos tipo 1 y 2 al mismo tiempo pero no tenga defecto tipo 3?
+
+- ¿Cuál es la probabilidad de que el sistema tenga a lo sumo dos de estos defectos?
+
+---
+
+# Eventos disjuntos vs. complementarios
+
+- ¿La suma de dos eventos disjuntos es siempre igual a 1?
+
+- ¿La suma de dos eventos complementarios es siempre igual a 1?
+
+---
+
+# Prob. conjunta, marginal y condicional
+
+- Se realiza un estudio sobre la pertenencia de los adolescentes a determinada clase social en base a una muestra de 98 adolescentes de 16 años.
+
+- Diseño del estudio: 
+
+  + Se asigna de manera **objetiva** a cada adolescente (en base a características de sus padres: ocupación, educación e ingresos) a una clase social
+  
+  + Se entrevista al encuestado y de manera **subjetiva** se le solicita que se asigne la clase social a la que él considera que pertenece.
+
+---
+
+# Prob. conjunta, marginal y condicional
+
+.center[
+&lt;table&gt;
+ &lt;thead&gt;
+&lt;tr&gt;
+&lt;th style="empty-cells: hide;border-bottom:hidden;" colspan="1"&gt;&lt;/th&gt;
+&lt;th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2"&gt;&lt;div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; "&gt;Posición Social Objetiva&lt;/div&gt;&lt;/th&gt;
+&lt;th style="empty-cells: hide;border-bottom:hidden;" colspan="1"&gt;&lt;/th&gt;
+&lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:center;"&gt; Posicion.Social.Objetiva &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; Clase.Trabajadora &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; Clase.Media.Alta &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; Total &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; Pobre &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:center;font-weight: bold;color: white !important;background-color: black !important;"&gt; 0 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; Clase Trabajadora &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 8 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:center;font-weight: bold;color: white !important;background-color: black !important;"&gt; 8 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; Clase Media &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 32 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 13 &lt;/td&gt;
+   &lt;td style="text-align:center;font-weight: bold;color: white !important;background-color: black !important;"&gt; 45 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; Clase Media Alta &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 8 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 37 &lt;/td&gt;
+   &lt;td style="text-align:center;font-weight: bold;color: white !important;background-color: black !important;"&gt; 45 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; Clase Alta &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:center;font-weight: bold;color: white !important;background-color: black !important;"&gt; 0 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;font-weight: bold;color: white !important;background-color: black !important;"&gt; Total &lt;/td&gt;
+   &lt;td style="text-align:center;font-weight: bold;color: white !important;background-color: black !important;"&gt; 48 &lt;/td&gt;
+   &lt;td style="text-align:center;font-weight: bold;color: white !important;background-color: black !important;"&gt; 50 &lt;/td&gt;
+   &lt;td style="text-align:center;font-weight: bold;color: white !important;background-color: black !important;font-weight: bold;color: white !important;background-color: black !important;"&gt; 90 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+]
+
+---
+
+# Probabilidad Conjunta
+
+¿Cuál es la probabilidad de que la posición social objetiva de un estudiante elegido al azar pertenezca a la clase media alta y que su identidad subjetiva sea también clase media alta?
+
+--
+
+.center[
+&lt;table&gt;
+ &lt;thead&gt;
+&lt;tr&gt;
+&lt;th style="empty-cells: hide;border-bottom:hidden;" colspan="1"&gt;&lt;/th&gt;
+&lt;th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2"&gt;&lt;div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; "&gt;Posición Social Objetiva&lt;/div&gt;&lt;/th&gt;
+&lt;th style="empty-cells: hide;border-bottom:hidden;" colspan="1"&gt;&lt;/th&gt;
+&lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:center;"&gt; Posicion.Social.Objetiva &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; Clase.Trabajadora &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; Clase.Media.Alta &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; Total &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; Pobre &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:center;color: black !important;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:center;font-weight: bold;color: white !important;background-color: black !important;color: white !important;"&gt; 0 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; Clase Trabajadora &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 8 &lt;/td&gt;
+   &lt;td style="text-align:center;color: black !important;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:center;font-weight: bold;color: white !important;background-color: black !important;color: white !important;"&gt; 8 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; Clase Media &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 32 &lt;/td&gt;
+   &lt;td style="text-align:center;color: black !important;"&gt; 13 &lt;/td&gt;
+   &lt;td style="text-align:center;font-weight: bold;color: white !important;background-color: black !important;color: white !important;"&gt; 45 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; Clase Media Alta &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 8 &lt;/td&gt;
+   &lt;td style="text-align:center;color: red !important;"&gt; 37 &lt;/td&gt;
+   &lt;td style="text-align:center;font-weight: bold;color: white !important;background-color: black !important;color: white !important;"&gt; 45 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; Clase Alta &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:center;color: black !important;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:center;font-weight: bold;color: white !important;background-color: black !important;color: white !important;"&gt; 0 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;font-weight: bold;color: white !important;background-color: black !important;"&gt; Total &lt;/td&gt;
+   &lt;td style="text-align:center;font-weight: bold;color: white !important;background-color: black !important;"&gt; 48 &lt;/td&gt;
+   &lt;td style="text-align:center;font-weight: bold;color: white !important;background-color: black !important;color: white !important;"&gt; 50 &lt;/td&gt;
+   &lt;td style="text-align:center;font-weight: bold;color: white !important;background-color: black !important;font-weight: bold;color: white !important;background-color: black !important;color: red !important;"&gt; 90 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+]
+
+--
+
+`$$P(\text{Objetiva = Media Alta} \cap \text{Subjetiva = Media Alta})=\frac{37}{90}=0.411$$`
+
+---
+
+# Probabilidad Marginal
+
+¿Cuál es la probabilidad de que la posición social objetiva de un estudiante elegido al azar sea clase media alta?
+
+--
+
+.center[
+&lt;table&gt;
+ &lt;thead&gt;
+&lt;tr&gt;
+&lt;th style="empty-cells: hide;border-bottom:hidden;" colspan="1"&gt;&lt;/th&gt;
+&lt;th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2"&gt;&lt;div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; "&gt;Posición Social Objetiva&lt;/div&gt;&lt;/th&gt;
+&lt;th style="empty-cells: hide;border-bottom:hidden;" colspan="1"&gt;&lt;/th&gt;
+&lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:center;"&gt; Posicion.Social.Objetiva &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; Clase.Trabajadora &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; Clase.Media.Alta &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; Total &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; Pobre &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:center;color: black !important;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:center;font-weight: bold;color: white !important;background-color: black !important;color: white !important;"&gt; 0 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; Clase Trabajadora &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 8 &lt;/td&gt;
+   &lt;td style="text-align:center;color: black !important;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:center;font-weight: bold;color: white !important;background-color: black !important;color: white !important;"&gt; 8 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; Clase Media &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 32 &lt;/td&gt;
+   &lt;td style="text-align:center;color: black !important;"&gt; 13 &lt;/td&gt;
+   &lt;td style="text-align:center;font-weight: bold;color: white !important;background-color: black !important;color: white !important;"&gt; 45 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; Clase Media Alta &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 8 &lt;/td&gt;
+   &lt;td style="text-align:center;color: black !important;"&gt; 37 &lt;/td&gt;
+   &lt;td style="text-align:center;font-weight: bold;color: white !important;background-color: black !important;color: white !important;"&gt; 45 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; Clase Alta &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:center;color: black !important;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:center;font-weight: bold;color: white !important;background-color: black !important;color: white !important;"&gt; 0 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;font-weight: bold;color: white !important;background-color: black !important;"&gt; Total &lt;/td&gt;
+   &lt;td style="text-align:center;font-weight: bold;color: white !important;background-color: black !important;"&gt; 48 &lt;/td&gt;
+   &lt;td style="text-align:center;font-weight: bold;color: white !important;background-color: black !important;color: red !important;"&gt; 50 &lt;/td&gt;
+   &lt;td style="text-align:center;font-weight: bold;color: white !important;background-color: black !important;font-weight: bold;color: white !important;background-color: black !important;color: red !important;"&gt; 90 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+]
+
+--
+
+`$$P(\text{Objetiva = Media Alta})=\frac{50}{90}=0.556$$`
+
+---
+
+# Probabilidad Condicional
+
+¿Cuál es la probabilidad de que un estudiante que objetivamente pertenece a la clase trabajadora se identifique con la clase media alta?
+
+--
+
+.center[
+&lt;table&gt;
+ &lt;thead&gt;
+&lt;tr&gt;
+&lt;th style="empty-cells: hide;border-bottom:hidden;" colspan="1"&gt;&lt;/th&gt;
+&lt;th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2"&gt;&lt;div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; "&gt;Posición Social Objetiva&lt;/div&gt;&lt;/th&gt;
+&lt;th style="empty-cells: hide;border-bottom:hidden;" colspan="1"&gt;&lt;/th&gt;
+&lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:center;"&gt; Posicion.Social.Objetiva &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; Clase.Trabajadora &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; Clase.Media.Alta &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; Total &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; Pobre &lt;/td&gt;
+   &lt;td style="text-align:center;color: black !important;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:center;font-weight: bold;color: white !important;background-color: black !important;"&gt; 0 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; Clase Trabajadora &lt;/td&gt;
+   &lt;td style="text-align:center;color: black !important;"&gt; 8 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:center;font-weight: bold;color: white !important;background-color: black !important;"&gt; 8 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; Clase Media &lt;/td&gt;
+   &lt;td style="text-align:center;color: black !important;"&gt; 32 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 13 &lt;/td&gt;
+   &lt;td style="text-align:center;font-weight: bold;color: white !important;background-color: black !important;"&gt; 45 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; Clase Media Alta &lt;/td&gt;
+   &lt;td style="text-align:center;color: red !important;"&gt; 8 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 37 &lt;/td&gt;
+   &lt;td style="text-align:center;font-weight: bold;color: white !important;background-color: black !important;"&gt; 45 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; Clase Alta &lt;/td&gt;
+   &lt;td style="text-align:center;color: black !important;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:center;font-weight: bold;color: white !important;background-color: black !important;"&gt; 0 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;font-weight: bold;color: white !important;background-color: black !important;"&gt; Total &lt;/td&gt;
+   &lt;td style="text-align:center;font-weight: bold;color: white !important;background-color: black !important;color: red !important;"&gt; 48 &lt;/td&gt;
+   &lt;td style="text-align:center;font-weight: bold;color: white !important;background-color: black !important;"&gt; 50 &lt;/td&gt;
+   &lt;td style="text-align:center;font-weight: bold;color: white !important;background-color: black !important;font-weight: bold;color: white !important;background-color: black !important;"&gt; 90 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+]
+
+--
+
+`$$P(\text{Subjetiva = Media Alta} / \text{Objetiva = Trabajadora})=\frac{8}{48}=0.167$$`
+
+---
+
+# Ley de Probabilidad Condicional
+
+.center[
+&lt;table&gt;
+ &lt;thead&gt;
+&lt;tr&gt;
+&lt;th style="empty-cells: hide;border-bottom:hidden;" colspan="1"&gt;&lt;/th&gt;
+&lt;th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2"&gt;&lt;div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; "&gt;Posición Social Objetiva&lt;/div&gt;&lt;/th&gt;
+&lt;th style="empty-cells: hide;border-bottom:hidden;" colspan="1"&gt;&lt;/th&gt;
+&lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:center;"&gt; Posicion.Social.Objetiva &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; Clase.Trabajadora &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; Clase.Media.Alta &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; Total &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; Pobre &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:center;font-weight: bold;color: white !important;background-color: black !important;"&gt; 0 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; Clase Trabajadora &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 8 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:center;font-weight: bold;color: white !important;background-color: black !important;"&gt; 8 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; Clase Media &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 32 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 13 &lt;/td&gt;
+   &lt;td style="text-align:center;font-weight: bold;color: white !important;background-color: black !important;"&gt; 45 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; Clase Media Alta &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 8 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 37 &lt;/td&gt;
+   &lt;td style="text-align:center;font-weight: bold;color: white !important;background-color: black !important;"&gt; 45 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; Clase Alta &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:center;font-weight: bold;color: white !important;background-color: black !important;"&gt; 0 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;font-weight: bold;color: white !important;background-color: black !important;"&gt; Total &lt;/td&gt;
+   &lt;td style="text-align:center;font-weight: bold;color: white !important;background-color: black !important;"&gt; 48 &lt;/td&gt;
+   &lt;td style="text-align:center;font-weight: bold;color: white !important;background-color: black !important;"&gt; 50 &lt;/td&gt;
+   &lt;td style="text-align:center;font-weight: bold;color: white !important;background-color: black !important;font-weight: bold;color: white !important;background-color: black !important;"&gt; 90 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+]
+
+**Ley de Probabilidad Condicional**
+
+`$$P(A/B)=\frac{P(A \cap B)}{P(B)} \text{ si } P(B) \ne 0$$`
+
+---
+
+# Ley de Probabilidad Condicional
+
+- Durante el año 2010 la encuesta de la “American Community” estima que el `\(14.6\%\)` de los americanos vive debajo de la línea de pobreza. Además, `\(20.6\%\)` de los encuestados tienen como lengua materna una lengua que no es el inglés, y `\(4.2\%\)` de los encuestados reúnen ambas características. 
+
+- Basados en esta información ¿Qué porcentaje de los americanos viven debajo de la línea de pobreza dado que el inglés no es la lengua materna?
+
+**Ley de Probabilidad Condicional**
+
+`$$P(A/B)=\frac{P(A \cap B)}{P(B)} \text{ si } P(B) \ne 0$$`
+
+---
+
+# Ley de Probabilidad Condicional
+
+- En una gran ciudad de EE.UU. se realizó una encuesta con el propósito de determinar el número de lectores de Time y Newsweek. Los resultados fueron los siguientes: `\(20\%\)` de los ciudadanos leen el Time, el `\(16\%\)` leen Newsweek y un 1% leen ambos semanarios.
+
+- Se selecciona al azar a un lector de Time, ¿Cuál es la probabilidad de que también lea el Newsweek?¿ Y que un lector de Newsweek también lea Time?
+
+
+**Ley de Probabilidad Condicional**
+
+`$$P(A/B)=\frac{P(A \cap B)}{P(B)} \text{ si } P(B) \ne 0$$`
+
+---
+
+# Independencia
+
+Los eventos `\(A\)` y `\(B\)` se dicen **independientes** si se verifican las siguientes relaciones:
+
+`$$P(A/B)=A$$`
+
+`$$P(B/A)=B$$`
+
+`\(A\)` y `\(B\)` son dos eventos cualesquiera del espacio muestral `\(S\)`
+
+Conceptualmente significa que **B no brinda ninguna información acerca del evento A y viceversa**.
+
+---
+
+# Independencia
+
+**Ley de Probabilidad Condicional**
+
+`$$P(A/B)=\frac{P(A \cap B)}{P(B)} \text{ si } P(B) \ne 0$$`
+--
+
+Implica:
+
+**Regla General del Producto**
+
+`$$P(A \cap B)=P(A/B)*P(B)=P(B/A)*P(A)$$`
+
+--
+
+Consecuencia de la definición de independencia:
+
+`$$A \text{ y } B \text{ son dos eventos independientes}\Longleftrightarrow P(A \cap B)=P(A)*P(B)$$`
+
+---
+
+# Independencia. Ejemplos
+
+De acuerdo con una encuesta de la UBA, el `\(48\%\)` de las licenciaturas son obtenidas por mujeres y el `\(17.5\%\)` de las licenciaturas son en ciencias económicas. Además, el `\(4.7\%\)` de las licenciaturas son obtenidas por mujeres graduadas en ciencias económicas. ¿Son los eventos “el licenciado es mujer” y “licenciado en ciencias económicas” independientes estadísticamente?
+
+--
+
+`\(P(Mujer)*P(Cs.Econ.)=0.48*0.175=0.084\ne P(Mujer \cap Cs.Econ)\)`
+
+---
+
+# Independencia. Ejemplos
+
+Aproximadamente el `\(16\%\)` de los estudiantes universitarios son vegetarianos o veganos. ¿Cuál es la probabilidad de que al elegir 3 estudiantes al azar, al menos uno de ellos es vegetariano o vegano?
+
+--
+
+Al elegir 3 estudiantes, los resultados posibles son:
+
+- 0 estudiantes vegetarianos/veganos
+
+- 1 estudiante vegetariano/vegano
+
+- 2 estudiantes vegetarianos/veganos
+
+- 3 estudiantes vegetarianos/veganos
+
+De estos posibles resultados, habría que descartar el primero:
+
+`\(P(\text{al menos 1 de 3})=1-P(\text{0 de 3})\)`
+
+donde
+
+`\(P(\text{0 de 3})=P(\text{1ro No V})*P(\text{2do No V / 1ro No V})*P(\text{3ro No V / 1ro y 2do No V})\)`
+
+---
+
+# Independencia. Ejemplos
+
+Para calcular `\(P(\text{0 de 3})\)`, **es necesario suponer independencia**. Es decir, que el primer alumno sea o no vegano, no influye en nada la probabilidad de que el segundo o tercer alumnos sea o no vegano.
+
+`\(P(\text{2do alumno vegano / 1er alumno vegano})=P(\text{alumno al azar vegano})=0.16\)`
+
+--
+
+De esta forma,
+
+`\(P(\text{0 de 3})=P(\text{1ro No V})*P(\text{2do No V})*P(\text{3ro No V})=0.16^3=0.004096\)`
+
+y
+
+`\(P(\text{al menos 1 de 3})=1-P(\text{0 de 3})=1-0.004096=0.995904\)`
+
+---
+
+# Independencia y Prob. Condicional
+
+Calcular:
+
+- `\(P(A \cap B)\)` si `\(A\)` y `\(B\)` son mutuamente excluyentes
+
+--
+
+- `\(P(A \cap B)\)` si `\(A\)` y `\(B\)` son independientes
+
+--
+
+- `\(P(A \cup B)\)` en los dos casos anteriores
+
+--
+
+Demostrar la siguiente relación:
+
+`$$P(A/B)=\frac{P(B/A)*P(A)}{P(B)}$$`
+
+---
+
+# Independencia y Prob. Condicional
+
+**No confundir!!**
+
+- Dos eventos con probabilidad positiva se dicen **disjuntos o mutuamente excluyentes** cuando sabemos que no pueden ocurrir al mismo tiempo
+
+  + `\(P(A \cap B)=0\)`
+  
+  + Esto implica que `\(P(A/B)=0\)` y `\(P(B/A)=0\)`
+
+- Dos eventos con probabilidad positiva se dicen **independientes** cuando el hecho de conocer el resultados de uno de ellos no brinda ninguna información sobre el otro.
+
+  + `\(P(A/B)=P(A)\)` y `\(P(B/A)=P(B)\)`
+  
+  + Esto implica que `\(P(A \cap B)=P(A)*P(B)\)`
+  
+---
+
+# Independencia y Prob. Condicional
+
+Dadas las probabilidades `\(P(A) = 0.45\)`, `\(P(B) = 0.10\)` y `\(P(A \cap B) = 0.045\)` ¿Son los eventos A, B independientes? ¿Y son mutuamente excluyentes?
+
+--
+
+Arrojamos una moneda dos veces y registramos los resultados. Sean A, B y C los siguientes eventos:
+
+- A = {sale cara en la primera tirada}
+
+- B = {sale cara en la segunda tirada}
+
+- C = {sólo sale cara una vez}
+
+¿Podemos decir que los eventos A, B y C son mutuamente excluyentes?  ¿Y son independientes?
+
+--
+
+¿Bajo que condiciones dos eventos independientes son mutuamente excluyentes?
+
+---
+
+# Verdadero o Falso
+
+- Si dos eventos son independientes, la ocurrencia de uno de ellos no afecta la probabilidad de ocurrencia del segundo evento.
+
+--
+
+- Dos eventos son mutuamente excluyentes si no comparten ningún resultado en común.
+
+- A y B son mutuamente excluyentes si `\(P(A \cap B) = P(A)*P(B)\)`
+
+- Si una moneda equilibrada ha sido arrojada 5 veces, y en cada una de esas veces se obtuvo una cara, entonces la probabilidad condicional de que la sexta tirada sea cara será 1/64.
+
+---
+
+# Ejercicio
+
+- La encuesta mundial World Values Survey es una encuesta permanente alrededor del mundo interesada en cuestiones de familia, trabajo política etc.En su fase más reciente se encuestaron 77882 personas de 57 países.
+
+- Un resultado que se obtuvo es que que el `\(36.2\%\)` de la población mundial está de acuerdo con la afirmación que dice que *“los hombres deben tener más derecho a un trabajo que las mujeres”*.
+
+- La encuesta también estima que el `\(13.8\%\)` de los entrevistados tienen educación universitaria o más y que el `\(3.6\%\)` de los encuestados satisfacen ambos criterios. 
+
+---
+
+# Ejercicio
+
+- Visualice los resultados anteriores mediante un diagrama de Venn.
+
+--
+
+- ¿Son los eventos estar de acuerdo con la afirmación “los hombres deben tener más derecho a un trabajo que las mujeres” y tener educación universitaria o más **disjuntos**?
+
+--
+
+- ¿Cuál es la probabilidad de que una persona elegida al azar tenga una educación universitaria o mayor o esté de acuerdo con la afirmación “los hombres deben tener más derecho a un trabajo que las mujeres”? 
+
+--
+
+- ¿Qué porcentaje de la población mundial no tiene estudios universitarios y no está de acuerdo con la afirmación “los hombres deben tener más derecho a un trabajo que las mujeres”?
+
+--
+
+- ¿Considera que la afirmación “los hombres deben tener más derecho a un trabajo que las mujeres”  y  el evento “educación universitaria o más” son eventos independientes?
+
+--
+
+- ¿Cuál es la probabilidad de que por lo menos una en cinco personas elegidas al azar esté de acuerdo con la afirmación “los hombres deben tener más derecho a un trabajo que las mujeres”?
+
+---
+
+# Teorema de Bayes (1763)
+
+Supongamos que estamos pensando en comprar un auto usado, marca LEMON. A los fines de tomar una decisión informada, revisamos una revista sobre autos y encontramos que el `\(15%\)` de los LEMON tienen desperfectos en la caja de transmisión. `\(P(D)=0.15\)`
+
+--
+
+Contratamos a nuestro mecánico de confianza, que con una mirada al LEMON y una vuelta a la manzana puede darnos una idea acabada del LEMON. No es infalible pero es bastante bueno. De acuerdo con sus registros se tiene que:
+
+- De todos los LEMON con desperfectos que él examinó en el pasado, indicó correctamente que tenían desperfectos en el 90% de los casos. `\(P(MD / D)=0.90\)`
+
+- De todos los LEMON sin problemas, el mecánico se pronunció correctamente, es decir afirmó que no teníen desperfectos, en el 80% de los casos. `\(P(\overline{MD}/\overline{D})=0.80\)`
+
+---
+
+# Teorema de Bayes (1763)
+
+¿Cuál es la probabilidad de que el LEMON que estoy pensando comprar tenga un desperfecto en la caja de transmisión?
+
+- Antes de contratar al mecánico
+
+- Si el mecánico dice que el auto tiene desperfectos en su caja de transmisión
+
+- Si el mecánico dice que siga adelante con la operación porque el LEMON está OK.
+
+---
+
+# Teorema de Bayes (1763)
+
+Sean `\(A_1, A_2,…,A_k\)` *k* eventos **mutuamente excluyentes**, de los cuales uno debe ocurrir sí o sí, es decir `\(\sum_{i=1}^kP(A_i)=1\)` y sea `\(B\)` otro evento cualquiera con `\(P(B)&gt;0\)`. Definimos:
+
+**Probabilidad a Priori**: `\(P(A_i)\)`
+
+**Probabilidad a Posteriori**: `\(P(A_i/B)\)`
+
+--
+
+`$$P(A_i/B)=\frac{P(A_i \cap B)}{P(B)}=\frac{P(B/A_i)*P(A_i)}{P(B)}$$`
+--
+
+Descomponiendo a `\(B\)` en conjuntos disjuntos: `\(B=(B \cap A_1) \cup (B \cap A_2) \cup ... \cup (B \cap A_k)\)`
+
+--
+
+`$$P(A_i/B)=\frac{P(B/A_i)*P(A_i)}{\sum_{j=1}^kP(B \cap A_j)}=\frac{P(B/A_i)*P(A_i)}{\sum_{j=1}^kP(A_j)P(B/ A_j)}$$`
+
+La probabilidad a posteriori queda expresada en función de las probabilidades a priori y de las probabilidades condicionales conocidas.
+
+---
+
+# Teorema de Bayes (1763)
+
+- La estadística bayesiana utiliza la interpretación subjetiva de probabilidad, que representa el juicio o grado de creencia del investigador.
+
+- Se trata de un mecanismo para modificar las valoraciones de probabilidad cuando se dispone de información adicional.
+
+- El Teorema de Bayes puede se interpretado como un método que nos permite actualizar una probabilidad a priori (P(LEMON sea defectuoso)) cuando se dispone de información adicional (opinión del mecánico) y con esta información adicional actualizar la probabilidad, denominada probabilidad a posteriori (P(LEMON defectuoso/opinión del mecánico). 
+
+---
+
+# Teorema de Bayes (Aplicación)
+
+- La [American Cancer Society](http://www.cancer.org/cancer/cancerbasics/cancer-prevalence) estima que cerca del `\(1.7\%\)` de las mujeres tienen cáncer de mamas.
+
+--
+
+- Un [trabajo de Susan G. Komen](http://ww5.komen.org/BreastCancer/AccuracyofMammograms.html) para The Cure Foundation encontró que las mamografías identifican alrededor del `\(78\%\)` de las mujeres que efectivamente padecen cáncer de mamas.
+
+--
+
+- Un [artículo publicado en 2003](http://www.ncbi.nlm.nih.gov/pmc/articles/PMC1360940) sugiere que cerca del `\(10\%\)` de todas la mamografías en pacientes que no padecen cancer son falsos positivos. 
+
+---
+
+# Teorema de Bayes (Aplicación)
+
+Cuando un paciente se realiza una mamografía pueden ocurrir dos cosas: (i) el paciente tiene cáncer o (ii) el paciente no tiene cáncer. Si la mamografía arroja un resultado positivo, ¿cuál es la probabilidad de que efectivamente el paciente tenga cáncer?
+
+--
+
+`\(P(Cancer/+)=\frac{P(Cancer \cap +)}{P(+)}=\frac{P(+/Cancer)*P(Cancer)}{P(Cancer)*P(+/Cancer)+P(\overline{Cancer})*P(+/\overline{Cancer})}\)`
+
+--
+
+`\(P(Cancer/+)=\frac{0.78*0.017}{0.017*0.78+0.983*0.10}=0.1189\)`
+
+---
+
+# Teorema de Bayes (Aplicación)
+
+Supongamos que una mujer al que el test le dio positivo, decide repetirlo. En esta segunda mamografía, cual es la probabilidad que deberíamos asumir para esta mujer en particular de que padezca cáncer?
+
+--
+
+En lugar del `\(1,7\%\)` inicial, ahora hay que suponer 
+
+`\(P(Cancer)=0.1189\)` y `\(P(\overline{Cancer})=0.8811\)`
+
+--
+
+¿Cuál es la probabilidad de que esta mujer tenga cáncer si la segunda mamografía arroja también un resultado positivo?
+
+--
+
+`\(P(Cancer/+)=\frac{0.78*0.1189}{0.1189*0.78+0.8811*0.10}=0.5128\)`
+
+---
+
+# Teorema de Bayes (Aplicación)
+
+- Un modelo epidemiológico común para la propagación de enfermedades es el modelo SIR, donde la población se divide en tres grupos: Susceptibles, Infectados, y Recuperados. Este es un modelo razonable para enfermedades como la varicela, donde una sola infección por lo general proporciona inmunidad a infecciones posteriores. 
+
+- Imagínese una población en el medio de una epidemia, donde se considera que el `\(60\%\)` de la población es susceptible, el `\(10\%\)` está infectada, y `\(30\%\)` es recuperada.
+
+- El único test para detectar la enfermedad es confiable el `\(95\%\)` del tiempo para los individuos susceptibles, el `\(99\%\)` del tiempo para los individuos infectados, pero el `\(65\%\)` del tiempo para los individuos recuperados. (Nota: que la prueba sea confiable significa que arroja un resultado negativo para los individuos susceptibles y recuperados, y un resultado positivo para los individuos infectados).
+
+---
+
+# Teorema de Bayes (Aplicación)
+
+Bosqueje el árbol de probabilidades con la información brindada. 
+
+--
+
+<div id="htmlwidget-a64d95d79538f2c5d897" style="width:504px;height:504px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-a64d95d79538f2c5d897">{"x":{"diagram":"digraph {\n  graph [layout = dot, rankdir = LR]\n  \n  node [shape = rectangle]        \n  rec1 [label = \"Estado\"]\n  rec2 [label = \"Susceptible\"]\n  rec3 [label =  \"Infectado\"]\n  rec4 [label =  \"Recuperado\"]\n  rec5 [label =  \"Positivo\"]\n  rec6 [label =  \"Negativo\"]\n  rec7 [label =  \"Positivo\"]\n  rec8 [label =  \"Negativo\"]\n  rec9 [label =  \"Positivo\"]\n  rec10 [label =  \"Negativo\"]\n  \n  # edge definitions with the node IDs\n  rec1 -> rec2 [label=\"60%\"];\n  rec1 -> rec3 [label=\"10%\"];\n  rec1 -> rec4 [label=\"30%\"];\n  rec2 -> rec5 [label=\"5%\"];\n  rec2 -> rec6 [label=\"95%\"];\n  rec3 -> rec7 [label=\"99%\"];\n  rec3 -> rec8 [label=\"1%\"];\n  rec4 -> rec9 [label=\"35%\"];\n  rec4 -> rec10 [label=\"65%\"]\n  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+
+---
+
+# Teorema de Bayes (Aplicación)
+
+Si al examinar a un individuo elegido al azar, el resultado es positivo, ¿cuál es la probabilidad de que efectivamente esté infectado? 
+
+--
+
+`\(P(Infectado/+)=\frac{P(+/Inf)*P(Inf)}{P(+/Inf)*P(Inf)+P(+/Sus)*P(Sus)+P(+/Rec)*P(Rec)}\)`
+
+--
+
+`\(P(Infectado/+)=\frac{0.99*0.10}{0.99*0.10+0.05*0.60+0.35*0.30}=0.4231\)`
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
