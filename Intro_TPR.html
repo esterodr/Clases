@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Instructivo TP en R</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Esteban Rodriguez" />
+    <script src="libs/header-attrs-2.14/header-attrs.js"></script>
+    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/metropolis.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/metropolis-fonts.css" rel="stylesheet" />
+  </head>
+  <body>
+    <textarea id="source">
+class: left, bottom, inverse, title-slide
+
+.title[
+# Instructivo TP en R
+]
+.author[
+### Esteban Rodriguez
+]
+
+---
+
+
+
+
+# Introducción
+
+- En este TP se ponen se realizan algunas aplicaciones prácticas sobre los temas de la materia.
+
+- Tiene como objetivos:
+
+  + Mejorar la comprensión de los temas
+  
+  + Dar un espacio adicional para ejercitación práctica
+  
+  + Acercar al estudiante al uso de lenguajes de programación
+  
+- Si bien el TP es optativo, es altamente recomendable realizarlo.
+
+- No requiere conocimientos de programación ni instalar ninguna aplicación en su computadora.
+
+- Se recomienda realizar el TP desde una computadora (no podemos garantizar que funcione correctamente en un teléfono o tablet)
+
+---
+
+# Introducción
+
+**¿Qué es R?**
+
+- Es un lenguaje de programación especialmente diseñado para el análisis estadístico, aunque tiene múltiples aplicaciones.
+
+- Puede utilizarse como una simple calculadora hasta para desarrollar complejas aplicaciones de inteligencia artifical. También sirve para crear páginas web y presentaciones (esta presentación está hecha en R).
+
+- Está orientado a usuarios que no son programadores.
+
+- Es software libre (gratuito) y todo el tiempo está incorporando nuevas funciones.
+
+- Se lo suele utilizar con RStudio, interfaz gráfica que facilita mucho la utilización de R.
+
+---
+
+# Links y enunciados
+
+En la plataforma **Slack** encontrarán los links necesarios:
+
+![](Imagenes/video_links_slack.png)
+
+También pueden encontrarlos en esta página:
+
+[https://esterodr.github.io/Clases/](https://esterodr.github.io/Clases/)
+
+Si hacen click en "Parte I - Enunciados", se les descargará un archivo word con los enunciados de la primera parte del TP.
+
+El TP tiene dos partes, la primera corresponde a los temas del primer parcial y la segunda a los temas del segundo parcial.
+
+---
+
+# Links y enunciados
+
+Archivo word con los enunciados de la 1ra parte:
+
+![](Imagenes/tp_word.png)
+
+Este es el archivo que hay que completar y entregar.
+
+---
+
+# Ingreso y utilización de la plataforma
+
+- El TP está alojado en una plataforma online (mybinder)
+
+- Para ingresar, hay que hacer click en el link "Parte I - Acceso a la Plataforma" (o, eventualmente, a la Parte II)
+
+![](Imagenes/video_links_slack.png)
+
+Puede tardar unos minutos en cargarse, pero finalmente se nos abrirá una sesión de RStudio, como se muestra en la siguiente página
+
+---
+
+# Ingreso y utilización de la plataforma
+
+![](Imagenes/RStudio1.png)
+
+Vemos que hay distintas ventanas. En la inferior izquierda, están los archivos correspondientes a cada ejercicio (la primera parte del TP tiene 11 ejercicios.). Hagan click en el que dice "01_Primera Parte_Estadistica_Descriptiva.R"
+
+---
+
+# Ingreso y utilización de la plataforma
+
+![](Imagenes/RStudio2.png)
+
+Se nos abre una nueva ventana con el ejercicio 1. Pueden modificar a gusto el tamaño de las ventanas para ver mejor el contenido. Exploren un poco el archivo para familiarizarse
+
+---
+
+# Ingreso y utilización de la plataforma
+
+![](Imagenes/RStudio3.png)
+
+Todas las líneas en verde que comienzan con el símbolo #, son sólo texto, no hay programación ahí. Esas líneas contienen los enunciados y van explicando lo que se va haciendo. Es decir, **hay que leerlas**
+
+---
+
+# Ingreso y utilización de la plataforma
+
+![](Imagenes/RStudio4.png)
+
+Luego, encontrarán bloques de instrucciones encerrados entre carteles "Ejecutar desde aquí" y "Hasta aquí". No es necesario leer ni entender estas líneas, sólo hay que **ejecutarlas** como se explica a continuación.
+
+---
+
+# Ingreso y utilización de la plataforma
+
+![](Imagenes/RStudio5.png)
+
+Para ejecutar estas líneas, hay que pintarlas todas juntas con el cursor y luego hacer click en el botón "Run". Verán que empiezan a pasar cosas en las otras ventanas.
+
+---
+
+# Ingreso y utilización de la plataforma
+
+![](Imagenes/RStudio6.png)
+
+Continuan leyendo y ejecutando. En la ventana de abajo a la izquierda irán apareciendo ciertos resultados con los que tienen que ir respondiendo el Word del TP.
+
+---
+
+# Ingreso y utilización de la plataforma
+
+![](Imagenes/RStudio7.png)
+
+Eventualmente, en la ventana de abajo a las derecha les aparecerá algún gráfico. Pueden hacerle zoom. Para copiarlo y pegarlo en el word, pueden hacerlo con click derecho y copiar o guardar imagen. O también a través del botón "Export"
+
+---
+
+# Ingreso y utilización de la plataforma
+
+- Y eso es todo!
+
+- Cuando terminan un ejercicio, en la ventana inferior derecha van a "Files" para buscar y abrir el archivo del ejercicio siguiente.
+
+- Pueden entrar y salir las veces que quieran. Pero tengan presente que cada vez que salen se borra todo lo que hicieron, así que si empezaron un ejercicio y no lo terminaron, van a tener que empezarlo de nuevo.
+
+- Tienen que ejecutar todas las líneas que así lo indican. Si les aparece un error, es muy probable que se hayan salteado alguna. Empiecen de nuevo desde el principio, teniendo cuidado de no saltearse nada.
+
+- En algunos ejercicios intervienen procesos aleatorios como el lanzamiento de una moneda. Esto implica que la segunda vez que lo ejecuten pueden obtener resultados diferentes a la primera. Prueben. Ejecuten una y otra vez para ver cómo se modifican los resultados.
+
+- En el campus de la facultad les vamos a subir un video instructivo que grabamos en cuatrimestres previos. Si algo no les quedó claro de esta presentación, puede que les sirva ver el video.
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

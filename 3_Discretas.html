@@ -1,0 +1,1509 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Distribuciones Discretas de Probabilidad</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Esteban Rodriguez" />
+    <script src="libs/header-attrs-2.14/header-attrs.js"></script>
+    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/metropolis.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/metropolis-fonts.css" rel="stylesheet" />
+  </head>
+  <body>
+    <textarea id="source">
+class: left, bottom, inverse, title-slide
+
+.title[
+# Distribuciones Discretas de Probabilidad
+]
+.author[
+### Esteban Rodriguez
+]
+.date[
+### Última Actualización: 2022-08-12
+]
+
+---
+
+
+
+
+# Variable Aleatoria
+
+Una variable aleatoria es una regla para asignar un número a todos los resultados posibles de un experimento aleatorio, i.e. una variable aleatoria asocia un valor numérico con cada resultado posible del experimento aleatorio.
+
+--
+
+Por lo general se usan letras mayúsculas para designar a la variable aleatoria y minúscula para indicar los posibles resultados que toma la variable aleatoria, i.e. `\(P(X=x)\)`
+
+--
+
+Ejemplo 1: Arrojo una moneda. `\(X=\text{"sale cara"}\)`
+
+`$$X={1 \text{ si sale cara}\brace{0 \text{ en caso contrario}}}$$`
+
+`$$P(X=1)=P(\text{salga cara})$$`
+`$$P(X=0)=P(\text{salga ceca})$$`
+
+---
+
+# Variable Aleatoria
+
+Ejemplo 2: Arrojo dos dados. Sea `\(X=\text{“la suma de los valores de las caras de los dados”}\)`
+
+| Resultados Posibles | Valor de `\(X\)` | Casos Favorables | Probabilidad |
+| :----------------- | :----------: | :--------------: | :----------: |
+| (1,1)               | 2 | | |
+| (1,2) (2,1)         | 3 | | |
+| (1,3) (3,1) (2,2)   | 4 | | |
+| (1,4) (4,1) (2,3) (3,2) | 5 | | |
+| (1,5) (5,1) (2,4) (4,2) (3,3) | 6 | | |
+| (1,6) (6,1) (2,5) (5,2) (3,4) (4,3) | 7 | | |
+| (2,6) (6,2) (3,5) (5,3) (4,4) | 8 | | |
+| (3,6) (6,3) (4,5) (5,4) | 9 | | |
+| (4,6) (6,4) (5,5) | 10 | | |
+| (5,6) (6,5) | 11 | | |
+| (6,6) | 12 | | |
+
+---
+
+# Variable Aleatoria
+
+Ejemplo 2: Arrojo dos dados. Sea `\(X=\text{“la suma de los valores de las caras de los dados”}\)`
+
+| Resultados Posibles | Valor de `\(X\)` | Casos Favorables | Probabilidad |
+| :----------------- | :----------: | :--------------: | :----------: |
+| (1,1)               | 2 | 1 | |
+| (1,2) (2,1)         | 3 | 2 | |
+| (1,3) (3,1) (2,2)   | 4 | 3 | |
+| (1,4) (4,1) (2,3) (3,2) | 5 | 4 | |
+| (1,5) (5,1) (2,4) (4,2) (3,3) | 6 | 5 | |
+| (1,6) (6,1) (2,5) (5,2) (3,4) (4,3) | 7 | 6 | |
+| (2,6) (6,2) (3,5) (5,3) (4,4) | 8 | 5 | |
+| (3,6) (6,3) (4,5) (5,4) | 9 | 4 | |
+| (4,6) (6,4) (5,5) | 10 | 3 | |
+| (5,6) (6,5) | 11 | 2 | |
+| (6,6) | 12 | 1 | |
+
+---
+
+# Variable Aleatoria
+
+Ejemplo 2: Arrojo dos dados. Sea `\(X=\text{“la suma de los valores de las caras de los dados”}\)`
+
+| Resultados Posibles | Valor de `\(X\)` | Casos Favorables | Probabilidad |
+| :----------------- | :----------: | :--------------: | :----------: |
+| (1,1)               | 2 | 1 | 1/36 |
+| (1,2) (2,1)         | 3 | 2 | 2/36 |
+| (1,3) (3,1) (2,2)   | 4 | 3 | 3/36 |
+| (1,4) (4,1) (2,3) (3,2) | 5 | 4 | 4/36 |
+| (1,5) (5,1) (2,4) (4,2) (3,3) | 6 | 5 | 5/36 |
+| (1,6) (6,1) (2,5) (5,2) (3,4) (4,3) | 7 | 6 | 6/36 |
+| (2,6) (6,2) (3,5) (5,3) (4,4) | 8 | 5 | 5/36 |
+| (3,6) (6,3) (4,5) (5,4) | 9 | 4 | 4/36 |
+| (4,6) (6,4) (5,5) | 10 | 3 | 3/36 |
+| (5,6) (6,5) | 11 | 2 | 2/36 |
+| (6,6) | 12 | 1 | 1/36 |
+
+---
+
+# Variable Aleatoria
+
+Se dice que una variable aleatoria es **discreta** si el numero de valores que puede tomar es contable (ya sean estos finitos o infinito).
+
+Se dice que una variable aleatoria es **continua** si puede tomar cualquier valor numérico en un intervalo o conjuntos de intervalos de la recta numérica. Ejemplos: los experimentos que se basan en escala de medición como el tiempo, peso, altura, distancia, temperatura, etc.
+
+---
+
+# Variables Aleatorias Discretas
+
+Sea `\(X\)` una variable aleatoria discreta. Se llama `\(p(x) = P(X=x)\)` a la *función de probabilidad* de la variable aleatoria `\(X\)`, si satisface las siguientes propiedades:
+
+- `\(p(x) = P(X=x) \ge 0 \text{ para todos los valores }x \text{ de } X\)`
+
+- `\(\sum_x p(x)=1\)`
+
+.center[
+![](3_Discretas_files/figure-html/unnamed-chunk-1-1.png)&lt;!-- --&gt;
+]
+
+---
+
+# Variables Aleatorias Discretas
+
+La **función de distribución acumulada** de la variable aleatoria `\(X\)` es la probabilidad de que `\(X\)` sea menor o igual a un valor específico `\(x\)` y está dada por:
+
+`\(F(x)=P(X \le x) = \sum_{x_i \le x}p(x_i)\)`
+
+--
+
+.pull-left[
+Es una función **no decreciente** que cumple:
+
+`\(0 \le F(x) \le 1 \text{ para todo x}\)`
+
+`\(F(x_i) \ge F(x_j) \text{ si } x_i \ge x_j\)`
+
+`\(P(X&gt;x)=1-P(X \le x)=1-F(x)\)`
+
+]
+
+.pull-right[
+![](3_Discretas_files/figure-html/unnamed-chunk-2-1.png)&lt;!-- --&gt;
+]
+
+---
+
+# Variables Aleatorias Discretas
+
+**Ejemplo:** Los datos siguientes describen la cantidad de empleados en cada uno de los 5 niveles ejecutivos de una importante empresa petrolera. Suponga que se desea seleccionar una muestra de empleados a nivel ejecutivo para una encuesta acerca de las condiciones laborales. Sea X la variable aleatoria que indica el nivel de un empleado seleccionado.
+
+.center[
+| Nivel Ejecutivo | Cantidad de Empleados |
+| :-------------: | :-------------------: |
+| 1 | 18 |
+| 2 | 32 |
+| 3 | 84 |
+| 4 | 300 |
+| 5 | 31 |
+| Total | 465 |
+
+]
+
+Con estos datos construya la función de probabilidad y la función de distribución acumulada de `\(X\)`. Grafique.
+
+---
+
+# Variables Aleatorias Discretas
+
+.center[
+| Nivel Ejecutivo | Cantidad de Empleados | Probabilidad |
+| :-------------: | :-------------------: | :-------------------: |
+| 1 | 18 | 18/465 |
+| 2 | 32 | 32/465 |
+| 3 | 84 | 84/465 |
+| 4 | 300 | 300/465 |
+| 5 | 31 | 31/465 |
+| Total | 465 | 1 |
+
+]
+
+.center[
+![](3_Discretas_files/figure-html/unnamed-chunk-3-1.png)&lt;!-- --&gt;
+]
+
+---
+
+# Variables Aleatorias Discretas
+
+.center[
+| Nivel Ejecutivo | Cantidad de Empleados | Probabilidad | F. Distrib. Acum. |
+| :-------------: | :-------------------: | :-------: |  :-------: |
+| 1 | 18 | 18/465 | 18/465 |
+| 2 | 32 | 32/465 | 50/465 |
+| 3 | 84 | 84/465 | 134/465 |
+| 4 | 300 | 300/465 | 434/465 |
+| 5 | 31 | 31/465 | 465/465 |
+| Total | 465 | 1 | |
+
+]
+
+.center[
+![](3_Discretas_files/figure-html/unnamed-chunk-4-1.png)&lt;!-- --&gt;
+]
+
+---
+
+# Ejercicio
+
+Si `\(X\)` es una variable aleatoria discreta, entonces `\(P(X&gt;x)\)`
+
+- es mayor que `\(P(X \ge x)\)`
+
+- es menor que `\(P(X \ge x)\)`
+
+- es igual a `\(P(X \ge x)\)`
+
+- es menor o igual que `\(P(X \ge x)\)`
+
+- es mayor o igual que `\(P(X \ge x)\)`
+
+---
+
+# Valor Esperado o Esperanza Matemática
+
+Una empresa observó que el 75% de los trabajadores no faltan nunca en el mes, el 20% falta sólo una vez en y el 5% falta dos veces. ¿Cuál es el número promedio de inasistencias de un trabajador elegido al azar en un mes cualquiera?
+
+--
+
+| Faltas | Probabilidad |
+| :----: | :----------: |
+| 0 | 0,75 |
+| 1 | 0,20 |
+| 2 | 0,05 |
+
+--
+
+`$$E(X)=\mu_X=\sum_xxp(x)$$`
+
+---
+
+# Valor Esperado o Esperanza Matemática
+
+Una empresa observó que el 75% de los trabajadores no faltan nunca en el mes, el 20% falta sólo una vez en y el 5% falta dos veces. ¿Cuál es el número promedio de inasistencias de un trabajador elegido al azar en un mes cualquiera?
+
+
+
+| Faltas | Probabilidad | `\(xP(x)\)` |
+| :----: | :----------: | :----: |
+| 0 | 0,75 | 0 |
+| 1 | 0,20 | 0,20 |
+| 2 | 0,05 | 0,10 |
+| | | `\(E(X)=0,30\)` |
+
+
+`$$E(X)=\mu_X=\sum_xxp(x)$$`
+
+---
+
+# Valor Esperado o Esperanza Matemática
+
+El valor esperado o esperanza de una variable aleatoria (v.a.) es un concepto clave en el estudio de las distribuciones de probabilidad.
+
+--
+
+La esperanza de una v.a. tiene sus orígenes en los juegos de azar, ya que los apostadores quería saber “cual era la esperanza que tenían de ganar el juego”.
+
+En este sentido, la esperanza representa la cantidad de dinero promedio que el jugador está dispuesto a pagar para jugar el juego después de un número grande de apuestas.
+
+--
+
+Esta interpretación también es válida para una v.a.; i.e. el valor promedio de una variable aleatoria después de un número grande de experimentos es su valor esperado o esperanza matemática.
+
+---
+
+# Valor Esperado o Esperanza Matemática
+
+Sea `\(X=\text{“la suma de los valores de las caras de los dados”}\)` Calcular `\(E(X)\)`
+
+| Resultados Posibles | `\(X\)` | Casos| Probabilidad |
+| :----------------- | :----------: | :--------------: | :----------: |
+| (1,1)               | 2 | 1 | 1/36 |
+| (1,2) (2,1)         | 3 | 2 | 2/36 |
+| (1,3) (3,1) (2,2)   | 4 | 3 | 3/36 |
+| (1,4) (4,1) (2,3) (3,2) | 5 | 4 | 4/36 |
+| (1,5) (5,1) (2,4) (4,2) (3,3) | 6 | 5 | 5/36 |
+| (1,6) (6,1) (2,5) (5,2) (3,4) (4,3) | 7 | 6 | 6/36 |
+| (2,6) (6,2) (3,5) (5,3) (4,4) | 8 | 5 | 5/36 |
+| (3,6) (6,3) (4,5) (5,4) | 9 | 4 | 4/36 |
+| (4,6) (6,4) (5,5) | 10 | 3 | 3/36 |
+| (5,6) (6,5) | 11 | 2 | 2/36 |
+| (6,6) | 12 | 1 | 1/36 |
+
+
+---
+
+# Valor Esperado o Esperanza Matemática
+
+| Resultados Posibles | `\(X\)` | Casos | Probabilidad | `\(xP(x)\)` |
+| :----------------- | :----------: | :--------------: | :----------: | :----------: |
+| (1,1)               | 2 | 1 | 1/36 | 2/36 |
+| (1,2) (2,1)         | 3 | 2 | 2/36 | 6/36 |
+| (1,3) (3,1) (2,2)   | 4 | 3 | 3/36 | 12/36 |
+| (1,4) (4,1) (2,3) (3,2) | 5 | 4 | 4/36 | 20/36 |
+| (1,5) (5,1) (2,4) (4,2) (3,3) | 6 | 5 | 5/36 | 30/36 |
+| (1,6) (6,1) (2,5) (5,2) (3,4) (4,3) | 7 | 6 | 6/36 | 42/36 |
+| (2,6) (6,2) (3,5) (5,3) (4,4) | 8 | 5 | 5/36 | 40/36 |
+| (3,6) (6,3) (4,5) (5,4) | 9 | 4 | 4/36 | 36/36 |
+| (4,6) (6,4) (5,5) | 10 | 3 | 3/36 | 30/36 |
+| (5,6) (6,5) | 11 | 2 | 2/36 | 22/36 |
+| (6,6) | 12 | 1 | 1/36 | 12/36 |
+| | | | | `\(E(X)=252/36=7\)` |
+
+---
+
+# Valor Esperado o Esperanza Matemática
+
+Un jugador lanza dos monedas. Gana 2 pesos si sale sólo una cara y 5 pesos si salen dos caras. Por otra parte, pierde 10 pesos si no sale cara. ¿Cuál es el valor esperado (la esperanza matemática) del juego?  ¿Está dispuesto a jugarlo?
+
+--
+
+| Caras | `\(x\)` | `\(P(x)\)` | `\(xP(x)\)` |
+| :---: | :---: | :---: | :---: |
+| 0 | -10 | | |
+| 1 | 1 | | |
+| 2 | 5 | | |
+|   |   | | `\(E(X)=...\)` |
+
+---
+
+# Valor Esperado o Esperanza Matemática
+
+Un jugador lanza dos monedas. Gana 2 pesos si sale sólo una cara y 5 pesos si salen dos caras. Por otra parte, pierde 10 pesos si no sale cara. ¿Cuál es el valor esperado (la esperanza matemática) del juego?  ¿Está dispuesto a jugarlo?
+
+| Caras | `\(x\)` | `\(P(x)\)` | `\(xP(x)\)` |
+| :---: | :---: | :---: | :---: |
+| 0 | -10 | 1/4 | |
+| 1 | 1 | 2/4 | |
+| 2 | 5 | 1/4 | |
+|   |   | | `\(E(X)=...\)` |
+
+---
+
+# Valor Esperado o Esperanza Matemática
+
+Un jugador lanza dos monedas. Gana 2 pesos si sale sólo una cara y 5 pesos si salen dos caras. Por otra parte, pierde 10 pesos si no sale cara. ¿Cuál es el valor esperado (la esperanza matemática) del juego?  ¿Está dispuesto a jugarlo?
+
+| Caras | `\(x\)` | `\(P(x)\)` | `\(xP(x)\)` |
+| :---: | :---: | :---: | :---: |
+| 0 | -10 | 1/4 | -10/4 |
+| 1 | 1 | 2/4 | 2/4 |
+| 2 | 5 | 1/4 | 5/4 |
+|   |   | | `\(E(X)=-3/4\)` |
+
+--
+
+Se llama **juego justo/equilibrado/balanceado** a un juego aleatorio donde ningún jugador tienen ventaja a priori. Es decir, la **Esperanza Matemática es igual a 0**.
+
+En el **TP en R** se analiza si la ruleta de un casino es o no un juego justo.
+
+---
+
+# Valor Esperado de una Función de X
+
+Sea `\(X\)` una v.a. discreta con función de probabilidad `\(p(x)\)` y sea `\(g(X)\)` una función de `\(X\)`. Entonces el valor esperado de `\(g(X)\)` es
+
+`$$E(g(X))=\sum_xg(x)p(x)$$`
+
+---
+
+# Valor Esperado de una Función de X
+
+**Ejemplo**: Cierta empresa está considerando cambiar una máquina de montaje por su comportamiento defectuoso. De acuerdo con las estadísticas de la empresa, la distribución de probabilidades para el número de veces que la máquina se paraliza en una semana es la siguiente:
+
+.center[
+| Cantidad de Desperfectos ( `\(x\)` ) | `\(p(x)\)` |
+| :----------------------------: | :----: |
+| 0 | 0.10 |
+| 1 | 0.26 |
+| 2 | 0.42 |
+| 3 | 0.16 |
+| 4 | 0.06 |
+]
+
+Hallar la media del número de desperfectos.
+
+---
+
+# Valor Esperado de una Función de X
+
+**Ejemplo**: Cierta empresa está considerando cambiar una máquina de montaje por su comportamiento defectuoso. De acuerdo con las estadísticas de la empresa, la distribución de probabilidades para el número de veces que la máquina se paraliza en una semana es la siguiente:
+
+.center[
+
+| Cantidad de Desperfectos ( `\(x\)` ) | `\(p(x)\)` | `\(xp(x)\)` |
+| :----------------------------: | :----: | :----: |
+| 0 | 0.10 | 0.00 |
+| 1 | 0.26 | 0.26 |
+| 2 | 0.42 | 0.84 |
+| 3 | 0.16 | 0.48 |
+| 4 | 0.06 | 0.24 |
+| | | `\(E(x)=1.82\)` |
+
+]
+
+---
+
+# Valor Esperado de una Función de X
+
+Se ha estimado que cada desperfecto le genera a la compañía $1500 en pérdidas de producción. Hallar la media del costo semanal por desperfecto.
+
+--
+
+En este caso, tenemos una función `\(g(x)=1500*x\)`
+
+--
+
+.center[
+| Cantidad de Desperfectos ( `\(x\)` ) | `\(p(x)\)` | `\(g(x)\)` | `\(g(x)p(x)\)` |
+| :----------------------------: | :----: | :----: | :----: |
+| 0 | 0.10 | 0 | |
+| 1 | 0.26 | 1500 | |
+| 2 | 0.42 | 3000 | |
+| 3 | 0.16 | 4500 | |
+| 4 | 0.06 | 6000 | |
+| | |  | `\(E(g(x))=...\)` |
+]
+
+---
+
+# Valor Esperado de una Función de X
+
+Se ha estimado que cada desperfecto le genera a la compañía $1500 en pérdidas de producción. Hallar la media del costo semanal por desperfecto.
+
+
+En este caso, tenemos una función `\(g(x)=1500*x\)`
+
+.center[
+| Cantidad de Desperfectos ( `\(x\)` ) | `\(p(x)\)` | `\(g(x)\)` | `\(g(x)p(x)\)` |
+| :----------------------------: | :----: | :----: | :----: |
+| 0 | 0.10 | 0 | 0 |
+| 1 | 0.26 | 1500 | 390 |
+| 2 | 0.42 | 3000 | 1260 |
+| 3 | 0.16 | 4500 | 720 |
+| 4 | 0.06 | 6000 | 360 |
+| | |  | `\(E(g(x))=2730\)` |
+]
+
+---
+
+# Varianza y desvío estándar
+
+Ya vimos, al analizar un conjunto de datos, que la media o promedio por sí solo, podía resultar muy poco informativo.
+
+--
+
+Por lo tanto, así como usamos la varianza para resumir la dispersión de un conjunto de datos, definimos la **varianza de una v.a.** para hablar de su variabilidad.
+
+`$$Var(X)=\sigma_X^2=E((X-\mu_X)^2)=\sum_x(x-\mu_X)^2p(x)$$`
+
+El desvío estándar (o desvío típico), `\(\sigma_X\)`, es la raíz cuadrada positiva de la varianza. Recordar que está en las mismas unidades que la variable original.
+
+`$$\sigma_X=\sqrt{\sigma_X^2}=\sqrt{\sum_x(x-\mu_X)^2p(x)}$$`
+
+---
+
+# Varianza y desvío estándar
+
+Otra forma equivalente de expresar la varianza es:
+
+`$$\sigma_X^2=E(X^2)-\mu_x^2=\sum_xx^2p(x)-\mu_x^2$$`
+
+Demostración:
+
+--
+
+`\(\sigma_X^2=\sum_x(x-\mu_X)^2p(x)\)`
+
+---
+
+# Varianza y desvío estándar
+
+Otra forma equivalente de expresar la varianza es:
+
+`$$\sigma_X^2=E(X^2)-\mu_x^2=\sum_xx^2p(x)-\mu_x^2$$`
+
+Demostración:
+
+`\(\sigma_X^2=\sum_x(x-\mu_X)^2p(x)=\sum_xx^2p(x)-2*\mu_x\sum_xxp(x)+\mu_x^2\sum_xp(x)=\)`
+
+---
+
+# Varianza y desvío estándar
+
+Otra forma equivalente de expresar la varianza es:
+
+`$$\sigma_X^2=E(X^2)-\mu_x^2=\sum_xx^2p(x)-\mu_x^2$$`
+
+Demostración:
+
+`\(\sigma_X^2=\sum_x(x-\mu_X)^2p(x)=\sum_xx^2p(x)-2*\mu_x\sum_xxp(x)+\mu_x^2\sum_xp(x)=\)`
+
+`\(=E(X^2)-2*\mu_x*\mu_x+\mu_x^2*1=\)` 
+
+---
+
+# Varianza y desvío estándar
+
+Otra forma equivalente de expresar la varianza es:
+
+`$$\sigma_X^2=E(X^2)-\mu_x^2=\sum_xx^2p(x)-\mu_x^2$$`
+
+Demostración:
+
+`\(\sigma_X^2=\sum_x(x-\mu_X)^2p(x)=\sum_xx^2p(x)-2*\mu_x\sum_xxp(x)+\mu_x^2\sum_xp(x)=\)`
+
+`\(=E(X^2)-2*\mu_x*\mu_x+\mu_x^2*1=E(X^2)-2\mu_x^2+\mu_x^2=E(X^2)-\mu_x^2\)` 
+
+---
+
+# Varianza y desvío estándar
+
+Ejemplo: calcular la varianza y el desvío estándar de la v.a. X=“la suma de los valores de las caras de los dados”
+
+| Resultados Posibles | `\(X\)` | Casos| Probabilidad |
+| :----------------- | :----------: | :--------------: | :----------: |
+| (1,1)               | 2 | 1 | 1/36 |
+| (1,2) (2,1)         | 3 | 2 | 2/36 |
+| (1,3) (3,1) (2,2)   | 4 | 3 | 3/36 |
+| (1,4) (4,1) (2,3) (3,2) | 5 | 4 | 4/36 |
+| (1,5) (5,1) (2,4) (4,2) (3,3) | 6 | 5 | 5/36 |
+| (1,6) (6,1) (2,5) (5,2) (3,4) (4,3) | 7 | 6 | 6/36 |
+| (2,6) (6,2) (3,5) (5,3) (4,4) | 8 | 5 | 5/36 |
+| (3,6) (6,3) (4,5) (5,4) | 9 | 4 | 4/36 |
+| (4,6) (6,4) (5,5) | 10 | 3 | 3/36 |
+| (5,6) (6,5) | 11 | 2 | 2/36 |
+| (6,6) | 12 | 1 | 1/36 |
+
+---
+
+# Varianza y desvío estándar
+
+| `\(X\)` | Casos | Probabilidad | `\(xP(x)\)` |
+| :----------: | :--------------: | :----------: | :----------: |
+| 2 | 1 | 1/36 | 2/36 |
+| 3 | 2 | 2/36 | 6/36 |
+| 4 | 3 | 3/36 | 12/36 |
+| 5 | 4 | 4/36 | 20/36 |
+| 6 | 5 | 5/36 | 30/36 |
+| 7 | 6 | 6/36 | 42/36 |
+| 8 | 5 | 5/36 | 40/36 |
+| 9 | 4 | 4/36 | 36/36 |
+| 10 | 3 | 3/36 | 30/36 |
+| 11 | 2 | 2/36 | 22/36 |
+| 12 | 1 | 1/36 | 12/36 |
+| | | | `\(\mu_x=252/36=7\)` |
+
+---
+
+# Varianza y desvío estándar
+
+| `\(X\)` | Casos | Probabilidad | `\(xP(x)\)` | `\(x-\mu_x\)` | `\((x-\mu_x)^2\)` | `\((x-\mu_x)^2*p(x)\)` |
+| :----------: | :--------: | :-----: | :----: | :----: | :----: |:----: |
+| 2 | 1 | 1/36 | 2/36 | -5 | | |
+| 3 | 2 | 2/36 | 6/36 | -4 | | |
+| 4 | 3 | 3/36 | 12/36 | -3 | | |
+| 5 | 4 | 4/36 | 20/36 | -2 | | |
+| 6 | 5 | 5/36 | 30/36 | -1 | | |
+| 7 | 6 | 6/36 | 42/36 | 0 | | |
+| 8 | 5 | 5/36 | 40/36 | 1 | | |
+| 9 | 4 | 4/36 | 36/36 | 2 | | |
+| 10 | 3 | 3/36 | 30/36 | 3 | | |
+| 11 | 2 | 2/36 | 22/36 | 4 | | |
+| 12 | 1 | 1/36 | 12/36 | 5 | | |
+| | | | `\(\mu_x=252/36=7\)` | | | `\(\sigma_X^2=...\)` |
+
+---
+
+# Varianza y desvío estándar
+
+| `\(X\)` | Casos | Probabilidad | `\(xP(x)\)` | `\(x-\mu_x\)` | `\((x-\mu_x)^2\)` | `\((x-\mu_x)^2*p(x)\)` |
+| :----------: | :--------: | :-----: | :----: | :----: | :----: |:----: |
+| 2 | 1 | 1/36 | 2/36 | -5 | 25 | |
+| 3 | 2 | 2/36 | 6/36 | -4 | 16 | |
+| 4 | 3 | 3/36 | 12/36 | -3 | 9 | |
+| 5 | 4 | 4/36 | 20/36 | -2 | 4 | |
+| 6 | 5 | 5/36 | 30/36 | -1 | 1 | |
+| 7 | 6 | 6/36 | 42/36 | 0 | 0 | |
+| 8 | 5 | 5/36 | 40/36 | 1 | 1 | |
+| 9 | 4 | 4/36 | 36/36 | 2 | 4 | |
+| 10 | 3 | 3/36 | 30/36 | 3 | 9 | |
+| 11 | 2 | 2/36 | 22/36 | 4 | 16 | |
+| 12 | 1 | 1/36 | 12/36 | 5 | 25 | |
+| | | | `\(\mu_x=252/36=7\)` | | | `\(\sigma_X^2=...\)` |
+
+---
+
+# Varianza y desvío estándar
+
+| `\(X\)` | Casos | Probabilidad | `\(xP(x)\)` | `\(x-\mu_x\)` | `\((x-\mu_x)^2\)` | `\((x-\mu_x)^2*p(x)\)` |
+| :----------: | :--------: | :-----: | :----: | :----: | :----: |:----: |
+| 2 | 1 | 1/36 | 2/36 | -5 | 25 | 25/36 |
+| 3 | 2 | 2/36 | 6/36 | -4 | 16 | 32/36 |
+| 4 | 3 | 3/36 | 12/36 | -3 | 9 | 27/36 |
+| 5 | 4 | 4/36 | 20/36 | -2 | 4 | 16/36 |
+| 6 | 5 | 5/36 | 30/36 | -1 | 1 | 5/36 |
+| 7 | 6 | 6/36 | 42/36 | 0 | 0 | 0 |
+| 8 | 5 | 5/36 | 40/36 | 1 | 1 | 5/36 |
+| 9 | 4 | 4/36 | 36/36 | 2 | 4 | 16/36 |
+| 10 | 3 | 3/36 | 30/36 | 3 | 9 | 27/36 |
+| 11 | 2 | 2/36 | 22/36 | 4 | 16 | 32/36 |
+| 12 | 1 | 1/36 | 12/36 | 5 | 25 | 25/36 |
+| | | | `\(\mu_x=252/36=7\)` | | | `\(\sigma_X^2=210/36=5.83\)` |
+
+`$$\sigma_X=\sqrt{210/36}=2.415$$`
+
+---
+
+# Varianza de una función lineal
+
+Sea `\(X\)` una v.a. con media `\(\mu_X\)` y varianza `\(\sigma_X^2\)`.
+
+Sean `\(a\)` y `\(b\)` dos constantes. Definamos la v.a. `\(Z=a+b*X\)`
+
+--
+
+Entonces
+
+`$$\mu_Z=a+b*\mu_X$$`
+
+--
+
+`$$\sigma_Z^2=b^2*\sigma_X^2$$`
+
+`$$\sigma_Z=|b|*\sigma_X$$`
+
+Demostrar...
+
+---
+
+# Varianza de una función lineal
+
+Sea `\(X\)` una v.a. con media `\(\mu_X\)` y varianza `\(\sigma_X^2\)`.
+
+Sean `\(a\)` y `\(b\)` dos constantes. Definamos la v.a. `\(Z=a+b*X\)`
+
+Demostración:
+
+`\(\mu_Z=E(a+b*X)=\)`
+
+---
+
+# Varianza de una función lineal
+
+Sea `\(X\)` una v.a. con media `\(\mu_X\)` y varianza `\(\sigma_X^2\)`.
+
+Sean `\(a\)` y `\(b\)` dos constantes. Definamos la v.a. `\(Z=a+b*X\)`
+
+Demostración:
+
+`\(\mu_Z=E(a+b*X)=\sum_x(a+b*x)p(x)=\)`
+
+---
+
+# Varianza de una función lineal
+
+Sea `\(X\)` una v.a. con media `\(\mu_X\)` y varianza `\(\sigma_X^2\)`.
+
+Sean `\(a\)` y `\(b\)` dos constantes. Definamos la v.a. `\(Z=a+b*X\)`
+
+Demostración:
+
+`\(\mu_Z=E(a+b*X)=\sum_x(a+b*x)p(x)=a*\sum_xp(x)+b*\sum_xxp(x)=\)`
+
+---
+
+# Varianza de una función lineal
+
+Sea `\(X\)` una v.a. con media `\(\mu_X\)` y varianza `\(\sigma_X^2\)`.
+
+Sean `\(a\)` y `\(b\)` dos constantes. Definamos la v.a. `\(Z=a+b*X\)`
+
+Demostración:
+
+`\(\mu_Z=E(a+b*X)=\sum_x(a+b*x)p(x)=a*\sum_xp(x)+b*\sum_xxp(x)=a+b*\mu_X\)`
+
+---
+
+# Varianza de una función lineal
+
+Sea `\(X\)` una v.a. con media `\(\mu_X\)` y varianza `\(\sigma_X^2\)`.
+
+Sean `\(a\)` y `\(b\)` dos constantes. Definamos la v.a. `\(Z=a+b*X\)`
+
+Demostración:
+
+`\(\mu_Z=E(a+b*X)=\sum_x(a+b*x)p(x)=a*\sum_xp(x)+b*\sum_xxp(x)=a+b*\mu_X\)`
+
+`\(\sigma_Z^2=E((Z-\mu_Z)^2)=\)`
+
+---
+
+# Varianza de una función lineal
+
+Sea `\(X\)` una v.a. con media `\(\mu_X\)` y varianza `\(\sigma_X^2\)`.
+
+Sean `\(a\)` y `\(b\)` dos constantes. Definamos la v.a. `\(Z=a+b*X\)`
+
+Demostración:
+
+`\(\mu_Z=E(a+b*X)=\sum_x(a+b*x)p(x)=a*\sum_xp(x)+b*\sum_xxp(x)=a+b*\mu_X\)`
+
+`\(\sigma_Z^2=E((Z-\mu_Z)^2)=E((a+b*x-a-b*\mu_x)^2)=\)`
+
+---
+
+# Varianza de una función lineal
+
+Sea `\(X\)` una v.a. con media `\(\mu_X\)` y varianza `\(\sigma_X^2\)`.
+
+Sean `\(a\)` y `\(b\)` dos constantes. Definamos la v.a. `\(Z=a+b*X\)`
+
+Demostración:
+
+`\(\mu_Z=E(a+b*X)=\sum_x(a+b*x)p(x)=a*\sum_xp(x)+b*\sum_xxp(x)=a+b*\mu_X\)`
+
+`\(\sigma_Z^2=E((Z-\mu_Z)^2)=E((a+b*x-a-b*\mu_x)^2)=E((b*x-b*\mu_X)^2)=\)`
+
+---
+
+# Varianza de una función lineal
+
+Sea `\(X\)` una v.a. con media `\(\mu_X\)` y varianza `\(\sigma_X^2\)`.
+
+Sean `\(a\)` y `\(b\)` dos constantes. Definamos la v.a. `\(Z=a+b*X\)`
+
+Demostración:
+
+`\(\mu_Z=E(a+b*X)=\sum_x(a+b*x)p(x)=a*\sum_xp(x)+b*\sum_xxp(x)=a+b*\mu_X\)`
+
+`\(\sigma_Z^2=E((Z-\mu_Z)^2)=E((a+b*x-a-b*\mu_x)^2)=E((b*x-b*\mu_X)^2)=\)`
+
+`\(\sigma_Z^2=E(b^2(x-\mu_x)^2)=\)`
+
+---
+
+# Varianza de una función lineal
+
+Sea `\(X\)` una v.a. con media `\(\mu_X\)` y varianza `\(\sigma_X^2\)`.
+
+Sean `\(a\)` y `\(b\)` dos constantes. Definamos la v.a. `\(Z=a+b*X\)`
+
+Demostración:
+
+`\(\mu_Z=E(a+b*X)=\sum_x(a+b*x)p(x)=a*\sum_xp(x)+b*\sum_xxp(x)=a+b*\mu_X\)`
+
+`\(\sigma_Z^2=E((Z-\mu_Z)^2)=E((a+b*x-a-b*\mu_x)^2)=E((b*x-b*\mu_X)^2)=\)`
+
+`\(\sigma_Z^2=E(b^2(x-\mu_x)^2)=\sum_xb^2(x-\mu_x)^2p(x)=\)`
+
+---
+
+# Varianza de una función lineal
+
+Sea `\(X\)` una v.a. con media `\(\mu_X\)` y varianza `\(\sigma_X^2\)`.
+
+Sean `\(a\)` y `\(b\)` dos constantes. Definamos la v.a. `\(Z=a+b*X\)`
+
+Demostración:
+
+`\(\mu_Z=E(a+b*X)=\sum_x(a+b*x)p(x)=a*\sum_xp(x)+b*\sum_xxp(x)=a+b*\mu_X\)`
+
+`\(\sigma_Z^2=E((Z-\mu_Z)^2)=E((a+b*x-a-b*\mu_x)^2)=E((b*x-b*\mu_X)^2)=\)`
+
+`\(\sigma_Z^2=E(b^2(x-\mu_x)^2)=\sum_xb^2(x-\mu_x)^2p(x)=\)`
+
+`\(\sigma_Z^2=b^2\sum_x(x-\mu_x)^2p(x)=\)`
+
+---
+
+# Varianza de una función lineal
+
+Sea `\(X\)` una v.a. con media `\(\mu_X\)` y varianza `\(\sigma_X^2\)`.
+
+Sean `\(a\)` y `\(b\)` dos constantes. Definamos la v.a. `\(Z=a+b*X\)`
+
+Demostración:
+
+`\(\mu_Z=E(a+b*X)=\sum_x(a+b*x)p(x)=a*\sum_xp(x)+b*\sum_xxp(x)=a+b*\mu_X\)`
+
+`\(\sigma_Z^2=E((Z-\mu_Z)^2)=E((a+b*x-a-b*\mu_x)^2)=E((b*x-b*\mu_X)^2)=\)`
+
+`\(\sigma_Z^2=E(b^2(x-\mu_x)^2)=\sum_xb^2(x-\mu_x)^2p(x)=\)`
+
+`\(\sigma_Z^2=b^2\sum_x(x-\mu_x)^2p(x)=b^2*\sigma_X^2\)`
+
+---
+
+# Varianza de una función lineal
+
+Volvamos al ejemplo de la máquina con desperfectos y los costos que éstos generan: `\(g(x)=1500*x\)`. Para calcular la varianza de estos costos, hay que calcular primero la varianza de `\(X\)`
+
+.center[
+| Cantidad de Desperfectos ( `\(x\)` ) | `\(p(x)\)` | `\(xp(x)\)` | `\(x-\mu_X\)` | `\((x-\mu_X)^2\)` |
+| :----------------------------: | :----: | :----: | :----: | :----: |
+| 0 | 0.10 | 0.00 | | |
+| 1 | 0.26 | 0.26 | | |
+| 2 | 0.42 | 0.84 | | |
+| 3 | 0.16 | 0.48 | | |
+| 4 | 0.06 | 0.24 | | |
+| | | `\(\mu_X=1.82\)` | | `\(\sigma_X^2=...\)`|
+]
+
+---
+
+# Varianza de una función lineal
+
+Volvamos al ejemplo de la máquina con desperfectos y los costos que éstos generan: `\(g(x)=1500*x\)`. Para calcular la varianza de estos costos, hay que calcular primero la varianza de `\(X\)`
+
+.center[
+| Cantidad de Desperfectos ( `\(x\)` ) | `\(p(x)\)` | `\(xp(x)\)` | `\(x-\mu_X\)` | `\((x-\mu_X)^2\)` |
+| :----------------------------: | :----: | :----: | :----: | :----: |
+| 0 | 0.10 | 0.00 | -1.82 | |
+| 1 | 0.26 | 0.26 | -0.82 | |
+| 2 | 0.42 | 0.84 | 0.18 | |
+| 3 | 0.16 | 0.48 | 1.18 | |
+| 4 | 0.06 | 0.24 | 2.18 | |
+| | | `\(\mu_X=1.82\)` | | `\(\sigma_X^2=...\)`|
+]
+
+---
+
+# Varianza de una función lineal
+
+Volvamos al ejemplo de la máquina con desperfectos y los costos que éstos generan: `\(g(X)=1500*x\)`. Para calcular la varianza de estos costos, hay que calcular primero la varianza de `\(X\)`
+
+.center[
+| Cantidad de Desperfectos ( `\(x\)` ) | `\(p(x)\)` | `\(xp(x)\)` | `\(x-\mu_X\)` | `\((x-\mu_X)^2\)` |
+| :----------------------------: | :----: | :----: | :----: | :----: |
+| 0 | 0.10 | 0.00 | -1.82 | 3.3124 |
+| 1 | 0.26 | 0.26 | -0.82 | 0.6724 |
+| 2 | 0.42 | 0.84 | 0.18 | 0.0324 |
+| 3 | 0.16 | 0.48 | 1.18 | 1.3924 |
+| 4 | 0.06 | 0.24 | 2.18 | 4.7524 |
+| | | `\(\mu_X=1.82\)` | | `\(\sigma_X^2=10.162\)`|
+]
+
+--
+
+Entonces, `\(Var(g(X))=1500^2*\sigma_X^2=2250000*10.162=22864500\)`
+
+`\(\sigma_{g(X)}=\sqrt{22864500}=4781.684\)`
+
+---
+
+# Distribución Binomial
+
+- Se trata de una de las distribuciones discretas más útiles.
+
+--
+
+- George Louis Leclerc (1707-1788) lanzó una moneda 4.040 veces y obtuvo 2.048; i.e. un 50.69% de caras.
+
+- John Kerrich, matemático inglés apresado durante la II Guerra Mundial, lanzó una moneda 10.000 veces. La proporción de caras obtenidas fue 5.067.
+
+- ¿Estos resultados fueron casualidad?
+
+--
+
+Jacob Bernoulli (1654-1705) dedicó varias décadas a estudiar el problema y logró demostrar matemáticamente que el porcentaje de caras que se obtendría al lanzar una moneda indefinidamente era del 50%.
+
+---
+
+# Distribución Binomial
+
+**Ensayos de Bernoulli:**
+
+- Un experimento que tiene sólo dos resultados posibles (v.g. cara y ceca). A uno de ellos se lo llama **éxito** y al otro **fracaso**.
+
+- La probabilidad de éxito es `\(p\)` y la de fracaso `\(1-p\)`
+
+--
+
+- Una v.a. con **distribución Bernoulli** consiste en un único ensayo en el que el resultado ocurre (éxito) o no ocurre (fracaso). Por lo tanto, un ensayo de Bernoulli está unívocamente caracterizado por **un único número: la probabilidad de éxito p**.
+
+--
+
+  + Lanzo una moneda: cara con probabilidad `\(p=0.5\)` y ceca con probabildad `\(q=1-p=0.5\)`
+
+  + Nacimiento de un hijo: con probabilidad `\(p=0.48\)` es niño y con probailidad `\(q=1-p=0.52\)` es niña.
+
+  + Multiple choice con 5 opciones y sin conocimiento (puro azar): con probabilidad `\(p =1/5\)` la respuesta es correcta y con probabilidad  `\(q=1-p=4/5\)` es errada. 
+
+---
+
+# Distribución Binomial
+
+- Cuando los ensayos de Bernoulli se repiten **n veces de manera independiente** (independiente idénticamente distribuidos i.i.d), se dice entonces que se tiene un experimento **binomial**.
+
+- En definitiva **un experimento binomial son n ensayos de Bernoulli, i.i.d.**.
+
+--
+
+- Clásico ejemplo:  Arrojo una moneda n veces o n monedas una vez. 
+
+- Cada lanzamiento de la moneda es un ensayo de Bernoulli. El **número total de éxitos obtenidos después de n ensayos i.i.d. de Bernoulli es una v.a. binomial**.
+
+---
+
+# Distribución Binomial
+
+En un experimento binomial la v.a. de interés es la **cantidad de éxitos obtenidos en n ensayos**.
+
+`\(X=“\text{número total de éxitos obtenidos en n ensayos de Bernoulli}”\)`
+
+`\(X\)` puede tomar los valores `\(\{0,1,2,3…,n\}\)`. Se trata de una v.a. discreta. 
+
+La distribución de probabilidades de la v.a. `\(X\)` se llama **distribución binomial**.
+
+A diferencia de la distribución de Bernoulli, la distribución binomial tiene **dos parámetros relevantes**
+
+- El número de ensayos: `\(n\)`
+
+- La probabilidad de éxito: `\(p\)`
+
+---
+
+# Distribución Binomial
+
+¿Cómo se calcula la probabilidad de tener exactamente `\(k\)` éxitos cuando la v.a. es  `\(X \sim Bi(n, p)\)`?
+
+Veamos la intuición con un ejemplo: lanzo 10 veces un dado equilibrado, ¿cuál es la probabilidad de que salga exactamente 3 veces el número 6?
+
+--
+
+Un resultado posible es que en los 3 primeros lanzamientos salga un 6 y en los 7 restantes salga otro número. La probabilidad de este resultado es: 
+`\((1/6)^3*(5/6)^7\)`
+
+--
+
+Pero también podría pasar que en los 2 primeros lanzamientos salga un 6, en el 3ro salga otro número, en el 4to salga un 6 y de ahí en más otro número. La probabilidad de este resultado es igual a la anterior: 
+`\((1/6)^2*(5/6)*(1/6)*(5/6)^6=(1/6)^3*(5/6)^7\)`
+
+--
+
+Si lo pensamos un momento, vamos a ver que hay muchas maneras distintas de obtener 3 veces el número 6 y 7 números distintos al 6. Y todos estos resultados van a tener la misma probabilidad: `\((1/6)^3*(5/6)^7\)`
+
+La pregunta es: **¿de cuántas maneras distintas puedo obtener exactamente 3 veces el número 6 en 10 lanzamientos?**
+
+---
+
+# Distribución Binomial
+
+**¿De cuántas maneras distintas puedo obtener exactamente 3 veces el número 6 en 10 lanzamientos?**
+
+Lo podemos calcular mediante el **número combinatorio**: `\({N\choose k}\)`. Recuerden que el número combinatorio nos da la cantidad de subconjuntos de `\(k\)` elementos que podemos armar a partir de un conjunto de `\(N\)` elementos.
+
+En este caso, nos interesa saber de cuántas formas podemos seleccionar 3 dados de un total de 10 dados.
+
+--
+
+`\({10\choose 3}=\frac{10!}{(10-3)!3!}=\frac{10!}{7!3!}=120\)`
+
+--
+
+Entonces, la probabilidad de obtener exactamente 3 números 6 en 10 lanzamientos es:
+
+`\(120*(1/6)^3*(5/6)^7=0.1550454\)`
+
+---
+
+# Distribución Binomial
+
+De manera general...
+
+Sea `\(X\)` una v.a. que representa el número de éxitos en n ensayos de Bernoulli y sea `\(p\)` la probabilidad de éxito. Se dice entonces que `\(X \sim Bi(n, p)\)` (tiene una distribución binomial) con función de probabilidad:
+
+`$$P(X=k)={N \choose k}p^k(1-p)^{N-k}=\frac{N!}{(N-k)!k!}p^k(1-p)^{N-k}$$`
+
+`$$\text{para k=0,1,2,...,N}$$`
+
+---
+
+# Distribución Binomial
+
+¿Cuál de las siguientes expresiones es falsa?
+
+- Hay `\(n\)` maneras diferentes de obtener **un** éxito en `\(n\)` ensayos: `\({n \choose 1}=n\)` 
+
+- Hay sólo **una** manera de obtener `\(n\)` éxitos en `\(n\)` ensayos: `\({n \choose n}=1\)` 
+
+- Hay sólo **una** manera de obtener `\(n\)` fracasos en `\(n\)` ensayos: `\({n \choose 0}=1\)`
+
+- Hay `\(n-1\)` maneras de obtener `\(n-1\)` éxitos en `\(n\)` ensayos: `\({n \choose n-1}=n-1\)`
+
+---
+
+# Distribución Binomial
+
+**Ejemplo**: Un vendedor de seguros visita a 10 familias seleccionadas al azar. El resultado se clasifica como éxito si la familia compra la póliza de seguro y como fracaso en caso contrario. Se sabe que la probabilidad de que una familia seleccionada la azar compre una póliza de seguro es del 0.10.
+
+¿De que tipo de distribución estamos hablando? 
+
+--
+
+`\(X \sim Bi(N=10,p=0.10)\)`
+
+¿Cuál es la probabilidad de que exactamente  1 familia adquiera la poliza? ¿Y exactamente tres familias?
+
+--
+
+`\(P(X=1)={10 \choose 1}*0.10^1*0.90^9=10*0.10*0.90^9=0.3874205\)`
+
+`\(P(X=3)={10 \choose 3}*0.10^3*0.90^7=120*0.10^3*0.90^7=0.05739563\)`
+
+¿Cuál es la probabilidad de que por lo menos 1 familia adquiera el seguro?
+
+--
+
+`\(P(X \ge 1)=1-P(X=0)=1-{10 \choose 0}*0.10^0*0.90^{10}=0.90^{10}=0.3486784\)`
+
+---
+
+# Distribución Binomial
+
+La forma de la distribución binomial depende del valor de `\(p\)`
+
+.center[
+
+```
+## NULL
+```
+]
+
+---
+
+# Distribución Binomial
+
+Una encuesta de Gallup del año 2012, indica que el `\(26.2\%\)` de los americanos son obesos. En una muestra de 10 americanos, ¿cuál es la probabilidad de que exactamente 8 sean obesos? 
+
+--
+
+`\(X \sim Bi(N=10,p=0.262)\)`
+
+--
+
+`\(P(X=8)={10 \choose 8}*0.262^8*(1-0.262)^2=0.0005441712\)`
+
+--
+
+En una muestra de 100 americanos, ¿cuantos obesos esperaría encontrar?
+
+--
+
+Se puede demostrar que si `\(X \sim Bi(N,p)\)`, `\(E(X)=\mu_X=np\)`
+
+En este caso, `\(E(X)=100*0.262=26.2\)`
+
+---
+
+# Distribución Binomial
+
+**Esperanza y Varianza de una Distribución Binomial**
+
+`\(\mu_X=np\)`
+
+`\(\sigma_X^2=np(1-p)=npq\)`
+
+`\(\sigma_X=\sqrt{\sigma_X^2}=\sqrt{np(1-p)}=\sqrt{npq}\)`
+
+En el caso de la encuesta de Gallup sobre la tasa de obesidad:
+
+`\(\sigma_X=\sqrt{100*0.262*(1-0.262)}=4.397226\)`
+
+En una muestra de 100 americanos se espera 26.2 obesos en promedio con un desvío estándar de 4.4
+
+---
+
+# Distribución Binomial
+
+Suponga que se tomó una muestra de 55 americanos y 28 resultaron obesos. En base a la encuesta de Gallup de 2012, ¿consideraría este resultado como inusual?
+
+--
+
+En este caso, `\(X \sim Bi(N=55,p=0.262)\)`
+
+`\(\mu_X=N*p=14.41\)` 
+
+`\(\sigma_X=\sqrt{npq)}=4.397226\)`
+
+¿A cuántos desvíos estándar de la media está el resultado `\(x=28\)`?
+
+--
+
+`\(\text{valor z} (x=28)=\frac{28-\mu_X}{\sigma_X}=\frac{28-14.41}{4.397226}=3.090585\)`
+
+¿Considera este resultado como inusual?
+
+---
+
+# Distribución Geométrica
+
+La **Distribución Geométrica** se construye también a partir de la distribución Bernoulli, pero la secuencia de ensayos puede ser infinita.
+
+--
+
+La probabilidad de éxito sigue siendo `\(p\)`, pero ahora la variable es:
+
+`\(x=\text{"número de ensayos hasta que ocurre el primer éxito"}\)`
+
+--
+
+Esto significa que cuando `\(X=k\)`, ocurrieron `\(k-1\)` fracasos y el *k-ésimo* intento fue un éxito. Y como los ensayos son independientes:
+
+`$$P(X=k)=p*(1-p)^{k-1}$$`
+
+`$$k=1,2,3,...$$`
+
+Se puede ver que:
+
+`\(\sum_{k=1}^{\infty}p*(1-p)^{k-1}=p\sum_{k=1}^{\infty}(1-p)^{k-1}=p\sum_{j=0}^{\infty}(1-p)^{j}=\frac{p}{1-(1-p)}=1\)`
+
+---
+
+# Distribución Geométrica
+
+Suponga que cada vez que Messi patea un penal hay una probabilidad de 0,90 de que sea gol. ¿Cuál es la probabilidad de que necesite 2 penales para convertir un gol? ¿O que necesite 3 penales? ¿O 5 penales?
+
+--
+
+`\(X \sim Geom(p=0.9)\)`
+
+`\(P(X=2)=0.9*(1-0.9)^1=0.09\)`
+
+`\(P(X=3)=0.9*(1-0.9)^2=0.009\)`
+
+`\(P(X=5)=0.9*(1-0.9)^4=0.00009\)`
+
+--
+
+Puede demostrarse que, si `\(X\)` sigue una distribución geométrica:
+
+`$$E(X)=\frac{1}{p}$$`
+
+`$$\sigma_X^2=\frac{1-p}{p^2}$$`
+
+---
+
+# Distribución Hipergeométrica
+
+En una distribución Binomial, se requiere que en cada ensayo la probabilidad `\(p\)` permanece constante.
+
+Si la población es lo suficientemente grande y se realizan extracciones sin reemplazo, este supuesto es bastante plausible.
+
+--
+
+¿Qué ocurre si la población es pequeña y se realizan extracciones sin reemplazo?
+
+Se necesita otra distribución que de cuenta de este cambio en la probabilidad de éxito: se utiliza la **Distribución Hipergeométrica**
+
+---
+
+# Distribución Hipergeométrica
+
+Tanto la distribución hipergeométrica como la distribución binomial tienen **dos resultados posibles: éxito o fracaso**.
+
+La diferencia radica que para la binomial los ensayos son independientes mientras que para la hipergeométrica son **dependientes**. 
+
+--
+
+El experimento consiste en extraer `\(n\)` elementos de una población `\(N\)` **sin reemplazo**, donde `\(r\)` elementos son éxitos y `\(N-r\)` son fracasos.
+
+`\(X\)` es la v.a. hipergeométrica, que representa el **número de éxitos en las `\(n\)` extracciones**.
+
+---
+
+# Distribución Hipergeométrica
+
+Matemáticamente, la distribución hipergeométrica se obtiene:
+
+`$$P(X=k)=\frac{{r \choose k}{N-r \choose n-k}}{{N \choose n}}$$`
+
+`\(N:\)` tamaño de la población
+
+`\(r:\)` número de éxitos en la población
+
+`\(n:\)` tamaño de la muestra que se extrae
+
+`\(k:\)` número de éxitos en la muestra
+
+---
+
+# Distribución Hipergeométrica
+
+**Ejemplo**: Supongamos que se tienen 15 postulantes para una oferta laboral. La empresa desea contratar 4  nuevos trabajadores. Además, se sabe que entre los 15 postulantes 6 son mujeres y 9 son hombres. Sea X el número de mujeres contratadas por la empresa. ¿Cuál es la probabilidad de que por lo menos 2 sean mujeres?
+
+--
+
+`\(N=15\)` tamaño de la población
+
+`\(r=6\)` número de éxitos en la población
+
+`\(n=4\)` tamaño de la muestra que se extrae
+
+`\(k = 2,3,4,...\)` número de éxitos en la muestra
+
+--
+
+`\(P(X \ge 2)=1-P(X&lt;2)=1-P(X=0)-P(X=1)=1-\frac{{6 \choose 0}{9 \choose 4}}{{15 \choose 4}}-\frac{{6 \choose 1}{9 \choose 3}}{{15 \choose 4}}\)`
+
+`\(P(X \ge 2)=1-\frac{{1}*126}{1365}-\frac{{6}*84}{1365}=0.5384615\)`
+
+---
+
+# Distribución de Poisson
+
+La distribución de Poisson describe el número de **eventos “raros”** que podrían ocurrir en una **unidad de tiempo/espacio/volumen**, para una población (relativamente) fija y grande, donde los individuos de la población son independientes.
+
+--
+
+- N° de personas que sufren un ataque cardíaco por día en CABA.
+- N° de individuos alcanzado por un rayo en un año en una comunidad.
+- N° de errores de tipeo por página.
+- N° de solicitudes de seguros procesadas por una institución en un día cualquiera.
+- N° de vacantes durante un año en la Corte Suprema de Justicia.
+- N° de defectos en piezas similares (rollos de telas, etc).
+- N° de goles en 90 minutos de juego.
+- N° de personas de más de 100 años en una comunidad.
+
+---
+
+# Distribución de Poisson
+
+Sea `\(X\)`=“número de eventos que ocurren por unidad de tiempo/espacio/…”. 
+
+Se dice que `\(X\)` sigue una distribución de Poisson con parámetro `\(\lambda\)` cuya función de probabilidad está dada por:
+
+`$$P(X=k)=\frac{e^{-\lambda}\lambda^k}{k!}$$`
+
+`$$k=0,1,2,3...$$`
+
+`$$\lambda&gt;0$$`
+
+El parámetro `\(\lambda\)` de la distribución de Poisson, representa el **número promedio de ocurrencias** del evento aleatorio que se observa por unidad de tiempo/espacio/etc.
+
+A diferencia de la binomial, en la v.a. de Poisson, el número de ocurrencias **no tiene límite superior**, aunque las probabilidades se hacen muy pequeñas después de los primeros “éxitos”.
+
+---
+
+# Distribución de Poisson
+
+**Supuestos**
+
+- Es posible dividir el intervalo de tiempo en un gran número de pequeños subintervalos de igual longitud.
+
+- La probabilidad de ocurrencia es la misma en cada intervalo (no varía).
+
+- Las ocurrencias son independientes. Si un evento ocurre/no ocurre en un intervalo es independiente de lo que ocurra/no ocurra en cualquier otro intervalo.
+
+--
+
+Si `\(X \sim Poisson(\lambda)\)`, entonces:
+
+`\(\mu_X=\lambda\)`
+
+`\(\sigma_X^2=\lambda\)`
+
+
+---
+
+# Distribución de Poisson
+
+Un banco recibe en promedio 6 cheques sin fondo por día, ¿cuál es la probabilidad de que reciba 4 cheques sin fondo en un día dado?
+
+--
+
+`\(X \sim Poisson(\lambda=6)\)`
+
+`\(P(X=4)=\frac{e^{-6}6^4}{4!}=0.1338526\)`
+
+--
+
+¿Cuál es la probabilidad de que reciba al menos 2 cheques sin fondos?
+
+--
+
+`\(P(X\ge 2)=1-P(X &lt; 2)=1-P(X=0)-P(X=1)=1-\frac{e^{-6}6^0}{0!}-\frac{e^{-6}6^1}{1!}=0.98\)`
+
+--
+
+¿Cuál es la probabilidad de que reciba 10 cheques sin fondo en **dos días** consecutivos cualesquiera?
+
+--
+
+`\(X \sim Poisson(\lambda=6*2=12)\)`
+
+`\(P(X=10)=\frac{e^{-12}12^{10}}{10!}=0.1048373\)`
+
+---
+
+# Distribución de Poisson
+
+El número de accidentes promedio que ocurren en una fábrica es de 3 al año. En el último año se registraron 7 accidentes. Este número llamó la atención a los responsables de la seguridad laboral. ¿Cuán probable es que ocurran por lo menos 7 accidentes? ¿Es este valor un indicio de un cambio en la media?
+
+--
+
+`\(X \sim Poisson(\lambda=3)\)`
+
+--
+
+Puede requerir el uso de **tabla**
+
+`\(P(X\ge 7)=1-P(X&lt; 7)=1-0.9664915= 0.03350854\)`
+
+¿A cuántos desvíos estándar se encuentra el valor 7 de la media?
+
+--
+
+`\(\text{valor z}(x=7)=\frac{7-\lambda}{\sqrt{\lambda}}=\frac{7-3}{\sqrt{3}}=2.309401\)`
+
+---
+
+# Distribución de Poisson
+
+A medida que `\(\lambda\)` crece, la distribución de Poisson se hace más simétrica.
+
+
+.center[
+
+```
+## NULL
+```
+]
+
+---
+
+# Distribución de Poisson
+
+Cuando `\(n\)` es grande y `\(p\)` es lo suficientemente pequeño, la **distribución Binomial `\(Bi(n,p)\)` puede ser aproximada por la Poisson** con parámetro `\(\lambda=np\)`.
+
+Se puede probar que si `\(X\sim Bi(n,p)\)`:
+
+`$$\displaystyle \lim_{n \to \infty}P(X=k)=\displaystyle \lim_{n \to \infty }{n \choose k}p^k(1-p)^{n-k}=\frac{e^{-np}(np)^k}{k!}=\frac{e^{-\lambda}\lambda^k}{k!}$$`
+
+A la hora de realizar la aproximación, se suele requerir `\(n\ge 50\)` y `\(p\le 0.05\)`
+
+---
+
+# Distribución de Poisson
+
+Ejemplo con `\(p=0.05\)`
+
+.center[
+
+```
+## NULL
+```
+]
+
+---
+
+# Distribución de Poisson
+
+Suponga que, de acuerdo con los registros de la empresa, la probabilidad de que un pasajero de AA pierda su equipaje  es del `\(5\%\)`. Se toma una muestra al azar de 200 pasajeros en un día determinado.
+
+¿Cuál es la probabilidad de que más de dos pasajeros hayan extraviado su equipaje?
+
+--
+
+En principio, `\(X\sim Bi(n=200,p=0.05)\)`. Si puedo calcularla, la respuesta **exacta** es:
+
+`\(P(X&gt;2)=1-P(X=0)-P(X=1)=\)`
+
+`\(=1-{200 \choose 0}*0.05^0*0.95^{200}-{200 \choose 1}*0.05^1*0.95^{199}=\)`
+
+`\(=0.999596\)`
+
+--
+
+Si tengo problemas para realizar este cálculo, puedo **aproximar** `\(X\)` con `\(Y\sim Poisson(\lambda=200*0.05=10)\)`
+
+`\(P(Y&gt;2)=1-P(Y=0)-P(Y=1)=1-\frac{e^{-10}10^0}{0!}-\frac{e^{10}10^1}{1!}=0.9995006\)`
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
