@@ -23,7 +23,7 @@ class: left, bottom, inverse, title-slide
 ### Esteban Rodriguez
 ]
 .date[
-### Última Actualización: 2022-08-18
+### Última Actualización: 2022-08-19
 ]
 
 ---
@@ -63,9 +63,12 @@ La **media o promedio aritmético** es la medida de tendencia central más popul
 
 La media puede interpretarse como el punto que equilibria la balanza de los datos:
 
+.center[
 ![](Imagenes/mediabalanza.jpg)
+]
 
-En este caso, `\(\overline{x}=\frac{1+2+6}{3}=9\)`
+
+En este caso, `\(\overline{x}=\frac{1+2+6}{3}=\frac{9}{3}=3\)`
 
 Pero si algún `\(x_i\)` cambia su valor, la media también cambiará su valor.
 
@@ -175,7 +178,10 @@ Suponiendo `\(n_1\)` hombres y `\(n_2\)` mujeres:
 
 - Resumir toda la información en un número sin atender a la variabilidad que presentan los datos es un problema grave.
 
+.center[
 ![](1_Est_Descriptiva_files/figure-html/unnamed-chunk-1-1.png)&lt;!-- --&gt;
+]
+
 
 
 - **Se debe entonces cuantificar la dispersión**
@@ -263,6 +269,44 @@ Al igual que la media aritmética, la varianza y el desvío estándar son **muy 
 
 |      | `\(x_i\)` | `\((x_i-\overline{x})\)`  |  `\((x_i-\overline{x})^2\)` |
 |:---: | :---: |:----------:|:----------:|
+|      | 2     |   |    |
+|      | 4     |   |   |
+|      | 3     |   |   |
+|      | 8     |   |   |
+|      | 5     |   |   |
+|      | 7     |   |   |
+|      |      |  |   |
+|  | `\(\sum_{i=1}^n(x_i)= 29\)`  |  |  |
+|  | `\(n=6\)` |   |  |
+|  | `\(\overline{x}= 4.83\)`  |  |   |
+
+---
+
+# De dispersión: varianza y desvío
+
+¿Cómo se calculan la varianza y el desvío?
+
+|      | `\(x_i\)` | `\((x_i-\overline{x})\)`  |  `\((x_i-\overline{x})^2\)` |
+|:---: | :---: |:----------:|:----------:|
+|      | 2     | -2.83  |    |
+|      | 4     | -0.83  |   |
+|      | 3     | -1.83  |   |
+|      | 8     | 3.17  |   |
+|      | 5     | 0.17  |   |
+|      | 7     | 2.17  |   |
+|      |      |  |   |
+|  | `\(\sum_{i=1}^n(x_i)= 29\)`  |  |  |
+|  | `\(n=6\)` |   |  |
+|  | `\(\overline{x}= 4.83\)`  |  |  |
+
+---
+
+# De dispersión: varianza y desvío
+
+¿Cómo se calculan la varianza y el desvío?
+
+|      | `\(x_i\)` | `\((x_i-\overline{x})\)`  |  `\((x_i-\overline{x})^2\)` |
+|:---: | :---: |:----------:|:----------:|
 |      | 2     | -2.83  |  8.03  |
 |      | 4     | -0.83  | 0.69  |
 |      | 3     | -1.83  | 3.36  |
@@ -270,9 +314,9 @@ Al igual que la media aritmética, la varianza y el desvío estándar son **muy 
 |      | 5     | 0.17  | 0.03  |
 |      | 7     | 2.17  | 4.69  |
 |      |      |  |   |
-| `\(\sum_{i=1}^n(x_i)\)` | 29 | `\(\sum_{i=1}^n(x_i-\overline{x})^2\)` | 26.83 |
-| `\(n\)` | 6 | `\(\color{red}{s^2}\)`  | `\(\color{red}{5.37}\)` |
-| `\(\overline{x}\)` | 4.83 | `\(\color{red}s\)` | `\(\color{red}{2.32}\)` |
+|  | `\(\sum_{i=1}^n(x_i)= 29\)`  |  | `\(\sum_{i=1}^n(x_i-\overline{x})^2=\)` 26.83 |
+|  | `\(n=6\)` |   | `\(\color{red}{s^2}= \color{red}{5.37}\)` |
+|  | `\(\overline{x}= 4.83\)`  |  | `\(\color{red}s= \color{red}{2.32}\)` |
 
 ---
 
@@ -305,6 +349,18 @@ Al igual que la media aritmética, la varianza y el desvío estándar son **muy 
 - Cuanto mayor el `\(CV\)`, mayor es la dispersión o variabilidad de los datos.
 
 - El coeficiente de variación es capaz de lidiar con los problemas de dimensionalidad de las variables de distintas muestras (e.g. peso y altura) y problemas de diferencia enormes en las medias de las muestras (e.g. peso de los elefantes y de las hormigas).
+
+---
+
+# De dispersión: coeficiente de variación
+
+Ejemplo: ¿Qué tiene más variabilidad, el peso o la altura?
+
+|     | Peso en kg. | Altura en cm. |
+|:---:|:-----------:|:-------------:|
+| `\(\overline{x}\)` | 74,5 | 168,8 |
+| `\(s\)` | 13 | 14 |
+|  |  |  |
 
 ---
 
@@ -439,13 +495,11 @@ Supongamos que se dispone de una muestra de datos de tamaño `\(n\)`, `\(x_1, x_
 
 El valor `\(z_i\)` se interpreta como la cantidad de desviaciones estándar que la observación `\(x_i\)` dista de `\(\overline{x}\)`
 
---
-
-Ejemplo: 46, 54, 42, 46, 32 
-
-`\(\overline{x}=44, s=8\)`
 
 --
+
+`\(\text{Ejemplo: 46, 54, 42, 46, 32, }\overline{x}=44, s=8\)`
+
 
 | `\(x_i\)`  | `\(z_i\)` |
 |:------:|:-----:|
