@@ -23,7 +23,7 @@ class: left, bottom, inverse, title-slide
 ### Esteban Rodriguez
 ]
 .date[
-### Última Actualización: 2022-08-19
+### Última Actualización: 2022-08-22
 ]
 
 ---
@@ -470,7 +470,7 @@ Como es entero, tomamos el promedio de las posiciones 6 y 7.
 
 `\(2210, 2255, 2350, 2380, 2380, \color{red}{2390, 2420}, 2440, 2450, 2550, 2630, 2825\)`
 
-Entonces, el **percentil 20 es** `\(\frac{2390+2420}{2}=2405\)`
+Entonces, el **percentil 50 es** `\(\frac{2390+2420}{2}=2405\)`
 
 ---
 
@@ -758,18 +758,14 @@ Volvamos a los datos de Expectativa de vida
 
 # Variables Numéricas
 
+Correspondencia entre Histogramas y Boxplots
+
 .center[
 ![](1_Est_Descriptiva_files/figure-html/unnamed-chunk-20-1.png)&lt;!-- --&gt;
 
 ![](1_Est_Descriptiva_files/figure-html/unnamed-chunk-21-1.png)&lt;!-- --&gt;
 
 ]
-
-¿Verdadero o falso?
-
-- Hay más datos entre la mediana y Q3 que entre Q1 y mediana.
-- Es posible identificar el sesgo a partir del boxplot.
-- Es posible identificar la moda.
 
 ---
 
@@ -930,7 +926,7 @@ Datos censales para el año 2000 en el Estado de Florida
 |Female |   43|Married/spouse present |White           |
 ]
 
-Al igual que los datos numéricos, los datos categóricos pueden ser ordenados/tabulados y analizados.
+Al igual que los datos numéricos, los datos categóricos pueden ser ordenados/tabulados para ser analizados.
 
 ---
 
@@ -938,14 +934,14 @@ Al igual que los datos numéricos, los datos categóricos pueden ser ordenados/t
 
 .center[
 
-|Estado Civil           | Casos| Porcentaje| Casos_Acumulados| Porcentaje_Acumulado|
-|:----------------------|-----:|----------:|----------------:|--------------------:|
-|Divorced               |    38|        7.6|               38|                  7.6|
-|Married/spouse absent  |    14|        2.8|               52|                 10.4|
-|Married/spouse present |   192|       38.4|              244|                 48.8|
-|Never married/single   |   222|       44.4|              466|                 93.2|
-|Separated              |     3|        0.6|              469|                 93.8|
-|Widowed                |    31|        6.2|              500|                100.0|
+|Estado Civil           | Casos| Porcentaje|
+|:----------------------|-----:|----------:|
+|Divorced               |    38|        7.6|
+|Married/spouse absent  |    14|        2.8|
+|Married/spouse present |   192|       38.4|
+|Never married/single   |   222|       44.4|
+|Separated              |     3|        0.6|
+|Widowed                |    31|        6.2|
 ]
 
 .pull-left[
