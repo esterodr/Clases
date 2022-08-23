@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Introducción al cálculo de probabilidades mediante simulación</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Esteban Rodriguez" />
+    <script src="libs/header-attrs-2.14/header-attrs.js"></script>
+    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/metropolis.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/metropolis-fonts.css" rel="stylesheet" />
+  </head>
+  <body>
+    <textarea id="source">
+class: left, bottom, inverse, title-slide
+
+.title[
+# Introducción al cálculo de probabilidades mediante simulación
+]
+.subtitle[
+## Aplicación a eventos deportivos y electorales
+]
+.author[
+### Esteban Rodriguez
+]
+.date[
+### Última Actualización: 2022-08-22
+]
+
+---
+
+
+
+
+# Introducción
+
+- Muchas veces, cuando nos enfrentamos a un evento significativo, queremos estimar la probabilidad de ocurrencia de los distintos resultados.
+
+  + ¿Cuál es la probabilidad de que Argentina gane el mundial? ¿Y de que quede eliminada en la primer ronda?
+
+  + ¿Cuál es la probabilidad de que mi candidato favorito gane las próximas elecciones? ¿Y de que su partido obtenga mayoría parlamentaria?
+
+--
+
+- Estos eventos tienen siempre cierto grado de **incertidumbre**. **Es imposible anticipar de manera exacta qué va a ocurrir**
+
+- Más aun, **no existe un modelo matemático o un cálculo analítico que me permita calcular las probabilidades** de cada resultado.
+
+  + Por ejemplo, en el mundial de fútbol participan 32 equipos. ¿Es razonable pensar que todos tienen la misma probabilidad de ser campeón `\((1/32)\)`? 
+
+--
+
+- Tenemos que **crearnos nuestro propio modelo**.
+
+
+---
+
+# Probabilidades Qatar 2022
+
+Aclaraciones previas
+
+- No existe una única forma de realizar estas modelizaciones. La estrategia que aquí se propone es sólo una posibilidad. Puede haber otras diferentes.
+
+--
+
+- Los modelos son siempre una **simplificación de la realidad**:
+
+  + Un modelo muy simple puede ser fácil de estimar pero puede ser muy poco realista
+  
+  + ¿Hacer más complejo el modelo garantiza cálculos de probabilidades más exactos? No necesariamente.
+  
+  + En casos como este, donde **las verdaderas probabilidades son desconocidas**, es difícil saber cuándo un modelo es mejor que otro. 
+  
+  + Si un modelo simple da resultados que, a priori, pueden considerarse razonables, puede no tener sentido complejizar el modelo.
+  
+---
+
+# Probabilidades Qatar 2022
+
+- Del mundial de fútbol de Qatar 2022 participarán 32 equipos.
+
+- Inicialmente, se dividen en 8 grupos de 4 equipos cada uno, donde se enfrentan una vez entre todos los integrantes del grupo. 
+
+- Los dos primeros de cada grupo clasifican a la fase final, donde se van enfrentando por [eliminación directa](https://es.wikipedia.org/wiki/Eliminaci%C3%B3n_directa)
+
+- ¿Cuántos partidos hay en total en el mundial?
+
+---
+
+# Probabilidades Qatar 2022
+
+- ¿Cuántos partidos hay en total en el mundial?
+
+--
+
+- En cada grupo, los 4 integrantes se enfrentan todos contra todos. La cantidad de partidos por grupo equivale a calcular la cantidad de subconjuntos de 2 elementos de un conjunto de 4 elementos:
+
+--
+
+`$${4 \choose 2}=\frac{4!}{2!*2!}=\frac{4*3}{2}=6$$`
+
+- Como hay 8 grupos, el total de partidos de la fase de grupos es `\(6*8=48\)`
+
+- En la fase de eliminación directa hay 8 partidos en *Octavos de Final*, 4 partidos en *Cuartos de Final*, 2 partidos en *Semifinal* y 1 en la *Final* 
+
+- Es decir, la cantidad total de partidos es: `\(48+8+4+2+1=63\)`
+
+En realidad, en el mundial hay 64 partidos, pero aquí ignoraremos el partido por 3er puesto.
+
+---
+
+# Probabilidades Qatar 2022
+
+- Cada uno de estos `\(63\)` partidos puede tener distintos resultados. ¿Cuántos resultados son posibles puede tener cada partido?
+
+--
+
+**Simplificación 1**
+
+- Si los equipos `\(X\)` e `\(Y\)` se enfrentan en la **fase de grupos**, supondremos 3 resultados posibles: **Gana `\(X\)`, Gana `\(Y\)` o Empate**
+
+- Es decir, estamos **ignorando la diferencia de gol**. Para este modelo, es lo mismo ganar 1 a 0 que 5 a 0, cuando en la realidad no es así.
+
+- En esta simulación, cuando dos equipos terminen la fase de grupos con igual cantidad de puntos, se arroja una moneda `\((50\%/50\%)\)` para ver quién queda arriba en las posiciones.
+
+- Agregar más resultados posibles para considerar la diferencia de gol haría más complejo el modelo. ¿Cambiarían mucho los resultados? Probablemente no.
+
+---
+
+# Probabilidades Qatar 2022
+
+- Cada uno de estos `\(63\)` partidos puede tener distintos resultados. ¿Cuántos resultados son posibles puede tener cada partido?
+
+**Simplificación 2**
+
+--
+
+- Si los equipos `\(X\)` e `\(Y\)` se enfrentan en la **fase final**, supondremos 2 resultados posibles: **Gana `\(X\)` o Gana `\(Y\)`**
+
+- Es decir, sólo nos interesa saber quién pasa a la ronda siguiente y quién queda eliminado. **No nos importa si el partido se define en el tiempo regular o en la definición por penales**.
+
+- Esto puede subestimar las posibilidades de equipos *especialistas en penales*.
+
+- Incorporar al modelo las distintas probabilidades de ganar en tiempo regular o en la definición por penales podría cambiar significativamente las probabilidades para algún partido en particular. ¿Cambiará mucho para el conjunto del modelo? Probablemente no.
+
+---
+
+# Probabilidades Qatar 2022
+
+- Definamos como *resultado posible del mundial* al vector con los resultados de los 63 partidos del mundial. 
+
+- ¿Cuántos resultados posibles hay?
+
+--
+
+- Si en la fase de grupos hay 48 partidos con 3 resultados posibles cada uno, la cantidad de resultados posibles para la fase de grupos es: `\(3^{48}=7.976644*10^{22}\)`
+
+
+--
+
+- Si en la fase final hay 15 partidos, cada uno con 2 resultados posibles, la cantidad de resultados posibles en la fase final es `\(2^{15}=32768\)`
+
+
+--
+
+- Lo que da un total de resultados posibles para el mundial de 
+
+`$$3^{48}*2^{15}=2.613787*10^{27}$$`
+
+- Esto sirve para dar una idea de la complejidad del problema que estamos analizando.
+
+---
+
+# Probabilidades Qatar 2022
+
+- Supongamos que tenemos **63 bolilleros**, uno para cada partido del mundial.
+
+- Por ejemplo, el Bolillero 1, corresponde al partido inaugural entre Catar y Ecuador.
+
+--
+
+- Allí hay un gran número de bolillas: algunas dicen "Gana Catar", otras dicen "Gana Ecuador" y las restantes dicen "Empate".
+
+- Las proporciones relativas de cada una de estas bolillas determinarán la probabilidad de cada resultado. Más adelante discutiremos como conformar cada bolillero.
+
+--
+
+- Un *resultado posible para el mundial* equivale a sacar una bolilla de cada uno de los 63 bolilleros.
+
+- De esta forma, tendremos un resultado para cada partido, pudiendo determinar quién es el Campéon, quién el Subcampeón, quiénes quedaron eliminados en Semifinales, quienes en Cuartos de Final, etc.
+
+- La simulación que realizaremos consiste en repetir este proceso muchas veces y luego contar cuántas veces salió cada equipo campeón, subcampéon, etc. (**enfoque frecuentista de las probabilidades**).
+
+---
+
+# Probabilidades Qatar 2022
+
+- ¿Cómo determinamos la composición (probabilidades) de cada bolillero?
+
+- Primero, tenemos que saber quiénes son los equipos que se enfrentan. Esto ya lo sabemos con certeza para los 48 bolilleros de la fase de grupos, pero no sabemos quiénes se enfrentarán en la fase final.
+
+- En principio, el equipo `\(X\)` podría llegar a enfrentar cualquiera de los otros 31 equipos en alguna instancia del torneo.
+
+- ¿Cuántos enfrentamientos distintos podrían ocurrir?
+
+--
+
+  + Esto equivale a calcular cuántos subconjuntos de 2 equipos puedo formar en base a un conjunto de 32 equipos.
+  
+`$${32 \choose 2}=\frac{32!}{2!*30!}=\frac{32*31}{2}=496$$`
+
+  + Pueden ocurrir `\(496\)` enfrentamientos diferentes.
+  
+---
+
+# Probabilidades Qatar 2022
+
+- Tomemos como ejemplo un hipotético partido entre Brasil y Catar. ¿Cómo estimamos la probabilidad que gane Brasil, de que gane Catar o de que empaten?
+
+--
+
+- **Hay muchas formas de hacerlo y es imposible determinar cuál es la correcta**, ya que se desconocen las verdaderas probabilidades.
+
+--
+
+- Lo importante es que estas probabilidades se calculen de la manera más **objetiva** posible, sin recurrir a supuestos o prejuicios difíciles de justificar.
+
+--
+
+- Aquí seguimos la estrategia sugerida por [Edouard Mathieu](https://edomt.github.io/Elo-R-WorldCup/), la cual es sencilla y suficiente para conseguir resultados, a priori, razonables.
+
+---
+
+# Probabilidades Qatar 2022
+
+- **Supuesto**: la fuerza de cada equipo está completamente explicada por los resultados del pasado.
+
+--
+
+- Utilizamos la base publicada por [Mart Jürisoo](https://www.kaggle.com/datasets/martj42/international-football-results-from-1872-to-2017), que contiene partidos desde 1872 hasta la actualidad.
+
+--
+
+- Calculamos un ranking mediante el sistema [Elo](https://es.wikipedia.org/wiki/Sistema_de_puntuaci%C3%B3n_Elo), popularizado primero en el Ajedrez y hoy utilizado para calcular el ranking FIFA.
+
+- Para cada partido individual, se estiman las probabilidades de cada resultado en base al ranking de cada equipo.
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

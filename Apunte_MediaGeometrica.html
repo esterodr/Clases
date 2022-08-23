@@ -11,7 +11,7 @@
 
 
 
-<title>Estadística</title>
+<title>Media Geométrica y Tasa de Crecimiento Promedio</title>
 
 <script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
 // be compatible with the behavior of Pandoc < 2.8).
@@ -361,62 +361,61 @@ pre code {
 
 
 
-<h1 class="title toc-ignore">Estadística</h1>
+<h1 class="title toc-ignore">Media Geométrica y Tasa de Crecimiento
+Promedio</h1>
+<h4 class="author"></h4>
 
 </div>
 
 
 <hr />
-<p>Martes, Viernes y Sábado, 9 a 11 hs., Facultad de Ciencias
-Económicas, UBA, Sede Paternal. <strong>Segundo Cuatrimestre de
-2022</strong></p>
-<p>Profesor a cargo: <em>Esteban Rodríguez</em>. Colaboran en el curso:
-<em>Catalina Capilla, Ignacio Caro Solís, Luca Giovacchini, Ariel
-Krysa</em>.</p>
-<hr />
-<div id="grupo-de-slack" class="section level2">
-<h2>Grupo de Slack</h2>
-<p>Dado que no sabemos cuándo comenzará a funcionar el Campus, rogamos
-anotarse en el siguiente grupo para que podamos mantenernos en contacto.
-<a href="https://join.slack.com/t/cursodeestadstica/shared_invite/zt-1do4yf5zl-1gU93UoZZC43nqWTgaaqEA">Link
-para acceder</a></p>
-<hr />
-<p><a href="0_Introduccion.html">Introducción y normas del Curso</a></p>
-<div id="clases-teóricas" class="section level3">
-<h3>Clases Teóricas</h3>
-<p><a href="0_Introduccion2.html">0) ¿Qué es la Estadística?</a></p>
-<p><a href="1_Est_Descriptiva.html">1) Estadística Descriptiva</a></p>
-</div>
-<div id="prácticas" class="section level3">
-<h3>Prácticas</h3>
-<p><a href="Práctica-0.html">Práctica 0 (Repaso)</a></p>
-<p><a href="Práctica1.pdf">Práctica 1</a></p>
-<p><a href="Práctica_1_Archivos_Auxiliares.zip">Práctica 1 (Archivos
-Auxiliares)</a></p>
-</div>
-<div id="respuestas" class="section level3">
-<h3>Respuestas</h3>
-<p><a href="Respuestas_P0.html">Respuestas Práctica 0</a></p>
-<p>[Respuestas Práctica 1 (Ejercicios 1 al 15)]
-<em>Proximamente</em></p>
-<p>[Respuestas Práctica 1 (Ejercicios 16 al 29)]
-<em>Proximamente</em></p>
-<p>[Respuestas Práctica 1 (Ejercicios 30 al 36)]
-<em>Proximamente</em></p>
-</div>
-<div id="tp-en-r" class="section level3">
-<h3>TP en R</h3>
-<p><a href="Intro_TPR.html">Instructivo</a></p>
-<p><a href="https://mybinder.org/v2/gh/esterodr/TP_Estadistica/master?urlpath=rstudio">Acceso
-a la Plataforma - Primera Parte</a></p>
-<p><a href="TP_Primera_Parte.docx">Enunciados - Primera Parte</a></p>
-</div>
-<div id="apuntes-adicionales" class="section level3">
-<h3>Apuntes adicionales</h3>
-<p><a href="Apunte_MediaGeometrica.html">Media Geométrica y Tasa de
-Crecimiento</a></p>
-</div>
-</div>
+<p>Supongamos que tenemos una serie de tiempo para una variable <span class="math inline">\(X\)</span> entre el período <span class="math inline">\(0\)</span> y <span class="math inline">\(t\)</span>:</p>
+<p><span class="math display">\[x_0, x_1,x_2,...,x_t\]</span></p>
+<p>Llamemos <span class="math inline">\(r_i\)</span> a la tasa de
+crecimiento de la variable <span class="math inline">\(X\)</span> entre
+los períodos <span class="math inline">\(i\)</span> y <span class="math inline">\(i-1\)</span>. Es decir:</p>
+<p><span class="math display">\[r_1=\frac{r_1}{r_0}-1 \text{ ; }
+r_2=\frac{r_2}{r_1}-1 \text{ ; } ... \text{ ; } r_{t-1}=
+\frac{r_{t-1}}{r_{t-2}}-1 \text{ ; }
+r_t=\frac{r_t}{r_{t-1}}-1\]</span></p>
+<p>O, de manera similar, podemos escribir:</p>
+<p><span class="math display">\[1+r_1=\frac{r_1}{r_0} \text{ ; }
+1+r_2=\frac{r_2}{r_1} \text{ ; } ... \text{ ; } 1+r_{t-1}=
+\frac{r_{t-1}}{r_{t-2}} \text{ ; }
+1+r_t=\frac{r_t}{r_{t-1}}-1\]</span></p>
+<p>Afirmamos que <strong>la tasa de crecimiento promedio</strong> de
+<span class="math inline">\(X\)</span> para todo el período está dada
+por la <strong>media geométrica</strong> de estas variaciones:</p>
+<p><span class="math display">\[r^{prom}=\sqrt[t]{(1+r_1)*(1+r_2)*...*(1+r_{t-1})*(1+r_{t})}-1\]</span></p>
+<p><span class="math display">\[1+r^{prom}=\sqrt[t]{(1+r_1)*(1+r_2)*...*(1+r_{t-1})*(1+r_{t})}\]</span></p>
+<p><strong>Demostración</strong></p>
+<p>Supongamos primero que la serie sólo llega hasta el período 2: <span class="math inline">\(x_0,x_1,x_2\)</span></p>
+<p>De esta forma, sólo tenemos dos variaciones: <span class="math inline">\(r_1=\frac{x_1}{x_0}-1\)</span> y <span class="math inline">\(r_2=\frac{x_2}{x_1}-1\)</span></p>
+<p>Si calculamos el promedio geométrico tal como fue indicado más
+arriba, obtenemos lo siguiente:</p>
+<p><span class="math display">\[1+r^{prom}=\sqrt[2]{(1+r_1)*(1+r_2)}=\sqrt[2]{\frac{x_1}{x_0}*\frac{x_2}{x_1}}\]</span></p>
+<p>Simplificando los <span class="math inline">\(x_1\)</span>
+obtenemos:</p>
+<p><span class="math display">\[1+r^{prom}=\sqrt[2]{\frac{x_2}{x_0}}\]</span></p>
+<p>De la fórmula anterior despejemos <span class="math inline">\(x_2\)</span>:</p>
+<p><span class="math display">\[x_2=x_0*(1+r^{prom})^2\]</span></p>
+<p>Donde se ve que, efectivamente, <span class="math inline">\(r^{prom}\)</span> es la tasa de crecimiento
+promedio entre los dos períodos. Partiendo de <span class="math inline">\(x_0\)</span>, aplicando 2 veces la tasa <span class="math inline">\(r^{prom}\)</span> llegamos al valor final <span class="math inline">\(x_2\)</span>, sin necesidad de utlizar las tasas
+de crecimiento orginales <span class="math inline">\(r_1\)</span> y
+<span class="math inline">\(r_2\)</span>.</p>
+<p>Este razonamiento se puede generalizar para <span class="math inline">\(t\)</span> períodos. En este caso, la tasa de
+crecimiento promedio se calcula como fue indicado antes:</p>
+<p><span class="math display">\[1+r^{prom}=\sqrt[t]{(1+r_1)*(1+r_2)*...*(1+r_{t-1})*(1+r_{t})}\]</span></p>
+<p>Al reemplazar cada <span class="math inline">\(1+r_i\)</span> por
+<span class="math inline">\(\frac{x_i}{x_{i-1}}\)</span>, tenemos:</p>
+<p><span class="math display">\[1+r^{prom}=\sqrt[t]{\frac{x_1}{x_{0}}*\frac{x_2}{x_{1}}*...*\frac{x_{t-1}}{x_{t-2}}*\frac{x_t}{x_{t-1}}}\]</span></p>
+<p>Donde se simplifican todos los <span class="math inline">\(x_i\)</span> salvo el primero y el último:</p>
+<p><span class="math display">\[1+r^{prom}=\sqrt[t]{\frac{x_t}{x_0}}\]</span></p>
+<p>De nuevo, al despejar <span class="math inline">\(x_t\)</span>:</p>
+<p><span class="math display">\[x_t=x_0*(1+r^{prom})^t\]</span></p>
+<p>Vemos que <span class="math inline">\(r^{prom}\)</span> es la tasa de
+crecimiento promedio entre los períodos <span class="math inline">\(0\)</span> y <span class="math inline">\(t\)</span>. Partiendo de <span class="math inline">\(x_0\)</span>, aplicando <span class="math inline">\(t\)</span> veces la tasa <span class="math inline">\(r^{prom}\)</span> llegamos al valor final <span class="math inline">\(x_t\)</span>, sin necesidad de utlizar las tasas
+de crecimiento intermedias.</p>
 
 
 
