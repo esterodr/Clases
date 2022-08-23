@@ -8,6 +8,10 @@
     <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
     <link href="libs/remark-css-0.0.1/metropolis.css" rel="stylesheet" />
     <link href="libs/remark-css-0.0.1/metropolis-fonts.css" rel="stylesheet" />
+    <script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+    <script src="libs/viz-1.8.2/viz.js"></script>
+    <link href="libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet" />
+    <script src="libs/grViz-binding-1.0.9/grViz.js"></script>
   </head>
   <body>
     <textarea id="source">
@@ -23,7 +27,7 @@ class: left, bottom, inverse, title-slide
 ### Esteban Rodriguez
 ]
 .date[
-### Última Actualización: 2022-08-22
+### Última Actualización: 2022-08-23
 ]
 
 ---
@@ -174,11 +178,11 @@ En realidad, en el mundial hay 64 partidos, pero aquí ignoraremos el partido po
 
 - Supongamos que tenemos **63 bolilleros**, uno para cada partido del mundial.
 
-- Por ejemplo, el Bolillero 1, corresponde al partido inaugural entre Catar y Ecuador.
+- Por ejemplo, el Bolillero 1, corresponde al partido inaugural entre Qatar y Ecuador.
 
 --
 
-- Allí hay un gran número de bolillas: algunas dicen "Gana Catar", otras dicen "Gana Ecuador" y las restantes dicen "Empate".
+- Allí hay un gran número de bolillas: algunas dicen "Gana Qatar", otras dicen "Gana Ecuador" y las restantes dicen "Empate".
 
 - Las proporciones relativas de cada una de estas bolillas determinarán la probabilidad de cada resultado. Más adelante discutiremos como conformar cada bolillero.
 
@@ -214,7 +218,7 @@ En realidad, en el mundial hay 64 partidos, pero aquí ignoraremos el partido po
 
 # Probabilidades Qatar 2022
 
-- Tomemos como ejemplo un hipotético partido entre Brasil y Catar. ¿Cómo estimamos la probabilidad que gane Brasil, de que gane Catar o de que empaten?
+- Tomemos como ejemplo un hipotético partido entre Brasil y Qatar. ¿Cómo estimamos la probabilidad que gane Brasil, de que gane Qatar o de que empaten?
 
 --
 
@@ -223,6 +227,10 @@ En realidad, en el mundial hay 64 partidos, pero aquí ignoraremos el partido po
 --
 
 - Lo importante es que estas probabilidades se calculen de la manera más **objetiva** posible, sin recurrir a supuestos o prejuicios difíciles de justificar.
+
+  + Por ejemplo, podríamos basarnos en los enfrentamientos históricos entre ambos equipos. Problema: puede que nunca se hayan enfrentado, o muy pocas veces, o hace mucho tiempo
+  
+  + Podríamos elaborar un *índice de fortaleza* para cada equipo en base a la calidad de sus jugadores y en base a eso calcular las probabilidades. Dificultad: requiere tener información sobre cada jugador de cada equipo.
 
 --
 
@@ -242,8 +250,341 @@ En realidad, en el mundial hay 64 partidos, pero aquí ignoraremos el partido po
 
 - Calculamos un ranking mediante el sistema [Elo](https://es.wikipedia.org/wiki/Sistema_de_puntuaci%C3%B3n_Elo), popularizado primero en el Ajedrez y hoy utilizado para calcular el ranking FIFA.
 
-- Para cada partido individual, se estiman las probabilidades de cada resultado en base al ranking de cada equipo.
+---
 
+# Probabilidades Qatar 2022
+
+Comparación de rankins en Agosto 2022
+
+.pull-left[
+**Ranking Propio**
+
+| Puesto|Equipo     | Puntos|
+|------:|:----------|------:|
+|      1|Brasil     |   2058|
+|      2|Argentina  |   2016|
+|      3|España     |   1973|
+|      4|Bélgica    |   1962|
+|      5|Francia    |   1961|
+|      6|Inglaterra |   1939|
+|      7|Holanda    |   1932|
+|      8|Alemania   |   1929|
+|      9|Portugal   |   1926|
+|     10|Italia     |   1917|
+
+]
+
+.pull-right[
+**Ranking FIFA**
+
+| Puesto|Equipo     | Puntos|
+|------:|:----------|------:|
+|      1|Brasil     |   1837|
+|      2|Bélgica    |   1821|
+|      3|Argentina  |   1770|
+|      4|Francia    |   1764|
+|      5|Inglaterra |   1737|
+|      6|España     |   1716|
+|      7|Italia     |   1713|
+|      8|Holanda    |   1679|
+|      9|Portugal   |   1678|
+|     10|Dinamarca  |   1665|
+
+]
+
+---
+
+# Probabilidades Qatar 2022
+
+Cuando se enfrentan los equipos `\(X\)` e `\(Y\)`, aplicamos una función al ranking de cada equipo para estimar cada probabilidad:
+
+.center[
+<div id="htmlwidget-7e743d7d4930df4d3e8f" style="width:504px;height:216px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-7e743d7d4930df4d3e8f">{"x":{"diagram":"digraph {\n  graph [layout = dot, rankdir = LR]\n  \n  node [shape = rectangle]        \n  rec1 [label = \"Ranking X\"]\n  rec2 [label = \"Ranking Y\"]\n  rec3 [label =  \"f(Ranking X, Ranking Y)\"]\n  rec4 [label =  \"P(Gana X)\"]\n  rec5 [label =  \"P(Gana Y)\"]\n  rec6 [label =  \"P(Empate)\"]\n  \n  # edge definitions with the node IDs\n  rec1 -> rec3\n  rec2 -> rec3\n  rec3 -> rec4\n  rec3 -> rec5\n  rec3 -> rec6\n  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+]
+
+La función que se aplica es arbitraria. Se pueden probar distintas alternativas pero es difícil determinar cuál es mejor que otra. 
+
+---
+
+# Probabilidades Qatar 2022
+
+Ejemplo:
+
+.center[
+<div id="htmlwidget-b20d13293361c73f517c" style="width:504px;height:216px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-b20d13293361c73f517c">{"x":{"diagram":"digraph {\n  graph [layout = dot, rankdir = LR]\n  \n  node [shape = rectangle]        \n  rec1 [label = \"Ranking Brasil\"]\n  rec2 [label = \"Ranking Qatar\"]\n  rec3 [label =  \"f(2057.9, 1698.7)\"]\n  rec4 [label =  \"P(Gana Brasil)=72.00%\"]\n  rec5 [label =  \"P(Gana Qatar)=9.10%\"]\n  rec6 [label =  \"P(Empate)=18.90%\"]\n  \n  # edge definitions with the node IDs\n  rec1 -> rec3\n  rec2 -> rec3\n  rec3 -> rec4\n  rec3 -> rec5\n  rec3 -> rec6\n  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+]
+
+Es decir, si se enfrentan estos equipos, podemos pensar que el bolillero correspondiente tiene `\(10.000\)` bolillas, de las cuales `\(7.200\)` dicen "Gana Brasil", `\(1.890\)` dicen "Empate" y `\(910\)` dicen "Gana Qatar".
+
+¿Son razonables estas probabilidades? Es difícil saberlo, pero no parecen descabelladas dados los antecedentes de cada equipo.
+
+---
+
+# Probabilidades Qatar 2022
+
+Y así calculamos las probabilidades para cada uno de los `\(496\)` enfrentamientos posibles:
+
+
+|Equipo1        |Equipo2   | Gana1| Empate| Gana2|
+|:--------------|:---------|-----:|------:|-----:|
+|Argentina      |Brasil    |  0.29|   0.33|  0.38|
+|Bélgica        |Brasil    |  0.25|   0.31|  0.44|
+|Alemania       |Brasil    |  0.23|   0.29|  0.48|
+|Australia      |Brasil    |  0.11|   0.21|  0.68|
+|Arabia Saudita |Brasil    |  0.09|   0.18|  0.73|
+|Alemania       |Argentina |  0.26|   0.31|  0.43|
+
+---
+
+# Probabilidades Qatar 2022
+
+Volvamos al hipotético encuentro entre Brasil y Qatar. Decíamos que Qatar tiene un `\(9%\)` de probabilidades de ganar. ¿Puede Ganar Qatar?
+
+Si. No es el resultado más probable, pero no se puede descartar por completo.
+
+--
+
+¿Puede ser que Qatar gane el mundial?
+
+--
+
+Tal vez no sea matemáticamente imposible pero...
+
+Si bien el resultado de cada partido individual es incierto, de los 32 equipos que juegan el mundial podemos decir, sin arriesgar mucho, que no más de 10 tienen chances reales de ganar el Mundial.
+
+---
+
+# Probabilidades Qatar 2022
+
+Recordemos lo que decía **Kolmogorov**
+
+“El valor epistemológico de la teoría de probabilidades se funda en el hecho de que los fenómenos aleatorios engendran a gran escala una regularidad estricta, donde lo aleatorio de cierta forma, ha desaparecido”
+
+Si bien acá es difícil hablar de "gran escala" cuando el equipo campeón sólo va a jugar 7 partidos, es muy difícil pensar que un equipo "flojo" va a tener la suerte de sobrevivir 7 partidos seguidos. 
+
+Veamos algunos ejemplos
+
+---
+
+# Probabilidades Qatar 2022
+
+Supongamos un **equipo fuerte**, que tiene `\(80\%\)` de chances de pasar la fase de grupos y en cada enfrentamiento de la fase final tiene `\(60%\)` de chances de pasar. La probabilidad de que este equipo salga campeón es `\(0.80*0.60^4=0.10368\)`
+
+--
+
+Supongamos un **equipo medio**, que tiene `\(60\%\)` de chances de pasar la fase de grupos y en cada enfrentamiento de la fase final tiene `\(50%\)` de chances de pasar. La probabilidad de que este equipo salga campeón es `\(0.60*0.50^4=0.0375\)`
+
+--
+
+Supongamos un **equipo débil**, que tiene `\(50\%\)` de chances de pasar la fase de grupos y en cada enfrentamiento de la fase final tiene `\(30%\)` de chances de pasar. La probabilidad de que este equipo salga campeón es `\(0.50*0.30^4=0.00405\)`
+
+---
+
+# Probabilidades Qatar 2022
+
+Hay deportes que son mucho más predecibles que el fútbol (por ejemplo, el basket).
+
+Si bien cada partido individual es bastante impredecible, la estadística nos ayuda a entender que, a medida que pasan los partidos, es difícil que un equipo débil siga de *racha positiva*.
+
+Siempre hay equipos a los que le va mejor o peor que lo esperado. Pero, a la larga, lo aleatorio cede ante las regularidades, como decía Kolmogorov.
+
+---
+
+# Probabilidades Qatar 2022
+
+Comencemos con la simulación. Saquemos una bolilla en los primeros 48 bolilleros, los de la fase de grupos. El azar determinó que los 2 primeros de cada grupos fueron:
+
+.pull-left[
+**Grupo A**:
+1.Holanda
+2.Ecuador
+
+**Grupo B**:
+1.Inglaterra
+2.Estados Unidos
+
+**Grupo C**:
+1.Polonia
+2.Argentina
+
+**Grupo D**:
+1.Francia
+2.Dinamarca
+]
+
+.pull-right[
+**Grupo E**:
+1.Costa Rica
+2.Japón
+
+**Grupo F**:
+1.Bélgica
+2.Croacia
+
+**Grupo G**:
+1.Brasil
+2.Suiza
+
+**Grupo H**:
+1.Corea del Sur
+2.Portugal
+]
+
+Notar que, entre otros, quedaron eliminados España, Alemania y Uruguay.
+
+---
+
+# Probabilidades Qatar 2022
+
+Ahora saquemos las bolillas para la fase final:
+
+--
+
+**Octavos de Final**
+
+**Estados Unidos** vence a Holanda
+
+**Dinamarca** vence a Polonia
+
+**Costa Rica** vence a Croacia
+
+**Brasil** vence a Portugal
+
+**Inglaterra** vence a Ecuador
+
+**Argentina** vence a Francia
+
+**Bélgica** vence a Japón
+
+**Suiza** vence a Corea del Sur
+
+---
+
+# Probabilidades Qatar 2022
+
+**Cuartos de Final**
+
+**Dinamarca** vence a Estados Unidos
+
+**Brasil** vence a Costa Rica,
+
+**Inglaterra** vence a Argentina
+
+**Bélgica** vence a Suiza
+
+--
+
+**Semifinal**
+
+**Brasil** vence a Dinamarca
+
+**Inglaterra** vence a Bélgica
+
+--
+
+**Final**
+
+**Brasil** vence a Inglaterra
+
+---
+
+# Probabilidades Qatar 2022
+
+**Repetimos el proceso**. Saquemos una bolilla en los primeros 48 bolilleros, los de la fase de grupos. Ahora, los 2 primeros de cada grupos fueron:
+
+.pull-left[
+**Grupo A**:
+1.Senegal
+2.Ecuador
+
+**Grupo B**:
+1.Inglaterra
+2.Gales
+
+**Grupo C**:
+1.México
+2.Argentina
+
+**Grupo D**:
+1.Túnez
+2.Dinamarca
+]
+
+.pull-right[
+**Grupo E**:
+1.Alemania
+2.España
+
+**Grupo F**:
+1.Bélgica
+2.Croacia
+
+**Grupo G**:
+1.Brasil
+2.Camerún
+
+**Grupo H**:
+1.Corea del Sur
+2.Uruguay
+]
+
+Notar que, entre otros, quedaron eliminados Holanda, Francia y Portugal.
+
+---
+
+# Probabilidades Qatar 2022
+
+Ahora saquemos las bolillas para la fase final:
+
+--
+
+**Octavos de Final**
+
+**Senegal** vence a Gales
+
+**México** vence a Dinamarca
+
+**Alemania** vence a Croacia
+
+**Brasil** vence a Uruguay
+
+**Ecuador** vence a Inglaterra
+
+**Argentina** vence a Túnez
+
+**Bélgica** vence a España
+
+**Corea del Sur** vence a Camerún
+
+---
+
+# Probabilidades Qatar 2022
+
+**Cuartos de Final**
+
+**Senegal** vence a México
+
+**Brasil** vence a Alemania,
+
+**Argentina** vence a Ecuador
+
+**Corea del Sur** vence a Bélgica
+
+--
+
+**Semifinal**
+
+**Brasil** vence a Senegal
+
+**Argentina** vence a Corea del Sur
+
+--
+
+**Final**
+
+**Argentina** vence a Brasil
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
