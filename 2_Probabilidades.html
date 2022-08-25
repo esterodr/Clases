@@ -26,7 +26,7 @@ class: left, bottom, inverse, title-slide
 ### Esteban Rodriguez
 ]
 .date[
-### Última Actualización: 2022-08-22
+### Última Actualización: 2022-08-25
 ]
 
 ---
@@ -56,7 +56,7 @@ class: left, bottom, inverse, title-slide
 
 --
 
-- El resultado de un experimento aleatorio depende del azar.
+- El resultado de un experimento aleatorio depende del azar (o de fenómenos tan complejos que son muy difíciles de predecir).
 
 - Ejemplos: arrojo una moneda, arrojo un dado, Spotify modo aleatorio de una playlist, si el índice de bolsa Merval sube, baja o no varía respecto al días anterior, número de asistentes a la clase de estadística, etc.
 
@@ -92,7 +92,7 @@ Algunas primeras definiciones:
 
 # Repaso de Conjuntos
 
-Definimos `\(\overline{E}\)` al **Complemento** de un Evento `\(E\)` como todos los elementos del Espacio Muestral `\(S\)` que no pertenecen a `\(E\)`
+Definimos `\(\overline{E}\)` al **Complemento** de un Evento `\(E\)`, como todos los elementos del Espacio Muestral `\(S\)` que no pertenecen a `\(E\)`
 
 `\(\overline{E}=\{x /x \in S, x \notin E \}\)`
 
@@ -106,7 +106,7 @@ En particular, `\((\overline{S})=\emptyset\)` y `\((\overline{\emptyset})=S\)`
 
 # Repaso de Conjuntos
 
-Definimos `\(A \cup B\)` a la **Unión** de de dos (o más) conjuntos como todos los elementos del Espacio Muestral `\(S\)` que pertenecen a `\(A\)` **ó** a `\(B\)`
+Definimos `\(A \cup B\)` a la **Unión** de de dos (o más) conjuntos, como todos los elementos del Espacio Muestral `\(S\)` que pertenecen a `\(A\)` ó a `\(B\)` (o a ambos).
 
 `\(A \cup B =\{x /(x \in A) ó (x \in B) \}\)`
 
@@ -120,7 +120,7 @@ En particular, `\((E \cup \overline{E})=S\)`
 
 # Repaso de Conjuntos
 
-Definimos `\(A \cap B\)` a la **Intersección** de de dos (o más) conjuntos como todos los elementos del Espacio Muestral `\(S\)` que pertenecen a `\(A\)` **y** a `\(B\)`
+Definimos `\(A \cap B\)` a la **Intersección** de de dos (o más) conjuntos, como todos los elementos del Espacio Muestral `\(S\)` que pertenecen a `\(A\)` y a `\(B\)`
 
 `\(A \cap B =\{x /(x \in A) y (x \in B) \}\)`
 
@@ -170,7 +170,7 @@ Hay tres **Postulados/Axiomas** en los que se basan las leyes de la **Teoría de
 
 --
 
-3) **Aditividad**. `\(Si A \cap B = \emptyset \implies P(A \cup B) = P(A) + P(B)\)`
+3) **Aditividad**. `\(\text{Si } A \cap B = \emptyset \implies P(A \cup B) = P(A) + P(B)\)`
 
 ---
 
@@ -202,7 +202,11 @@ Demostración:
 
 --
 
-Como `\(S \cup \emptyset=S\)`
+Como `\(S \cup \emptyset=S\)` y son disjuntos
+
+`\(P(S \cup \emptyset)=P(S)+P(\emptyset)\)`
+
+--
 
 `\(P(S) + P(\emptyset)=P(S) \implies 1+P(\emptyset)=1 \implies P(\emptyset)=0\)`
 
