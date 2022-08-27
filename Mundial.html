@@ -27,7 +27,7 @@ class: left, bottom, inverse, title-slide
 ### Esteban Rodriguez
 ]
 .date[
-### Última Actualización: 2022-08-23
+### Última Actualización: 2022-08-26
 ]
 
 ---
@@ -37,50 +37,91 @@ class: left, bottom, inverse, title-slide
 
 # Introducción
 
-- Muchas veces, cuando nos enfrentamos a un evento significativo, queremos estimar la probabilidad de ocurrencia de los distintos resultados.
+- Todo el tiempo nos enfrentamos a eventos que, si bien no son estrictamente aleatorios, **son tan complejos que sus resultados son muy difíciles de predecir con exactitud**.
 
-  + ¿Cuál es la probabilidad de que Argentina gane el mundial? ¿Y de que quede eliminada en la primer ronda?
-
-  + ¿Cuál es la probabilidad de que mi candidato favorito gane las próximas elecciones? ¿Y de que su partido obtenga mayoría parlamentaria?
-
---
-
-- Estos eventos tienen siempre cierto grado de **incertidumbre**. **Es imposible anticipar de manera exacta qué va a ocurrir**
-
-- Más aun, **no existe un modelo matemático o un cálculo analítico que me permita calcular las probabilidades** de cada resultado.
-
-  + Por ejemplo, en el mundial de fútbol participan 32 equipos. ¿Es razonable pensar que todos tienen la misma probabilidad de ser campeón `\((1/32)\)`? 
+  + Pronóstico meteorológico
+  
+  + Comportamiento del mercado accionario
+  
+  + Eventos deportivos
+  
+  + Resultados electorales
 
 --
 
-- Tenemos que **crearnos nuestro propio modelo**.
+- En todos estos casos conocemos los resultados posibles y podemos tener una idea acerca de cuál es el resultado más probable. Pero siempre hay un grado de **incertidumbre** respecto a qué puede suceder.
 
+- El cálculo de probabilidades nos puede ayudar a **cuantificar esta incertidumbre** respecto a lo que puede suceder.
 
+---
+
+# Introducción
+
+- Dificultad: **no existe un modelo matemático o un cálculo analítico que me permita calcular las probabilidades** de cada resultado.
+
+- Son muchas las cosas que pueden suceder y que terminan influyendo en el resultado. 
+
+- Al lanzar un dado o una moneda, es razonable suponer que todos los resultados son igualmente probables. 
+
+--
+
+  + En el mundial de fútbol participan 32 equipos. ¿Es razonable pensar que todos tienen la misma probabilidad de ser campeón `\((1/32)\)`? 
+  
+  + En determinada elección compiten 5 candidatos, ¿Es razonable pensar que todos tienen la misma probabilidad ganar `\((1/5)\)`?
+
+- Por lo general, estos supuestos no son adecuados. Pero no es evidente cómo se puede estimar la probabilidad de cada resultado. **Necesitamos construir algún tipo de modelo o algoritmo**.
+
+---
+
+# El razonamiento algorítmico
+
+Se acerca el mundial de fútbol y las redes sociales se ven inundadas de usuarios que realizan la siguiente pregunta: **¿cuántos paquetes necesito comprar para llenar el álbum de figuritas?**. Esto ya se discutió en el mundial pasado y derivó en una interesante [nota de Walter Sosa Escudero](https://udesa.edu.ar/medios/peleados-con-los-algoritmos-los-economistas-y-su-talon-de-aquiles) que recomendamos leer completa. Aquí se extraen algunos párrafos (ligeramente editados):
+
+--
+
+- "Hay dos maneras de obtener la respuesta. Una, es a través de un cálculo matemático...una vía alternativa es apelar a una **simple simulación computacional**, es decir, reproducir muchas veces en una computadora el azar de comprar figuritas y ver cuántos paquetes hizo falta comprar, en promedio, para llenar el álbum en cuestión, estrategia que demanda mínimos conocimientos de programación."
+
+- "Este simple caso ilustra las enormes falencias que tienen los economistas para razonar algorítmicamente...En circunstancias obviamente más genéricas y relevantes que las del ejemplo de las figuritas, la incultura algorítmica deja muda a una profesión que se beneficiaría de una sana inversión en cuestiones computacionales."
+
+---
+
+# El razonamiento algorítmico
+
+- "Una clásica pregunta que hizo el físico Enrico Fermi a sus alumnos, en la primera mitad del siglo XX: *¿Cuántos afinadores de piano hay en Chicago?*. Ciertamente, no existe ninguna forma indiscutible ni simple de abordar semejante pregunta. Fermi comienza suponiendo que en esa época, en Chicago: 1) había unos 5 millones de habitantes, 2) y 2 personas por hogar, 3) en donde 1 de cada 20 tenía un piano, 4) que ese piano era afinado 1 vez por año, y 5) que afinar un piano toma unas dos horas de trabajo. Con esos números, Fermi estima que había 125 afinadores de piano."
+
+- "Lo importante de este ejemplo no es la respuesta, sino la explicitación de una serie de "subrrespuestas", que conducen al resultado final, **dividiendo el problema en porciones que pueden ser escrutadas cada una por separado**. Eso le permite al analista reconsiderar sus cálculos si luego dispone de más tiempo o recursos. El instinto de **partir problemas grandes en pequeños es central a lo algorítmico y al razonamiento sistemático en general**. En el ejemplo de las figuritas, el contexto simple implica suponer que están distribuidas al azar en los paquetes y que no hay un mercado para el intercambio, lo que permite abordar el problema con unas pocas líneas de código de programación. Esas líneas pueden ser simplemente alteradas para acomodar la existencia de "figuritas difíciles" o (con más esfuerzo) de intercambios."
+
+---
+
+# El razonamiento algorítmico
+
+Veremos dos aplicaciones del razonamiento algorítmico y resolución mediante simulación:
+
+--
+
+- Probabilidades de cada equipo en el **Mundial de Fútbol Qatar 2022** (Estimaciones propias)
+
+- **Elecciones Parlamentarias de Noviembre de 2022 en EEUU** (Estimaciones realizadas por [fivethirtyeight](https://fivethirtyeight.com/))
+
+Como veremos, en ambos casos se divide el gran problema en problemas más pequeños:
+
+  + El mundial se divide en una sucesión de partidos.
+  
+  + La composición final del Parlamento surge como resultado de la elección en cada Estado.
+  
+En ambos casos se realizan **supuestos y simplificaciones** que pueden ser realistas o no, pero que eventualmente pueden ser revisados para hacer modelos más complejos.
+
+En ambos casos se utiliza una computadora para simular muchas veces el resultado y luego contar cuántas veces gana cada uno (**Enfoque frecuentista de las probabilidades**)
+  
 ---
 
 # Probabilidades Qatar 2022
 
-Aclaraciones previas
-
-- No existe una única forma de realizar estas modelizaciones. La estrategia que aquí se propone es sólo una posibilidad. Puede haber otras diferentes.
+Comenzamos a esquematizar el problema que queremos abordar:
 
 --
 
-- Los modelos son siempre una **simplificación de la realidad**:
-
-  + Un modelo muy simple puede ser fácil de estimar pero puede ser muy poco realista
-  
-  + ¿Hacer más complejo el modelo garantiza cálculos de probabilidades más exactos? No necesariamente.
-  
-  + En casos como este, donde **las verdaderas probabilidades son desconocidas**, es difícil saber cuándo un modelo es mejor que otro. 
-  
-  + Si un modelo simple da resultados que, a priori, pueden considerarse razonables, puede no tener sentido complejizar el modelo.
-  
----
-
-# Probabilidades Qatar 2022
-
-- Del mundial de fútbol de Qatar 2022 participarán 32 equipos.
+- Del mundial de fútbol participarán 32 equipos.
 
 - Inicialmente, se dividen en 8 grupos de 4 equipos cada uno, donde se enfrentan una vez entre todos los integrantes del grupo. 
 
@@ -91,10 +132,6 @@ Aclaraciones previas
 ---
 
 # Probabilidades Qatar 2022
-
-- ¿Cuántos partidos hay en total en el mundial?
-
---
 
 - En cada grupo, los 4 integrantes se enfrentan todos contra todos. La cantidad de partidos por grupo equivale a calcular la cantidad de subconjuntos de 2 elementos de un conjunto de 4 elementos:
 
@@ -114,7 +151,7 @@ En realidad, en el mundial hay 64 partidos, pero aquí ignoraremos el partido po
 
 # Probabilidades Qatar 2022
 
-- Cada uno de estos `\(63\)` partidos puede tener distintos resultados. ¿Cuántos resultados son posibles puede tener cada partido?
+- Cada uno de estos `\(63\)` partidos puede tener distintos resultados. ¿Cuántos resultados puede tener cada partido?
 
 --
 
@@ -126,17 +163,15 @@ En realidad, en el mundial hay 64 partidos, pero aquí ignoraremos el partido po
 
 - En esta simulación, cuando dos equipos terminen la fase de grupos con igual cantidad de puntos, se arroja una moneda `\((50\%/50\%)\)` para ver quién queda arriba en las posiciones.
 
-- Agregar más resultados posibles para considerar la diferencia de gol haría más complejo el modelo. ¿Cambiarían mucho los resultados? Probablemente no.
+- Agregar más resultados posibles para considerar la diferencia de gol haría más complejo el modelo. ¿Cambiarían mucho los resultados?
 
 ---
 
 # Probabilidades Qatar 2022
 
-- Cada uno de estos `\(63\)` partidos puede tener distintos resultados. ¿Cuántos resultados son posibles puede tener cada partido?
+- Cada uno de estos `\(63\)` partidos puede tener distintos resultados. ¿Cuántos resultados puede tener cada partido?
 
 **Simplificación 2**
-
---
 
 - Si los equipos `\(X\)` e `\(Y\)` se enfrentan en la **fase final**, supondremos 2 resultados posibles: **Gana `\(X\)` o Gana `\(Y\)`**
 
@@ -144,7 +179,7 @@ En realidad, en el mundial hay 64 partidos, pero aquí ignoraremos el partido po
 
 - Esto puede subestimar las posibilidades de equipos *especialistas en penales*.
 
-- Incorporar al modelo las distintas probabilidades de ganar en tiempo regular o en la definición por penales podría cambiar significativamente las probabilidades para algún partido en particular. ¿Cambiará mucho para el conjunto del modelo? Probablemente no.
+- Incorporar al modelo las distintas probabilidades de ganar en tiempo regular o en la definición por penales podría cambiar significativamente las probabilidades para algún partido en particular. ¿Cambiará mucho para el conjunto del modelo?
 
 ---
 
@@ -170,7 +205,7 @@ En realidad, en el mundial hay 64 partidos, pero aquí ignoraremos el partido po
 
 `$$3^{48}*2^{15}=2.613787*10^{27}$$`
 
-- Esto sirve para dar una idea de la complejidad del problema que estamos analizando.
+- Esto sirve para dar una idea de la complejidad del problema que estamos analizando. La simulación la vamos a realizar con una **pequeña muestra de 100 mil resultados posibles** (extraídos con reposición).
 
 ---
 
@@ -228,7 +263,7 @@ En realidad, en el mundial hay 64 partidos, pero aquí ignoraremos el partido po
 
 - Lo importante es que estas probabilidades se calculen de la manera más **objetiva** posible, sin recurrir a supuestos o prejuicios difíciles de justificar.
 
-  + Por ejemplo, podríamos basarnos en los enfrentamientos históricos entre ambos equipos. Problema: puede que nunca se hayan enfrentado, o muy pocas veces, o hace mucho tiempo
+  + Por ejemplo, podríamos basarnos en los enfrentamientos históricos entre ambos equipos. Problema: puede que nunca se hayan enfrentado, o muy pocas veces, o hace mucho tiempo. O que el equipo `\(X\)` nunca le haya ganado a `\(Y\)`, lo que nos haría suponer erróneamente que la probabilidad de que gane `\(X\)` es `\(0\)`.
   
   + Podríamos elaborar un *índice de fortaleza* para cada equipo en base a la calidad de sus jugadores y en base a eso calcular las probabilidades. Dificultad: requiere tener información sobre cada jugador de cada equipo.
 
@@ -254,7 +289,7 @@ En realidad, en el mundial hay 64 partidos, pero aquí ignoraremos el partido po
 
 # Probabilidades Qatar 2022
 
-Comparación de rankins en Agosto 2022
+Comparación de rankings en Agosto 2022
 
 .pull-left[
 **Ranking Propio**
@@ -299,8 +334,8 @@ Comparación de rankins en Agosto 2022
 Cuando se enfrentan los equipos `\(X\)` e `\(Y\)`, aplicamos una función al ranking de cada equipo para estimar cada probabilidad:
 
 .center[
-<div id="htmlwidget-7e743d7d4930df4d3e8f" style="width:504px;height:216px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-7e743d7d4930df4d3e8f">{"x":{"diagram":"digraph {\n  graph [layout = dot, rankdir = LR]\n  \n  node [shape = rectangle]        \n  rec1 [label = \"Ranking X\"]\n  rec2 [label = \"Ranking Y\"]\n  rec3 [label =  \"f(Ranking X, Ranking Y)\"]\n  rec4 [label =  \"P(Gana X)\"]\n  rec5 [label =  \"P(Gana Y)\"]\n  rec6 [label =  \"P(Empate)\"]\n  \n  # edge definitions with the node IDs\n  rec1 -> rec3\n  rec2 -> rec3\n  rec3 -> rec4\n  rec3 -> rec5\n  rec3 -> rec6\n  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-f48e7ccb9fea7c865a17" style="width:504px;height:216px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-f48e7ccb9fea7c865a17">{"x":{"diagram":"digraph {\n  graph [layout = dot, rankdir = LR]\n  \n  node [shape = rectangle]        \n  rec1 [label = \"Ranking X\"]\n  rec2 [label = \"Ranking Y\"]\n  rec3 [label =  \"f(Ranking X, Ranking Y)\"]\n  rec4 [label =  \"P(Gana X)\"]\n  rec5 [label =  \"P(Gana Y)\"]\n  rec6 [label =  \"P(Empate)\"]\n  \n  # edge definitions with the node IDs\n  rec1 -> rec3\n  rec2 -> rec3\n  rec3 -> rec4\n  rec3 -> rec5\n  rec3 -> rec6\n  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 ]
 
 La función que se aplica es arbitraria. Se pueden probar distintas alternativas pero es difícil determinar cuál es mejor que otra. 
@@ -312,8 +347,8 @@ La función que se aplica es arbitraria. Se pueden probar distintas alternativas
 Ejemplo:
 
 .center[
-<div id="htmlwidget-b20d13293361c73f517c" style="width:504px;height:216px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-b20d13293361c73f517c">{"x":{"diagram":"digraph {\n  graph [layout = dot, rankdir = LR]\n  \n  node [shape = rectangle]        \n  rec1 [label = \"Ranking Brasil\"]\n  rec2 [label = \"Ranking Qatar\"]\n  rec3 [label =  \"f(2057.9, 1698.7)\"]\n  rec4 [label =  \"P(Gana Brasil)=72.00%\"]\n  rec5 [label =  \"P(Gana Qatar)=9.10%\"]\n  rec6 [label =  \"P(Empate)=18.90%\"]\n  \n  # edge definitions with the node IDs\n  rec1 -> rec3\n  rec2 -> rec3\n  rec3 -> rec4\n  rec3 -> rec5\n  rec3 -> rec6\n  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-e310a67f8f72ec14b3b6" style="width:504px;height:216px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-e310a67f8f72ec14b3b6">{"x":{"diagram":"digraph {\n  graph [layout = dot, rankdir = LR]\n  \n  node [shape = rectangle]        \n  rec1 [label = \"Ranking Brasil\"]\n  rec2 [label = \"Ranking Qatar\"]\n  rec3 [label =  \"f(2057.9, 1698.7)\"]\n  rec4 [label =  \"P(Gana Brasil)=72.00%\"]\n  rec5 [label =  \"P(Gana Qatar)=9.10%\"]\n  rec6 [label =  \"P(Empate)=18.90%\"]\n  \n  # edge definitions with the node IDs\n  rec1 -> rec3\n  rec2 -> rec3\n  rec3 -> rec4\n  rec3 -> rec5\n  rec3 -> rec6\n  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 ]
 
 Es decir, si se enfrentan estos equipos, podemos pensar que el bolillero correspondiente tiene `\(10.000\)` bolillas, de las cuales `\(7.200\)` dicen "Gana Brasil", `\(1.890\)` dicen "Empate" y `\(910\)` dicen "Gana Qatar".
@@ -327,32 +362,49 @@ Es decir, si se enfrentan estos equipos, podemos pensar que el bolillero corresp
 Y así calculamos las probabilidades para cada uno de los `\(496\)` enfrentamientos posibles:
 
 
-|Equipo1        |Equipo2   | Gana1| Empate| Gana2|
-|:--------------|:---------|-----:|------:|-----:|
-|Argentina      |Brasil    |  0.29|   0.33|  0.38|
-|Bélgica        |Brasil    |  0.25|   0.31|  0.44|
-|Alemania       |Brasil    |  0.23|   0.29|  0.48|
-|Australia      |Brasil    |  0.11|   0.21|  0.68|
-|Arabia Saudita |Brasil    |  0.09|   0.18|  0.73|
-|Alemania       |Argentina |  0.26|   0.31|  0.43|
+|Equipo1        |Equipo2   |Gana1 |Empate |Gana2 |
+|:--------------|:---------|:-----|:------|:-----|
+|Argentina      |Brasil    |0.29  |0.33   |0.38  |
+|Bélgica        |Brasil    |0.25  |0.31   |0.44  |
+|Alemania       |Brasil    |0.23  |0.29   |0.48  |
+|Australia      |Brasil    |0.11  |0.21   |0.68  |
+|Arabia Saudita |Brasil    |0.09  |0.18   |0.73  |
+|Alemania       |Argentina |0.26  |0.31   |0.43  |
+|...            |...       |...   |...    |...   |
 
 ---
 
 # Probabilidades Qatar 2022
 
-Volvamos al hipotético encuentro entre Brasil y Qatar. Decíamos que Qatar tiene un `\(9%\)` de probabilidades de ganar. ¿Puede Ganar Qatar?
+Al estimar las probabilidades de esta forma estamos recurriendo a **supuestos simplificadores adicionales**.
+
+- Los cambios en la formación de los equipos, lesiones, suspensiones, etc., no tienen ningún efecto.
+
+- Los esquemas tácticos no juegan ningún rol.
+
+- **Los resultados de los partidos del mundial son independientes entre sí**. Es decir, ganar o perder un partido no altera las probabilidades para los resultados del partido siguiente.
+
+  + Este supuesto es discutible, pero es difícil saber cómo afectan los resultados a la motivación de los equipos. En el mundial 2010, España perdió el primer partido y terminó saliendo campeón. En el mismo mundial, Francia empató el primer partido, perdió el segundo y perdió el tercero, quedando eliminada en la fase de grupos.
+  
+- Seguramente se puede pensar en otras simplificaciones que se están realizando.
+
+---
+
+# Probabilidades Qatar 2022
+
+Volvamos al hipotético encuentro entre Brasil y Qatar. Decíamos que Qatar tiene un `\(9\%\)` de probabilidades de ganar. ¿Puede Ganar Qatar?
 
 Si. No es el resultado más probable, pero no se puede descartar por completo.
 
 --
 
-¿Puede ser que Qatar gane el mundial?
+¿Puede Qatar ser campeón del mundial?
 
 --
 
 Tal vez no sea matemáticamente imposible pero...
 
-Si bien el resultado de cada partido individual es incierto, de los 32 equipos que juegan el mundial podemos decir, sin arriesgar mucho, que no más de 10 tienen chances reales de ganar el Mundial.
+Si bien el resultado de cada partido individual es incierto, de los 32 equipos que juegan el mundial podemos decir, sin arriesgar demasiado, que no más de 10 tienen chances reales de ganar el Mundial.
 
 ---
 
@@ -362,31 +414,31 @@ Recordemos lo que decía **Kolmogorov**
 
 “El valor epistemológico de la teoría de probabilidades se funda en el hecho de que los fenómenos aleatorios engendran a gran escala una regularidad estricta, donde lo aleatorio de cierta forma, ha desaparecido”
 
-Si bien acá es difícil hablar de "gran escala" cuando el equipo campeón sólo va a jugar 7 partidos, es muy difícil pensar que un equipo "flojo" va a tener la suerte de sobrevivir 7 partidos seguidos. 
+Si bien acá es difícil hablar de "gran escala", dado que el equipo campeón sólo va a jugar 7 partidos, es muy difícil pensar que un equipo "débil" va a tener la suerte de sobrevivir 7 partidos seguidos. 
 
-Veamos algunos ejemplos
-
----
-
-# Probabilidades Qatar 2022
-
-Supongamos un **equipo fuerte**, que tiene `\(80\%\)` de chances de pasar la fase de grupos y en cada enfrentamiento de la fase final tiene `\(60%\)` de chances de pasar. La probabilidad de que este equipo salga campeón es `\(0.80*0.60^4=0.10368\)`
-
---
-
-Supongamos un **equipo medio**, que tiene `\(60\%\)` de chances de pasar la fase de grupos y en cada enfrentamiento de la fase final tiene `\(50%\)` de chances de pasar. La probabilidad de que este equipo salga campeón es `\(0.60*0.50^4=0.0375\)`
-
---
-
-Supongamos un **equipo débil**, que tiene `\(50\%\)` de chances de pasar la fase de grupos y en cada enfrentamiento de la fase final tiene `\(30%\)` de chances de pasar. La probabilidad de que este equipo salga campeón es `\(0.50*0.30^4=0.00405\)`
+Veamos algunos ejemplos.
 
 ---
 
 # Probabilidades Qatar 2022
 
-Hay deportes que son mucho más predecibles que el fútbol (por ejemplo, el basket).
+Supongamos un **equipo fuerte**, que tiene `\(80\%\)` de chances de pasar la fase de grupos y en cada enfrentamiento de la fase final tiene `\(60\%\)` de chances de pasar. La probabilidad de que este equipo salga campeón es `\(0.80*0.60^4=0.10368\)`
 
-Si bien cada partido individual es bastante impredecible, la estadística nos ayuda a entender que, a medida que pasan los partidos, es difícil que un equipo débil siga de *racha positiva*.
+--
+
+Supongamos un **equipo medio**, que tiene `\(60\%\)` de chances de pasar la fase de grupos y en cada enfrentamiento de la fase final tiene `\(50\%\)` de chances de pasar. La probabilidad de que este equipo salga campeón es `\(0.60*0.50^4=0.0375\)`
+
+--
+
+Supongamos un **equipo débil**, que tiene `\(50\%\)` de chances de pasar la fase de grupos y en cada enfrentamiento de la fase final tiene `\(30\%\)` de chances de pasar. La probabilidad de que este equipo salga campeón es `\(0.50*0.30^4=0.00405\)`
+
+---
+
+# Probabilidades Qatar 2022
+
+En el fútbol, el resultado de cada partido individual es bastante impredecible. Esto no sucede con todos los deportes. Por ejemplo, el basket es bastante más fácil de predecir.
+
+Más allá de esta imprevisibilidad propia del fúbol, la estadística nos ayuda a entender que, a medida que pasan los partidos, es difícil que un equipo débil siga de *racha positiva*.
 
 Siempre hay equipos a los que le va mejor o peor que lo esperado. Pero, a la larga, lo aleatorio cede ante las regularidades, como decía Kolmogorov.
 
@@ -394,7 +446,7 @@ Siempre hay equipos a los que le va mejor o peor que lo esperado. Pero, a la lar
 
 # Probabilidades Qatar 2022
 
-Comencemos con la simulación. Saquemos una bolilla en los primeros 48 bolilleros, los de la fase de grupos. El azar determinó que los 2 primeros de cada grupos fueron:
+Comencemos con la simulación. Saquemos una bolilla de los primeros 48 bolilleros, los de la fase de grupos. El azar determinó que los 2 primeros de cada grupos fueron:
 
 .pull-left[
 **Grupo A**:
@@ -434,31 +486,18 @@ Comencemos con la simulación. Saquemos una bolilla en los primeros 48 bolillero
 
 Notar que, entre otros, quedaron eliminados España, Alemania y Uruguay.
 
+Ahora saquemos las bolillas para la fase final.
+
 ---
 
 # Probabilidades Qatar 2022
 
-Ahora saquemos las bolillas para la fase final:
-
---
-
 **Octavos de Final**
 
-**Estados Unidos** vence a Holanda
-
-**Dinamarca** vence a Polonia
-
-**Costa Rica** vence a Croacia
-
-**Brasil** vence a Portugal
-
-**Inglaterra** vence a Ecuador
-
-**Argentina** vence a Francia
-
-**Bélgica** vence a Japón
-
-**Suiza** vence a Corea del Sur
+.center[
+<div id="htmlwidget-060d2f6770a3541c0217" style="width:504px;height:504px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-060d2f6770a3541c0217">{"x":{"diagram":"digraph {\n  graph [layout = dot, rankdir = LR]\n  \n  node [shape = rectangle,\n        style = filled,\n        color = grey,\n        fixedsize = true,\n        width = 3,\n        fontsize = 30]        \n  rec1 [label = \"EEUU\",fillcolor = lightblue]\n  rec2 [label = \"Holanda\",fillcolor = lightblue]\n  rec3 [label =  \"Dinamarca\",fillcolor = lightsalmon]\n  rec4 [label =  \"Polonia\",fillcolor = lightsalmon]\n  rec5 [label =  \"Costa Rica\",fillcolor = lightsalmon]\n  rec6 [label =  \"Croacia\",fillcolor = lightsalmon]\n  rec7 [label =  \"Brasil\",fillcolor = lightblue]\n  rec8 [label =  \"Portugal\",fillcolor = lightblue]\n  rec9 [label =  \"Inglaterra\",fillcolor = lightblue]\n  rec10 [label =  \"Ecuador\",fillcolor = lightblue]\n  rec11 [label =  \"Argentina\",fillcolor = lightsalmon]\n  rec12 [label =  \"Francia\",fillcolor = lightsalmon]\n  rec13 [label =  \"Bélgica\",fillcolor = lightblue]\n  rec14 [label =  \"Japón\",fillcolor = lightblue]\n  rec15 [label =  \"Suiza\",fillcolor = lightsalmon]\n  rec16 [label =  \"Corea del Sur\",fillcolor = lightsalmon]\n  \n  rec17 [label =  \"EEUU\",fillcolor = snow]\n  rec18 [label =  \"Dinamarca\",fillcolor = snow]\n  rec19 [label =  \"Costa Rica\",fillcolor = snow]\n  rec20 [label =  \"Brasil\",fillcolor = snow]\n  rec21 [label =  \"Inglaterra\",fillcolor = snow]\n  rec22 [label =  \"Argentina\",fillcolor = snow]\n  rec23 [label =  \"Bélgica\",fillcolor = snow]\n  rec24 [label =  \"Suiza\",fillcolor = snow]\n  \n  rec25 [label = \"\"]\n  rec26 [label =  \"\"]\n  rec27 [label =  \"\"]\n  rec28 [label =  \"\"]\n  \n  rec29 [label =  \"\"]\n  rec30 [label =  \"\"]\n  \n  rec31 [label =  \"\"]\n  \n  # edge definitions with the node IDs\n  rec1 -> rec17\n  rec2 -> rec17\n  rec3 -> rec18\n  rec4 -> rec18\n  rec5 -> rec19\n  rec6 -> rec19\n  rec7 -> rec20\n  rec8 -> rec20\n  rec9 -> rec21\n  rec10 -> rec21\n  rec11 -> rec22\n  rec12 -> rec22\n  rec13 -> rec23\n  rec14 -> rec23\n  rec15 -> rec24\n  rec16 -> rec24\n  rec17 -> rec25\n  rec18 -> rec25\n  rec19 -> rec26\n  rec20 -> rec26\n  rec21 -> rec27\n  rec22 -> rec27\n  rec23 -> rec28\n  rec24 -> rec28\n  rec25 -> rec29\n  rec26 -> rec29\n  rec27 -> rec30\n  rec28 -> rec30\n  rec29 -> rec31\n  rec30 -> rec31\n  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+]
 
 ---
 
@@ -466,27 +505,32 @@ Ahora saquemos las bolillas para la fase final:
 
 **Cuartos de Final**
 
-**Dinamarca** vence a Estados Unidos
+.center[
+<div id="htmlwidget-3db91c65b4b11c6f762a" style="width:504px;height:504px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-3db91c65b4b11c6f762a">{"x":{"diagram":"digraph {\n  graph [layout = dot, rankdir = LR]\n  \n  node [shape = rectangle,\n        style = filled,\n        color = grey,\n        fixedsize = true,\n        width = 3,\n        fontsize = 30]        \n  rec1 [label = \"EEUU\",fillcolor = lightblue]\n  rec2 [label = \"Holanda\",fillcolor = lightblue]\n  rec3 [label =  \"Dinamarca\",fillcolor = lightsalmon]\n  rec4 [label =  \"Polonia\",fillcolor = lightsalmon]\n  rec5 [label =  \"Costa Rica\",fillcolor = lightsalmon]\n  rec6 [label =  \"Croacia\",fillcolor = lightsalmon]\n  rec7 [label =  \"Brasil\",fillcolor = lightblue]\n  rec8 [label =  \"Portugal\",fillcolor = lightblue]\n  rec9 [label =  \"Inglaterra\",fillcolor = lightblue]\n  rec10 [label =  \"Ecuador\",fillcolor = lightblue]\n  rec11 [label =  \"Argentina\",fillcolor = lightsalmon]\n  rec12 [label =  \"Francia\",fillcolor = lightsalmon]\n  rec13 [label =  \"Bélgica\",fillcolor = lightblue]\n  rec14 [label =  \"Japón\",fillcolor = lightblue]\n  rec15 [label =  \"Suiza\",fillcolor = lightsalmon]\n  rec16 [label =  \"Corea del Sur\",fillcolor = lightsalmon]\n  \n  rec17 [label =  \"EEUU\",fillcolor = snow]\n  rec18 [label =  \"Dinamarca\",fillcolor = snow]\n  rec19 [label =  \"Costa Rica\",fillcolor = snow]\n  rec20 [label =  \"Brasil\",fillcolor = snow]\n  rec21 [label =  \"Inglaterra\",fillcolor = snow]\n  rec22 [label =  \"Argentina\",fillcolor = snow]\n  rec23 [label =  \"Bélgica\",fillcolor = snow]\n  rec24 [label =  \"Suiza\",fillcolor = snow]\n  \n  rec25 [label = \"Dinamarca\",fillcolor = snow]\n  rec26 [label =  \"Brasil\",fillcolor = snow]\n  rec27 [label =  \"Inglaterra\",fillcolor = snow]\n  rec28 [label =  \"Bélgica\",fillcolor = snow]\n  \n  rec29 [label =  \"\"]\n  rec30 [label =  \"\"]\n  \n  rec31 [label =  \"\"]\n  \n  # edge definitions with the node IDs\n  rec1 -> rec17\n  rec2 -> rec17\n  rec3 -> rec18\n  rec4 -> rec18\n  rec5 -> rec19\n  rec6 -> rec19\n  rec7 -> rec20\n  rec8 -> rec20\n  rec9 -> rec21\n  rec10 -> rec21\n  rec11 -> rec22\n  rec12 -> rec22\n  rec13 -> rec23\n  rec14 -> rec23\n  rec15 -> rec24\n  rec16 -> rec24\n  rec17 -> rec25\n  rec18 -> rec25\n  rec19 -> rec26\n  rec20 -> rec26\n  rec21 -> rec27\n  rec22 -> rec27\n  rec23 -> rec28\n  rec24 -> rec28\n  rec25 -> rec29\n  rec26 -> rec29\n  rec27 -> rec30\n  rec28 -> rec30\n  rec29 -> rec31\n  rec30 -> rec31\n  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+]
 
-**Brasil** vence a Costa Rica,
+---
 
-**Inglaterra** vence a Argentina
-
-**Bélgica** vence a Suiza
-
---
+# Probabilidades Qatar 2022
 
 **Semifinal**
 
-**Brasil** vence a Dinamarca
+.center[
+<div id="htmlwidget-b5af60bb848fd1260d06" style="width:504px;height:504px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-b5af60bb848fd1260d06">{"x":{"diagram":"digraph {\n  graph [layout = dot, rankdir = LR]\n  \n  node [shape = rectangle,\n        style = filled,\n        color = grey,\n        fixedsize = true,\n        width = 3,\n        fontsize = 30]        \n  rec1 [label = \"EEUU\",fillcolor = lightblue]\n  rec2 [label = \"Holanda\",fillcolor = lightblue]\n  rec3 [label =  \"Dinamarca\",fillcolor = lightsalmon]\n  rec4 [label =  \"Polonia\",fillcolor = lightsalmon]\n  rec5 [label =  \"Costa Rica\",fillcolor = lightsalmon]\n  rec6 [label =  \"Croacia\",fillcolor = lightsalmon]\n  rec7 [label =  \"Brasil\",fillcolor = lightblue]\n  rec8 [label =  \"Portugal\",fillcolor = lightblue]\n  rec9 [label =  \"Inglaterra\",fillcolor = lightblue]\n  rec10 [label =  \"Ecuador\",fillcolor = lightblue]\n  rec11 [label =  \"Argentina\",fillcolor = lightsalmon]\n  rec12 [label =  \"Francia\",fillcolor = lightsalmon]\n  rec13 [label =  \"Bélgica\",fillcolor = lightblue]\n  rec14 [label =  \"Japón\",fillcolor = lightblue]\n  rec15 [label =  \"Suiza\",fillcolor = lightsalmon]\n  rec16 [label =  \"Corea del Sur\",fillcolor = lightsalmon]\n  \n  rec17 [label =  \"EEUU\",fillcolor = snow]\n  rec18 [label =  \"Dinamarca\",fillcolor = snow]\n  rec19 [label =  \"Costa Rica\",fillcolor = snow]\n  rec20 [label =  \"Brasil\",fillcolor = snow]\n  rec21 [label =  \"Inglaterra\",fillcolor = snow]\n  rec22 [label =  \"Argentina\",fillcolor = snow]\n  rec23 [label =  \"Bélgica\",fillcolor = snow]\n  rec24 [label =  \"Suiza\",fillcolor = snow]\n  \n  rec25 [label = \"Dinamarca\",fillcolor = snow]\n  rec26 [label =  \"Brasil\",fillcolor = snow]\n  rec27 [label =  \"Inglaterra\",fillcolor = snow]\n  rec28 [label =  \"Bélgica\",fillcolor = snow]\n  \n  rec29 [label =  \"Brasil\",fillcolor = snow]\n  rec30 [label =  \"Inglaterra\",fillcolor = snow]\n  \n  rec31 [label =  \"\"]\n  \n  # edge definitions with the node IDs\n  rec1 -> rec17\n  rec2 -> rec17\n  rec3 -> rec18\n  rec4 -> rec18\n  rec5 -> rec19\n  rec6 -> rec19\n  rec7 -> rec20\n  rec8 -> rec20\n  rec9 -> rec21\n  rec10 -> rec21\n  rec11 -> rec22\n  rec12 -> rec22\n  rec13 -> rec23\n  rec14 -> rec23\n  rec15 -> rec24\n  rec16 -> rec24\n  rec17 -> rec25\n  rec18 -> rec25\n  rec19 -> rec26\n  rec20 -> rec26\n  rec21 -> rec27\n  rec22 -> rec27\n  rec23 -> rec28\n  rec24 -> rec28\n  rec25 -> rec29\n  rec26 -> rec29\n  rec27 -> rec30\n  rec28 -> rec30\n  rec29 -> rec31\n  rec30 -> rec31\n  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+]
 
-**Inglaterra** vence a Bélgica
+---
 
---
+# Probabilidades Qatar 2022
 
 **Final**
 
-**Brasil** vence a Inglaterra
+.center[
+<div id="htmlwidget-33462cd26bcba401d429" style="width:504px;height:504px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-33462cd26bcba401d429">{"x":{"diagram":"digraph {\n  graph [layout = dot, rankdir = LR]\n  \n  node [shape = rectangle,\n        style = filled,\n        color = grey,\n        fixedsize = true,\n        width = 3,\n        fontsize = 30]        \n  rec1 [label = \"EEUU\",fillcolor = lightblue]\n  rec2 [label = \"Holanda\",fillcolor = lightblue]\n  rec3 [label =  \"Dinamarca\",fillcolor = lightsalmon]\n  rec4 [label =  \"Polonia\",fillcolor = lightsalmon]\n  rec5 [label =  \"Costa Rica\",fillcolor = lightsalmon]\n  rec6 [label =  \"Croacia\",fillcolor = lightsalmon]\n  rec7 [label =  \"Brasil\",fillcolor = lightblue]\n  rec8 [label =  \"Portugal\",fillcolor = lightblue]\n  rec9 [label =  \"Inglaterra\",fillcolor = lightblue]\n  rec10 [label =  \"Ecuador\",fillcolor = lightblue]\n  rec11 [label =  \"Argentina\",fillcolor = lightsalmon]\n  rec12 [label =  \"Francia\",fillcolor = lightsalmon]\n  rec13 [label =  \"Bélgica\",fillcolor = lightblue]\n  rec14 [label =  \"Japón\",fillcolor = lightblue]\n  rec15 [label =  \"Suiza\",fillcolor = lightsalmon]\n  rec16 [label =  \"Corea del Sur\",fillcolor = lightsalmon]\n  \n  rec17 [label =  \"EEUU\",fillcolor = snow]\n  rec18 [label =  \"Dinamarca\",fillcolor = snow]\n  rec19 [label =  \"Costa Rica\",fillcolor = snow]\n  rec20 [label =  \"Brasil\",fillcolor = snow]\n  rec21 [label =  \"Inglaterra\",fillcolor = snow]\n  rec22 [label =  \"Argentina\",fillcolor = snow]\n  rec23 [label =  \"Bélgica\",fillcolor = snow]\n  rec24 [label =  \"Suiza\",fillcolor = snow]\n  \n  rec25 [label = \"Dinamarca\",fillcolor = snow]\n  rec26 [label =  \"Brasil\",fillcolor = snow]\n  rec27 [label =  \"Inglaterra\",fillcolor = snow]\n  rec28 [label =  \"Bélgica\",fillcolor = snow]\n  \n  rec29 [label =  \"Brasil\",fillcolor = snow]\n  rec30 [label =  \"Inglaterra\",fillcolor = snow]\n  \n  rec31 [label =  \"Brasil\",fillcolor = snow]\n  \n  # edge definitions with the node IDs\n  rec1 -> rec17\n  rec2 -> rec17\n  rec3 -> rec18\n  rec4 -> rec18\n  rec5 -> rec19\n  rec6 -> rec19\n  rec7 -> rec20\n  rec8 -> rec20\n  rec9 -> rec21\n  rec10 -> rec21\n  rec11 -> rec22\n  rec12 -> rec22\n  rec13 -> rec23\n  rec14 -> rec23\n  rec15 -> rec24\n  rec16 -> rec24\n  rec17 -> rec25\n  rec18 -> rec25\n  rec19 -> rec26\n  rec20 -> rec26\n  rec21 -> rec27\n  rec22 -> rec27\n  rec23 -> rec28\n  rec24 -> rec28\n  rec25 -> rec29\n  rec26 -> rec29\n  rec27 -> rec30\n  rec28 -> rec30\n  rec29 -> rec31\n  rec30 -> rec31\n  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+]
 
 ---
 
@@ -532,31 +576,18 @@ Ahora saquemos las bolillas para la fase final:
 
 Notar que, entre otros, quedaron eliminados Holanda, Francia y Portugal.
 
+Ahora saquemos las bolillas para la fase final:
+
 ---
 
 # Probabilidades Qatar 2022
 
-Ahora saquemos las bolillas para la fase final:
-
---
-
 **Octavos de Final**
 
-**Senegal** vence a Gales
-
-**México** vence a Dinamarca
-
-**Alemania** vence a Croacia
-
-**Brasil** vence a Uruguay
-
-**Ecuador** vence a Inglaterra
-
-**Argentina** vence a Túnez
-
-**Bélgica** vence a España
-
-**Corea del Sur** vence a Camerún
+.center[
+<div id="htmlwidget-4e8021e6c71e8841d22d" style="width:504px;height:504px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-4e8021e6c71e8841d22d">{"x":{"diagram":"digraph {\n  graph [layout = dot, rankdir = LR]\n  \n  node [shape = rectangle,\n        style = filled,\n        color = grey,\n        fixedsize = true,\n        width = 3,\n        fontsize = 30]        \n  rec1 [label = \"Senegal\",fillcolor = lightblue]\n  rec2 [label = \"Gales\",fillcolor = lightblue]\n  rec3 [label =  \"México\",fillcolor = lightsalmon]\n  rec4 [label =  \"Dinamarca\",fillcolor = lightsalmon]\n  rec5 [label =  \"Alemania\",fillcolor = lightsalmon]\n  rec6 [label =  \"Croacia\",fillcolor = lightsalmon]\n  rec7 [label =  \"Brasil\",fillcolor = lightblue]\n  rec8 [label =  \"Uruguay\",fillcolor = lightblue]\n  rec9 [label =  \"Ecuador\",fillcolor = lightblue]\n  rec10 [label =  \"Inglaterra\",fillcolor = lightblue]\n  rec11 [label =  \"Argentina\",fillcolor = lightsalmon]\n  rec12 [label =  \"Túnez\",fillcolor = lightsalmon]\n  rec13 [label =  \"Bélgica\",fillcolor = lightblue]\n  rec14 [label =  \"España\",fillcolor = lightblue]\n  rec15 [label =  \"Corea del Sur\",fillcolor = lightsalmon]\n  rec16 [label =  \"Camerún\",fillcolor = lightsalmon]\n\n  rec17 [label =  \"Senegal\",fillcolor = snow]\n  rec18 [label =  \"México\",fillcolor = snow]\n  rec19 [label =  \"Alemania\",fillcolor = snow]\n  rec20 [label =  \"Brasil\",fillcolor = snow]\n  rec21 [label =  \"Ecuador\",fillcolor = snow]\n  rec22 [label =  \"Argentina\",fillcolor = snow]\n  rec23 [label =  \"Bélgica\",fillcolor = snow]\n  rec24 [label =  \"Corea del Sur\",fillcolor = snow]\n  \n  rec25 [label = \"\"]\n  rec26 [label =  \"\"]\n  rec27 [label =  \"\"]\n  rec28 [label =  \"\"]\n  \n  rec29 [label =  \"\"]\n  rec30 [label =  \"\"]\n  \n  rec31 [label =  \"\"]\n  \n  # edge definitions with the node IDs\n  rec1 -> rec17\n  rec2 -> rec17\n  rec3 -> rec18\n  rec4 -> rec18\n  rec5 -> rec19\n  rec6 -> rec19\n  rec7 -> rec20\n  rec8 -> rec20\n  rec9 -> rec21\n  rec10 -> rec21\n  rec11 -> rec22\n  rec12 -> rec22\n  rec13 -> rec23\n  rec14 -> rec23\n  rec15 -> rec24\n  rec16 -> rec24\n  rec17 -> rec25\n  rec18 -> rec25\n  rec19 -> rec26\n  rec20 -> rec26\n  rec21 -> rec27\n  rec22 -> rec27\n  rec23 -> rec28\n  rec24 -> rec28\n  rec25 -> rec29\n  rec26 -> rec29\n  rec27 -> rec30\n  rec28 -> rec30\n  rec29 -> rec31\n  rec30 -> rec31\n  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+]
 
 ---
 
@@ -564,27 +595,54 @@ Ahora saquemos las bolillas para la fase final:
 
 **Cuartos de Final**
 
-**Senegal** vence a México
+.center[
+<div id="htmlwidget-ef5dcf1ac5ed78dc16b8" style="width:504px;height:504px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-ef5dcf1ac5ed78dc16b8">{"x":{"diagram":"digraph {\n  graph [layout = dot, rankdir = LR]\n  \n  node [shape = rectangle,\n        style = filled,\n        color = grey,\n        fixedsize = true,\n        width = 3,\n        fontsize = 30]        \n  rec1 [label = \"Senegal\",fillcolor = lightblue]\n  rec2 [label = \"Gales\",fillcolor = lightblue]\n  rec3 [label =  \"México\",fillcolor = lightsalmon]\n  rec4 [label =  \"Dinamarca\",fillcolor = lightsalmon]\n  rec5 [label =  \"Alemania\",fillcolor = lightsalmon]\n  rec6 [label =  \"Croacia\",fillcolor = lightsalmon]\n  rec7 [label =  \"Brasil\",fillcolor = lightblue]\n  rec8 [label =  \"Uruguay\",fillcolor = lightblue]\n  rec9 [label =  \"Ecuador\",fillcolor = lightblue]\n  rec10 [label =  \"Inglaterra\",fillcolor = lightblue]\n  rec11 [label =  \"Argentina\",fillcolor = lightsalmon]\n  rec12 [label =  \"Túnez\",fillcolor = lightsalmon]\n  rec13 [label =  \"Bélgica\",fillcolor = lightblue]\n  rec14 [label =  \"España\",fillcolor = lightblue]\n  rec15 [label =  \"Corea del Sur\",fillcolor = lightsalmon]\n  rec16 [label =  \"Camerún\",fillcolor = lightsalmon]\n\n  rec17 [label =  \"Senegal\",fillcolor = snow]\n  rec18 [label =  \"México\",fillcolor = snow]\n  rec19 [label =  \"Alemania\",fillcolor = snow]\n  rec20 [label =  \"Brasil\",fillcolor = snow]\n  rec21 [label =  \"Ecuador\",fillcolor = snow]\n  rec22 [label =  \"Argentina\",fillcolor = snow]\n  rec23 [label =  \"Bélgica\",fillcolor = snow]\n  rec24 [label =  \"Corea del Sur\",fillcolor = snow]\n  \n  rec25 [label = \"Senegal\",fillcolor = snow]\n  rec26 [label =  \"Brasil\",fillcolor = snow]\n  rec27 [label =  \"Argentina\",fillcolor = snow]\n  rec28 [label =  \"Corea del Sur\",fillcolor = snow]\n\n  rec29 [label =  \"\"]\n  rec30 [label =  \"\"]\n  \n  rec31 [label =  \"\"]\n  \n  # edge definitions with the node IDs\n  rec1 -> rec17\n  rec2 -> rec17\n  rec3 -> rec18\n  rec4 -> rec18\n  rec5 -> rec19\n  rec6 -> rec19\n  rec7 -> rec20\n  rec8 -> rec20\n  rec9 -> rec21\n  rec10 -> rec21\n  rec11 -> rec22\n  rec12 -> rec22\n  rec13 -> rec23\n  rec14 -> rec23\n  rec15 -> rec24\n  rec16 -> rec24\n  rec17 -> rec25\n  rec18 -> rec25\n  rec19 -> rec26\n  rec20 -> rec26\n  rec21 -> rec27\n  rec22 -> rec27\n  rec23 -> rec28\n  rec24 -> rec28\n  rec25 -> rec29\n  rec26 -> rec29\n  rec27 -> rec30\n  rec28 -> rec30\n  rec29 -> rec31\n  rec30 -> rec31\n  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+]
 
-**Brasil** vence a Alemania,
+---
 
-**Argentina** vence a Ecuador
-
-**Corea del Sur** vence a Bélgica
-
---
+# Probabilidades Qatar 2022
 
 **Semifinal**
 
-**Brasil** vence a Senegal
+.center[
+<div id="htmlwidget-12051c39e60320fab7fb" style="width:504px;height:504px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-12051c39e60320fab7fb">{"x":{"diagram":"digraph {\n  graph [layout = dot, rankdir = LR]\n  \n  node [shape = rectangle,\n        style = filled,\n        color = grey,\n        fixedsize = true,\n        width = 3,\n        fontsize = 30]        \n  rec1 [label = \"Senegal\",fillcolor = lightblue]\n  rec2 [label = \"Gales\",fillcolor = lightblue]\n  rec3 [label =  \"México\",fillcolor = lightsalmon]\n  rec4 [label =  \"Dinamarca\",fillcolor = lightsalmon]\n  rec5 [label =  \"Alemania\",fillcolor = lightsalmon]\n  rec6 [label =  \"Croacia\",fillcolor = lightsalmon]\n  rec7 [label =  \"Brasil\",fillcolor = lightblue]\n  rec8 [label =  \"Uruguay\",fillcolor = lightblue]\n  rec9 [label =  \"Ecuador\",fillcolor = lightblue]\n  rec10 [label =  \"Inglaterra\",fillcolor = lightblue]\n  rec11 [label =  \"Argentina\",fillcolor = lightsalmon]\n  rec12 [label =  \"Túnez\",fillcolor = lightsalmon]\n  rec13 [label =  \"Bélgica\",fillcolor = lightblue]\n  rec14 [label =  \"España\",fillcolor = lightblue]\n  rec15 [label =  \"Corea del Sur\",fillcolor = lightsalmon]\n  rec16 [label =  \"Camerún\",fillcolor = lightsalmon]\n\n  rec17 [label =  \"Senegal\",fillcolor = snow]\n  rec18 [label =  \"México\",fillcolor = snow]\n  rec19 [label =  \"Alemania\",fillcolor = snow]\n  rec20 [label =  \"Brasil\",fillcolor = snow]\n  rec21 [label =  \"Ecuador\",fillcolor = snow]\n  rec22 [label =  \"Argentina\",fillcolor = snow]\n  rec23 [label =  \"Bélgica\",fillcolor = snow]\n  rec24 [label =  \"Corea del Sur\",fillcolor = snow]\n  \n  rec25 [label = \"Senegal\",fillcolor = snow]\n  rec26 [label =  \"Brasil\",fillcolor = snow]\n  rec27 [label =  \"Argentina\",fillcolor = snow]\n  rec28 [label =  \"Corea del Sur\",fillcolor = snow]\n  \n  rec29 [label =  \"Brasil\",fillcolor = snow]\n  rec30 [label =  \"Argentina\",fillcolor = snow]\n  \n  rec31 [label =  \"\"]\n  \n  # edge definitions with the node IDs\n  rec1 -> rec17\n  rec2 -> rec17\n  rec3 -> rec18\n  rec4 -> rec18\n  rec5 -> rec19\n  rec6 -> rec19\n  rec7 -> rec20\n  rec8 -> rec20\n  rec9 -> rec21\n  rec10 -> rec21\n  rec11 -> rec22\n  rec12 -> rec22\n  rec13 -> rec23\n  rec14 -> rec23\n  rec15 -> rec24\n  rec16 -> rec24\n  rec17 -> rec25\n  rec18 -> rec25\n  rec19 -> rec26\n  rec20 -> rec26\n  rec21 -> rec27\n  rec22 -> rec27\n  rec23 -> rec28\n  rec24 -> rec28\n  rec25 -> rec29\n  rec26 -> rec29\n  rec27 -> rec30\n  rec28 -> rec30\n  rec29 -> rec31\n  rec30 -> rec31\n  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+]
 
-**Argentina** vence a Corea del Sur
+---
 
---
+# Probabilidades Qatar 2022
 
 **Final**
 
-**Argentina** vence a Brasil
+.center[
+<div id="htmlwidget-e992428fbf39c80c36ae" style="width:504px;height:504px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-e992428fbf39c80c36ae">{"x":{"diagram":"digraph {\n  graph [layout = dot, rankdir = LR]\n  \n  node [shape = rectangle,\n        style = filled,\n        color = grey,\n        fixedsize = true,\n        width = 3,\n        fontsize = 30]        \n  rec1 [label = \"Senegal\",fillcolor = lightblue]\n  rec2 [label = \"Gales\",fillcolor = lightblue]\n  rec3 [label =  \"México\",fillcolor = lightsalmon]\n  rec4 [label =  \"Dinamarca\",fillcolor = lightsalmon]\n  rec5 [label =  \"Alemania\",fillcolor = lightsalmon]\n  rec6 [label =  \"Croacia\",fillcolor = lightsalmon]\n  rec7 [label =  \"Brasil\",fillcolor = lightblue]\n  rec8 [label =  \"Uruguay\",fillcolor = lightblue]\n  rec9 [label =  \"Ecuador\",fillcolor = lightblue]\n  rec10 [label =  \"Inglaterra\",fillcolor = lightblue]\n  rec11 [label =  \"Argentina\",fillcolor = lightsalmon]\n  rec12 [label =  \"Túnez\",fillcolor = lightsalmon]\n  rec13 [label =  \"Bélgica\",fillcolor = lightblue]\n  rec14 [label =  \"España\",fillcolor = lightblue]\n  rec15 [label =  \"Corea del Sur\",fillcolor = lightsalmon]\n  rec16 [label =  \"Camerún\",fillcolor = lightsalmon]\n\n  rec17 [label =  \"Senegal\",fillcolor = snow]\n  rec18 [label =  \"México\",fillcolor = snow]\n  rec19 [label =  \"Alemania\",fillcolor = snow]\n  rec20 [label =  \"Brasil\",fillcolor = snow]\n  rec21 [label =  \"Ecuador\",fillcolor = snow]\n  rec22 [label =  \"Argentina\",fillcolor = snow]\n  rec23 [label =  \"Bélgica\",fillcolor = snow]\n  rec24 [label =  \"Corea del Sur\",fillcolor = snow]\n  \n  rec25 [label = \"Senegal\",fillcolor = snow]\n  rec26 [label =  \"Brasil\",fillcolor = snow]\n  rec27 [label =  \"Argentina\",fillcolor = snow]\n  rec28 [label =  \"Corea del Sur\",fillcolor = snow]\n  \n  rec29 [label =  \"Brasil\",fillcolor = snow]\n  rec30 [label =  \"Argentina\",fillcolor = snow]\n  \n  rec31 [label =  \"Argentina\",fillcolor = snow]\n  \n  # edge definitions with the node IDs\n  rec1 -> rec17\n  rec2 -> rec17\n  rec3 -> rec18\n  rec4 -> rec18\n  rec5 -> rec19\n  rec6 -> rec19\n  rec7 -> rec20\n  rec8 -> rec20\n  rec9 -> rec21\n  rec10 -> rec21\n  rec11 -> rec22\n  rec12 -> rec22\n  rec13 -> rec23\n  rec14 -> rec23\n  rec15 -> rec24\n  rec16 -> rec24\n  rec17 -> rec25\n  rec18 -> rec25\n  rec19 -> rec26\n  rec20 -> rec26\n  rec21 -> rec27\n  rec22 -> rec27\n  rec23 -> rec28\n  rec24 -> rec28\n  rec25 -> rec29\n  rec26 -> rec29\n  rec27 -> rec30\n  rec28 -> rec30\n  rec29 -> rec31\n  rec30 -> rec31\n  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+]
+
+---
+
+# Probabilidades Qatar 2022
+
+Notar que, en cada simulación, hubo resultados *raros*. Sin embargo, el campeón terminó estando dentro de lo esperado.
+
+--
+
+Repetimos el proceso 100.000 veces y, al final, contabilizamos cuántas veces salió cada equipo en cada puesto.
+
+--
+
+Los resultados completos pueden encontrarse [aquí](https://esterodr.github.io/Mundial/)
+
+En la siguiente página se presenta una muestra de los principales resultados obtenidos en una simulación realizada en Agosto de 2022.
+
+---
+
+# Probabilidades Qatar 2022
+
+![](Imagenes/mundial.jpg)
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
