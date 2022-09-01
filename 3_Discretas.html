@@ -20,7 +20,7 @@ class: left, bottom, inverse, title-slide
 ### Esteban Rodriguez
 ]
 .date[
-### Última Actualización: 2022-08-12
+### Última Actualización: 2022-09-01
 ]
 
 ---
@@ -30,7 +30,7 @@ class: left, bottom, inverse, title-slide
 
 # Variable Aleatoria
 
-Una variable aleatoria es una regla para asignar un número a todos los resultados posibles de un experimento aleatorio, i.e. una variable aleatoria asocia un valor numérico con cada resultado posible del experimento aleatorio.
+Una variable aleatoria es una regla que asocia un valor numérico con cada resultado posible del experimento aleatorio.
 
 --
 
@@ -38,7 +38,7 @@ Por lo general se usan letras mayúsculas para designar a la variable aleatoria 
 
 --
 
-Ejemplo 1: Arrojo una moneda. `\(X=\text{"sale cara"}\)`
+Ejemplo 1: Arrojo una moneda. `\(X=\text{"lanzamiento de una moneda"}\)`
 
 `$$X={1 \text{ si sale cara}\brace{0 \text{ en caso contrario}}}$$`
 
@@ -1035,10 +1035,7 @@ Sea `\(X\)` una v.a. que representa el número de éxitos en n ensayos de Bernou
 La forma de la distribución binomial depende del valor de `\(p\)`
 
 .center[
-
-```
-## NULL
-```
+![](3_Discretas_files/figure-html/unnamed-chunk-5-1.gif)&lt;!-- --&gt;
 ]
 
 ---
@@ -1335,10 +1332,7 @@ A medida que `\(\lambda\)` crece, la distribución de Poisson se hace más simé
 
 
 .center[
-
-```
-## NULL
-```
+![](3_Discretas_files/figure-html/unnamed-chunk-6-1.gif)&lt;!-- --&gt;
 ]
 
 ---
@@ -1360,10 +1354,7 @@ A la hora de realizar la aproximación, se suele requerir `\(n\ge 50\)` y `\(p\l
 Ejemplo con `\(p=0.05\)`
 
 .center[
-
-```
-## NULL
-```
+![](3_Discretas_files/figure-html/unnamed-chunk-7-1.gif)&lt;!-- --&gt;
 ]
 
 ---
@@ -1389,6 +1380,57 @@ En principio, `\(X\sim Bi(n=200,p=0.05)\)`. Si puedo calcularla, la respuesta **
 Si tengo problemas para realizar este cálculo, puedo **aproximar** `\(X\)` con `\(Y\sim Poisson(\lambda=200*0.05=10)\)`
 
 `\(P(Y&gt;2)=1-P(Y=0)-P(Y=1)=1-\frac{e^{-10}10^0}{0!}-\frac{e^{10}10^1}{1!}=0.9995006\)`
+
+---
+
+# Ejemplo 1
+
+- En 2017, EEUU y Corea del Norte estaban amenazándose mutuamente con un ataque nuclear.
+
+- Se decía que Corea del Norte tenía capacidad (o estaba cerca de) construir armas nucleares y estaba realizando pruebas de misiles de largo alcance, los cuales le permitirían eventualmente atacar EEUU.
+
+--
+
+- En principio, la sociedad norteamericana no tenía miedo porque confiaba en que los **sistemas antimisiles** los protegerían en un eventual ataque.
+
+- Pero, de fuentes militares, surgió el dato de que, en base a los ensayos realizados, **la probabilidad de que un misil propio intercepte a uno enemigo es del `\(60\%\)`**
+
+--
+
+- Ante estos rumores, el presidente Donald Trump salió a aclarar que, por cada misil que lance Corea del Norte, EEUU lanzaría **4 misiles** a interceptarlo, por lo que la **probabilidad de éxito es del `\(97\%\)`**. ([Link 1](auxiliares/Trump_misiles.pdf)) y ([Link 2](auxiliares/Trump_misiles_2.pdf))
+
+- ¿Qué cuenta sacó? ¿Qué supuestos son necesarios para que esa cuenta sea correcta?
+
+---
+
+# Ejemplo 2
+
+- En 2021 se anunció que se comenzaría a buscar petróleo en el Mar Argentino, a unos 300 kilómetros de Mar del Plata.
+
+- Desde distintos sectores se criticó el posible impacto ambiental que tendría la explotación petrolera.
+
+--
+
+- Diversos medios se hicieron eco de un informe citado por Greenpeace que hablaba de que un derrame de petróleo es prácticamente inevitable.
+
+.center[
+![](Imagenes/BAE_offshore.jpg)
+[Link](https://www.baenegocios.com/sociedad/Estudio-advierte-que-hay-alrededor-de-100-de-probabilidades-de-que-ocurra-un-derrame-de-petroleo-en-Mar-del-Plata-20210904-0029.html)
+]
+
+---
+
+# Ejemplo 2
+
+En la Página 2 del [estudio citado](auxiliares/Estudio_derrames.pdf) se encuentra lo siguiente:
+
+.center[
+![](Imagenes/poisson_offshore.jpg)
+]
+
+Esta función es igual a la vista en clase, sólo que el `\(\lambda\)` lo descomponen en dos componentes: un "ratio de derrames" y el nivel de producción. La idea es que, a mayor producción, más grande es el `\(\lambda\)`.
+
+De acuerdo a la estimación de los autores para estos parámetros, la probabilidad de que haya 0 derrames es prácticamente nula. Este informe recibió muchas críticas, básicamente porque **el valor estimado para `\(\lambda\)` era exageradamete alto**. ([Link 1](https://calidadtdf.com.ar/nota/val/5165/val_s/17/las-inconsistencias-del-informe-que-difundi%C3%B3-greenpeace-contra-el-petr%C3%B3leo-offshore) y [Link 2](https://bocadepozo.com.ar/2022/01/04/el-iapg-salio-al-cruce-de-greenpeace-y-la-campana-de-desinformacion-de-sectores-politicos-con-un-duro-comunicado/))
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>

@@ -3,4 +3,5 @@
 .RData
 .Ruserdata
 *.Rmd
+*.log
 Práctica4_Clase.html
