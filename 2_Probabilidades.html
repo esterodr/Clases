@@ -1042,7 +1042,11 @@ Arrojamos una moneda dos veces y registramos los resultados. Sean A, B y C los s
 
 - Dos eventos son mutuamente excluyentes si no comparten ningún resultado en común.
 
+--
+
 - A y B son mutuamente excluyentes si `\(P(A \cap B) = P(A)*P(B)\)`
+
+--
 
 - Si una moneda equilibrada ha sido arrojada 5 veces, y en cada una de esas veces se obtuvo una cara, entonces la probabilidad condicional de que la sexta tirada sea cara será 1/64.
 
@@ -1050,7 +1054,7 @@ Arrojamos una moneda dos veces y registramos los resultados. Sean A, B y C los s
 
 # Ejercicio
 
-- La encuesta mundial World Values Survey es una encuesta permanente alrededor del mundo interesada en cuestiones de familia, trabajo política etc.En su fase más reciente se encuestaron 77882 personas de 57 países.
+- La encuesta mundial World Values Survey es una encuesta permanente alrededor del mundo interesada en cuestiones de familia, trabajo política etc. En su fase más reciente se encuestaron 77.882 personas de 57 países.
 
 - Un resultado que se obtuvo es que que el `\(36.2\%\)` de la población mundial está de acuerdo con la afirmación que dice que *“los hombres deben tener más derecho a un trabajo que las mujeres”*.
 
@@ -1086,7 +1090,7 @@ Arrojamos una moneda dos veces y registramos los resultados. Sean A, B y C los s
 
 # Teorema de Bayes (1763)
 
-Supongamos que estamos pensando en comprar un auto usado, marca LEMON. A los fines de tomar una decisión informada, revisamos una revista sobre autos y encontramos que el `\(15%\)` de los LEMON tienen desperfectos en la caja de transmisión. `\(P(D)=0.15\)`
+Supongamos que estamos pensando en comprar un auto usado, marca &lt;a href="https://en.wikipedia.org/wiki/Lemon_(automobile)"&gt;LEMON&lt;/a&gt;. A los fines de tomar una decisión informada, revisamos una revista sobre autos y encontramos que el `\(15\%\)` de los LEMON tienen desperfectos en la caja de transmisión. `\(P(D)=0.15\)`
 
 --
 
@@ -1223,6 +1227,96 @@ Si al examinar a un individuo elegido al azar, el resultado es positivo, ¿cuál
 --
 
 `\(P(Infectado/+)=\frac{0.99*0.10}{0.99*0.10+0.05*0.60+0.35*0.30}=0.4231\)`
+
+---
+
+# Teorema de Bayes (Aplicación)
+
+**Filtro Anti-Spam**. Cada vez que se recibe un correo electrónico, *alguien* toma la decisión de enviar ese correo a la "Bandeja de Entrada" o a la carpeta de "Spam/Correo no deseado".
+
+Este *alguien* que clasifica un correo no es una persona sino una **inteligencia artificial** que recolecta información y toma decisiones en base a eso.
+
+Cuando en los orígenes de internet se vio que el Spam podría convertirse en un gran problema, se sugirió la utilización de *filtros Bayesianos* para lidiar con esto. En la práctica, demostraron ser bastante efectivos ([Link1](http://robotics.stanford.edu/users/sahami/papers-dir/spam.pdf), [Link2](https://digitalcommons.morris.umn.edu/cgi/viewcontent.cgi?article=1024&amp;context=horizons))
+
+Veamos con un simple ejemplo cómo funciona esto en la práctica.
+
+---
+
+# Teorema de Bayes (Aplicación)
+
+- Supongamos que partimos de una gran base de datos de emails ya clasificados en `\(SPAM\)` o `\(\overline{SPAM}\)` y que en base a esto podemos estimar que `\(P(SPAM)=0,60\)`
+
+--
+
+- Al analizar la base de datos, encontramos ciertos patrones diferenciados entre los grupos `\(SPAM\)` y `\(\overline{SPAM}\)`. En particular, difieren en si tenemos agendado al remitente o no ( `\(RA\)` vs. `\(\overline{RA}\)`) y en la frecuencia de la frase "tarjeta de crédito" ( `\(TC\)` vs. `\(\overline{TC}\)`). Supongamos las siguientes probabilidades:
+
+.pull-left[
+`\(SPAM\)`
+
+| | `\(RA\)` | `\(\overline{RA}\)` | |
+| :---: | :---: | :---: | :---: |
+| `\(TC\)` | `\(0.02\)` | `\(0.83\)` | `\(0.85\)` |
+| `\(\overline{TC}\)` | `\(0.03\)` | `\(0.12\)` | `\(0.15\)` |
+|  | `\(0.05\)` | `\(0.95\)` | `\(1\)` |
+]
+
+.pull-right[
+`\(\overline{SPAM}\)`
+
+| | `\(RA\)` | `\(\overline{RA}\)` | |
+| :---: | :---: | :---: | :---: |
+| `\(TC\)` | `\(0.09\)` | `\(0.01\)` | `\(0.10\)` |
+| `\(\overline{TC}\)` | `\(0.41\)` | `\(0.49\)` | `\(0.90\)` |
+|  | `\(0.5\)` | `\(0.5\)` | `\(1\)` |
+]
+
+---
+
+# Teorema de Bayes (Aplicación)
+
+- Llega un correo electrónico. A priori, sólo podemos decir que la probabilidad de que sea `\(SPAM\)` es 60%.
+
+--
+
+- El filtro analiza el mensaje y determina que **el remitente no está agendado** y que se menciona la palabra **tarjeta de crédito**.
+
+- Con esta nueva información, procede a actualizar las probabilidades:
+
+--
+
+`\(P(SPAM/(\overline{RA} \cap TC)=\)`
+
+---
+
+# Teorema de Bayes (Aplicación)
+
+- Llega un correo electrónico. A priori, sólo podemos decir que la probabilidad de que sea `\(SPAM\)` es 60%.
+
+- El filtro analiza el mensaje y determina que **el remitente no está agendado** y que se menciona la palabra **tarjeta de crédito**.
+
+- Con esta nueva información, procede a actualizar las probabilidades:
+
+`\(P(SPAM/(\overline{RA} \cap TC)=\frac{P((\overline{RA} \cap TC) / SPAM)*P(SPAM)}{P((\overline{RA} \cap TC) / SPAM)*P(SPAM)+P((\overline{RA} \cap TC) / \overline{SPAM})*P(\overline{SPAM})}\)`
+
+---
+
+# Teorema de Bayes (Aplicación)
+
+- Llega un correo electrónico. A priori, sólo podemos decir que la probabilidad de que sea `\(SPAM\)` es 60%.
+
+- El filtro analiza el mensaje y determina que **el remitente no está agendado** y que se menciona la palabra **tarjeta de crédito**.
+
+- Con esta nueva información, procede a actualizar las probabilidades:
+
+`\(P(SPAM/(\overline{RA} \cap TC)=\frac{P((\overline{RA} \cap TC) / SPAM)*P(SPAM)}{P((\overline{RA} \cap TC) / SPAM)*P(SPAM)+P((\overline{RA} \cap TC) / \overline{SPAM})*P(\overline{SPAM})}\)`
+
+`\(P(SPAM/(\overline{RA} \cap TC)=\frac{0.83*0.6}{0.83*0.6+0.01*0.4}=\frac{0.498}{0.502}=0.992\)`
+
+El filtro está bastante seguro de que se trata de `\(SPAM\)`
+
+--
+
+Se puede evaluar muchas más dimensiones (idioma del mensaje, horario, servidor de procedencia, etc.) o palabras clave (sexo, viagra, millonario, etc.) de manera de hacer un filtro más efectivo. El cálculo se complejiza pero sigue siendo sencillo para una computadora.
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
