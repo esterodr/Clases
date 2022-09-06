@@ -26,7 +26,7 @@ class: left, bottom, inverse, title-slide
 ### Esteban Rodriguez
 ]
 .date[
-### Última Actualización: 2022-09-05
+### Última Actualización: 2022-09-06
 ]
 
 ---
@@ -964,11 +964,11 @@ Para calcular `\(P(\text{0 de 3})\)`, **es necesario suponer independencia**. Es
 
 De esta forma,
 
-`\(P(\text{0 de 3})=P(\text{1ro No V})*P(\text{2do No V})*P(\text{3ro No V})=0.16^3=0.004096\)`
+`\(P(\text{0 de 3})=P(\text{1ro No V})*P(\text{2do No V})*P(\text{3ro No V})=0.84^3=0.592704\)`
 
 y
 
-`\(P(\text{al menos 1 de 3})=1-P(\text{0 de 3})=1-0.004096=0.995904\)`
+`\(P(\text{al menos 1 de 3})=1-P(\text{0 de 3})=1-0.592704=0.407296\)`
 
 ---
 
@@ -1139,6 +1139,16 @@ La probabilidad a posteriori queda expresada en función de las probabilidades a
 
 # Teorema de Bayes (1763)
 
+<div id="htmlwidget-a64d95d79538f2c5d897" style="width:504px;height:216px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-a64d95d79538f2c5d897">{"x":{"diagram":"digraph {\n  graph [layout = dot, rankdir = LR]\n  \n  node [shape = rectangle]        \n  rec1 [label = \"LEMON\"]\n  rec2 [label = \"Defectuoso\"]\n  rec3 [label =  \"No Defectuoso\"]\n  rec4 [label =  \"Mecánico dice Def.\"]\n  rec5 [label =  \"Mecánico dice no Def.\"]\n  rec6 [label =  \"Mecánico dice Def.\"]\n  rec7 [label =  \"Mecánico dice no Def.\"]\n  \n  # edge definitions with the node IDs\n  rec1 -> rec2 [label=\"15%\"];\n  rec1 -> rec3 [label=\"85%\"];\n  rec2 -> rec4 [label=\"90%\"];\n  rec2 -> rec5 [label=\"10%\"];\n  rec3 -> rec6 [label=\"20%\"];\n  rec3 -> rec7 [label=\"80%\"]\n  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+
+`$$P(D/(Mec. dice D))=\frac{P(Mec. dice D/D)*P(D)}{P(Mec. dice D/D)*P(D)+P(Mec. dice D/noD)*P(noD)}$$`
+`$$P(D/(Mec. dice D))=\frac{0.9*0.15}{0.9*0.15+0.2*0.85}=0.442623$$`
+
+---
+
+# Teorema de Bayes (1763)
+
 - La estadística bayesiana utiliza la interpretación subjetiva de probabilidad, que representa el juicio o grado de creencia del investigador.
 
 - Se trata de un mecanismo para modificar las valoraciones de probabilidad cuando se dispone de información adicional.
@@ -1164,6 +1174,10 @@ La probabilidad a posteriori queda expresada en función de las probabilidades a
 # Teorema de Bayes (Aplicación)
 
 Cuando un paciente se realiza una mamografía pueden ocurrir dos cosas: (i) el paciente tiene cáncer o (ii) el paciente no tiene cáncer. Si la mamografía arroja un resultado positivo, ¿cuál es la probabilidad de que efectivamente el paciente tenga cáncer?
+
+
+<div id="htmlwidget-329981138ccb2e61d63c" style="width:504px;height:216px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-329981138ccb2e61d63c">{"x":{"diagram":"digraph {\n  graph [layout = dot, rankdir = LR]\n  \n  node [shape = rectangle]        \n  rec1 [label = \"Paciente\"]\n  rec2 [label = \"Cancer\"]\n  rec3 [label =  \"No Cancer\"]\n  rec4 [label =  \"+\"]\n  rec5 [label =  \"-\"]\n  rec6 [label =  \"+\"]\n  rec7 [label =  \"-\"]\n  \n  # edge definitions with the node IDs\n  rec1 -> rec2 [label=\"1.7%\"];\n  rec1 -> rec3 [label=\"98.3%\"];\n  rec2 -> rec4 [label=\"78%\"];\n  rec2 -> rec5 [label=\"22%\"];\n  rec3 -> rec6 [label=\"10%\"];\n  rec3 -> rec7 [label=\"90%\"]\n  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 
 --
 
@@ -1191,6 +1205,9 @@ En lugar del `\(1,7\%\)` inicial, ahora hay que suponer
 
 --
 
+<div id="htmlwidget-bbd5054fd8d94e283261" style="width:504px;height:144px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-bbd5054fd8d94e283261">{"x":{"diagram":"digraph {\n  graph [layout = dot, rankdir = LR]\n  \n  node [shape = rectangle]        \n  rec1 [label = \"Paciente\"]\n  rec2 [label = \"Cancer\"]\n  rec3 [label =  \"No Cancer\"]\n  rec4 [label =  \"+\"]\n  rec5 [label =  \"-\"]\n  rec6 [label =  \"+\"]\n  rec7 [label =  \"-\"]\n  \n  # edge definitions with the node IDs\n  rec1 -> rec2 [label=\"11.89%\"];\n  rec1 -> rec3 [label=\"88.11%\"];\n  rec2 -> rec4 [label=\"78%\"];\n  rec2 -> rec5 [label=\"22%\"];\n  rec3 -> rec6 [label=\"10%\"];\n  rec3 -> rec7 [label=\"90%\"]\n  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+
 `\(P(Cancer/+)=\frac{0.78*0.1189}{0.1189*0.78+0.8811*0.10}=0.5128\)`
 
 ---
@@ -1211,8 +1228,8 @@ Bosqueje el árbol de probabilidades con la información brindada.
 
 --
 
-<div id="htmlwidget-a64d95d79538f2c5d897" style="width:504px;height:504px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-a64d95d79538f2c5d897">{"x":{"diagram":"digraph {\n  graph [layout = dot, rankdir = LR]\n  \n  node [shape = rectangle]        \n  rec1 [label = \"Estado\"]\n  rec2 [label = \"Susceptible\"]\n  rec3 [label =  \"Infectado\"]\n  rec4 [label =  \"Recuperado\"]\n  rec5 [label =  \"Positivo\"]\n  rec6 [label =  \"Negativo\"]\n  rec7 [label =  \"Positivo\"]\n  rec8 [label =  \"Negativo\"]\n  rec9 [label =  \"Positivo\"]\n  rec10 [label =  \"Negativo\"]\n  \n  # edge definitions with the node IDs\n  rec1 -> rec2 [label=\"60%\"];\n  rec1 -> rec3 [label=\"10%\"];\n  rec1 -> rec4 [label=\"30%\"];\n  rec2 -> rec5 [label=\"5%\"];\n  rec2 -> rec6 [label=\"95%\"];\n  rec3 -> rec7 [label=\"99%\"];\n  rec3 -> rec8 [label=\"1%\"];\n  rec4 -> rec9 [label=\"35%\"];\n  rec4 -> rec10 [label=\"65%\"]\n  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-ce3d07ff04b4e6915dd0" style="width:504px;height:504px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-ce3d07ff04b4e6915dd0">{"x":{"diagram":"digraph {\n  graph [layout = dot, rankdir = LR]\n  \n  node [shape = rectangle]        \n  rec1 [label = \"Estado\"]\n  rec2 [label = \"Susceptible\"]\n  rec3 [label =  \"Infectado\"]\n  rec4 [label =  \"Recuperado\"]\n  rec5 [label =  \"Positivo\"]\n  rec6 [label =  \"Negativo\"]\n  rec7 [label =  \"Positivo\"]\n  rec8 [label =  \"Negativo\"]\n  rec9 [label =  \"Positivo\"]\n  rec10 [label =  \"Negativo\"]\n  \n  # edge definitions with the node IDs\n  rec1 -> rec2 [label=\"60%\"];\n  rec1 -> rec3 [label=\"10%\"];\n  rec1 -> rec4 [label=\"30%\"];\n  rec2 -> rec5 [label=\"5%\"];\n  rec2 -> rec6 [label=\"95%\"];\n  rec3 -> rec7 [label=\"99%\"];\n  rec3 -> rec8 [label=\"1%\"];\n  rec4 -> rec9 [label=\"35%\"];\n  rec4 -> rec10 [label=\"65%\"]\n  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 
 ---
 
@@ -1221,6 +1238,9 @@ Bosqueje el árbol de probabilidades con la información brindada.
 Si al examinar a un individuo elegido al azar, el resultado es positivo, ¿cuál es la probabilidad de que efectivamente esté infectado? 
 
 --
+
+<div id="htmlwidget-9f93ecf94d934174a5bc" style="width:504px;height:216px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-9f93ecf94d934174a5bc">{"x":{"diagram":"digraph {\n  graph [layout = dot, rankdir = LR]\n  \n  node [shape = rectangle]        \n  rec1 [label = \"Estado\"]\n  rec2 [label = \"Susceptible\"]\n  rec3 [label =  \"Infectado\"]\n  rec4 [label =  \"Recuperado\"]\n  rec5 [label =  \"Positivo\"]\n  rec6 [label =  \"Negativo\"]\n  rec7 [label =  \"Positivo\"]\n  rec8 [label =  \"Negativo\"]\n  rec9 [label =  \"Positivo\"]\n  rec10 [label =  \"Negativo\"]\n  \n  # edge definitions with the node IDs\n  rec1 -> rec2 [label=\"60%\"];\n  rec1 -> rec3 [label=\"10%\"];\n  rec1 -> rec4 [label=\"30%\"];\n  rec2 -> rec5 [label=\"5%\"];\n  rec2 -> rec6 [label=\"95%\"];\n  rec3 -> rec7 [label=\"99%\"];\n  rec3 -> rec8 [label=\"1%\"];\n  rec4 -> rec9 [label=\"35%\"];\n  rec4 -> rec10 [label=\"65%\"]\n  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 
 `\(P(Infectado/+)=\frac{P(+/Inf)*P(Inf)}{P(+/Inf)*P(Inf)+P(+/Sus)*P(Sus)+P(+/Rec)*P(Rec)}\)`
 
@@ -1248,25 +1268,27 @@ Veamos con un simple ejemplo cómo funciona esto en la práctica.
 
 --
 
-- Al analizar la base de datos, encontramos ciertos patrones diferenciados entre los grupos `\(SPAM\)` y `\(\overline{SPAM}\)`. En particular, difieren en si tenemos agendado al remitente o no ( `\(RA\)` vs. `\(\overline{RA}\)`) y en la frecuencia de la frase "tarjeta de crédito" ( `\(TC\)` vs. `\(\overline{TC}\)`). Supongamos las siguientes probabilidades:
+- Al analizar la base de datos, encontramos ciertos patrones diferenciados entre los grupos `\(SPAM\)` y `\(\overline{SPAM}\)`. En particular, difieren en si el remitente es conocido o no ( `\(C\)` vs. `\(\overline{C}\)`) y en la frecuencia de la frase "tarjeta de crédito" ( `\(T\)` vs. `\(\overline{T}\)`). Supongamos las siguientes probabilidades:
 
 .pull-left[
+
 `\(SPAM\)`
 
-| | `\(RA\)` | `\(\overline{RA}\)` | |
+| | `\(C\)` | `\(\overline{C}\)` | |
 | :---: | :---: | :---: | :---: |
-| `\(TC\)` | `\(0.02\)` | `\(0.83\)` | `\(0.85\)` |
-| `\(\overline{TC}\)` | `\(0.03\)` | `\(0.12\)` | `\(0.15\)` |
+| `\(T\)` | `\(0.02\)` | `\(0.83\)` | `\(0.85\)` |
+| `\(\overline{T}\)` | `\(0.03\)` | `\(0.12\)` | `\(0.15\)` |
 |  | `\(0.05\)` | `\(0.95\)` | `\(1\)` |
 ]
 
 .pull-right[
+
 `\(\overline{SPAM}\)`
 
-| | `\(RA\)` | `\(\overline{RA}\)` | |
+| | `\(C\)` | `\(\overline{C}\)` | |
 | :---: | :---: | :---: | :---: |
-| `\(TC\)` | `\(0.09\)` | `\(0.01\)` | `\(0.10\)` |
-| `\(\overline{TC}\)` | `\(0.41\)` | `\(0.49\)` | `\(0.90\)` |
+| `\(T\)` | `\(0.09\)` | `\(0.01\)` | `\(0.10\)` |
+| `\(\overline{T}\)` | `\(0.41\)` | `\(0.49\)` | `\(0.90\)` |
 |  | `\(0.5\)` | `\(0.5\)` | `\(1\)` |
 ]
 
@@ -1274,6 +1296,13 @@ Veamos con un simple ejemplo cómo funciona esto en la práctica.
 
 # Teorema de Bayes (Aplicación)
 
+<div id="htmlwidget-db6aead6eabc9c461666" style="width:504px;height:504px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-db6aead6eabc9c461666">{"x":{"diagram":"digraph {\n  graph [layout = dot, rankdir = LR]\n  \n  node [shape = rectangle]        \n  rec1 [label = \"Correo\"]\n  rec2 [label = \"SPAM\"]\n  rec3 [label =  \"no SPAM\"]\n  rec4 [label =  \"T y C\"]\n  rec5 [label =  \"T y no C\"]\n  rec6 [label =  \"no T y C\"]\n  rec7 [label =  \"no T y no C\"]\n  rec8 [label =  \"T y C\"]\n  rec9 [label =  \"T y no C\"]\n  rec10 [label =  \"no T y C\"]\n  rec11 [label =  \"no T y no C\"]\n  \n  # edge definitions with the node IDs\n  rec1 -> rec2 [label=\"60%\"];\n  rec1 -> rec3 [label=\"40%\"];\n  rec2 -> rec4 [label=\"2%\"];\n  rec2 -> rec5 [label=\"83%\"];\n  rec2 -> rec6 [label=\"3%\"];\n  rec2 -> rec7 [label=\"12%\"];\n  rec3 -> rec8 [label=\"9%\"];\n  rec3 -> rec9 [label=\"1%\"];\n  rec3 -> rec10 [label=\"41%\"];\n  rec3 -> rec11 [label=\"49%\"]\n  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+
+---
+
+# Teorema de Bayes (Aplicación)
+
 - Llega un correo electrónico. A priori, sólo podemos decir que la probabilidad de que sea `\(SPAM\)` es 60%.
 
 --
@@ -1284,7 +1313,7 @@ Veamos con un simple ejemplo cómo funciona esto en la práctica.
 
 --
 
-`\(P(SPAM/(\overline{RA} \cap TC)=\)`
+`\(P(SPAM/(\overline{C} \cap T))=\)`
 
 ---
 
@@ -1296,7 +1325,7 @@ Veamos con un simple ejemplo cómo funciona esto en la práctica.
 
 - Con esta nueva información, procede a actualizar las probabilidades:
 
-`\(P(SPAM/(\overline{RA} \cap TC)=\frac{P((\overline{RA} \cap TC) / SPAM)*P(SPAM)}{P((\overline{RA} \cap TC) / SPAM)*P(SPAM)+P((\overline{RA} \cap TC) / \overline{SPAM})*P(\overline{SPAM})}\)`
+`\(P(SPAM/(\overline{C} \cap T))=\frac{P((\overline{C} \cap T) / SPAM)*P(SPAM)}{P((\overline{C} \cap T) / SPAM)*P(SPAM)+P((\overline{C} \cap T) / \overline{SPAM})*P(\overline{SPAM})}\)`
 
 ---
 
@@ -1308,9 +1337,9 @@ Veamos con un simple ejemplo cómo funciona esto en la práctica.
 
 - Con esta nueva información, procede a actualizar las probabilidades:
 
-`\(P(SPAM/(\overline{RA} \cap TC)=\frac{P((\overline{RA} \cap TC) / SPAM)*P(SPAM)}{P((\overline{RA} \cap TC) / SPAM)*P(SPAM)+P((\overline{RA} \cap TC) / \overline{SPAM})*P(\overline{SPAM})}\)`
+`\(P(SPAM/(\overline{C} \cap T))=\frac{P((\overline{C} \cap T) / SPAM)*P(SPAM)}{P((\overline{C} \cap T) / SPAM)*P(SPAM)+P((\overline{C} \cap T) / \overline{SPAM})*P(\overline{SPAM})}\)`
 
-`\(P(SPAM/(\overline{RA} \cap TC)=\frac{0.83*0.6}{0.83*0.6+0.01*0.4}=\frac{0.498}{0.502}=0.992\)`
+`\(P(SPAM/(\overline{C} \cap T))=\frac{0.83*0.6}{0.83*0.6+0.01*0.4}=\frac{0.498}{0.502}=0.992\)`
 
 El filtro está bastante seguro de que se trata de `\(SPAM\)`
 
