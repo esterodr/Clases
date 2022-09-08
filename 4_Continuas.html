@@ -3,7 +3,7 @@
   <head>
     <title>Distribuciones Continuas de Probabilidad</title>
     <meta charset="utf-8" />
-    <meta name="author" content="Esteban Rodriguez" />
+    <meta name="author" content="Esteban Rodríguez" />
     <script src="libs/header-attrs-2.14/header-attrs.js"></script>
     <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
     <link href="libs/remark-css-0.0.1/metropolis.css" rel="stylesheet" />
@@ -17,10 +17,10 @@ class: left, bottom, inverse, title-slide
 # Distribuciones Continuas de Probabilidad
 ]
 .author[
-### Esteban Rodriguez
+### Esteban Rodríguez
 ]
 .date[
-### Última Actualización: 2022-09-06
+### Última Actualización: 2022-09-07
 ]
 
 ---
@@ -222,6 +222,298 @@ Por lo tanto, el área total bajo la gráfica de `\(f(x)\)` sobre todos los valo
 La f.d.p. cumple con `\(f(x) \ge 0\)` para todo `\(x\)`, al igual que para las v.a. discretas.
 
 Notar que se habla de la probabilidad de que la v.a. continua `\(X\)` tome un valor entre `\(x_1\)` y `\(x_2\)` con `\(x_2&gt;x_1\)`. Por lo tanto **la probabilidad de que tome un valor específico es cero**, ya que el área de `\(f(x)\)` en un punto es cero.
+
+---
+
+# `\(F(x)\)` y `\(f(x)\)`
+
+- Si $f(x) es una **función de densidad de probabilidad** entonces:
+
+  + `\(f(x)\ge 0\)` para cualquier valor de `\(x\)`
+  
+  + `\(\int_{-\infty}^{\infty}f(x)dx=1 \qquad\)` equivale a `\(\sum_{i}p(x_i)=1\)` en discretas.
+
+--
+
+- Si `\(X\)` es cualquier v.a., la función de distribución acumulada de `\(X\)`, se escribe `\(F(x)=P(X&lt;x)=P(X\le x)\)`    
+
+  + `\(F(-\infty)= \displaystyle \lim_{x \to -\infty} F(x)=0\)`
+  
+  + `\(F(\infty)= \displaystyle \lim_{x \to \infty} F(x)=1\)`
+  
+  + `\(F(x)\)` es una función no decreciente de `\(x\)`. Si `\(x_1\)` y `\(x_2\)` son dos valores cualquiera tales que `\(x_1&lt;x_2\)`, entonces `\(F(x_1)\le F(x_2)\)`
+  
+---
+
+# `\(F(x)\)` y `\(f(x)\)`
+
+Si `\(F(x)\)` es la función de distribución de una v.a. continua `\(X\)`, entonces `\(f(x)\)` está dada por:
+
+`$$f(x)=\frac{dF(x)}{dx}=F'(x)$$`
+
+siempre y cuando exista la derivada.
+
+--
+
+De lo anterior se tiene que:
+
+`$$F(x)=P(X&lt;x)=\int_{-\infty}^xf(t)dt$$`
+
+Entonces:
+
+`$$P(x_1&lt;X&lt;x_2)=F(x_2)-F(x_1)=\int_{x_1}^{x_2}f(t)dt$$`
+
+---
+
+# Esperanza de una v.a. continua
+
+- El cálculo de la esperanza y varianza para v.a. continuas es análogo al de las v.as. discretas. Pero en el caso de v.as. continuas interviene el cálculo integral.
+
+- El valor esperado de una v.a. continua es 
+
+`$$E(X)=\int_{-\infty}^{\infty}xf(x)dx=\mu$$`
+--
+
+- Si `\(g(X)\)` es una función de `\(X\)`, entonces el valor esperado de la función `\(g(X)\)` está dado por:
+
+`$$E(g(X))=\int_{-\infty}^{\infty}g(x)f(x)dx$$`
+
+siempre que la integral exista.
+
+---
+
+# Varianza de una v.a. continua
+
+- Si definimos `\(g(X)=(X-\mu)^2\)`, entonces la varianza de `\(X\)` está dada por:
+
+`$$Var(X)=\sigma^2=\int_{-\infty}^{\infty}(x-\mu)^2f(x)dx$$`
+- También es válida la expresión alternativa:
+
+`$$Var(X)=\sigma^2=E(X^2)-\mu^2=\int_{-\infty}^{\infty}x^2f(x)dx \text{ } - \mu^2$$`
+
+Demostrar:
+
+---
+
+# Varianza de una v.a. continua
+
+`$$\sigma^2=\int_{-\infty}^{\infty}(x-\mu)^2f(x)dx=\int_{-\infty}^{\infty}x^2f(x)dx-2\mu\int_{-\infty}^{\infty}xf(x)dx+\mu^2\int_{-\infty}^{\infty}f(x)dx$$`
+
+--
+
+`$$\sigma^2=\int_{-\infty}^{\infty}x^2f(x)dx-2\mu*\mu+\mu^2*1$$`
+
+--
+
+`$$\sigma^2=\int_{-\infty}^{\infty}x^2f(x)dx-2\mu^2+\mu^2$$`
+
+--
+
+`$$\sigma^2=\int_{-\infty}^{\infty}x^2f(x)dx-\mu^2$$`
+
+---
+
+# Esperanza y Varianza v.a. uniforme
+
+Si `\(X\sim Unif(a,b)\)`, entonces la esperanza y varianza de `\(x\)` están dadas por:
+
+`$$E(X)=\frac{a+b}{2}=\mu \qquad \qquad Var(X)=\frac{(b-a)^2}{12}=\sigma^2$$`
+
+Demostración:
+
+---
+
+# Esperanza y Varianza v.a. uniforme
+
+
+`$$\mu=\int_{-\infty}^{\infty}xf(x)dx=\frac{1}{b-a}\int_{a}^{b}xdx$$`
+
+--
+
+$$\mu=\frac{1}{b-a} \left. \frac{x^2}{2} \right|_{a}^{b} $$
+
+--
+
+`$$\mu=\frac{1}{b-a} \frac{b^2-a^2}{2}$$`
+
+--
+
+`$$\mu=\frac{1}{b-a} \frac{(b-a)(b+a)}{2}=\frac{b+a}{2}$$`
+
+---
+
+# Esperanza y Varianza v.a. uniforme
+
+`$$\sigma^2=\int_{-\infty}^{\infty}x^2f(x)dx-\mu^2=\frac{1}{b-a}\int_{a}^{b}x^2dx-(\frac{b+a}{2})^2$$`
+
+--
+
+`$$\sigma^2=\frac{1}{b-a}\left. \frac{x^3}{3} \right|_{a}^{b}-\frac{(b+a)^2}{4}$$`
+
+--
+
+`$$\sigma^2=\frac{1}{3}\frac{b^3-a^3}{(b-a)}-\frac{(b+a)^2}{4}$$`
+
+--
+
+`$$\sigma^2=\frac{1}{3}\frac{\color{red}{(b^2+ab+a^2)(b-a)}}{(b-a)}-\frac{(b+a)^2}{4}$$`
+
+--
+
+`$$\sigma^2=\frac{(b+a)^2}{3}-\frac{(b+a)^2}{4}=\frac{4(b+a)^2-3(b+a)^2}{12}=\frac{(b+a)^2}{12}$$`
+
+---
+
+# Distribución Normal
+
+- La distribución **normal o Gaussiana** es la más importante y de mayor uso de las distribuciones continuas de probabilidad.
+
+- El nombre se debe a Gauss (1777-1855). Pero quien la descubrió fue De Moivre (1733). 
+
+- La gráfica de la función de densidad de probabilidad de la curva normal tiene:
+
+.pull-left[
+- Forma de campana
+
+- Es unimodal
+
+- Es simétrica alrededor de su media.
+]
+
+.pull-right[
+![](4_Continuas_files/figure-html/unnamed-chunk-10-1.png)&lt;!-- --&gt;
+]
+
+---
+
+# Distribución Normal
+
+- Formalmente, la f.d.p. de la curva normal está dada por:
+
+`$$f(x)=\frac{1}{\sigma\sqrt{2\pi}}e^{-\frac{1}{2}(\frac{x-\mu}{\sigma})^2} \qquad -\infty&lt;x&lt;\infty; \mu, \sigma \text{ constantes}$$`
+
+- Hay toda una familia de distribuciones normales. Las mismas se distinguen por su media `\(\mu\)` y su desvío `\(\sigma\)`
+
+- Una distribución normal queda perfectamente determinada si se conoce su media `\(\mu\)` y su varianza `\(\sigma^2\)`
+
+---
+
+# Distribución Normal
+
+- El punto más alto de la curva normal se corresponde con su **media**, que coincide con la **mediana** y la **moda**.
+
+- A mayor desvío estándar mayor variabilidad.
+
+- El área total bajo la curva campana es 1, ya que se trata de una función de probabilidad
+
+`$$\int_{-\infty}^{\infty}f(x)dx=\frac{1}{\sigma\sqrt{2\pi}}\int_{-\infty}^{\infty}e^{-\frac{1}{2}(\frac{x-\mu}{\sigma})^2}dx=1 \qquad -\infty&lt;x&lt;\infty; \mu, \sigma \text{ constantes}$$`
+---
+
+# Distribución Normal
+
+.center[
+![](4_Continuas_files/figure-html/unnamed-chunk-11-1.png)&lt;!-- --&gt;
+]
+
+---
+
+# Distribución Normal
+
+.center[
+![](4_Continuas_files/figure-html/unnamed-chunk-12-1.png)&lt;!-- --&gt;
+
+![](4_Continuas_files/figure-html/unnamed-chunk-13-1.png)&lt;!-- --&gt;
+]
+
+---
+
+# Distribución Normal
+
+.pull-left[
+
+`$$N(\mu=0,\sigma=1)$$`
+
+![](4_Continuas_files/figure-html/unnamed-chunk-14-1.png)&lt;!-- --&gt;
+]
+
+.pull-right[
+
+`$$N(\mu=19,\sigma=4)$$`
+
+![](4_Continuas_files/figure-html/unnamed-chunk-15-1.png)&lt;!-- --&gt;
+]
+
+.center[
+
+`$$\text{Graficando ambas en la misma escala:}$$`
+![](4_Continuas_files/figure-html/unnamed-chunk-16-1.png)&lt;!-- --&gt;
+
+]
+
+---
+
+# Distribución Normal
+
+- Muchas son las variables aleatorias que tienen un comportamiento bien aproximado por una distribución Normal
+
+  + Altura y peso de una población (Ver TP en R)
+  
+  + Los coeficientes IQ
+  
+  + Los errores de medición en experimentos científicos
+  
+  + Las precipitaciones
+  
+- Muchas distribuciones tienen a la distribución Normal. Ver, por ejemplo, este [video](https://www.youtube.com/shorts/8AD7b7_HNak) de la [Máquina de Galton](https://es.wikipedia.org/wiki/M%C3%A1quina_de_Galton).
+
+---
+
+# Distribución Normal
+
+**Ejemplo**. Sean E1 y E2 dos exámenes internacionales de inglés. Se sabe que las calificaciones de E1 se distribuyen aprox. según una distribución normal:
+
+`$$E1 \sim N(\mu=1500,\sigma=300) \qquad E2 \sim N(\mu=21,\sigma=5)$$`
+
+El alumno A sacó 1800 en el examen E1, mientras que B que sacó 25 cuando rindió E2. ¿A quién le fue mejor?
+
+--
+
+Recordemos el cálculo del **valor z** para conocer la ubicación relativa de un dato dentro de la muestra:
+
+`$$z_i=\frac{x_i-\mu}{\sigma}$$`
+
+El **valor z o valor estandarizado**, es el número de desviaciones estándar que un valor `\(x_i\)` en particular, se aparta de la media.
+
+Plantear gráficamente la situación y resolver.
+
+---
+
+# Distribución Normal
+
+.pull-left[
+`$$\color{red}{\text{Examen E1}}$$`
+`$$z_A=\frac{1800-1500}{300}=1$$`
+
+]
+
+.pull-right[
+
+![](4_Continuas_files/figure-html/unnamed-chunk-17-1.png)&lt;!-- --&gt;
+
+]
+
+.pull-left[
+
+`$$\color{red}{\text{Examen E2}}$$`
+
+`$$z_B=\frac{25-21}{5}=0.8$$`
+]
+
+.pull-right[
+![](4_Continuas_files/figure-html/unnamed-chunk-18-1.png)&lt;!-- --&gt;
+]
+
+Si una observación `\(x_i\)` tiene un valor z positivo (negativo), entonces `\(x_i\)` está por encima (debajo) de la media. Se dice que una observación `\(x_1\)` es más inusual que `\(x_2\)` si el valor z correspondiente a `\(x_1\)`, digamos `\(z_1\)` es mayor en valor absoluto que el valor z correspondiente a `\(x_2\)`, i.e. `\(|z_1|&gt;|z_2|\)`.
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
