@@ -20,7 +20,7 @@ class: left, bottom, inverse, title-slide
 ### Esteban Rodríguez
 ]
 .date[
-### Última Actualización: 2022-09-07
+### Última Actualización: 2022-09-08
 ]
 
 ---
@@ -514,6 +514,54 @@ Plantear gráficamente la situación y resolver.
 ]
 
 Si una observación `\(x_i\)` tiene un valor z positivo (negativo), entonces `\(x_i\)` está por encima (debajo) de la media. Se dice que una observación `\(x_1\)` es más inusual que `\(x_2\)` si el valor z correspondiente a `\(x_1\)`, digamos `\(z_1\)` es mayor en valor absoluto que el valor z correspondiente a `\(x_2\)`, i.e. `\(|z_1|&gt;|z_2|\)`.
+
+---
+
+# Distribución Normal
+
+**Ejemplo**. Las longitudes de cabezas de zarigüeyas siguen aproximadamente una distribución normal con media de 92 mm y desvío estándar 3.6 mm. Calcular los valores z para zarigüeyas con longitudes de cabeza de 97.4mm y 85.5 mm. ¿Cuál de las longitudes es más inusual?
+
+--
+
+`$$z_{97.4}=\frac{97.4-92}{3.6}=1.5 \qquad z_{85.5}=\frac{85.5-92}{3.6}=-1.81$$`
+
+Otra cabeza de zarigüeya arrojó un valor de 83.5 mm. ¿Considera que se trata de un valor anómalo?
+
+--
+
+`$$z_{83.5}=\frac{83.5-92}{3.6}=-2.36$$`
+
+---
+
+# Distribución Normal Estándar
+
+- Con relación  al problema de los exámenes internacionales, podríamos preguntarnos en que percentil se ubica el alumno A que obtuvo 1800 puntos?
+
+- Recordemos que los percentiles dan información de cómo se distribuyen los datos observados.
+
+- Los percentiles refieren al porcentaje de observaciones que **caen por debajo** de determinada observación. 
+
+- El percentil del alumno A, corresponde al porcentaje de alumnos que obtuvieron una nota menor o igual que A
+
+--
+
+- En el caso de la distribución Normal con **media cero y desvío estándar igual a 1**, los percentiles están tabulados, y es lo que se conoce como la **tabla de la Distribución Normal Estándar**.
+
+---
+
+# Distribución Normal Estándar
+
+- ¿Qué porcentajes de alumnos obtuvieron una nota menor o igual a 1800?
+
+.center[
+![](4_Continuas_files/figure-html/unnamed-chunk-19-1.png)&lt;!-- --&gt;
+]
+
+- La tabla normal de probabilidad muestra los valores z y sus correspondientes percentiles, para una variable `\(N(0,1)\)`.
+
+`$$\text{Si } X \sim N(\mu,\sigma) \text{, entonces transormando mediante } Z=\frac{X-\mu}{\sigma},$$`
+
+`$$\text{ tenemos que } Z\sim N(0,1)$$`
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
