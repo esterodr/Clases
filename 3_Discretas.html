@@ -20,7 +20,7 @@ class: left, bottom, inverse, title-slide
 ### Esteban Rodríguez
 ]
 .date[
-### Última Actualización: 2022-09-12
+### Última Actualización: 2022-09-13
 ]
 
 ---
@@ -813,14 +813,14 @@ Demostración:
 Volvamos al ejemplo de la máquina con desperfectos y los costos que éstos generan: `\(g(x)=1500*x\)`. Para calcular la varianza de estos costos, hay que calcular primero la varianza de `\(X\)`
 
 .center[
-| Cantidad de Desperfectos ( `\(x\)` ) | `\(p(x)\)` | `\(xp(x)\)` | `\(x-\mu_X\)` | `\((x-\mu_X)^2\)` |
-| :----------------------------: | :----: | :----: | :----: | :----: |
-| 0 | 0.10 | 0.00 | | |
-| 1 | 0.26 | 0.26 | | |
-| 2 | 0.42 | 0.84 | | |
-| 3 | 0.16 | 0.48 | | |
-| 4 | 0.06 | 0.24 | | |
-| | | `\(\mu_X=1.82\)` | | `\(\sigma_X^2=...\)`|
+| Cantidad de Desperfectos ( `\(x\)` ) | `\(p(x)\)` | `\(xp(x)\)` | `\(x-\mu_X\)` | `\((x-\mu_X)^2\)` | `\((x-\mu_X)^2p(x)\)` |
+| :----------------------------: | :----: | :----: | :----: | :----: | :----: |
+| 0 | 0.10 | 0.00 | | | |
+| 1 | 0.26 | 0.26 | | | |
+| 2 | 0.42 | 0.84 | | | |
+| 3 | 0.16 | 0.48 | | | |
+| 4 | 0.06 | 0.24 | | | |
+| | | `\(\mu_X=1.82\)` | | | `\(\sigma_X^2=...\)`|
 ]
 
 ---
@@ -830,14 +830,14 @@ Volvamos al ejemplo de la máquina con desperfectos y los costos que éstos gene
 Volvamos al ejemplo de la máquina con desperfectos y los costos que éstos generan: `\(g(x)=1500*x\)`. Para calcular la varianza de estos costos, hay que calcular primero la varianza de `\(X\)`
 
 .center[
-| Cantidad de Desperfectos ( `\(x\)` ) | `\(p(x)\)` | `\(xp(x)\)` | `\(x-\mu_X\)` | `\((x-\mu_X)^2\)` |
-| :----------------------------: | :----: | :----: | :----: | :----: |
-| 0 | 0.10 | 0.00 | -1.82 | |
-| 1 | 0.26 | 0.26 | -0.82 | |
-| 2 | 0.42 | 0.84 | 0.18 | |
-| 3 | 0.16 | 0.48 | 1.18 | |
-| 4 | 0.06 | 0.24 | 2.18 | |
-| | | `\(\mu_X=1.82\)` | | `\(\sigma_X^2=...\)`|
+| Cantidad de Desperfectos ( `\(x\)` ) | `\(p(x)\)` | `\(xp(x)\)` | `\(x-\mu_X\)` | `\((x-\mu_X)^2\)` | `\((x-\mu_X)^2p(x)\)` |
+| :----------------------------: | :----: | :----: | :----: | :----: | :----: |
+| 0 | 0.10 | 0.00 | -1.82 | | |
+| 1 | 0.26 | 0.26 | -0.82 | | |
+| 2 | 0.42 | 0.84 | 0.18 | | |
+| 3 | 0.16 | 0.48 | 1.18 | | |
+| 4 | 0.06 | 0.24 | 2.18 | | |
+| | | `\(\mu_X=1.82\)` | | | `\(\sigma_X^2=...\)`|
 ]
 
 ---
@@ -847,21 +847,39 @@ Volvamos al ejemplo de la máquina con desperfectos y los costos que éstos gene
 Volvamos al ejemplo de la máquina con desperfectos y los costos que éstos generan: `\(g(X)=1500*x\)`. Para calcular la varianza de estos costos, hay que calcular primero la varianza de `\(X\)`
 
 .center[
-| Cantidad de Desperfectos ( `\(x\)` ) | `\(p(x)\)` | `\(xp(x)\)` | `\(x-\mu_X\)` | `\((x-\mu_X)^2\)` |
-| :----------------------------: | :----: | :----: | :----: | :----: |
-| 0 | 0.10 | 0.00 | -1.82 | 3.3124 |
-| 1 | 0.26 | 0.26 | -0.82 | 0.6724 |
-| 2 | 0.42 | 0.84 | 0.18 | 0.0324 |
-| 3 | 0.16 | 0.48 | 1.18 | 1.3924 |
-| 4 | 0.06 | 0.24 | 2.18 | 4.7524 |
-| | | `\(\mu_X=1.82\)` | | `\(\sigma_X^2=10.162\)`|
+| Cantidad de Desperfectos ( `\(x\)` ) | `\(p(x)\)` | `\(xp(x)\)` | `\(x-\mu_X\)` | `\((x-\mu_X)^2\)` | `\((x-\mu_X)^2p(x)\)` |
+| :----------------------------: | :----: | :----: | :----: | :----: | :----: |
+| 0 | 0.10 | 0.00 | -1.82 | 3.3124 | |
+| 1 | 0.26 | 0.26 | -0.82 | 0.6724 | |
+| 2 | 0.42 | 0.84 | 0.18 | 0.0324 | |
+| 3 | 0.16 | 0.48 | 1.18 | 1.3924 | |
+| 4 | 0.06 | 0.24 | 2.18 | 4.7524 | |
+| | | `\(\mu_X=1.82\)` | | | `\(\sigma_X^2=...\)`|
+]
+
+
+---
+
+# `\(\mu\)` y `\(\sigma^2\)` de una función lineal
+
+Volvamos al ejemplo de la máquina con desperfectos y los costos que éstos generan: `\(g(X)=1500*x\)`. Para calcular la varianza de estos costos, hay que calcular primero la varianza de `\(X\)`
+
+.center[
+| Cantidad de Desperfectos ( `\(x\)` ) | `\(p(x)\)` | `\(xp(x)\)` | `\(x-\mu_X\)` | `\((x-\mu_X)^2\)` | `\((x-\mu_X)^2p(x)\)` |
+| :----------------------------: | :----: | :----: | :----: | :----: | :----: |
+| 0 | 0.10 | 0.00 | -1.82 | 3.3124 | 0.33124 |
+| 1 | 0.26 | 0.26 | -0.82 | 0.6724 | 0.174824 |
+| 2 | 0.42 | 0.84 | 0.18 | 0.0324 | 0.013608 |
+| 3 | 0.16 | 0.48 | 1.18 | 1.3924 | 0.222784 |
+| 4 | 0.06 | 0.24 | 2.18 | 4.7524 | 0.285144 |
+| | | `\(\mu_X=1.82\)` | | | `\(\sigma_X^2=1.0276\)`|
 ]
 
 --
 
-Entonces, `\(Var(g(X))=1500^2*\sigma_X^2=2250000*10.162=22864500\)`
+Entonces, `\(Var(g(X))=1500^2*\sigma_X^2=2250000*1.0276=2312100\)`
 
-`\(\sigma_{g(X)}=\sqrt{22864500}=4781.684\)`
+`\(\sigma_{g(X)}=\sqrt{2312100}=1520.559\)`
 
 ---
 
@@ -1029,7 +1047,7 @@ Sea `\(X\)` una v.a. que representa el número de éxitos en n ensayos de Bernou
 
 --
 
-`\(P(X \ge 1)=1-P(X=0)=1-{10 \choose 0}*0.10^0*0.90^{10}=0.90^{10}=0.3486784\)`
+`\(P(X \ge 1)=1-P(X=0)=1-{10 \choose 0}*0.10^0*0.90^{10}=1-0.90^{10}=0.65\)`
 
 ---
 
