@@ -20,7 +20,7 @@ class: left, bottom, inverse, title-slide
 ### Esteban Rodríguez
 ]
 .date[
-### Última Actualización: 2022-09-08
+### Última Actualización: 2022-09-14
 ]
 
 ---
@@ -562,6 +562,89 @@ Otra cabeza de zarigüeya arrojó un valor de 83.5 mm. ¿Considera que se trata 
 `$$\text{Si } X \sim N(\mu,\sigma) \text{, entonces transormando mediante } Z=\frac{X-\mu}{\sigma},$$`
 
 `$$\text{ tenemos que } Z\sim N(0,1)$$`
+
+---
+
+# Distribución Normal Estándar
+
+`$$P(X&lt;1800)=P(\frac{x-\mu}{\sigma}&lt;\frac{1800-1500}{300})=P(Z&lt;1)=0.8413$$`
+
+.center[
+![](Imagenes/tablanormal.jpg)
+]
+
+---
+
+# Distribución Normal Estándar
+
+¿Determinar la proporción de examinados que obtuvieron mejor nota que A?
+
+.center[
+![](4_Continuas_files/figure-html/unnamed-chunk-20-1.png)&lt;!-- --&gt;
+]
+
+`$$P(X&gt;1800)=P(\frac{x-\mu}{\sigma}&gt;\frac{1800-1500}{300})=P(Z&gt;1)=$$`
+
+`$$=1-P(Z&lt;1)=1-0.8413=0.1587$$`
+
+---
+
+# Distribución Normal Estándar
+
+¿Cuál es la probabilidad de que otro alumno, digamos C, obtenga por lo menos 1650 puntos?
+
+
+.center[
+![](4_Continuas_files/figure-html/unnamed-chunk-21-1.png)&lt;!-- --&gt;
+]
+
+`$$P(X&gt;1650)=P(Z&gt;\frac{1650-1500}{300})=P(Z&gt;0.5)=$$`
+
+---
+
+# Distribución Normal Estándar
+
+¿Cuál es la máxima calificación alcanzada para el percentil 90 de los examinados según E1?
+
+.center[
+![](Imagenes/tablanormal3.jpg)
+]
+
+.pull-left[
+`$$P(Z&lt;1.28)=0.8997 \approx0.90 \implies$$`
+
+`$$\frac{x_{p90}-1500}{300}\approx1.28 \implies$$`
+
+`$$x_{p90}=1.28*300+1500=1884$$`
+]
+
+
+.pull-right[
+![](4_Continuas_files/figure-html/unnamed-chunk-22-1.png)&lt;!-- --&gt;
+]
+
+---
+
+# Distribución Normal Estándar
+
+Otro alumno, obtuvo la calificación de 1400 puntos. ¿En que percentil se encuentra?
+
+`$$P(X&lt;1400)=P(Z&lt;\frac{1400-1500}{300})=P(Z&lt;-0.33)=$$`
+
+.pull-left[
+![](4_Continuas_files/figure-html/unnamed-chunk-23-1.png)&lt;!-- --&gt;
+]
+
+.pull-right[
+![](4_Continuas_files/figure-html/unnamed-chunk-24-1.png)&lt;!-- --&gt;
+]
+
+.center[
+![](Imagenes/tablanormal4.jpg)
+]
+
+`$$=P(Z&gt;0.33)=1-P(Z&lt;0.33)=1-0.6293=0.3707$$`
+
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
