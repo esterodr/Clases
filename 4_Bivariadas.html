@@ -20,7 +20,7 @@ class: left, bottom, inverse, title-slide
 ### Esteban Rodriguez
 ]
 .date[
-### Última Actualización: 2022-08-12
+### Última Actualización: 2022-09-14
 ]
 
 ---
@@ -161,7 +161,7 @@ La esperanza y varianza de una función `\(g(X,Y)\)` se definen como:
 
 `$$E(g(X,Y))=\mu_{g(X,Y)}=\sum_x\sum_yg(x,y)*p(x,y)$$`
 
-`$$Var(g(X,Y))=E((g(X,Y)-\mu_{g(X,Y)})^2)=\sum_x\sum_y(g(X,Y)-\mu_{g(X,Y)})^2*p(x,y)$$`
+`$$Var(g(X,Y))=E((g(X,Y)-\mu_{g(X,Y)})^2)=\sum_x\sum_y(g(x,y)-\mu_{g(X,Y)})^2*p(x,y)$$`
 
 --
 
@@ -177,7 +177,7 @@ Sean `\(X\)` e `\(Y\)` variables aleatorias discretas con distribución de proba
 
 --
 
-`\(E(W)=\sum_x\sum_y(a*X+b*Y)*p(x,y)\)`
+`\(E(W)=\sum_x\sum_y(a*x+b*y)*p(x,y)\)`
 
 ---
 
@@ -185,7 +185,7 @@ Sean `\(X\)` e `\(Y\)` variables aleatorias discretas con distribución de proba
 
 Sean `\(X\)` e `\(Y\)` variables aleatorias discretas con distribución de probabilidad conjunta `\(p(x,y)\)`, y la función `\(W=g(X,Y)=a*X+b*Y\)`. ¿Cuál es la `\(E(W)\)`?
 
-`\(E(W)=\sum_x\sum_y(a*X+b*Y)*p(x,y)=a\sum_x\sum_yx*p(x,y)+b\sum_x\sum_yy*p(x,y)\)`
+`\(E(W)=\sum_x\sum_y(a*x+b*y)*p(x,y)=a\sum_x\sum_yx*p(x,y)+b\sum_x\sum_yy*p(x,y)\)`
 
 ---
 
@@ -193,7 +193,7 @@ Sean `\(X\)` e `\(Y\)` variables aleatorias discretas con distribución de proba
 
 Sean `\(X\)` e `\(Y\)` variables aleatorias discretas con distribución de probabilidad conjunta `\(p(x,y)\)`, y la función `\(W=g(X,Y)=a*X+b*Y\)`. ¿Cuál es la `\(E(W)\)`?
 
-`\(E(W)=\sum_x\sum_y(a*X+b*Y)*p(x,y)=a\sum_x\sum_yx*p(x,y)+b\sum_x\sum_yy*p(x,y)=\)`
+`\(E(W)=\sum_x\sum_y(a*x+b*y)*p(x,y)=a\sum_x\sum_yx*p(x,y)+b\sum_x\sum_yy*p(x,y)=\)`
 
 `\(=a\sum_xx\sum_yp(x,y)+b\sum_yy\sum_xp(x,y)\)`
 
@@ -203,7 +203,7 @@ Sean `\(X\)` e `\(Y\)` variables aleatorias discretas con distribución de proba
 
 Sean `\(X\)` e `\(Y\)` variables aleatorias discretas con distribución de probabilidad conjunta `\(p(x,y)\)`, y la función `\(W=g(X,Y)=a*X+b*Y\)`. ¿Cuál es la `\(E(W)\)`?
 
-`\(E(W)=\sum_x\sum_y(a*X+b*Y)*p(x,y)=a\sum_x\sum_yx*p(x,y)+b\sum_x\sum_yy*p(x,y)=\)`
+`\(E(W)=\sum_x\sum_y(a*x+b*y)*p(x,y)=a\sum_x\sum_yx*p(x,y)+b\sum_x\sum_yy*p(x,y)=\)`
 
 `\(=a\sum_xx\sum_yp(x,y)+b\sum_yy\sum_xp(x,y)=a\sum_xx*p(x)+b\sum_yy*p(y)\)`
 
@@ -213,7 +213,7 @@ Sean `\(X\)` e `\(Y\)` variables aleatorias discretas con distribución de proba
 
 Sean `\(X\)` e `\(Y\)` variables aleatorias discretas con distribución de probabilidad conjunta `\(p(x,y)\)`, y la función `\(W=g(X,Y)=a*X+b*Y\)`. ¿Cuál es la `\(E(W)\)`?
 
-`\(E(W)=\sum_x\sum_y(a*X+b*Y)*p(x,y)=a\sum_x\sum_yx*p(x,y)+b\sum_x\sum_yy*p(x,y)=\)`
+`\(E(W)=\sum_x\sum_y(a*x+b*y)*p(x,y)=a\sum_x\sum_yx*p(x,y)+b\sum_x\sum_yy*p(x,y)=\)`
 
 `\(=a\sum_xx\sum_yp(x,y)+b\sum_yy\sum_xp(x,y)=a\sum_xx*p(x)+b\sum_yy*p(y)=\)`
 
@@ -231,7 +231,7 @@ Sean `\(X\)` e `\(Y\)` variables aleatorias discretas con distribución de proba
 
 --
 
-`\(Var(W)=\sum_x\sum_y(W-\mu_W)^2*p(x,y)\)`
+`\(Var(W)=\sum_x\sum_y(w-\mu_W)^2*p(x,y)\)`
 
 ---
 
@@ -239,7 +239,7 @@ Sean `\(X\)` e `\(Y\)` variables aleatorias discretas con distribución de proba
 
 Sean `\(X\)` e `\(Y\)` variables aleatorias discretas con distribución de probabilidad conjunta `\(p(x,y)\)`, y la función `\(W=g(X,Y)=a*X+b*Y\)`. ¿Cuál es la `\(\sigma_W^2(W)\)`?
 
-`\(Var(W)=\sum_x\sum_y(W-\mu_W)^2*p(x,y)=\)`
+`\(Var(W)=\sum_x\sum_y(w-\mu_W)^2*p(x,y)=\)`
 
 `\(=\sum_x\sum_y((a*x+b*y)-(a*\mu_X+b*\mu_Y))^2*p(x,y)\)`
 
@@ -249,7 +249,7 @@ Sean `\(X\)` e `\(Y\)` variables aleatorias discretas con distribución de proba
 
 Sean `\(X\)` e `\(Y\)` variables aleatorias discretas con distribución de probabilidad conjunta `\(p(x,y)\)`, y la función `\(W=g(X,Y)=a*X+b*Y\)`. ¿Cuál es la `\(\sigma_W^2(W)\)`?
 
-`\(Var(W)=\sum_x\sum_y(W-\mu_W)^2*p(x,y)=\)`
+`\(Var(W)=\sum_x\sum_y(w-\mu_W)^2*p(x,y)=\)`
 
 `\(=\sum_x\sum_y((a*x+b*y)-(a*\mu_X+b*\mu_Y))^2*p(x,y)=\)`
 
