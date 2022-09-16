@@ -20,7 +20,7 @@ class: left, bottom, inverse, title-slide
 ### Esteban Rodríguez
 ]
 .date[
-### Última Actualización: 2022-09-15
+### Última Actualización: 2022-09-16
 ]
 
 ---
@@ -791,6 +791,115 @@ Molinos Río de la Plata lleva a cabo un control de calidad en su línea embotel
 - Al usar la aproximación de la normal a la binomial, se utilizan como parámetros de la distribución normal:
 
 `$$\mu=n*p \qquad y \qquad \sigma=\sqrt{n*p*(1-p)}$$`
+
+---
+
+# Aproximación de la Binomial
+
+**Ejemplo**. Aproximadamente el 20% de la población en USA fuma cigarrillos. Una comunidad local cree que la tasa de fumadores dentro de esta comunidad es menor para lo cual decide realizar una encuesta. Se toma una muestra al azar de 400 individuos. La encuesta encuentra sólo 59 individuos entre los 400 encuestados. Suponiendo que la verdadera probabilidad de fumadores en la comunidad fuese 20%, cual es la probabilidad de observar 59 o menos en la muestra de 400?
+
+--
+
+En principio, `\(X \sim Bi(n=400,p=0.20)\)` y nos preguntan por `\(P(X\le 59)\)`
+
+--
+
+Si se nos dificulta realizar el cálculo, podemos aproximar con:
+
+`$$Y\sim N(\mu=400*0.20=80,\sigma=\sqrt{400*.20*.80}=8)$$`
+
+Y calculamos:
+
+`$$P(Y\le 59)=P(Z \le \frac{59-80}{8})=P(Z\le-2.63)=$$`
+
+`$$=P(Z \ge 2.63)=1-P(Z&lt;2.63)=1-0.9957=0.0043$$`
+
+Como referencia, el cálculo exacto con la Binomial es `\(P(X\le 59)=0.0041\)`
+
+---
+
+# Factor de corrección por continuidad
+
+- El desempeño de la aproximación normal a la binomial puede ser **muy pobre si estamos trabajando en un rango de valores pequeño**, aún cuando las condiciones se cumplan.
+
+--
+
+- Supongamos que queremos saber `\(P(X=69)\)` en la muestra de 400 con p=0.20
+
+  + Si intentamos aproximar con una distribución normal, **la probabilidad puntual es 0**.
+  
+--
+
+- Si queremos calcular `\(P(69 \le X \le 71)\)`, la aproximación va a ser muy pobre:
+
+  + `\(P(69 \le Y \le 71)=P(-1.38 \le Z \le -1.13)=\)`
+  
+  `\((1-P(Z&lt;1.13))-(1-P(Z&lt;1.38))=0.1292-0.0838=0.0454\)`
+  
+  + El resultado exacto es: `\(0.07034\)`
+  
+---
+
+# Factor de corrección por continuidad
+
+- La aproximación mejora restando 0.5 al valor inferior y sumado 0.5 al valor superior:
+
+- Supongamos que queremos saber `\(P(X=69)\)` en la muestra de 400 con p=0.20
+
+  + Con la distribución normal calculamos `\(P(68.5 \le Y \le 69.5)=P(-1.44 \le Z \le -1.31)=\)`
+  
+  `\(=(1-P(Z&lt;1.31))-(1-P(Z&lt;1.44))=0.0951-0.0749=0.0202\)`
+  
+  + El valor exacto es `\(0.0198\)`
+
+--
+
+- Si queremos calcular `\(P(69 \le X \le 71)\)`, calculamos:
+
+  + `\(P(68.5 \le Y \le 71.5)=P(-1.44 \le Z \le -1.06)=\)`
+  
+  `\((1-P(Z&lt;1.06))-(1-P(Z&lt;1.44))=0.1446-0.0749=0.0697\)`
+  
+  + El resultado exacto es: `\(0.07034\)`
+
+---
+
+# Factor de corrección por continuidad
+
+.center[
+![](4_Continuas_files/figure-html/unnamed-chunk-32-1.png)&lt;!-- --&gt;
+
+]
+
+La probabilidad exacta (Binomial) es la altura de las líneas. Equivale al área de un réctangulo con esa altura y ancho 1. Esto aproxima bastante bien el área bajo la curva normal en un intervalo de ancho 1.
+
+---
+
+# Factor de corrección por continuidad
+
+`\(X\sim Bi(n,p) \implies Y\sim N(\mu=np, \sigma = \sqrt{n*p*(1-p)}\)`
+
+`\(P(X=k) \approx P(k-0.5 \le Y \le k+0.5)\)`
+
+`\(P(X\le k) \approx P(Y \le k+0.5)\)`
+
+`\(P(X&lt; k) \approx P(Y &lt; k-0.5)\)`
+
+`\(P(X \ge k) \approx P(Y \ge k-0.5)\)`
+
+`\(P(X &gt; k) \approx P(Y &gt; k+0.5)\)`
+
+`\(P(a \le X \le b) \approx P(a-0.5 \le Y \le b+0.5)\)`
+
+---
+
+# Factor de corrección por continuidad
+
+**Ejemplo.** Supongamos que una organización política planea llevar a cabo una encuesta para detectar la preferencia de los votantes respecto a los candidatos A y B, quienes ocuparan una intendencia. Supongamos que se toma una muestra de 1000 ciudadanos. ¿Cuál es la probabilidad de que entre 525 y 530 votantes indiquen una preferencia por el candidato A, si la población , con respecto a los candidatos se encuentra igualmente divida?
+
+- Defina la variable de interés. Describa su distribución y chequear que se cumplan las condiciones de la distribución.
+
+- Calcule la probabilidad binomial y compruebe la mejora que introduce el factor de corrección por continuidad.
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
