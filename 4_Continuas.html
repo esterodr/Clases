@@ -20,7 +20,7 @@ class: left, bottom, inverse, title-slide
 ### Esteban Rodríguez
 ]
 .date[
-### Última Actualización: 2022-09-14
+### Última Actualización: 2022-09-15
 ]
 
 ---
@@ -645,6 +645,152 @@ Otro alumno, obtuvo la calificación de 1400 puntos. ¿En que percentil se encue
 
 `$$=P(Z&gt;0.33)=1-P(Z&lt;0.33)=1-0.6293=0.3707$$`
 
+---
+
+# Distribución Normal Estándar
+
+Supongamos que Ud. rindió el examen E1 y tuvo la grata noticia de que está dentro del “5% mejor rankeado” de la distribución de los examinados con E1. ¿Cuál es la mínima nota que pudo haber obtenido?
+
+&lt;img src="Imagenes/tablanormal5.jpg" style="display: block; margin: auto;" /&gt;
+
+
+.pull-left[
+`$$P(Z&lt;1.645)\approx0.95 \implies$$`
+
+`$$\frac{x_{p95}-1500}{300}\approx1.645 \implies$$`
+
+`$$x_{p95}=1.645*300+1500=1993.5$$`
+]
+
+
+.pull-right[
+![](4_Continuas_files/figure-html/unnamed-chunk-26-1.png)&lt;!-- --&gt;
+
+![](4_Continuas_files/figure-html/unnamed-chunk-27-1.png)&lt;!-- --&gt;
+]
+
+---
+
+# Distribución Normal Estándar
+
+- Consejo: **Siempre, siempre, siempre**, dibujen primero la distribución normal y traduzcan el problema sobre la gráfica, sombreando el área de interés. Una vez entendido, buscar en la tabla normal.
+
+- No todas las tablas de probabilidad representan el mismo área. Por lo general, muestran el área hacia la izquierda, pero no siempre es el caso. Estar atentos cual es el área que se está graficando. **Aprendan a usar la tabla que usan**.
+
+---
+
+# Regla Empírica
+
+- El teorema de Chebyshev brinda una cota para cualquier tipo de distribución.
+
+- Para la distribución Normal, existe otra regla empírica ampliamente usada: la de 1 desvío, 2 desvíos o 3 desvíos o simplemente la del 68%, 95% y 99.7%
+
+.center[
+![](Imagenes/normal_reglaempirica.jpg)
+]
+
+---
+
+# Regla Empírica
+
+- Ojo que **esta regla es una aproximación**, no es 100% exacta.
+
+`$$P(\mu-\sigma&lt;X&lt;\mu+\sigma)=P(-1&lt;Z&lt;1)=P(Z&lt;1)-P(Z&lt;-1)=$$`
+
+`$$=0.8413-(1-0.8413)=\color{red}{0.6826}$$`
+
+&lt;br/&gt;
+
+`$$P(\mu-2\sigma&lt;X&lt;\mu+2\sigma)=P(-2&lt;Z&lt;2)=P(Z&lt;2)-P(Z&lt;-2)=$$`
+
+`$$=0.9772-(1-0.9772)=\color{red}{0.9544}$$`
+
+&lt;br/&gt;
+
+`$$P(\mu-3\sigma&lt;X&lt;\mu+3\sigma)=P(-3&lt;Z&lt;3)=P(Z&lt;3)-P(Z&lt;-3)=$$`
+
+`$$=0.9987-(1-0.9987)=\color{red}{0.9974}$$`
+
+- Una observación normal puede caer a más de 3 desvíos, pero la probabilidad de ocurrencia en muy, muy pequeña (estar a más de 4 es 1 en 30.000)
+
+---
+
+# Ejercicio
+
+Molinos Río de la Plata lleva a cabo un control de calidad en su línea embotelladora de aceite. Se supone que el llenado de las botellas pet sigue una distribución `\(N(\mu=1000,\sigma=30)\)`. Cada 30 minutos una botella es seleccionada de la línea de producción y su contenido es medido de manera precisa. Si la cantidad de aceite está por debajo de 950 ml o por encima 1050ml, la botella es descartada ya que no pasa el control de calidad. ¿Qué porcentajes de botellas tienen menos de 950 ml?
+
+--
+
+.pull-left[
+`$$P(X&lt;950)=P(Z&lt;\frac{950-1000}{30})=$$`
+
+`$$=P(Z&lt;-1.67)=P(Z&gt;1.67)=$$`
+
+`$$=1-P(Z&lt;1.67)=1-0.9525=0.0475$$`
+]
+
+
+.pull-right[
+![](4_Continuas_files/figure-html/unnamed-chunk-28-1.png)&lt;!-- --&gt;
+
+![](4_Continuas_files/figure-html/unnamed-chunk-29-1.png)&lt;!-- --&gt;
+]
+
+---
+
+# Ejercicio
+
+Molinos Río de la Plata lleva a cabo un control de calidad en su línea embotelladora de aceite. Se supone que el llenado de las botellas pet sigue una distribución `\(N(\mu=1000,\sigma=30)\)`. Cada 30 minutos una botella es seleccionada de la línea de producción y su contenido es medido de manera precisa. Si la cantidad de aceite está por debajo de 950 ml o por encima 1050ml, la botella es descartada ya que no pasa el control de calidad. **¿Qué porcentajes de botellas pasan el control de calidad?**
+
+--
+
+`$$P(950&lt;X&lt;1050)=P(\frac{950-1000}{30}&lt;Z&lt;\frac{1050-1000}{30})=$$`
+
+`$$=P(-1.67&lt;Z&lt;1.67)=P(Z&lt;1.67)-P(Z&lt;-1.67)=$$`
+
+`$$=0.9525-(1-0.9525)=0.905$$`
+
+.center[
+![](4_Continuas_files/figure-html/unnamed-chunk-30-1.png)&lt;!-- --&gt;
+]
+
+---
+
+# Ejercicio
+
+¿Cuál de las siguientes afirmaciones es falsa?
+
+- La mayoría de los valores z de una distribución sesgada hacia la derecha son negativos.
+
+- En una distribución asimétrica el valor z de la media podría ser diferente de cero.
+
+- En una distribución normal el RIC es menor a dos veces el desvío estándar.
+
+- Los valores z son útiles para determinar cuan extrema es una observación comparada con el resto de la distribución.
+
+---
+
+# Aproximación de la Binomial
+
+- Sea `\(X \sim Bi(n,p)\)`. ¿Qué ocurre si `\(n\)` es grande? El cálculo numérico se complica bastante. Notar que las tablas binomiales están tabuladas hasta valores n=20.
+
+- El uso de una distribución continua como la **normal para aproximar a la distribución binomial** (bajo determinados supuestos) parece bastante razonable (ver gráfico siguientes). Notar que **la aproximación es buena cuando n crece**.
+
+&lt;img src="Imagenes/normal_binomial.jpg" style="display: block; margin: auto;" /&gt;
+
+---
+
+# Aproximación de la Binomial
+
+- ¿Cuan grande debe ser `\(n\)` para que se pueda aproximar la binomial con la distribución normal?
+
+  + Se suele utilizar el siguiente criterio para garantizar cierta simetría:
+  
+  `$$n*p \ge 10 \qquad y \qquad n*(1-p)\ge 10$$`
+
+- Al usar la aproximación de la normal a la binomial, se utilizan como parámetros de la distribución normal:
+
+`$$\mu=n*p \qquad y \qquad \sigma=\sqrt{n*p*(1-p)}$$`
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
