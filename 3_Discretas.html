@@ -20,7 +20,7 @@ class: left, bottom, inverse, title-slide
 ### Esteban Rodríguez
 ]
 .date[
-### Última Actualización: 2022-09-16
+### Última Actualización: 2022-09-18
 ]
 
 ---
@@ -1499,7 +1499,9 @@ De acuerdo a la estimación de los autores para estos parámetros, la probabilid
 
 Un ejemplo (sólo para expertos) lo encontramos en el [paper original de Bitcoin](https://bitcoin.org/bitcoin.pdf), firmado por [Satoshi Nakamoto](https://es.wikipedia.org/wiki/Satoshi_Nakamoto).
 
-Allí se utiliza la distribución de Poisson para demostrar que es prácticamente imposible que un hacker consiga alterar las transacciones almacenadas en la blockchain.
+Allí se sugiere que los bloques de la blockchain se emiten siguiendo una distribución de Poisson con un valor de `\(\lambda\)` tal que, en promedio, se adhiere un bloque nuevo a la cadena cada 10 minutos. [Link1](https://minerdaily.com/2022/bitcoins-poisson-paradox/), [Link2](https://arxiv.org/pdf/1801.07447.pdf), [Link3](https://www.tandfonline.com/doi/abs/10.1080/15326349.2020.1786404?cookieSet=1)
+
+En el paper también se utiliza la distribución de Poisson para demostrar que es prácticamente imposible que un hacker consiga alterar las transacciones almacenadas en la blockchain.
 
 .center[
 ![](Imagenes/Bitcoin_poisson.jpg)
