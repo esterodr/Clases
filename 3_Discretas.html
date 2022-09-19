@@ -20,7 +20,7 @@ class: left, bottom, inverse, title-slide
 ### Esteban Rodríguez
 ]
 .date[
-### Última Actualización: 2022-09-18
+### Última Actualización: 2022-09-19
 ]
 
 ---
@@ -1307,14 +1307,148 @@ Se dice que `\(X\)` sigue una distribución de Poisson con parámetro `\(\lambda
 `$$k=0,1,2,3...$$`
 
 `$$\lambda&gt;0$$`
+--
 
-El parámetro `\(\lambda\)` de la distribución de Poisson, representa el **número promedio de ocurrencias** del evento aleatorio que se observa por unidad de tiempo/espacio/etc.
+Recordando el **Polinomio de Taylor:** `\(e^x=1+\frac{x}{1!}+\frac{x^2}{2!}+...=\sum_{k=0}^{\infty}\frac{x^k}{k!}\)`
 
-A diferencia de la binomial, en la v.a. de Poisson, el número de ocurrencias **no tiene límite superior**, aunque las probabilidades se hacen muy pequeñas después de los primeros “éxitos”.
+Entonces:
+
+`$$\sum_{k=0}^{\infty}P(X=k)=\sum_{k=0}^{\infty}\frac{e^{-\lambda}\lambda^k}{k!}=e^{-\lambda}\sum_{k=0}^{\infty}\frac{\lambda^k}{k!}=e^{-\lambda}e^{\lambda}=1$$`
+
 
 ---
 
 # Distribución de Poisson
+
+El parámetro `\(\lambda\)` de la distribución de Poisson, representa el **número promedio de ocurrencias** del evento aleatorio que se observa por unidad de tiempo/espacio/etc. A diferencia de la binomial, en la v.a. de Poisson, el número de ocurrencias **no tiene límite superior**, aunque las probabilidades se hacen muy pequeñas después de los primeros “éxitos”.
+
+--
+
+`\(E(X)=\mu_X=\sum_{k=0}^{\infty}kP(X=k)=\sum_{k=0}^{\infty}k\frac{e^{-\lambda}\lambda^k}{k!}\)`
+
+---
+
+# Distribución de Poisson
+
+El parámetro `\(\lambda\)` de la distribución de Poisson, representa el **número promedio de ocurrencias** del evento aleatorio que se observa por unidad de tiempo/espacio/etc. A diferencia de la binomial, en la v.a. de Poisson, el número de ocurrencias **no tiene límite superior**, aunque las probabilidades se hacen muy pequeñas después de los primeros “éxitos”.
+
+`\(E(X)=\mu_X=\sum_{k=0}^{\infty}kP(X=k)=\sum_{k=0}^{\infty}k\frac{e^{-\lambda}\lambda^k}{k!}\)`
+
+Como el primer término es 0:
+
+`\(E(X)=\sum_{k=1}^{\infty}k\frac{e^{-\lambda}\lambda^k}{k!}=\)`
+
+---
+
+# Distribución de Poisson
+
+El parámetro `\(\lambda\)` de la distribución de Poisson, representa el **número promedio de ocurrencias** del evento aleatorio que se observa por unidad de tiempo/espacio/etc. A diferencia de la binomial, en la v.a. de Poisson, el número de ocurrencias **no tiene límite superior**, aunque las probabilidades se hacen muy pequeñas después de los primeros “éxitos”.
+
+`\(E(X)=\mu_X=\sum_{k=0}^{\infty}kP(X=k)=\sum_{k=0}^{\infty}k\frac{e^{-\lambda}\lambda^k}{k!}\)`
+
+Como el primer término es 0:
+
+`\(E(X)=\sum_{k=1}^{\infty}k\frac{e^{-\lambda}\lambda^k}{k!}=\lambda\sum_{k=1}^{\infty}\frac{e^{-\lambda}\lambda^{k-1}}{(k-1)!}\)`
+
+---
+
+# Distribución de Poisson
+
+El parámetro `\(\lambda\)` de la distribución de Poisson, representa el **número promedio de ocurrencias** del evento aleatorio que se observa por unidad de tiempo/espacio/etc. A diferencia de la binomial, en la v.a. de Poisson, el número de ocurrencias **no tiene límite superior**, aunque las probabilidades se hacen muy pequeñas después de los primeros “éxitos”.
+
+`\(E(X)=\mu_X=\sum_{k=0}^{\infty}kP(X=k)=\sum_{k=0}^{\infty}k\frac{e^{-\lambda}\lambda^k}{k!}\)`
+
+Como el primer término es 0:
+
+`\(E(X)=\sum_{k=1}^{\infty}k\frac{e^{-\lambda}\lambda^k}{k!}=\lambda\sum_{k=1}^{\infty}\frac{e^{-\lambda}\lambda^{k-1}}{(k-1)!}\)`
+
+`\(E(X)=\lambda\sum_{m=0}^{\infty}\frac{e^{-\lambda}\lambda^{m}}{m!}=\lambda e^{-\lambda}e^{\lambda}=\lambda\)`
+
+---
+
+# Distribución de Poisson
+
+Del mismo modo, se puede calcular la varianza una variable Poisson:
+
+`\(\sigma^2_X=E(X^2)-\mu_x^2=\sum_{k=0}^\infty k^2\frac{e^{-\lambda}\lambda^k}{k!}-\lambda^2=\)`
+
+---
+
+# Distribución de Poisson
+
+Del mismo modo, se puede calcular la varianza una variable Poisson:
+
+`\(\sigma^2_X=E(X^2)-\mu_x^2=\sum_{k=0}^\infty k^2\frac{e^{-\lambda}\lambda^k}{k!}-\lambda^2=\)`
+
+De nuevo, el primer término es 0:
+
+`\(\sigma^2_X=\sum_{k=1}^\infty k^2\frac{e^{-\lambda}\lambda^k}{k!}-\lambda^2=\)`
+
+---
+
+# Distribución de Poisson
+
+Del mismo modo, se puede calcular la varianza una variable Poisson:
+
+`\(\sigma^2_X=E(X^2)-\mu_x^2=\sum_{k=0}^\infty k^2\frac{e^{-\lambda}\lambda^k}{k!}-\lambda^2=\)`
+
+De nuevo, el primer término es 0:
+
+`\(\sigma^2_X=\sum_{k=1}^\infty k^2\frac{e^{-\lambda}\lambda^k}{k!}-\lambda^2=\lambda \sum_{k=1}^\infty k\frac{e^{-\lambda}\lambda^{k-1}}{(k-1)!}-\lambda^2=\)`
+
+---
+
+# Distribución de Poisson
+
+Del mismo modo, se puede calcular la varianza una variable Poisson:
+
+`\(\sigma^2_X=E(X^2)-\mu_x^2=\sum_{k=0}^\infty k^2\frac{e^{-\lambda}\lambda^k}{k!}-\lambda^2=\)`
+
+De nuevo, el primer término es 0:
+
+`\(\sigma^2_X=\sum_{k=1}^\infty k^2\frac{e^{-\lambda}\lambda^k}{k!}-\lambda^2=\lambda \sum_{k=1}^\infty k\frac{e^{-\lambda}\lambda^{k-1}}{(k-1)!}-\lambda^2=\)`
+
+`\(\sigma^2_X=\lambda \sum_{m=0}^\infty (m+1)\frac{e^{-\lambda}\lambda^{m}}{(m)!}-\lambda^2=\)`
+
+---
+
+# Distribución de Poisson
+
+Del mismo modo, se puede calcular la varianza una variable Poisson:
+
+`\(\sigma^2_X=E(X^2)-\mu_x^2=\sum_{k=0}^\infty k^2\frac{e^{-\lambda}\lambda^k}{k!}-\lambda^2=\)`
+
+De nuevo, el primer término es 0:
+
+`\(\sigma^2_X=\sum_{k=1}^\infty k^2\frac{e^{-\lambda}\lambda^k}{k!}-\lambda^2=\lambda \sum_{k=1}^\infty k\frac{e^{-\lambda}\lambda^{k-1}}{(k-1)!}-\lambda^2=\)`
+
+`\(\sigma^2_X=\lambda \sum_{m=0}^\infty (m+1)\frac{e^{-\lambda}\lambda^{m}}{(m)!}-\lambda^2=\lambda \sum_{m=0}^\infty m\frac{e^{-\lambda}\lambda^{m}}{(m)!}+\lambda \sum_{m=0}^\infty \frac{e^{-\lambda}\lambda^{m}}{(m)!}-\lambda^2\)`
+
+---
+
+# Distribución de Poisson
+
+Del mismo modo, se puede calcular la varianza una variable Poisson:
+
+`\(\sigma^2_X=E(X^2)-\mu_x^2=\sum_{k=0}^\infty k^2\frac{e^{-\lambda}\lambda^k}{k!}-\lambda^2=\)`
+
+De nuevo, el primer término es 0:
+
+`\(\sigma^2_X=\sum_{k=1}^\infty k^2\frac{e^{-\lambda}\lambda^k}{k!}-\lambda^2=\lambda \sum_{k=1}^\infty k\frac{e^{-\lambda}\lambda^{k-1}}{(k-1)!}-\lambda^2=\)`
+
+`\(\sigma^2_X=\lambda \sum_{m=0}^\infty (m+1)\frac{e^{-\lambda}\lambda^{m}}{(m)!}-\lambda^2=\lambda \sum_{m=0}^\infty m\frac{e^{-\lambda}\lambda^{m}}{(m)!}+\lambda \sum_{m=0}^\infty \frac{e^{-\lambda}\lambda^{m}}{(m)!}-\lambda^2\)`
+
+`\(\sigma^2_X=\lambda^2+\lambda -\lambda^2=\lambda\)`
+
+---
+
+# Distribución de Poisson
+
+En resumen, Si `\(X \sim Poisson(\lambda)\)`, entonces:
+
+`$$\mu_X=\lambda$$`
+
+`$$\sigma_X^2=\lambda$$`
 
 **Supuestos**
 
@@ -1323,14 +1457,6 @@ A diferencia de la binomial, en la v.a. de Poisson, el número de ocurrencias **
 - La probabilidad de ocurrencia es la misma en cada intervalo (no varía).
 
 - Las ocurrencias son independientes. Si un evento ocurre/no ocurre en un intervalo es independiente de lo que ocurra/no ocurra en cualquier otro intervalo.
-
---
-
-Si `\(X \sim Poisson(\lambda)\)`, entonces:
-
-`\(\mu_X=\lambda\)`
-
-`\(\sigma_X^2=\lambda\)`
 
 
 ---
