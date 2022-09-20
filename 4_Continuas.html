@@ -20,7 +20,7 @@ class: left, bottom, inverse, title-slide
 ### Esteban Rodríguez
 ]
 .date[
-### Última Actualización: 2022-09-16
+### Última Actualización: 2022-09-20
 ]
 
 ---
@@ -895,11 +895,21 @@ La probabilidad exacta (Binomial) es la altura de las líneas. Equivale al área
 
 # Factor de corrección por continuidad
 
-**Ejemplo.** Supongamos que una organización política planea llevar a cabo una encuesta para detectar la preferencia de los votantes respecto a los candidatos A y B, quienes ocuparan una intendencia. Supongamos que se toma una muestra de 1000 ciudadanos. ¿Cuál es la probabilidad de que entre 525 y 530 votantes indiquen una preferencia por el candidato A, si la población , con respecto a los candidatos se encuentra igualmente divida?
+**Ejemplo.** Supongamos que una organización política planea llevar a cabo una encuesta para detectar la preferencia de los votantes respecto a los candidatos A y B. Supongamos que se toma una muestra de 1000 ciudadanos. ¿Cuál es la probabilidad de que entre 525 y 530 votantes indiquen una preferencia por el candidato A, si la población , con respecto a los candidatos se encuentra igualmente divida?
 
-- Defina la variable de interés. Describa su distribución y chequear que se cumplan las condiciones de la distribución.
+--
 
-- Calcule la probabilidad binomial y compruebe la mejora que introduce el factor de corrección por continuidad.
+En principio, `\(X\sim Bi(n=1000,p=0.5)\)` y se nos pregunta `\(P(525 \le X \le 530)\)`
+
+Deberíamos calcular `\({1000\choose 525} 0.5^{1000} + {1000\choose 526} 0.5^{1000} + {1000\choose 527} 0.5^{1000} + {1000\choose 528} 0.5^{1000} + {1000\choose 529} 0.5^{1000} + {1000\choose 530} 0.5^{1000}= 0.03377\)`
+
+--
+
+Podríamos aproximar con una variable `\(Y\sim N(\mu=1000*0.5=500, \sigma =\sqrt{1000*.5*.5}=\sqrt{250})\)`
+
+- Sin factor de correccion: `\(P(525 \le Y \le 530)=P(1.58 \le Z \le 1.90)=0.9713-0.9429=0.0284\)`
+
+- Con factor de correccion: `\(P(524.5 \le Y \le 530.5)=P(1.55 \le Z \le 1.93)=0.9732-0.9394=0.0338\)`
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
