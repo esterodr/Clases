@@ -20,7 +20,7 @@ class: left, bottom, inverse, title-slide
 ### Esteban Rodríguez
 ]
 .date[
-### Última Actualización: 2022-09-20
+### Última Actualización: 2022-09-22
 ]
 
 ---
@@ -95,6 +95,297 @@ Y en una nota al pie:
 - El **muestreo aleatorio simple** es el más común de los métodos para seleccionar una muestra al azar a partir de una población.
 
 - Una **muestra aleatoria simple** se elige mediante un proceso que selecciona `\(n\)` objetos de una población de manera tal que cada uno de los miembros de la población tiene la misma probabilidad de ser seleccionado, la selección de uno de los miembros es independiente de la selección de cualquier otro y toda muestra posible de tamaño `\(n\)`, tiene la misma probabilidad de selección.
+
+- Sea `\(X\)` una variable aleatoria y `\(X_i\)` el i-ésimo objeto extraído aleatoriamente:
+
+  + Como cada objeto tiene igual probabilidad de salir y la distribución de `\(X_i\)` es la misma para todo `\(i\)`, las variableas aleatorias `\(X_1,X_2,...,X_n\)` son **independientes e idénticamente distribuidas (i.i.d.)**.
+
+
+---
+
+# Muestreo aleatorio simple
+
+- Puede ser **con reemplazo o sin reemplazo**.
+
+- Si muestreamos con reemplazo, no hay problemas ya que los `\(n\)` objetos de la muestra son independientes (no alteramos las frecuencias relativas). 
+
+- Además, si la población es muy grande, muestrear con o sin reemplazo, prácticamente no altera las frecuencias relativas. Por lo tanto también tenemos independencia.
+
+- El problema se origina cuando muestreamos sin reemplazo y la población es pequeña. Hay que introducir correcciones que tengan en cuenta este punto (factor de corrección para muestra finita).
+
+---
+
+# Parámetro, estimador y estimación
+
+- **Parámetro**: es una medida numérica descriptiva de una población. Su valor es casi siempre desconocido.
+
+- **Estadístico/estimador**: un estadístico es cualquier función de una muestra de datos aleatoria proveniente de una población.
+
+- **Estimación**: una estimación es el valor numérico del estimador cuando el mismo es evaluado utilizando los datos de una muestra específica.
+
+- **Un estimador es una variable aleatoria**, ya que hereda la aleatoriedad de la muestra aleatoria, mientras que **una estimación es un número no aleatorio**.
+
+---
+
+# Parámetro, estimador y estimación
+
+Ejemplos:
+
+|    | Parámetro Poblacional | Estadístico Muestral |
+|:---|:---:|:---:|
+| Media | `\(\mu\)` | `\(\overline{X}\)` |
+| Varianza | `\(\sigma^2\)` | `\(s^2\)` |
+| Desvío Estándar | `\(\sigma\)` | `\(s\)` |
+| Proporción | `\(p\)` | `\(\hat{p}\)` |
+| Coeficiente de Correlación | `\(\rho\)` | `\(\hat{\rho}\)` |
+
+---
+
+# Ejemplo
+
+Vamos a utilizar información sobre la totalidad de los corredores de las 10 millas (~16 km) de la carrera “2012 Cherry Blossom Run” en Washington.
+
+Disponemos del **total de la población**: 16924 corredores para los que se dispone de la edad, género, tiempo en minutos y estado al que representan.
+
+
+
+| place|   time| age|gender |state |
+|-----:|------:|---:|:------|:-----|
+|  2986|  91.43|  29|F      |MD    |
+|  1842|  86.48|  32|F      |VA    |
+|  3371|  93.00|  42|F      |MD    |
+|  1906|  78.13|  25|M      |DC    |
+|  4761|  97.68|  28|F      |VA    |
+|  6746| 105.32|  32|F      |VA    |
+|  6396| 107.67|  23|M      |RI    |
+|  2757|  90.43|  37|F      |VA    |
+
+---
+
+# Ejemplo
+
+- Vamos a tratar de estimar una cualidad de los corredores de esta carrera, usando una **muestra de 100 corredores**
+
+  + ¿Cuanto tiempo le lleva, en promedio, a un corredor completar las 10 millas?
+  
+- Vamos representar por `\(X_1, X_2,...,X_{100}\)`los tiempos de 100 corredores muestreados.
+
+- Queremos estimar las **medias poblacionales** del tiempo de carrera mediante las **medias muestrales**.
+
+---
+
+# Ejemplo
+
+Resultados de la muestra de tamaño 100
+
+.pull-left[
+![](6_Inferencia_files/figure-html/unnamed-chunk-2-1.png)&lt;!-- --&gt;
+]
+
+.pull-right[
+&lt;br/&gt;
+
+|        | Valor|
+|:-------|-----:|
+|Min.    |  58.5|
+|1st Qu. |  83.9|
+|Median  |  96.8|
+|Mean    |  95.8|
+|3rd Qu. | 107.2|
+|Max.    | 142.8|
+]
+
+El valor de la media muestral `\(95.8\)` es una **estimación puntual de la media poblacional**
+
+---
+
+# Ejemplo
+
+Si tomamos **otra muestra** de tamaño 100, vamos a tener una estimación diferente
+
+.pull-left[
+![](6_Inferencia_files/figure-html/unnamed-chunk-4-1.png)&lt;!-- --&gt;
+]
+
+.pull-right[
+&lt;br/&gt;
+
+|        | Valor|
+|:-------|-----:|
+|Min.    |  55.2|
+|1st Qu. |  83.2|
+|Median  |  98.5|
+|Mean    |  95.4|
+|3rd Qu. | 107.9|
+|Max.    | 135.7|
+]
+
+El valor de la media muestral `\(95.4\)` es una **otra estimación puntual de la media poblacional**
+
+---
+
+# Otros estimadores
+
+Se pueden generar estimaciones muestrales no sólo de la media sino también de otros parámetros poblacionales, como por ejemplo, desvío estándar, la mediana, RIC, etc.
+
+También podríamos estimar la diferencia en el tiempo de carrera entre hombres y mujeres.
+
+| | Muestra 1 | Muestra 2 |
+|:---|:---:|:---:|
+| `\(\hat{Mediana}\)` | 96.75 | 98.51 |
+| `\(\hat{\sigma}\)` | 17.72 | 18.3 |
+| `\(\hat{RIC}\)` | 23.31 | 24.72 |
+| `\(\overline{X_M}-\overline{X_H}\)` | 15.61 | 16.74 |
+
+---
+
+# El tamaño de la muestra
+
+- Las estimaciones generalmente no son iguales al parámetro poblacional, pero son mejores a medida que aumenta el tamaño de la muestra.
+- Una corrida de medias es una secuencia de medias, donde cada media usa una observación más que la anterior
+
+.center[
+![](6_Inferencia_files/figure-html/unnamed-chunk-6-1.png)&lt;!-- --&gt;
+]
+
+
+---
+
+# Distribución muestral del estadístico
+
+.center[
+![](6_Inferencia_files/figure-html/unnamed-chunk-7-1.png)&lt;!-- --&gt;
+
+]
+
+---
+
+# Distribución de la población
+
+.pull-left[
+![](6_Inferencia_files/figure-html/unnamed-chunk-8-1.png)&lt;!-- --&gt;
+]
+
+.pull-right[
+&lt;br/&gt;
+
+|        | Valor|
+|:-------|-----:|
+|Min.    |  45.2|
+|1st Qu. |  83.7|
+|Median  |  94.0|
+|Mean    |  94.5|
+|3rd Qu. | 104.5|
+|Max.    | 171.0|
+]
+
+---
+
+# Distribución de muestras (n=100)
+
+.center[
+![](6_Inferencia_files/figure-html/unnamed-chunk-10-1.png)&lt;!-- --&gt;
+]
+
+---
+
+# 10 muestras (n=100) y Población
+
+.center[
+![](6_Inferencia_files/figure-html/unnamed-chunk-11-1.png)&lt;!-- --&gt;
+]
+
+---
+
+# Distribución muestral de `\(\overline{X}\)`
+
+- Vimos que el promedio de **n-observaciones** muestreadas aleatoriamente es una estimación del parámetro poblacional.
+
+- También vimos que la media muestral de una segunda muestra  difiere de la obtenida anteriormente.
+
+- Así, podrían construirse una sucesión de `\(\overline{X_1},\overline{X_2},...,\overline{X_k}\)` que servirían para construir la distribución de probabilidades. 
+
+- La distribución de `\(\overline{X}\)` se denomina **distribución muestral de** `\(\overline{X}\)`, porque se trata de la distribución muestral asociada a todos los posibles valores que puede tomar `\(\overline{X}\)`.
+
+- La **distribución muestral de** `\(\overline{X}\)` representa la distribución de las estimaciones puntuales basadas en muestras de tamaño fijo de una cierta población.
+
+---
+
+# Distribución muestral de `\(\overline{X}\)`
+
+.center[
+![](6_Inferencia_files/figure-html/unnamed-chunk-12-1.png)&lt;!-- --&gt;
+]
+
+Histograma de `\(1000\)` medias muestrales del tiempo promedio de la carrera, donde el tamaño  de cada muestra es `\(n=100\)`
+
+---
+
+# Distribución muestral de `\(\overline{X}\)`
+
+- Se observa que las medias muestrales  tienden a caer alrededor de la media poblacional.
+
+- El  histograma de la distribución de las medias muestrales muestra cierta variabilidad alrededor de la media poblacional. 
+
+- Una medida de la variabilidad de la media muestral, está dada por la desviación estándar de la distribución de las medias muestrales. 
+
+- La desviación estándar de las medias muestrales nos dice cuan lejos una estimación típica está del verdadero valor medio poblacional.
+
+- Se trata de la descripción del error típico del estimador muestral  y por esta razón este desvío estándar recibe el nombre de **error estándar**.
+
+- Por lo tanto, **la desviación estándar asociada con un estimador se denomina error estándar**.
+
+---
+
+# Distribución muestral de `\(\overline{X}\)`
+
+- Si se les solicita estimar cierto parámetro, ¿utilizarían una muestra pequeña o una muestra grande? ¿Por qué?
+
+- ¿Qué relación cree que habrá entre el error estándar de las estimaciones del parámetro basados en la muestra pequeña y las estimaciones del parámetro basadas en la muestra grande?
+
+--
+
+- Se puede demostrar que, **cuanto mayor es el tamaño de la muestra menor es el error estándar**.
+
+---
+
+# Distribución muestral de `\(\overline{X}\)`
+
+- Sea `\(X\)` una variable aleatoria con `\(E(X)=\mu\)` y `\(Var(X)=\sigma^2\)` 
+
+- Sea `\(X_1,X_2,...,X_n\)` una muestra i.i.d. de `\(X\)`. Entonces el estadístico muestral `\(\overline{X}\)` tiene `\(E(\overline{X})=\mu\)` y `\(Var(\overline{X})=\frac{\sigma^2}{n}\)`
+
+- Demostrar:
+
+--
+
+`\(E(\overline{X})=E(\frac{X_1 +X_2+...+X_n}{n})=\frac{E(X_1)}{n}+\frac{E(X_2)}{n}+...+\frac{E(X_n)}{n}=\)`
+
+--
+
+`\(E(\overline{X})=\frac{\mu}{n}+\frac{\mu}{n}+...+\frac{\mu}{n}=\frac{n\mu}{n}=\mu\)`
+
+--
+
+`\(Var(\overline{X})=Var(\frac{X_1 +X_2+...+X_n}{n})=\frac{Var(X_1)}{n^2}+\frac{Var(X_2)}{n^2}+...+\frac{Var(X_n)}{n^2}=\)`
+
+--
+
+`\(Var(\overline{X})=\frac{\sigma^2}{n^2}+\frac{\sigma^2}{n^2}+...+\frac{\sigma^2}{n^2}=\frac{n\sigma^2}{n^2}=\frac{\sigma^2}{n}\)`
+
+--
+
+Y entonces `\(\sigma(\overline{X})=\frac{\sigma}{\sqrt{n}}\)`
+
+---
+
+# Distribución muestral de `\(\overline{X}\)`
+
+.center[
+![](6_Inferencia_files/figure-html/unnamed-chunk-13-1.png)&lt;!-- --&gt;
+]
+
+Histogramas de 1000 medias muestrales del tiempo promedio de la carrera, donde el tamaño  de cada muestra es 10, 50, 100 y 200 respectivamente.
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
