@@ -27,7 +27,7 @@ class: left, bottom, inverse, title-slide
 ### Esteban Rodriguez
 ]
 .date[
-### Última Actualización: 2022-08-30
+### Última Actualización: 2022-09-23
 ]
 
 ---
@@ -82,7 +82,7 @@ En todos estos casos, la variable de interés es categórica.
 
 # Introducción
 
-- Dificultad: **no existe un modelo matemático o un cálculo analítico que me permita calcular las probabilidades** de cada resultado.
+- Dificultad: **no existe un modelo matemático o un cálculo analítico obvio que me permita calcular las probabilidades** de cada resultado.
 
 - Son muchas las cosas que pueden suceder y que terminan influyendo en el resultado. 
 
@@ -100,21 +100,13 @@ En todos estos casos, la variable de interés es categórica.
 
 # El razonamiento algorítmico
 
-Se acerca el mundial de fútbol y las redes sociales se ven inundadas de usuarios que realizan la siguiente pregunta: **¿cuántos paquetes necesito comprar para llenar el álbum de figuritas?**. Esto ya se discutió en el mundial pasado y derivó en una interesante [nota de Walter Sosa Escudero](https://udesa.edu.ar/medios/peleados-con-los-algoritmos-los-economistas-y-su-talon-de-aquiles) que recomendamos leer completa. Aquí se extraen algunos párrafos (ligeramente editados):
+Recomendamos leer una interesante [nota de Walter Sosa Escudero](https://udesa.edu.ar/medios/peleados-con-los-algoritmos-los-economistas-y-su-talon-de-aquiles). Aquí se extraen algunos párrafos (ligeramente editados):
 
 --
 
-- "Hay dos maneras de obtener la respuesta. Una, es a través de un cálculo matemático...una vía alternativa es apelar a una **simple simulación computacional**, es decir, reproducir muchas veces en una computadora el azar de comprar figuritas y ver cuántos paquetes hizo falta comprar, en promedio, para llenar el álbum en cuestión, estrategia que demanda mínimos conocimientos de programación."
+- "Una clásica pregunta que hizo el físico Enrico Fermi a sus alumnos, en la primera mitad del siglo XX: **¿Cuántos afinadores de piano hay en Chicago?**. Ciertamente, no existe ninguna forma indiscutible ni simple de abordar semejante pregunta. Fermi comienza suponiendo que en esa época, en Chicago: 1) había unos 5 millones de habitantes, 2) y 2 personas por hogar, 3) en donde 1 de cada 20 tenía un piano, 4) que ese piano era afinado 1 vez por año, y 5) que afinar un piano toma unas dos horas de trabajo. Con esos números, Fermi estima que había 125 afinadores de piano."
 
-- "Este simple caso ilustra las enormes falencias que tienen los economistas para razonar algorítmicamente...En circunstancias obviamente más genéricas y relevantes que las del ejemplo de las figuritas, la incultura algorítmica deja muda a una profesión que se beneficiaría de una sana inversión en cuestiones computacionales."
-
----
-
-# El razonamiento algorítmico
-
-- "Una clásica pregunta que hizo el físico Enrico Fermi a sus alumnos, en la primera mitad del siglo XX: *¿Cuántos afinadores de piano hay en Chicago?*. Ciertamente, no existe ninguna forma indiscutible ni simple de abordar semejante pregunta. Fermi comienza suponiendo que en esa época, en Chicago: 1) había unos 5 millones de habitantes, 2) y 2 personas por hogar, 3) en donde 1 de cada 20 tenía un piano, 4) que ese piano era afinado 1 vez por año, y 5) que afinar un piano toma unas dos horas de trabajo. Con esos números, Fermi estima que había 125 afinadores de piano."
-
-- "Lo importante de este ejemplo no es la respuesta, sino la explicitación de una serie de "subrrespuestas", que conducen al resultado final, **dividiendo el problema en porciones que pueden ser escrutadas cada una por separado**. Eso le permite al analista reconsiderar sus cálculos si luego dispone de más tiempo o recursos. El instinto de **partir problemas grandes en pequeños es central a lo algorítmico y al razonamiento sistemático en general**. En el ejemplo de las figuritas, el contexto simple implica suponer que están distribuidas al azar en los paquetes y que no hay un mercado para el intercambio, lo que permite abordar el problema con unas pocas líneas de código de programación. Esas líneas pueden ser simplemente alteradas para acomodar la existencia de "figuritas difíciles" o (con más esfuerzo) de intercambios."
+- "Lo importante de este ejemplo no es la respuesta, sino la explicitación de una serie de "subrrespuestas", que conducen al resultado final, **dividiendo el problema en porciones que pueden ser escrutadas cada una por separado**. Eso le permite al analista reconsiderar sus cálculos si luego dispone de más tiempo o recursos. El instinto de **partir problemas grandes en pequeños es central a lo algorítmico y al razonamiento sistemático en general**."
 
 ---
 
@@ -126,7 +118,7 @@ Veremos dos aplicaciones del razonamiento algorítmico y resolución mediante si
 
 - Probabilidades de cada equipo en el **Mundial de Fútbol Qatar 2022** (Estimaciones propias)
 
-- **Elecciones Parlamentarias de Noviembre de 2022 en EEUU** (Estimaciones realizadas por [fivethirtyeight](https://fivethirtyeight.com/))
+- **Elecciones Parlamentarias de Noviembre de 2022 en EEUU** (Estimaciones realizadas por [fivethirtyeight (538)](https://fivethirtyeight.com/))
 
 Como veremos, en ambos casos se divide el gran problema en problemas más pequeños:
 
@@ -146,7 +138,7 @@ Comenzamos a esquematizar el problema que queremos abordar:
 
 --
 
-- Del mundial de fútbol participarán 32 equipos.
+- Del mundial de fútbol participan 32 equipos.
 
 - Inicialmente, se dividen en 8 grupos de 4 equipos cada uno, donde se enfrentan una vez entre todos los integrantes del grupo. 
 
@@ -210,7 +202,7 @@ En realidad, en el mundial hay 64 partidos, pero aquí ignoraremos el partido po
 
 # Probabilidades Qatar 2022
 
-- Definamos como *resultado posible del mundial* al vector con los resultados de los 63 partidos del mundial. 
+- Definamos como *resultado completo del mundial* al vector con los resultados de los 63 partidos del mundial. 
 
 - ¿Cuántos resultados posibles hay?
 
@@ -230,7 +222,7 @@ En realidad, en el mundial hay 64 partidos, pero aquí ignoraremos el partido po
 
 `$$3^{48}*2^{15}=2.613787*10^{27}$$`
 
-- Esto sirve para dar una idea de la complejidad del problema que estamos analizando. La simulación la vamos a realizar con una **pequeña muestra de 100 mil resultados posibles** (extraídos con reposición).
+- Esto sirve para dar una idea de la complejidad del problema que estamos analizando. La simulación la vamos a realizar con una **pequeña muestra de 100 mil resultados posibles** (extraídos con reposición). Notar que los resultados no son equiprobables.
 
 ---
 
@@ -240,19 +232,17 @@ En realidad, en el mundial hay 64 partidos, pero aquí ignoraremos el partido po
 
 - Por ejemplo, el Bolillero 1, corresponde al partido inaugural entre Qatar y Ecuador.
 
---
-
 - Allí hay un gran número de bolillas: algunas dicen "Gana Qatar", otras dicen "Gana Ecuador" y las restantes dicen "Empate".
 
 - Las proporciones relativas de cada una de estas bolillas determinarán la probabilidad de cada resultado. Más adelante discutiremos como conformar cada bolillero.
 
 --
 
-- Un *resultado posible para el mundial* equivale a sacar una bolilla de cada uno de los 63 bolilleros. Es decir, tener una realización de los resultados de los 63 partidos.
+- Un *resultado completo para el mundial* equivale a sacar una bolilla de cada uno de los 63 bolilleros. Es decir, tener una realización de los resultados de los 63 partidos.
 
 - De esta forma, tendremos un resultado para cada partido, pudiendo determinar quién es el Campéon, quién el Subcampeón, quiénes quedaron eliminados en Semifinales, quienes en Cuartos de Final, etc.
 
-- La simulación que realizaremos consiste en repetir este proceso muchas veces y luego contar cuántas veces salió cada equipo campeón, subcampéon, etc. (**enfoque frecuentista de las probabilidades**).
+- La simulación que realizaremos consiste en repetir este proceso muchas veces y luego contar cuántas veces salió cada equipo campeón, subcampéon, etc.
 
 ---
 
@@ -286,7 +276,7 @@ En realidad, en el mundial hay 64 partidos, pero aquí ignoraremos el partido po
 
 --
 
-- Lo importante es que estas probabilidades se calculen de la manera más **objetiva** posible, sin recurrir a supuestos o prejuicios difíciles de justificar.
+- Lo importante es que estas probabilidades se calculen de la manera más simple y realista posible, sin recurrir a supuestos o prejuicios difíciles de justificar.
 
   + Por ejemplo, podríamos basarnos en los enfrentamientos históricos entre ambos equipos. Problema: puede que nunca se hayan enfrentado, o muy pocas veces, o hace mucho tiempo. O que el equipo `\(X\)` nunca le haya ganado a `\(Y\)`, lo que nos haría suponer erróneamente que la probabilidad de que gane `\(X\)` es `\(0\)`.
   
@@ -300,7 +290,7 @@ En realidad, en el mundial hay 64 partidos, pero aquí ignoraremos el partido po
 
 # Probabilidades Qatar 2022
 
-- **Supuesto**: la fuerza de cada equipo está completamente explicada por los resultados del pasado.
+- **Supuesto**: la fuerza de cada equipo está completamente explicada por los resultados del pasado y esta fuerza está correctamete reflejada en un ranking.
 
 --
 
@@ -310,11 +300,11 @@ En realidad, en el mundial hay 64 partidos, pero aquí ignoraremos el partido po
 
 - Calculamos un ranking mediante el sistema [Elo](https://es.wikipedia.org/wiki/Sistema_de_puntuaci%C3%B3n_Elo), popularizado primero en el Ajedrez y hoy utilizado para calcular el ranking FIFA.
 
+- A continuación, se presentan los rankings estimados en Agosto de 2022 y la comparación con el ranking FIFA.
+
 ---
 
 # Probabilidades Qatar 2022
-
-Comparación de rankings en Agosto 2022
 
 .pull-left[
 **Ranking Propio**
@@ -359,8 +349,8 @@ Comparación de rankings en Agosto 2022
 Cuando se enfrentan los equipos `\(X\)` e `\(Y\)`, aplicamos una función al ranking de cada equipo para estimar cada probabilidad:
 
 .center[
-<div id="htmlwidget-60f2774408c63118075f" style="width:504px;height:216px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-60f2774408c63118075f">{"x":{"diagram":"digraph {\n  graph [layout = dot, rankdir = LR]\n  \n  node [shape = rectangle]        \n  rec1 [label = \"Ranking X\"]\n  rec2 [label = \"Ranking Y\"]\n  rec3 [label =  \"f(Ranking X, Ranking Y)\"]\n  rec4 [label =  \"P(Gana X)\"]\n  rec5 [label =  \"P(Gana Y)\"]\n  rec6 [label =  \"P(Empate)\"]\n  \n  # edge definitions with the node IDs\n  rec1 -> rec3\n  rec2 -> rec3\n  rec3 -> rec4\n  rec3 -> rec5\n  rec3 -> rec6\n  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-a1b4aa55b4bb986a3d93" style="width:504px;height:216px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-a1b4aa55b4bb986a3d93">{"x":{"diagram":"digraph {\n  graph [layout = dot, rankdir = LR]\n  \n  node [shape = rectangle]        \n  rec1 [label = \"Ranking X\"]\n  rec2 [label = \"Ranking Y\"]\n  rec3 [label =  \"f(Ranking X, Ranking Y)\"]\n  rec4 [label =  \"P(Gana X)\"]\n  rec5 [label =  \"P(Gana Y)\"]\n  rec6 [label =  \"P(Empate)\"]\n  \n  # edge definitions with the node IDs\n  rec1 -> rec3\n  rec2 -> rec3\n  rec3 -> rec4\n  rec3 -> rec5\n  rec3 -> rec6\n  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 ]
 
 La función que se aplica es arbitraria. Se pueden probar distintas alternativas pero es difícil determinar cuál es mejor que otra. 
@@ -374,8 +364,8 @@ Aquí se utilizó la fórmula que está incorporada en el paquete [Elo](https://
 Ejemplo:
 
 .center[
-<div id="htmlwidget-a75069791db4e874409d" style="width:504px;height:216px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-a75069791db4e874409d">{"x":{"diagram":"digraph {\n  graph [layout = dot, rankdir = LR]\n  \n  node [shape = rectangle]        \n  rec1 [label = \"Ranking Brasil\"]\n  rec2 [label = \"Ranking Qatar\"]\n  rec3 [label =  \"f(2057.9, 1698.7)\"]\n  rec4 [label =  \"P(Gana Brasil)=72.00%\"]\n  rec5 [label =  \"P(Gana Qatar)=9.10%\"]\n  rec6 [label =  \"P(Empate)=18.90%\"]\n  \n  # edge definitions with the node IDs\n  rec1 -> rec3\n  rec2 -> rec3\n  rec3 -> rec4\n  rec3 -> rec5\n  rec3 -> rec6\n  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-b7d40d55ec7396304349" style="width:504px;height:216px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-b7d40d55ec7396304349">{"x":{"diagram":"digraph {\n  graph [layout = dot, rankdir = LR]\n  \n  node [shape = rectangle]        \n  rec1 [label = \"Ranking Brasil\"]\n  rec2 [label = \"Ranking Qatar\"]\n  rec3 [label =  \"f(2057.9, 1698.7)\"]\n  rec4 [label =  \"P(Gana Brasil)=72.00%\"]\n  rec5 [label =  \"P(Gana Qatar)=9.10%\"]\n  rec6 [label =  \"P(Empate)=18.90%\"]\n  \n  # edge definitions with the node IDs\n  rec1 -> rec3\n  rec2 -> rec3\n  rec3 -> rec4\n  rec3 -> rec5\n  rec3 -> rec6\n  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 ]
 
 Es decir, si se enfrentan estos equipos, podemos pensar que el bolillero correspondiente tiene `\(10.000\)` bolillas, de las cuales `\(7.200\)` dicen "Gana Brasil", `\(1.890\)` dicen "Empate" y `\(910\)` dicen "Gana Qatar".
@@ -459,7 +449,7 @@ Supongamos un **equipo medio**, que tiene `\(60\%\)` de chances de pasar la fase
 
 Supongamos un **equipo débil**, que tiene `\(50\%\)` de chances de pasar la fase de grupos y en cada enfrentamiento de la fase final tiene `\(30\%\)` de chances de pasar. La probabilidad de que este equipo salga campeón es `\(0.50*0.30^4=0.00405\)`
 
-Es fácil ver que, a priori, pocos equipos tienen una posibilidad significativa de salir camepeón, más allá de que puedan dar alguna sorpresa.
+Es fácil ver que, a priori, pocos equipos tienen una posibilidad significativa de salir campeón, más allá de que puedan dar alguna sorpresa.
 
 ---
 
@@ -479,42 +469,14 @@ Veamos esto con unos ejemplos de la simulación.
 
 Comencemos con la simulación. Sacamos una bolilla de los primeros 48 bolilleros, los de la fase de grupos. El azar determinó que los 2 primeros de cada grupos fueron:
 
-.pull-left[
-**Grupo A**:
-1.Holanda
-2.Ecuador
+--
 
-**Grupo B**:
-1.Inglaterra
-2.Estados Unidos
+| | A | B | C | D | E | F | G | H |
+| :---: |:---: |:---: |:---: |:---: |:---: |:---: |:---: |:---: |
+| **1ro** | Holanda | Inglaterra | Polonia | Francia | Costa Rica | Bélgica | Brasil | Corea |
+| **2do** | Ecuador | EEUU | Argentina | Dinamarca | Japón | Croacia | Suiza | Portugal |
 
-**Grupo C**:
-1.Polonia
-2.Argentina
-
-**Grupo D**:
-1.Francia
-2.Dinamarca
-]
-
-.pull-right[
-**Grupo E**:
-1.Costa Rica
-2.Japón
-
-**Grupo F**:
-1.Bélgica
-2.Croacia
-
-**Grupo G**:
-1.Brasil
-2.Suiza
-
-**Grupo H**:
-1.Corea del Sur
-2.Portugal
-]
-
+&lt;br/&gt;
 Notar que, entre otros, quedaron eliminados España, Alemania y Uruguay.
 
 Ahora saquemos las bolillas para la fase final.
@@ -526,8 +488,8 @@ Ahora saquemos las bolillas para la fase final.
 **Octavos de Final**
 
 .center[
-<div id="htmlwidget-721da56fee3638a3daf8" style="width:504px;height:504px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-721da56fee3638a3daf8">{"x":{"diagram":"digraph {\n  graph [layout = dot, rankdir = LR]\n  \n  node [shape = rectangle,\n        style = filled,\n        color = grey,\n        fixedsize = true,\n        width = 3,\n        fontsize = 30]        \n  rec1 [label = \"EEUU\",fillcolor = lightblue]\n  rec2 [label = \"Holanda\",fillcolor = lightblue]\n  rec3 [label =  \"Dinamarca\",fillcolor = lightsalmon]\n  rec4 [label =  \"Polonia\",fillcolor = lightsalmon]\n  rec5 [label =  \"Costa Rica\",fillcolor = lightsalmon]\n  rec6 [label =  \"Croacia\",fillcolor = lightsalmon]\n  rec7 [label =  \"Brasil\",fillcolor = lightblue]\n  rec8 [label =  \"Portugal\",fillcolor = lightblue]\n  rec9 [label =  \"Inglaterra\",fillcolor = lightblue]\n  rec10 [label =  \"Ecuador\",fillcolor = lightblue]\n  rec11 [label =  \"Argentina\",fillcolor = lightsalmon]\n  rec12 [label =  \"Francia\",fillcolor = lightsalmon]\n  rec13 [label =  \"Bélgica\",fillcolor = lightblue]\n  rec14 [label =  \"Japón\",fillcolor = lightblue]\n  rec15 [label =  \"Suiza\",fillcolor = lightsalmon]\n  rec16 [label =  \"Corea del Sur\",fillcolor = lightsalmon]\n  \n  rec17 [label =  \"EEUU\",fillcolor = snow]\n  rec18 [label =  \"Dinamarca\",fillcolor = snow]\n  rec19 [label =  \"Costa Rica\",fillcolor = snow]\n  rec20 [label =  \"Brasil\",fillcolor = snow]\n  rec21 [label =  \"Inglaterra\",fillcolor = snow]\n  rec22 [label =  \"Argentina\",fillcolor = snow]\n  rec23 [label =  \"Bélgica\",fillcolor = snow]\n  rec24 [label =  \"Suiza\",fillcolor = snow]\n  \n  rec25 [label = \"\"]\n  rec26 [label =  \"\"]\n  rec27 [label =  \"\"]\n  rec28 [label =  \"\"]\n  \n  rec29 [label =  \"\"]\n  rec30 [label =  \"\"]\n  \n  rec31 [label =  \"\"]\n  \n  # edge definitions with the node IDs\n  rec1 -> rec17\n  rec2 -> rec17\n  rec3 -> rec18\n  rec4 -> rec18\n  rec5 -> rec19\n  rec6 -> rec19\n  rec7 -> rec20\n  rec8 -> rec20\n  rec9 -> rec21\n  rec10 -> rec21\n  rec11 -> rec22\n  rec12 -> rec22\n  rec13 -> rec23\n  rec14 -> rec23\n  rec15 -> rec24\n  rec16 -> rec24\n  rec17 -> rec25\n  rec18 -> rec25\n  rec19 -> rec26\n  rec20 -> rec26\n  rec21 -> rec27\n  rec22 -> rec27\n  rec23 -> rec28\n  rec24 -> rec28\n  rec25 -> rec29\n  rec26 -> rec29\n  rec27 -> rec30\n  rec28 -> rec30\n  rec29 -> rec31\n  rec30 -> rec31\n  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-7a5ab55a067d53eecc78" style="width:504px;height:504px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-7a5ab55a067d53eecc78">{"x":{"diagram":"digraph {\n  graph [layout = dot, rankdir = LR]\n  \n  node [shape = rectangle,\n        style = filled,\n        color = grey,\n        fixedsize = true,\n        width = 3,\n        fontsize = 30]        \n  rec1 [label = \"EEUU\",fillcolor = lightblue]\n  rec2 [label = \"Holanda\",fillcolor = lightblue]\n  rec3 [label =  \"Dinamarca\",fillcolor = lightsalmon]\n  rec4 [label =  \"Polonia\",fillcolor = lightsalmon]\n  rec5 [label =  \"Costa Rica\",fillcolor = lightsalmon]\n  rec6 [label =  \"Croacia\",fillcolor = lightsalmon]\n  rec7 [label =  \"Brasil\",fillcolor = lightblue]\n  rec8 [label =  \"Portugal\",fillcolor = lightblue]\n  rec9 [label =  \"Inglaterra\",fillcolor = lightblue]\n  rec10 [label =  \"Ecuador\",fillcolor = lightblue]\n  rec11 [label =  \"Argentina\",fillcolor = lightsalmon]\n  rec12 [label =  \"Francia\",fillcolor = lightsalmon]\n  rec13 [label =  \"Bélgica\",fillcolor = lightblue]\n  rec14 [label =  \"Japón\",fillcolor = lightblue]\n  rec15 [label =  \"Suiza\",fillcolor = lightsalmon]\n  rec16 [label =  \"Corea del Sur\",fillcolor = lightsalmon]\n  \n  rec17 [label =  \"EEUU\",fillcolor = snow]\n  rec18 [label =  \"Dinamarca\",fillcolor = snow]\n  rec19 [label =  \"Costa Rica\",fillcolor = snow]\n  rec20 [label =  \"Brasil\",fillcolor = snow]\n  rec21 [label =  \"Inglaterra\",fillcolor = snow]\n  rec22 [label =  \"Argentina\",fillcolor = snow]\n  rec23 [label =  \"Bélgica\",fillcolor = snow]\n  rec24 [label =  \"Suiza\",fillcolor = snow]\n  \n  rec25 [label = \"\"]\n  rec26 [label =  \"\"]\n  rec27 [label =  \"\"]\n  rec28 [label =  \"\"]\n  \n  rec29 [label =  \"\"]\n  rec30 [label =  \"\"]\n  \n  rec31 [label =  \"\"]\n  \n  # edge definitions with the node IDs\n  rec1 -> rec17\n  rec2 -> rec17\n  rec3 -> rec18\n  rec4 -> rec18\n  rec5 -> rec19\n  rec6 -> rec19\n  rec7 -> rec20\n  rec8 -> rec20\n  rec9 -> rec21\n  rec10 -> rec21\n  rec11 -> rec22\n  rec12 -> rec22\n  rec13 -> rec23\n  rec14 -> rec23\n  rec15 -> rec24\n  rec16 -> rec24\n  rec17 -> rec25\n  rec18 -> rec25\n  rec19 -> rec26\n  rec20 -> rec26\n  rec21 -> rec27\n  rec22 -> rec27\n  rec23 -> rec28\n  rec24 -> rec28\n  rec25 -> rec29\n  rec26 -> rec29\n  rec27 -> rec30\n  rec28 -> rec30\n  rec29 -> rec31\n  rec30 -> rec31\n  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 ]
 
 ---
@@ -537,8 +499,8 @@ Ahora saquemos las bolillas para la fase final.
 **Cuartos de Final**
 
 .center[
-<div id="htmlwidget-8c7ca3d34533c20f12ec" style="width:504px;height:504px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-8c7ca3d34533c20f12ec">{"x":{"diagram":"digraph {\n  graph [layout = dot, rankdir = LR]\n  \n  node [shape = rectangle,\n        style = filled,\n        color = grey,\n        fixedsize = true,\n        width = 3,\n        fontsize = 30]        \n  rec1 [label = \"EEUU\",fillcolor = lightblue]\n  rec2 [label = \"Holanda\",fillcolor = lightblue]\n  rec3 [label =  \"Dinamarca\",fillcolor = lightsalmon]\n  rec4 [label =  \"Polonia\",fillcolor = lightsalmon]\n  rec5 [label =  \"Costa Rica\",fillcolor = lightsalmon]\n  rec6 [label =  \"Croacia\",fillcolor = lightsalmon]\n  rec7 [label =  \"Brasil\",fillcolor = lightblue]\n  rec8 [label =  \"Portugal\",fillcolor = lightblue]\n  rec9 [label =  \"Inglaterra\",fillcolor = lightblue]\n  rec10 [label =  \"Ecuador\",fillcolor = lightblue]\n  rec11 [label =  \"Argentina\",fillcolor = lightsalmon]\n  rec12 [label =  \"Francia\",fillcolor = lightsalmon]\n  rec13 [label =  \"Bélgica\",fillcolor = lightblue]\n  rec14 [label =  \"Japón\",fillcolor = lightblue]\n  rec15 [label =  \"Suiza\",fillcolor = lightsalmon]\n  rec16 [label =  \"Corea del Sur\",fillcolor = lightsalmon]\n  \n  rec17 [label =  \"EEUU\",fillcolor = snow]\n  rec18 [label =  \"Dinamarca\",fillcolor = snow]\n  rec19 [label =  \"Costa Rica\",fillcolor = snow]\n  rec20 [label =  \"Brasil\",fillcolor = snow]\n  rec21 [label =  \"Inglaterra\",fillcolor = snow]\n  rec22 [label =  \"Argentina\",fillcolor = snow]\n  rec23 [label =  \"Bélgica\",fillcolor = snow]\n  rec24 [label =  \"Suiza\",fillcolor = snow]\n  \n  rec25 [label = \"Dinamarca\",fillcolor = snow]\n  rec26 [label =  \"Brasil\",fillcolor = snow]\n  rec27 [label =  \"Inglaterra\",fillcolor = snow]\n  rec28 [label =  \"Bélgica\",fillcolor = snow]\n  \n  rec29 [label =  \"\"]\n  rec30 [label =  \"\"]\n  \n  rec31 [label =  \"\"]\n  \n  # edge definitions with the node IDs\n  rec1 -> rec17\n  rec2 -> rec17\n  rec3 -> rec18\n  rec4 -> rec18\n  rec5 -> rec19\n  rec6 -> rec19\n  rec7 -> rec20\n  rec8 -> rec20\n  rec9 -> rec21\n  rec10 -> rec21\n  rec11 -> rec22\n  rec12 -> rec22\n  rec13 -> rec23\n  rec14 -> rec23\n  rec15 -> rec24\n  rec16 -> rec24\n  rec17 -> rec25\n  rec18 -> rec25\n  rec19 -> rec26\n  rec20 -> rec26\n  rec21 -> rec27\n  rec22 -> rec27\n  rec23 -> rec28\n  rec24 -> rec28\n  rec25 -> rec29\n  rec26 -> rec29\n  rec27 -> rec30\n  rec28 -> rec30\n  rec29 -> rec31\n  rec30 -> rec31\n  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-9a3aff26189f3057c401" style="width:504px;height:504px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-9a3aff26189f3057c401">{"x":{"diagram":"digraph {\n  graph [layout = dot, rankdir = LR]\n  \n  node [shape = rectangle,\n        style = filled,\n        color = grey,\n        fixedsize = true,\n        width = 3,\n        fontsize = 30]        \n  rec1 [label = \"EEUU\",fillcolor = lightblue]\n  rec2 [label = \"Holanda\",fillcolor = lightblue]\n  rec3 [label =  \"Dinamarca\",fillcolor = lightsalmon]\n  rec4 [label =  \"Polonia\",fillcolor = lightsalmon]\n  rec5 [label =  \"Costa Rica\",fillcolor = lightsalmon]\n  rec6 [label =  \"Croacia\",fillcolor = lightsalmon]\n  rec7 [label =  \"Brasil\",fillcolor = lightblue]\n  rec8 [label =  \"Portugal\",fillcolor = lightblue]\n  rec9 [label =  \"Inglaterra\",fillcolor = lightblue]\n  rec10 [label =  \"Ecuador\",fillcolor = lightblue]\n  rec11 [label =  \"Argentina\",fillcolor = lightsalmon]\n  rec12 [label =  \"Francia\",fillcolor = lightsalmon]\n  rec13 [label =  \"Bélgica\",fillcolor = lightblue]\n  rec14 [label =  \"Japón\",fillcolor = lightblue]\n  rec15 [label =  \"Suiza\",fillcolor = lightsalmon]\n  rec16 [label =  \"Corea del Sur\",fillcolor = lightsalmon]\n  \n  rec17 [label =  \"EEUU\",fillcolor = snow]\n  rec18 [label =  \"Dinamarca\",fillcolor = snow]\n  rec19 [label =  \"Costa Rica\",fillcolor = snow]\n  rec20 [label =  \"Brasil\",fillcolor = snow]\n  rec21 [label =  \"Inglaterra\",fillcolor = snow]\n  rec22 [label =  \"Argentina\",fillcolor = snow]\n  rec23 [label =  \"Bélgica\",fillcolor = snow]\n  rec24 [label =  \"Suiza\",fillcolor = snow]\n  \n  rec25 [label = \"Dinamarca\",fillcolor = snow]\n  rec26 [label =  \"Brasil\",fillcolor = snow]\n  rec27 [label =  \"Inglaterra\",fillcolor = snow]\n  rec28 [label =  \"Bélgica\",fillcolor = snow]\n  \n  rec29 [label =  \"\"]\n  rec30 [label =  \"\"]\n  \n  rec31 [label =  \"\"]\n  \n  # edge definitions with the node IDs\n  rec1 -> rec17\n  rec2 -> rec17\n  rec3 -> rec18\n  rec4 -> rec18\n  rec5 -> rec19\n  rec6 -> rec19\n  rec7 -> rec20\n  rec8 -> rec20\n  rec9 -> rec21\n  rec10 -> rec21\n  rec11 -> rec22\n  rec12 -> rec22\n  rec13 -> rec23\n  rec14 -> rec23\n  rec15 -> rec24\n  rec16 -> rec24\n  rec17 -> rec25\n  rec18 -> rec25\n  rec19 -> rec26\n  rec20 -> rec26\n  rec21 -> rec27\n  rec22 -> rec27\n  rec23 -> rec28\n  rec24 -> rec28\n  rec25 -> rec29\n  rec26 -> rec29\n  rec27 -> rec30\n  rec28 -> rec30\n  rec29 -> rec31\n  rec30 -> rec31\n  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 ]
 
 ---
@@ -548,8 +510,8 @@ Ahora saquemos las bolillas para la fase final.
 **Semifinal**
 
 .center[
-<div id="htmlwidget-1ab8a43f3dc48f9ff9c5" style="width:504px;height:504px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-1ab8a43f3dc48f9ff9c5">{"x":{"diagram":"digraph {\n  graph [layout = dot, rankdir = LR]\n  \n  node [shape = rectangle,\n        style = filled,\n        color = grey,\n        fixedsize = true,\n        width = 3,\n        fontsize = 30]        \n  rec1 [label = \"EEUU\",fillcolor = lightblue]\n  rec2 [label = \"Holanda\",fillcolor = lightblue]\n  rec3 [label =  \"Dinamarca\",fillcolor = lightsalmon]\n  rec4 [label =  \"Polonia\",fillcolor = lightsalmon]\n  rec5 [label =  \"Costa Rica\",fillcolor = lightsalmon]\n  rec6 [label =  \"Croacia\",fillcolor = lightsalmon]\n  rec7 [label =  \"Brasil\",fillcolor = lightblue]\n  rec8 [label =  \"Portugal\",fillcolor = lightblue]\n  rec9 [label =  \"Inglaterra\",fillcolor = lightblue]\n  rec10 [label =  \"Ecuador\",fillcolor = lightblue]\n  rec11 [label =  \"Argentina\",fillcolor = lightsalmon]\n  rec12 [label =  \"Francia\",fillcolor = lightsalmon]\n  rec13 [label =  \"Bélgica\",fillcolor = lightblue]\n  rec14 [label =  \"Japón\",fillcolor = lightblue]\n  rec15 [label =  \"Suiza\",fillcolor = lightsalmon]\n  rec16 [label =  \"Corea del Sur\",fillcolor = lightsalmon]\n  \n  rec17 [label =  \"EEUU\",fillcolor = snow]\n  rec18 [label =  \"Dinamarca\",fillcolor = snow]\n  rec19 [label =  \"Costa Rica\",fillcolor = snow]\n  rec20 [label =  \"Brasil\",fillcolor = snow]\n  rec21 [label =  \"Inglaterra\",fillcolor = snow]\n  rec22 [label =  \"Argentina\",fillcolor = snow]\n  rec23 [label =  \"Bélgica\",fillcolor = snow]\n  rec24 [label =  \"Suiza\",fillcolor = snow]\n  \n  rec25 [label = \"Dinamarca\",fillcolor = snow]\n  rec26 [label =  \"Brasil\",fillcolor = snow]\n  rec27 [label =  \"Inglaterra\",fillcolor = snow]\n  rec28 [label =  \"Bélgica\",fillcolor = snow]\n  \n  rec29 [label =  \"Brasil\",fillcolor = snow]\n  rec30 [label =  \"Inglaterra\",fillcolor = snow]\n  \n  rec31 [label =  \"\"]\n  \n  # edge definitions with the node IDs\n  rec1 -> rec17\n  rec2 -> rec17\n  rec3 -> rec18\n  rec4 -> rec18\n  rec5 -> rec19\n  rec6 -> rec19\n  rec7 -> rec20\n  rec8 -> rec20\n  rec9 -> rec21\n  rec10 -> rec21\n  rec11 -> rec22\n  rec12 -> rec22\n  rec13 -> rec23\n  rec14 -> rec23\n  rec15 -> rec24\n  rec16 -> rec24\n  rec17 -> rec25\n  rec18 -> rec25\n  rec19 -> rec26\n  rec20 -> rec26\n  rec21 -> rec27\n  rec22 -> rec27\n  rec23 -> rec28\n  rec24 -> rec28\n  rec25 -> rec29\n  rec26 -> rec29\n  rec27 -> rec30\n  rec28 -> rec30\n  rec29 -> rec31\n  rec30 -> rec31\n  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-156b37e2b15a7104eee4" style="width:504px;height:504px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-156b37e2b15a7104eee4">{"x":{"diagram":"digraph {\n  graph [layout = dot, rankdir = LR]\n  \n  node [shape = rectangle,\n        style = filled,\n        color = grey,\n        fixedsize = true,\n        width = 3,\n        fontsize = 30]        \n  rec1 [label = \"EEUU\",fillcolor = lightblue]\n  rec2 [label = \"Holanda\",fillcolor = lightblue]\n  rec3 [label =  \"Dinamarca\",fillcolor = lightsalmon]\n  rec4 [label =  \"Polonia\",fillcolor = lightsalmon]\n  rec5 [label =  \"Costa Rica\",fillcolor = lightsalmon]\n  rec6 [label =  \"Croacia\",fillcolor = lightsalmon]\n  rec7 [label =  \"Brasil\",fillcolor = lightblue]\n  rec8 [label =  \"Portugal\",fillcolor = lightblue]\n  rec9 [label =  \"Inglaterra\",fillcolor = lightblue]\n  rec10 [label =  \"Ecuador\",fillcolor = lightblue]\n  rec11 [label =  \"Argentina\",fillcolor = lightsalmon]\n  rec12 [label =  \"Francia\",fillcolor = lightsalmon]\n  rec13 [label =  \"Bélgica\",fillcolor = lightblue]\n  rec14 [label =  \"Japón\",fillcolor = lightblue]\n  rec15 [label =  \"Suiza\",fillcolor = lightsalmon]\n  rec16 [label =  \"Corea del Sur\",fillcolor = lightsalmon]\n  \n  rec17 [label =  \"EEUU\",fillcolor = snow]\n  rec18 [label =  \"Dinamarca\",fillcolor = snow]\n  rec19 [label =  \"Costa Rica\",fillcolor = snow]\n  rec20 [label =  \"Brasil\",fillcolor = snow]\n  rec21 [label =  \"Inglaterra\",fillcolor = snow]\n  rec22 [label =  \"Argentina\",fillcolor = snow]\n  rec23 [label =  \"Bélgica\",fillcolor = snow]\n  rec24 [label =  \"Suiza\",fillcolor = snow]\n  \n  rec25 [label = \"Dinamarca\",fillcolor = snow]\n  rec26 [label =  \"Brasil\",fillcolor = snow]\n  rec27 [label =  \"Inglaterra\",fillcolor = snow]\n  rec28 [label =  \"Bélgica\",fillcolor = snow]\n  \n  rec29 [label =  \"Brasil\",fillcolor = snow]\n  rec30 [label =  \"Inglaterra\",fillcolor = snow]\n  \n  rec31 [label =  \"\"]\n  \n  # edge definitions with the node IDs\n  rec1 -> rec17\n  rec2 -> rec17\n  rec3 -> rec18\n  rec4 -> rec18\n  rec5 -> rec19\n  rec6 -> rec19\n  rec7 -> rec20\n  rec8 -> rec20\n  rec9 -> rec21\n  rec10 -> rec21\n  rec11 -> rec22\n  rec12 -> rec22\n  rec13 -> rec23\n  rec14 -> rec23\n  rec15 -> rec24\n  rec16 -> rec24\n  rec17 -> rec25\n  rec18 -> rec25\n  rec19 -> rec26\n  rec20 -> rec26\n  rec21 -> rec27\n  rec22 -> rec27\n  rec23 -> rec28\n  rec24 -> rec28\n  rec25 -> rec29\n  rec26 -> rec29\n  rec27 -> rec30\n  rec28 -> rec30\n  rec29 -> rec31\n  rec30 -> rec31\n  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 ]
 
 ---
@@ -559,8 +521,8 @@ Ahora saquemos las bolillas para la fase final.
 **Final**
 
 .center[
-<div id="htmlwidget-2d8740befdcde62589b2" style="width:504px;height:504px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-2d8740befdcde62589b2">{"x":{"diagram":"digraph {\n  graph [layout = dot, rankdir = LR]\n  \n  node [shape = rectangle,\n        style = filled,\n        color = grey,\n        fixedsize = true,\n        width = 3,\n        fontsize = 30]        \n  rec1 [label = \"EEUU\",fillcolor = lightblue]\n  rec2 [label = \"Holanda\",fillcolor = lightblue]\n  rec3 [label =  \"Dinamarca\",fillcolor = lightsalmon]\n  rec4 [label =  \"Polonia\",fillcolor = lightsalmon]\n  rec5 [label =  \"Costa Rica\",fillcolor = lightsalmon]\n  rec6 [label =  \"Croacia\",fillcolor = lightsalmon]\n  rec7 [label =  \"Brasil\",fillcolor = lightblue]\n  rec8 [label =  \"Portugal\",fillcolor = lightblue]\n  rec9 [label =  \"Inglaterra\",fillcolor = lightblue]\n  rec10 [label =  \"Ecuador\",fillcolor = lightblue]\n  rec11 [label =  \"Argentina\",fillcolor = lightsalmon]\n  rec12 [label =  \"Francia\",fillcolor = lightsalmon]\n  rec13 [label =  \"Bélgica\",fillcolor = lightblue]\n  rec14 [label =  \"Japón\",fillcolor = lightblue]\n  rec15 [label =  \"Suiza\",fillcolor = lightsalmon]\n  rec16 [label =  \"Corea del Sur\",fillcolor = lightsalmon]\n  \n  rec17 [label =  \"EEUU\",fillcolor = snow]\n  rec18 [label =  \"Dinamarca\",fillcolor = snow]\n  rec19 [label =  \"Costa Rica\",fillcolor = snow]\n  rec20 [label =  \"Brasil\",fillcolor = snow]\n  rec21 [label =  \"Inglaterra\",fillcolor = snow]\n  rec22 [label =  \"Argentina\",fillcolor = snow]\n  rec23 [label =  \"Bélgica\",fillcolor = snow]\n  rec24 [label =  \"Suiza\",fillcolor = snow]\n  \n  rec25 [label = \"Dinamarca\",fillcolor = snow]\n  rec26 [label =  \"Brasil\",fillcolor = snow]\n  rec27 [label =  \"Inglaterra\",fillcolor = snow]\n  rec28 [label =  \"Bélgica\",fillcolor = snow]\n  \n  rec29 [label =  \"Brasil\",fillcolor = snow]\n  rec30 [label =  \"Inglaterra\",fillcolor = snow]\n  \n  rec31 [label =  \"Brasil\",fillcolor = snow]\n  \n  # edge definitions with the node IDs\n  rec1 -> rec17\n  rec2 -> rec17\n  rec3 -> rec18\n  rec4 -> rec18\n  rec5 -> rec19\n  rec6 -> rec19\n  rec7 -> rec20\n  rec8 -> rec20\n  rec9 -> rec21\n  rec10 -> rec21\n  rec11 -> rec22\n  rec12 -> rec22\n  rec13 -> rec23\n  rec14 -> rec23\n  rec15 -> rec24\n  rec16 -> rec24\n  rec17 -> rec25\n  rec18 -> rec25\n  rec19 -> rec26\n  rec20 -> rec26\n  rec21 -> rec27\n  rec22 -> rec27\n  rec23 -> rec28\n  rec24 -> rec28\n  rec25 -> rec29\n  rec26 -> rec29\n  rec27 -> rec30\n  rec28 -> rec30\n  rec29 -> rec31\n  rec30 -> rec31\n  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-ccc6b032616985574c06" style="width:504px;height:504px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-ccc6b032616985574c06">{"x":{"diagram":"digraph {\n  graph [layout = dot, rankdir = LR]\n  \n  node [shape = rectangle,\n        style = filled,\n        color = grey,\n        fixedsize = true,\n        width = 3,\n        fontsize = 30]        \n  rec1 [label = \"EEUU\",fillcolor = lightblue]\n  rec2 [label = \"Holanda\",fillcolor = lightblue]\n  rec3 [label =  \"Dinamarca\",fillcolor = lightsalmon]\n  rec4 [label =  \"Polonia\",fillcolor = lightsalmon]\n  rec5 [label =  \"Costa Rica\",fillcolor = lightsalmon]\n  rec6 [label =  \"Croacia\",fillcolor = lightsalmon]\n  rec7 [label =  \"Brasil\",fillcolor = lightblue]\n  rec8 [label =  \"Portugal\",fillcolor = lightblue]\n  rec9 [label =  \"Inglaterra\",fillcolor = lightblue]\n  rec10 [label =  \"Ecuador\",fillcolor = lightblue]\n  rec11 [label =  \"Argentina\",fillcolor = lightsalmon]\n  rec12 [label =  \"Francia\",fillcolor = lightsalmon]\n  rec13 [label =  \"Bélgica\",fillcolor = lightblue]\n  rec14 [label =  \"Japón\",fillcolor = lightblue]\n  rec15 [label =  \"Suiza\",fillcolor = lightsalmon]\n  rec16 [label =  \"Corea del Sur\",fillcolor = lightsalmon]\n  \n  rec17 [label =  \"EEUU\",fillcolor = snow]\n  rec18 [label =  \"Dinamarca\",fillcolor = snow]\n  rec19 [label =  \"Costa Rica\",fillcolor = snow]\n  rec20 [label =  \"Brasil\",fillcolor = snow]\n  rec21 [label =  \"Inglaterra\",fillcolor = snow]\n  rec22 [label =  \"Argentina\",fillcolor = snow]\n  rec23 [label =  \"Bélgica\",fillcolor = snow]\n  rec24 [label =  \"Suiza\",fillcolor = snow]\n  \n  rec25 [label = \"Dinamarca\",fillcolor = snow]\n  rec26 [label =  \"Brasil\",fillcolor = snow]\n  rec27 [label =  \"Inglaterra\",fillcolor = snow]\n  rec28 [label =  \"Bélgica\",fillcolor = snow]\n  \n  rec29 [label =  \"Brasil\",fillcolor = snow]\n  rec30 [label =  \"Inglaterra\",fillcolor = snow]\n  \n  rec31 [label =  \"Brasil\",fillcolor = snow]\n  \n  # edge definitions with the node IDs\n  rec1 -> rec17\n  rec2 -> rec17\n  rec3 -> rec18\n  rec4 -> rec18\n  rec5 -> rec19\n  rec6 -> rec19\n  rec7 -> rec20\n  rec8 -> rec20\n  rec9 -> rec21\n  rec10 -> rec21\n  rec11 -> rec22\n  rec12 -> rec22\n  rec13 -> rec23\n  rec14 -> rec23\n  rec15 -> rec24\n  rec16 -> rec24\n  rec17 -> rec25\n  rec18 -> rec25\n  rec19 -> rec26\n  rec20 -> rec26\n  rec21 -> rec27\n  rec22 -> rec27\n  rec23 -> rec28\n  rec24 -> rec28\n  rec25 -> rec29\n  rec26 -> rec29\n  rec27 -> rec30\n  rec28 -> rec30\n  rec29 -> rec31\n  rec30 -> rec31\n  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 ]
 
 ---
@@ -569,42 +531,14 @@ Ahora saquemos las bolillas para la fase final.
 
 **Repetimos el proceso**. Sacamos una bolilla en los primeros 48 bolilleros, los de la fase de grupos. Ahora, los 2 primeros de cada grupos fueron:
 
-.pull-left[
-**Grupo A**:
-1.Senegal
-2.Ecuador
+--
 
-**Grupo B**:
-1.Inglaterra
-2.Gales
+| | A | B | C | D | E | F | G | H |
+| :---: |:---: |:---: |:---: |:---: |:---: |:---: |:---: |:---: |
+| **1ro** | Senegal | Inglaterra | México | Túnez | Alemania | Bélgica | Brasil | Corea |
+| **2do** | Ecuador | Gales | Argentina | Dinamarca | España | Croacia | Camerún | Uruguay |
 
-**Grupo C**:
-1.México
-2.Argentina
-
-**Grupo D**:
-1.Túnez
-2.Dinamarca
-]
-
-.pull-right[
-**Grupo E**:
-1.Alemania
-2.España
-
-**Grupo F**:
-1.Bélgica
-2.Croacia
-
-**Grupo G**:
-1.Brasil
-2.Camerún
-
-**Grupo H**:
-1.Corea del Sur
-2.Uruguay
-]
-
+&lt;br/&gt;
 Notar que, entre otros, quedaron eliminados Holanda, Francia y Portugal.
 
 Ahora saquemos las bolillas para la fase final:
@@ -616,8 +550,8 @@ Ahora saquemos las bolillas para la fase final:
 **Octavos de Final**
 
 .center[
-<div id="htmlwidget-0548fffb4de99f65ef52" style="width:504px;height:504px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-0548fffb4de99f65ef52">{"x":{"diagram":"digraph {\n  graph [layout = dot, rankdir = LR]\n  \n  node [shape = rectangle,\n        style = filled,\n        color = grey,\n        fixedsize = true,\n        width = 3,\n        fontsize = 30]        \n  rec1 [label = \"Senegal\",fillcolor = lightblue]\n  rec2 [label = \"Gales\",fillcolor = lightblue]\n  rec3 [label =  \"México\",fillcolor = lightsalmon]\n  rec4 [label =  \"Dinamarca\",fillcolor = lightsalmon]\n  rec5 [label =  \"Alemania\",fillcolor = lightsalmon]\n  rec6 [label =  \"Croacia\",fillcolor = lightsalmon]\n  rec7 [label =  \"Brasil\",fillcolor = lightblue]\n  rec8 [label =  \"Uruguay\",fillcolor = lightblue]\n  rec9 [label =  \"Ecuador\",fillcolor = lightblue]\n  rec10 [label =  \"Inglaterra\",fillcolor = lightblue]\n  rec11 [label =  \"Argentina\",fillcolor = lightsalmon]\n  rec12 [label =  \"Túnez\",fillcolor = lightsalmon]\n  rec13 [label =  \"Bélgica\",fillcolor = lightblue]\n  rec14 [label =  \"España\",fillcolor = lightblue]\n  rec15 [label =  \"Corea del Sur\",fillcolor = lightsalmon]\n  rec16 [label =  \"Camerún\",fillcolor = lightsalmon]\n\n  rec17 [label =  \"Senegal\",fillcolor = snow]\n  rec18 [label =  \"México\",fillcolor = snow]\n  rec19 [label =  \"Alemania\",fillcolor = snow]\n  rec20 [label =  \"Brasil\",fillcolor = snow]\n  rec21 [label =  \"Ecuador\",fillcolor = snow]\n  rec22 [label =  \"Argentina\",fillcolor = snow]\n  rec23 [label =  \"Bélgica\",fillcolor = snow]\n  rec24 [label =  \"Corea del Sur\",fillcolor = snow]\n  \n  rec25 [label = \"\"]\n  rec26 [label =  \"\"]\n  rec27 [label =  \"\"]\n  rec28 [label =  \"\"]\n  \n  rec29 [label =  \"\"]\n  rec30 [label =  \"\"]\n  \n  rec31 [label =  \"\"]\n  \n  # edge definitions with the node IDs\n  rec1 -> rec17\n  rec2 -> rec17\n  rec3 -> rec18\n  rec4 -> rec18\n  rec5 -> rec19\n  rec6 -> rec19\n  rec7 -> rec20\n  rec8 -> rec20\n  rec9 -> rec21\n  rec10 -> rec21\n  rec11 -> rec22\n  rec12 -> rec22\n  rec13 -> rec23\n  rec14 -> rec23\n  rec15 -> rec24\n  rec16 -> rec24\n  rec17 -> rec25\n  rec18 -> rec25\n  rec19 -> rec26\n  rec20 -> rec26\n  rec21 -> rec27\n  rec22 -> rec27\n  rec23 -> rec28\n  rec24 -> rec28\n  rec25 -> rec29\n  rec26 -> rec29\n  rec27 -> rec30\n  rec28 -> rec30\n  rec29 -> rec31\n  rec30 -> rec31\n  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-6b3b266078bf97a0e614" style="width:504px;height:504px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-6b3b266078bf97a0e614">{"x":{"diagram":"digraph {\n  graph [layout = dot, rankdir = LR]\n  \n  node [shape = rectangle,\n        style = filled,\n        color = grey,\n        fixedsize = true,\n        width = 3,\n        fontsize = 30]        \n  rec1 [label = \"Senegal\",fillcolor = lightblue]\n  rec2 [label = \"Gales\",fillcolor = lightblue]\n  rec3 [label =  \"México\",fillcolor = lightsalmon]\n  rec4 [label =  \"Dinamarca\",fillcolor = lightsalmon]\n  rec5 [label =  \"Alemania\",fillcolor = lightsalmon]\n  rec6 [label =  \"Croacia\",fillcolor = lightsalmon]\n  rec7 [label =  \"Brasil\",fillcolor = lightblue]\n  rec8 [label =  \"Uruguay\",fillcolor = lightblue]\n  rec9 [label =  \"Ecuador\",fillcolor = lightblue]\n  rec10 [label =  \"Inglaterra\",fillcolor = lightblue]\n  rec11 [label =  \"Argentina\",fillcolor = lightsalmon]\n  rec12 [label =  \"Túnez\",fillcolor = lightsalmon]\n  rec13 [label =  \"Bélgica\",fillcolor = lightblue]\n  rec14 [label =  \"España\",fillcolor = lightblue]\n  rec15 [label =  \"Corea del Sur\",fillcolor = lightsalmon]\n  rec16 [label =  \"Camerún\",fillcolor = lightsalmon]\n\n  rec17 [label =  \"Senegal\",fillcolor = snow]\n  rec18 [label =  \"México\",fillcolor = snow]\n  rec19 [label =  \"Alemania\",fillcolor = snow]\n  rec20 [label =  \"Brasil\",fillcolor = snow]\n  rec21 [label =  \"Ecuador\",fillcolor = snow]\n  rec22 [label =  \"Argentina\",fillcolor = snow]\n  rec23 [label =  \"Bélgica\",fillcolor = snow]\n  rec24 [label =  \"Corea del Sur\",fillcolor = snow]\n  \n  rec25 [label = \"\"]\n  rec26 [label =  \"\"]\n  rec27 [label =  \"\"]\n  rec28 [label =  \"\"]\n  \n  rec29 [label =  \"\"]\n  rec30 [label =  \"\"]\n  \n  rec31 [label =  \"\"]\n  \n  # edge definitions with the node IDs\n  rec1 -> rec17\n  rec2 -> rec17\n  rec3 -> rec18\n  rec4 -> rec18\n  rec5 -> rec19\n  rec6 -> rec19\n  rec7 -> rec20\n  rec8 -> rec20\n  rec9 -> rec21\n  rec10 -> rec21\n  rec11 -> rec22\n  rec12 -> rec22\n  rec13 -> rec23\n  rec14 -> rec23\n  rec15 -> rec24\n  rec16 -> rec24\n  rec17 -> rec25\n  rec18 -> rec25\n  rec19 -> rec26\n  rec20 -> rec26\n  rec21 -> rec27\n  rec22 -> rec27\n  rec23 -> rec28\n  rec24 -> rec28\n  rec25 -> rec29\n  rec26 -> rec29\n  rec27 -> rec30\n  rec28 -> rec30\n  rec29 -> rec31\n  rec30 -> rec31\n  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 ]
 
 ---
@@ -627,8 +561,8 @@ Ahora saquemos las bolillas para la fase final:
 **Cuartos de Final**
 
 .center[
-<div id="htmlwidget-b7e2a4394b6f840b3651" style="width:504px;height:504px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-b7e2a4394b6f840b3651">{"x":{"diagram":"digraph {\n  graph [layout = dot, rankdir = LR]\n  \n  node [shape = rectangle,\n        style = filled,\n        color = grey,\n        fixedsize = true,\n        width = 3,\n        fontsize = 30]        \n  rec1 [label = \"Senegal\",fillcolor = lightblue]\n  rec2 [label = \"Gales\",fillcolor = lightblue]\n  rec3 [label =  \"México\",fillcolor = lightsalmon]\n  rec4 [label =  \"Dinamarca\",fillcolor = lightsalmon]\n  rec5 [label =  \"Alemania\",fillcolor = lightsalmon]\n  rec6 [label =  \"Croacia\",fillcolor = lightsalmon]\n  rec7 [label =  \"Brasil\",fillcolor = lightblue]\n  rec8 [label =  \"Uruguay\",fillcolor = lightblue]\n  rec9 [label =  \"Ecuador\",fillcolor = lightblue]\n  rec10 [label =  \"Inglaterra\",fillcolor = lightblue]\n  rec11 [label =  \"Argentina\",fillcolor = lightsalmon]\n  rec12 [label =  \"Túnez\",fillcolor = lightsalmon]\n  rec13 [label =  \"Bélgica\",fillcolor = lightblue]\n  rec14 [label =  \"España\",fillcolor = lightblue]\n  rec15 [label =  \"Corea del Sur\",fillcolor = lightsalmon]\n  rec16 [label =  \"Camerún\",fillcolor = lightsalmon]\n\n  rec17 [label =  \"Senegal\",fillcolor = snow]\n  rec18 [label =  \"México\",fillcolor = snow]\n  rec19 [label =  \"Alemania\",fillcolor = snow]\n  rec20 [label =  \"Brasil\",fillcolor = snow]\n  rec21 [label =  \"Ecuador\",fillcolor = snow]\n  rec22 [label =  \"Argentina\",fillcolor = snow]\n  rec23 [label =  \"Bélgica\",fillcolor = snow]\n  rec24 [label =  \"Corea del Sur\",fillcolor = snow]\n  \n  rec25 [label = \"Senegal\",fillcolor = snow]\n  rec26 [label =  \"Brasil\",fillcolor = snow]\n  rec27 [label =  \"Argentina\",fillcolor = snow]\n  rec28 [label =  \"Corea del Sur\",fillcolor = snow]\n\n  rec29 [label =  \"\"]\n  rec30 [label =  \"\"]\n  \n  rec31 [label =  \"\"]\n  \n  # edge definitions with the node IDs\n  rec1 -> rec17\n  rec2 -> rec17\n  rec3 -> rec18\n  rec4 -> rec18\n  rec5 -> rec19\n  rec6 -> rec19\n  rec7 -> rec20\n  rec8 -> rec20\n  rec9 -> rec21\n  rec10 -> rec21\n  rec11 -> rec22\n  rec12 -> rec22\n  rec13 -> rec23\n  rec14 -> rec23\n  rec15 -> rec24\n  rec16 -> rec24\n  rec17 -> rec25\n  rec18 -> rec25\n  rec19 -> rec26\n  rec20 -> rec26\n  rec21 -> rec27\n  rec22 -> rec27\n  rec23 -> rec28\n  rec24 -> rec28\n  rec25 -> rec29\n  rec26 -> rec29\n  rec27 -> rec30\n  rec28 -> rec30\n  rec29 -> rec31\n  rec30 -> rec31\n  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-24286a12213f21ae37f1" style="width:504px;height:504px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-24286a12213f21ae37f1">{"x":{"diagram":"digraph {\n  graph [layout = dot, rankdir = LR]\n  \n  node [shape = rectangle,\n        style = filled,\n        color = grey,\n        fixedsize = true,\n        width = 3,\n        fontsize = 30]        \n  rec1 [label = \"Senegal\",fillcolor = lightblue]\n  rec2 [label = \"Gales\",fillcolor = lightblue]\n  rec3 [label =  \"México\",fillcolor = lightsalmon]\n  rec4 [label =  \"Dinamarca\",fillcolor = lightsalmon]\n  rec5 [label =  \"Alemania\",fillcolor = lightsalmon]\n  rec6 [label =  \"Croacia\",fillcolor = lightsalmon]\n  rec7 [label =  \"Brasil\",fillcolor = lightblue]\n  rec8 [label =  \"Uruguay\",fillcolor = lightblue]\n  rec9 [label =  \"Ecuador\",fillcolor = lightblue]\n  rec10 [label =  \"Inglaterra\",fillcolor = lightblue]\n  rec11 [label =  \"Argentina\",fillcolor = lightsalmon]\n  rec12 [label =  \"Túnez\",fillcolor = lightsalmon]\n  rec13 [label =  \"Bélgica\",fillcolor = lightblue]\n  rec14 [label =  \"España\",fillcolor = lightblue]\n  rec15 [label =  \"Corea del Sur\",fillcolor = lightsalmon]\n  rec16 [label =  \"Camerún\",fillcolor = lightsalmon]\n\n  rec17 [label =  \"Senegal\",fillcolor = snow]\n  rec18 [label =  \"México\",fillcolor = snow]\n  rec19 [label =  \"Alemania\",fillcolor = snow]\n  rec20 [label =  \"Brasil\",fillcolor = snow]\n  rec21 [label =  \"Ecuador\",fillcolor = snow]\n  rec22 [label =  \"Argentina\",fillcolor = snow]\n  rec23 [label =  \"Bélgica\",fillcolor = snow]\n  rec24 [label =  \"Corea del Sur\",fillcolor = snow]\n  \n  rec25 [label = \"Senegal\",fillcolor = snow]\n  rec26 [label =  \"Brasil\",fillcolor = snow]\n  rec27 [label =  \"Argentina\",fillcolor = snow]\n  rec28 [label =  \"Corea del Sur\",fillcolor = snow]\n\n  rec29 [label =  \"\"]\n  rec30 [label =  \"\"]\n  \n  rec31 [label =  \"\"]\n  \n  # edge definitions with the node IDs\n  rec1 -> rec17\n  rec2 -> rec17\n  rec3 -> rec18\n  rec4 -> rec18\n  rec5 -> rec19\n  rec6 -> rec19\n  rec7 -> rec20\n  rec8 -> rec20\n  rec9 -> rec21\n  rec10 -> rec21\n  rec11 -> rec22\n  rec12 -> rec22\n  rec13 -> rec23\n  rec14 -> rec23\n  rec15 -> rec24\n  rec16 -> rec24\n  rec17 -> rec25\n  rec18 -> rec25\n  rec19 -> rec26\n  rec20 -> rec26\n  rec21 -> rec27\n  rec22 -> rec27\n  rec23 -> rec28\n  rec24 -> rec28\n  rec25 -> rec29\n  rec26 -> rec29\n  rec27 -> rec30\n  rec28 -> rec30\n  rec29 -> rec31\n  rec30 -> rec31\n  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 ]
 
 ---
@@ -638,8 +572,8 @@ Ahora saquemos las bolillas para la fase final:
 **Semifinal**
 
 .center[
-<div id="htmlwidget-ca032b0f636943b4c7ae" style="width:504px;height:504px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-ca032b0f636943b4c7ae">{"x":{"diagram":"digraph {\n  graph [layout = dot, rankdir = LR]\n  \n  node [shape = rectangle,\n        style = filled,\n        color = grey,\n        fixedsize = true,\n        width = 3,\n        fontsize = 30]        \n  rec1 [label = \"Senegal\",fillcolor = lightblue]\n  rec2 [label = \"Gales\",fillcolor = lightblue]\n  rec3 [label =  \"México\",fillcolor = lightsalmon]\n  rec4 [label =  \"Dinamarca\",fillcolor = lightsalmon]\n  rec5 [label =  \"Alemania\",fillcolor = lightsalmon]\n  rec6 [label =  \"Croacia\",fillcolor = lightsalmon]\n  rec7 [label =  \"Brasil\",fillcolor = lightblue]\n  rec8 [label =  \"Uruguay\",fillcolor = lightblue]\n  rec9 [label =  \"Ecuador\",fillcolor = lightblue]\n  rec10 [label =  \"Inglaterra\",fillcolor = lightblue]\n  rec11 [label =  \"Argentina\",fillcolor = lightsalmon]\n  rec12 [label =  \"Túnez\",fillcolor = lightsalmon]\n  rec13 [label =  \"Bélgica\",fillcolor = lightblue]\n  rec14 [label =  \"España\",fillcolor = lightblue]\n  rec15 [label =  \"Corea del Sur\",fillcolor = lightsalmon]\n  rec16 [label =  \"Camerún\",fillcolor = lightsalmon]\n\n  rec17 [label =  \"Senegal\",fillcolor = snow]\n  rec18 [label =  \"México\",fillcolor = snow]\n  rec19 [label =  \"Alemania\",fillcolor = snow]\n  rec20 [label =  \"Brasil\",fillcolor = snow]\n  rec21 [label =  \"Ecuador\",fillcolor = snow]\n  rec22 [label =  \"Argentina\",fillcolor = snow]\n  rec23 [label =  \"Bélgica\",fillcolor = snow]\n  rec24 [label =  \"Corea del Sur\",fillcolor = snow]\n  \n  rec25 [label = \"Senegal\",fillcolor = snow]\n  rec26 [label =  \"Brasil\",fillcolor = snow]\n  rec27 [label =  \"Argentina\",fillcolor = snow]\n  rec28 [label =  \"Corea del Sur\",fillcolor = snow]\n  \n  rec29 [label =  \"Brasil\",fillcolor = snow]\n  rec30 [label =  \"Argentina\",fillcolor = snow]\n  \n  rec31 [label =  \"\"]\n  \n  # edge definitions with the node IDs\n  rec1 -> rec17\n  rec2 -> rec17\n  rec3 -> rec18\n  rec4 -> rec18\n  rec5 -> rec19\n  rec6 -> rec19\n  rec7 -> rec20\n  rec8 -> rec20\n  rec9 -> rec21\n  rec10 -> rec21\n  rec11 -> rec22\n  rec12 -> rec22\n  rec13 -> rec23\n  rec14 -> rec23\n  rec15 -> rec24\n  rec16 -> rec24\n  rec17 -> rec25\n  rec18 -> rec25\n  rec19 -> rec26\n  rec20 -> rec26\n  rec21 -> rec27\n  rec22 -> rec27\n  rec23 -> rec28\n  rec24 -> rec28\n  rec25 -> rec29\n  rec26 -> rec29\n  rec27 -> rec30\n  rec28 -> rec30\n  rec29 -> rec31\n  rec30 -> rec31\n  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-237f21aef093fc745d51" style="width:504px;height:504px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-237f21aef093fc745d51">{"x":{"diagram":"digraph {\n  graph [layout = dot, rankdir = LR]\n  \n  node [shape = rectangle,\n        style = filled,\n        color = grey,\n        fixedsize = true,\n        width = 3,\n        fontsize = 30]        \n  rec1 [label = \"Senegal\",fillcolor = lightblue]\n  rec2 [label = \"Gales\",fillcolor = lightblue]\n  rec3 [label =  \"México\",fillcolor = lightsalmon]\n  rec4 [label =  \"Dinamarca\",fillcolor = lightsalmon]\n  rec5 [label =  \"Alemania\",fillcolor = lightsalmon]\n  rec6 [label =  \"Croacia\",fillcolor = lightsalmon]\n  rec7 [label =  \"Brasil\",fillcolor = lightblue]\n  rec8 [label =  \"Uruguay\",fillcolor = lightblue]\n  rec9 [label =  \"Ecuador\",fillcolor = lightblue]\n  rec10 [label =  \"Inglaterra\",fillcolor = lightblue]\n  rec11 [label =  \"Argentina\",fillcolor = lightsalmon]\n  rec12 [label =  \"Túnez\",fillcolor = lightsalmon]\n  rec13 [label =  \"Bélgica\",fillcolor = lightblue]\n  rec14 [label =  \"España\",fillcolor = lightblue]\n  rec15 [label =  \"Corea del Sur\",fillcolor = lightsalmon]\n  rec16 [label =  \"Camerún\",fillcolor = lightsalmon]\n\n  rec17 [label =  \"Senegal\",fillcolor = snow]\n  rec18 [label =  \"México\",fillcolor = snow]\n  rec19 [label =  \"Alemania\",fillcolor = snow]\n  rec20 [label =  \"Brasil\",fillcolor = snow]\n  rec21 [label =  \"Ecuador\",fillcolor = snow]\n  rec22 [label =  \"Argentina\",fillcolor = snow]\n  rec23 [label =  \"Bélgica\",fillcolor = snow]\n  rec24 [label =  \"Corea del Sur\",fillcolor = snow]\n  \n  rec25 [label = \"Senegal\",fillcolor = snow]\n  rec26 [label =  \"Brasil\",fillcolor = snow]\n  rec27 [label =  \"Argentina\",fillcolor = snow]\n  rec28 [label =  \"Corea del Sur\",fillcolor = snow]\n  \n  rec29 [label =  \"Brasil\",fillcolor = snow]\n  rec30 [label =  \"Argentina\",fillcolor = snow]\n  \n  rec31 [label =  \"\"]\n  \n  # edge definitions with the node IDs\n  rec1 -> rec17\n  rec2 -> rec17\n  rec3 -> rec18\n  rec4 -> rec18\n  rec5 -> rec19\n  rec6 -> rec19\n  rec7 -> rec20\n  rec8 -> rec20\n  rec9 -> rec21\n  rec10 -> rec21\n  rec11 -> rec22\n  rec12 -> rec22\n  rec13 -> rec23\n  rec14 -> rec23\n  rec15 -> rec24\n  rec16 -> rec24\n  rec17 -> rec25\n  rec18 -> rec25\n  rec19 -> rec26\n  rec20 -> rec26\n  rec21 -> rec27\n  rec22 -> rec27\n  rec23 -> rec28\n  rec24 -> rec28\n  rec25 -> rec29\n  rec26 -> rec29\n  rec27 -> rec30\n  rec28 -> rec30\n  rec29 -> rec31\n  rec30 -> rec31\n  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 ]
 
 ---
@@ -649,8 +583,8 @@ Ahora saquemos las bolillas para la fase final:
 **Final**
 
 .center[
-<div id="htmlwidget-89883b89d4ddd2f6a356" style="width:504px;height:504px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-89883b89d4ddd2f6a356">{"x":{"diagram":"digraph {\n  graph [layout = dot, rankdir = LR]\n  \n  node [shape = rectangle,\n        style = filled,\n        color = grey,\n        fixedsize = true,\n        width = 3,\n        fontsize = 30]        \n  rec1 [label = \"Senegal\",fillcolor = lightblue]\n  rec2 [label = \"Gales\",fillcolor = lightblue]\n  rec3 [label =  \"México\",fillcolor = lightsalmon]\n  rec4 [label =  \"Dinamarca\",fillcolor = lightsalmon]\n  rec5 [label =  \"Alemania\",fillcolor = lightsalmon]\n  rec6 [label =  \"Croacia\",fillcolor = lightsalmon]\n  rec7 [label =  \"Brasil\",fillcolor = lightblue]\n  rec8 [label =  \"Uruguay\",fillcolor = lightblue]\n  rec9 [label =  \"Ecuador\",fillcolor = lightblue]\n  rec10 [label =  \"Inglaterra\",fillcolor = lightblue]\n  rec11 [label =  \"Argentina\",fillcolor = lightsalmon]\n  rec12 [label =  \"Túnez\",fillcolor = lightsalmon]\n  rec13 [label =  \"Bélgica\",fillcolor = lightblue]\n  rec14 [label =  \"España\",fillcolor = lightblue]\n  rec15 [label =  \"Corea del Sur\",fillcolor = lightsalmon]\n  rec16 [label =  \"Camerún\",fillcolor = lightsalmon]\n\n  rec17 [label =  \"Senegal\",fillcolor = snow]\n  rec18 [label =  \"México\",fillcolor = snow]\n  rec19 [label =  \"Alemania\",fillcolor = snow]\n  rec20 [label =  \"Brasil\",fillcolor = snow]\n  rec21 [label =  \"Ecuador\",fillcolor = snow]\n  rec22 [label =  \"Argentina\",fillcolor = snow]\n  rec23 [label =  \"Bélgica\",fillcolor = snow]\n  rec24 [label =  \"Corea del Sur\",fillcolor = snow]\n  \n  rec25 [label = \"Senegal\",fillcolor = snow]\n  rec26 [label =  \"Brasil\",fillcolor = snow]\n  rec27 [label =  \"Argentina\",fillcolor = snow]\n  rec28 [label =  \"Corea del Sur\",fillcolor = snow]\n  \n  rec29 [label =  \"Brasil\",fillcolor = snow]\n  rec30 [label =  \"Argentina\",fillcolor = snow]\n  \n  rec31 [label =  \"Argentina\",fillcolor = snow]\n  \n  # edge definitions with the node IDs\n  rec1 -> rec17\n  rec2 -> rec17\n  rec3 -> rec18\n  rec4 -> rec18\n  rec5 -> rec19\n  rec6 -> rec19\n  rec7 -> rec20\n  rec8 -> rec20\n  rec9 -> rec21\n  rec10 -> rec21\n  rec11 -> rec22\n  rec12 -> rec22\n  rec13 -> rec23\n  rec14 -> rec23\n  rec15 -> rec24\n  rec16 -> rec24\n  rec17 -> rec25\n  rec18 -> rec25\n  rec19 -> rec26\n  rec20 -> rec26\n  rec21 -> rec27\n  rec22 -> rec27\n  rec23 -> rec28\n  rec24 -> rec28\n  rec25 -> rec29\n  rec26 -> rec29\n  rec27 -> rec30\n  rec28 -> rec30\n  rec29 -> rec31\n  rec30 -> rec31\n  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-7eb411e7b80f8268f73b" style="width:504px;height:504px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-7eb411e7b80f8268f73b">{"x":{"diagram":"digraph {\n  graph [layout = dot, rankdir = LR]\n  \n  node [shape = rectangle,\n        style = filled,\n        color = grey,\n        fixedsize = true,\n        width = 3,\n        fontsize = 30]        \n  rec1 [label = \"Senegal\",fillcolor = lightblue]\n  rec2 [label = \"Gales\",fillcolor = lightblue]\n  rec3 [label =  \"México\",fillcolor = lightsalmon]\n  rec4 [label =  \"Dinamarca\",fillcolor = lightsalmon]\n  rec5 [label =  \"Alemania\",fillcolor = lightsalmon]\n  rec6 [label =  \"Croacia\",fillcolor = lightsalmon]\n  rec7 [label =  \"Brasil\",fillcolor = lightblue]\n  rec8 [label =  \"Uruguay\",fillcolor = lightblue]\n  rec9 [label =  \"Ecuador\",fillcolor = lightblue]\n  rec10 [label =  \"Inglaterra\",fillcolor = lightblue]\n  rec11 [label =  \"Argentina\",fillcolor = lightsalmon]\n  rec12 [label =  \"Túnez\",fillcolor = lightsalmon]\n  rec13 [label =  \"Bélgica\",fillcolor = lightblue]\n  rec14 [label =  \"España\",fillcolor = lightblue]\n  rec15 [label =  \"Corea del Sur\",fillcolor = lightsalmon]\n  rec16 [label =  \"Camerún\",fillcolor = lightsalmon]\n\n  rec17 [label =  \"Senegal\",fillcolor = snow]\n  rec18 [label =  \"México\",fillcolor = snow]\n  rec19 [label =  \"Alemania\",fillcolor = snow]\n  rec20 [label =  \"Brasil\",fillcolor = snow]\n  rec21 [label =  \"Ecuador\",fillcolor = snow]\n  rec22 [label =  \"Argentina\",fillcolor = snow]\n  rec23 [label =  \"Bélgica\",fillcolor = snow]\n  rec24 [label =  \"Corea del Sur\",fillcolor = snow]\n  \n  rec25 [label = \"Senegal\",fillcolor = snow]\n  rec26 [label =  \"Brasil\",fillcolor = snow]\n  rec27 [label =  \"Argentina\",fillcolor = snow]\n  rec28 [label =  \"Corea del Sur\",fillcolor = snow]\n  \n  rec29 [label =  \"Brasil\",fillcolor = snow]\n  rec30 [label =  \"Argentina\",fillcolor = snow]\n  \n  rec31 [label =  \"Argentina\",fillcolor = snow]\n  \n  # edge definitions with the node IDs\n  rec1 -> rec17\n  rec2 -> rec17\n  rec3 -> rec18\n  rec4 -> rec18\n  rec5 -> rec19\n  rec6 -> rec19\n  rec7 -> rec20\n  rec8 -> rec20\n  rec9 -> rec21\n  rec10 -> rec21\n  rec11 -> rec22\n  rec12 -> rec22\n  rec13 -> rec23\n  rec14 -> rec23\n  rec15 -> rec24\n  rec16 -> rec24\n  rec17 -> rec25\n  rec18 -> rec25\n  rec19 -> rec26\n  rec20 -> rec26\n  rec21 -> rec27\n  rec22 -> rec27\n  rec23 -> rec28\n  rec24 -> rec28\n  rec25 -> rec29\n  rec26 -> rec29\n  rec27 -> rec30\n  rec28 -> rec30\n  rec29 -> rec31\n  rec30 -> rec31\n  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 ]
 
 ---
@@ -767,13 +701,13 @@ De acuerdo a esto, conviene que Brasil quede eliminado en grupos pero tampoco au
 
 --
 
-- Vamos ahora con el segundo ejemplo, extraído del sitio [fivethirtyeight](https://fivethirtyeight.com/)
+- Vamos ahora con el segundo ejemplo, extraído del sitio [538](https://fivethirtyeight.com/)
 
 ---
 
 # Elecciones en EEUU 2022
 
-El sitio [fivethirtyeight](https://fivethirtyeight.com/) se destaca por sus modelos probabilísticos para eventos deportivos y políticos. Para los próximos comicios de Noviembre, tenían a fines de Agosto los siguientes pronósticos para el [Senado](https://projects.fivethirtyeight.com/2022-election-forecast/senate/?cid=rrpromo)...
+El sitio [538](https://fivethirtyeight.com/) se destaca por sus modelos probabilísticos para eventos deportivos y políticos. Para los próximos comicios de Noviembre, tenían a fines de Agosto los siguientes pronósticos para el [Senado](https://projects.fivethirtyeight.com/2022-election-forecast/senate/?cid=rrpromo)...
 
 ![](Imagenes/538senado.png)
 
@@ -835,9 +769,9 @@ El sitio [fivethirtyeight](https://fivethirtyeight.com/) se destaca por sus mode
 
 - En 2016 competían por la presidencia Donald Trump y Hillary Clinton. La gran mayoría de las encuestas daba ganadora a Clinton.
 
-- En base a estas encuestas, la mayoría de los modelos estimaba que la probabilidad de que gane Trump era del 1% o menos. El modelo de fivethirtyeight era el único que le daba chances considerables a Trump (30% el día de la elección).
+- En base a estas encuestas, la mayoría de los modelos estimaba que la probabilidad de que gane Trump era [en torno al 1%-2%](https://elections.huffingtonpost.com/2016/forecast/president). El modelo de 538 era de los pocos le daba chances considerables a Trump ([28,6% el día de la elección](https://projects.fivethirtyeight.com/2016-election-forecast/)).
 
-- **Un mes antes de las elecciones**, fivethirtyeight publicó un [artículo](https://fivethirtyeight.com/features/election-update-north-carolina-is-becoming-a-backstop-for-clinton/) donde advertía que la mayoría de los modelos no estaba estimando de manera realística las probabilidades de Trump porque estaban ignorando las **correlaciones entre los resultados en los Estados**.
+- **Un mes antes de las elecciones**, 538 publicó un [artículo](https://fivethirtyeight.com/features/election-update-north-carolina-is-becoming-a-backstop-for-clinton/) donde advertía que la mayoría de los modelos no estaba estimando de manera realística las probabilidades de Trump porque estaban ignorando las **correlaciones entre los resultados en los Estados**.
 
 - La idea del argumento era que, si hay 5 Estados clave donde la elección está peleada y Trump necesita ganar sí o sí esos 5 Estados, es erróneo suponer que las chances de Trump equivalen a tirar 5 monedas y sacar 5 caras.
 
