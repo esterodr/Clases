@@ -20,7 +20,7 @@ class: left, bottom, inverse, title-slide
 ### Esteban Rodríguez
 ]
 .date[
-### Última Actualización: 2022-09-22
+### Última Actualización: 2022-10-08
 ]
 
 ---
@@ -386,6 +386,702 @@ Y entonces `\(\sigma(\overline{X})=\frac{\sigma}{\sqrt{n}}\)`
 ]
 
 Histogramas de 1000 medias muestrales del tiempo promedio de la carrera, donde el tamaño  de cada muestra es 10, 50, 100 y 200 respectivamente.
+
+---
+
+# Distribución muestral de `\(\overline{X}\)`
+
+- Las distribuciones muestrales juegan un rol central en la inferencia estadística. Ahí radica la importancia de conocer la distribución muestral de `\(\overline{X}\)`.
+
+- Ya conocemos la media y varianza de la distribución muestral de `\(\overline{X}\)`, pero **¿qué forma toma la distribución?**
+
+- Existen 2 enfoques para establecer la distribución muestral de `\(\overline{X}\)`: el **enfoque exacto y el enfoque aproximado**.
+
+  + **Enfoque exacto**: siempre y cuando `\(X_1, X_2,...,X_n\)` sean **normales** i.i.d. con media `\(\mu\)` y varianza `\(\sigma^2\)`, entonces la distribución exacta de `\(\overline{X}\)` es normal con media `\(\mu\)` y varianza `\(\sigma^2/n\)`.
+  
+  + Sin embargo, si `\(X\)` no tiene distribución normal, la distribución de `\(\overline{X}\)` depende de la distribución de `\(X\)` y puede ser difícil establecerla. Aquí entramos en el **enfoque aproximado**.
+
+---
+
+# Distribución muestral de `\(\overline{X}\)`
+
+- **Enfoque aproximado**: descansa en el tamaño de **muestras grandes**. La aproximación de muestras grandes a distribuciones muestrales es a menudo llamada “distribución asintótica”, debido a que se vuelven exactas en el límite cuando `\(n \rightarrow \infty\)`.
+ 
+- Dos son la herramientas claves utilizadas en la aproximación a distribuciones muestrales:
+ 
+ + **La ley de los grandes números**
+ 
+ + **El teorema central del límite**
+
+---
+
+# La ley de los grandes números
+
+- Establece bajo condiciones generales, que si las `\(X_i\)` son i.i.d. con una distribución común, con esperanza `\(\mu_X\)` y varianza finita, entonces la probabilidad de que `\(\overline{X}_n\)` se aleje de `\(\mu_X\)` en una fracción muy pequeña a medida que `\(n\)` crece, es tan pequeña como uno lo desee.
+
+- Matemáticamente podemos escribirlo de la siguiente manera:
+
+`$$P(|\overline{X}_n-\mu_X|&gt; \varepsilon) \rightarrow 0 \text{ cuando } n \rightarrow \infty$$`
+
+`$$P(|\overline{X}_n-\mu_X| \le \varepsilon) \rightarrow 1 \text{ cuando } n \rightarrow \infty$$`
+
+---
+
+# Teorema Central del Límite
+
+- Establece que bajo consideraciones generales, la distribución estandarizada de `\(\overline{X}\)` está bien aproximada por la distribución normal estándar cuando `\(n\)` es lo suficientemente grande.
+
+- Recordemos que `\(\overline{X}\)` tiene distribución normal exacta si cada `\(X_1,X_2,...,X_n\)` tiene distribución normal.
+
+- El TCL dice que cuando **n es lo suficientemente grande**, la distribución estandarizada de `\(\overline{X}_n\)` es aproximadamente `\(N(0,1)\)`, aún si las `\(X_1,X_2,...,X_n\)` no se distribuyen según una normal.
+
+---
+
+# Teorema Central del Límite
+
+Supongamos que `\(X_1, X_2,...,X_n\)` son i.i.d. con `\(E(X_i)=\mu_X\)` y `\(Var(X_i)=\sigma^2&lt;\infty\)`. Entonces cuando `\(n \rightarrow \infty\)` la distribución de:
+
+`$$Z=\frac{\overline{X}_n-\mu_X}{\sigma / \sqrt{n}}$$`
+
+tiende a una **distribución normal estándar**.
+
+Alternativamente, se puede plantear que:
+
+
+`$$\overline{X}_n=\mu_x+(\sigma/\sqrt{n})*Z=a+b*Z$$`
+Sigue una distribución Normal con media `\(\mu_x\)` y varianza `\(\sigma^2/n\)`
+
+
+
+`$$\sum_{i=1}^nX_i=n*\mu_x+\sqrt{n}*\sigma*Z=a+b*Z$$`
+Sigue una distribución Normal con media `\(n*\mu_x\)` y varianza `\(n*\sigma^2\)`
+
+
+
+
+
+---
+
+# Teorema Central del Límite
+
+- ¿Cuán grande debe ser `\(n\)` para que `\(\overline{X}\)` se distribuya aproximadamente normal? **Depende**. La calidad de la aproximación a la normal depende de la distribución implícita de cada una de las `\(X_i\)` que conforman a `\(\overline{X}\)`. Pero por lo general, a partir de `\(n&gt;30\)` la aproximación es bastante buena bajo distribuciones bien comportadas. 
+
+- i.i.d. : las observaciones muestrales deben ser independientes
+
+  + Muestreo aleatorio/ asignación aleatoria
+  
+  + Si la muestra es sin reemplazo, entonces `\(n≤10\%\)` de la población.
+  
+- Asimetría/tamaño de la muestra: el tamaño de la muestra debe ser más grande si la distribución es sesgada que si es simétrica.
+
+---
+
+# Ej. Población simétrica discreta, n=15
+
+Lanzamiento de dado equilibrado: `\(\mu_X=3.5\)`, `\(\sigma_X=1.707825\)`
+
+.pull-left[
+![](6_Inferencia_files/figure-html/unnamed-chunk-14-1.png)&lt;!-- --&gt;
+
+
+`$$\overline{X}_{15}= 3.8$$`
+]
+
+.pull-right[
+![](6_Inferencia_files/figure-html/unnamed-chunk-15-1.png)&lt;!-- --&gt;
+
+
+`$$\overline{X}_{15}= 3$$`
+]
+
+Tomo 10.000 muestras distintas para estimar las distribuciones de `\(\overline{X}_{15}\)` 
+
+---
+
+# Ej. Población simétrica discreta, n=15
+
+Lanzamiento de dado equilibrado: `\(\mu_X=3.5\)`, `\(\sigma_X=1.707825\)`
+
+.pull-left[
+![](6_Inferencia_files/figure-html/unnamed-chunk-16-1.png)&lt;!-- --&gt;
+
+`$$\mu=\mu_X=3.5$$`
+`$$\sigma=1.707825/\sqrt{15}=0.4409585$$`
+
+]
+
+.pull-right[
+![](6_Inferencia_files/figure-html/unnamed-chunk-17-1.png)&lt;!-- --&gt;
+
+`$$\mu=0$$`
+`$$\sigma=1$$`
+]
+
+---
+
+# Ej. Población sesgada discreta, n=15
+
+Distribución Geométrica `\(p=0.9\)`
+
+.pull-left[
+![](6_Inferencia_files/figure-html/unnamed-chunk-18-1.png)&lt;!-- --&gt;
+
+
+`$$\overline{X}_{15}= 1.2$$`
+]
+
+.pull-right[
+![](6_Inferencia_files/figure-html/unnamed-chunk-19-1.png)&lt;!-- --&gt;
+
+
+`$$\overline{X}_{15}= 1.0666667$$`
+]
+
+Tomo 10.000 muestras distintas para estimar la distribución de `\(\overline{X}_{15}\)` 
+---
+
+# Ej. Población sesgada discreta, n=15
+
+Distribución Geométrica `\(p=0.9\)`, `\(\mu_X=1.111111, \sigma_x=0.3513642\)`
+
+.pull-left[
+![](6_Inferencia_files/figure-html/unnamed-chunk-20-1.png)&lt;!-- --&gt;
+
+`$$\mu=1/0.9=1.111111$$`
+`$$\sigma=0.3513642/\sqrt{15}=0.09072185$$`
+
+]
+
+.pull-right[
+![](6_Inferencia_files/figure-html/unnamed-chunk-21-1.png)&lt;!-- --&gt;
+
+`$$\mu=0$$`
+`$$\sigma^2=1$$`
+]
+
+---
+
+# Ej. Población sesgada discreta, n=50
+
+Distribución Geométrica `\(p=0.9\)`, `\(\mu_X=1.111111, \sigma_x=0.3513642\)`
+
+.pull-left[
+![](6_Inferencia_files/figure-html/unnamed-chunk-22-1.png)&lt;!-- --&gt;
+
+
+`$$\overline{X}_{50}= 1.12$$`
+]
+
+.pull-right[
+![](6_Inferencia_files/figure-html/unnamed-chunk-23-1.png)&lt;!-- --&gt;
+
+
+`$$\overline{X}_{50}= 1.12$$`
+]
+
+Tomo 10.000 muestras distintas para estimar las distribución de `\(\overline{X}_{50}\)`
+
+---
+
+# Ej. Población sesgada discreta, n=50
+
+Distribución Geométrica `\(p=0.9\)`, `\(\mu_X=1.111111, \sigma_x=0.3513642\)`
+
+.pull-left[
+![](6_Inferencia_files/figure-html/unnamed-chunk-24-1.png)&lt;!-- --&gt;
+
+`$$\mu=\mu_x=1.111111$$`
+`$$\sigma=0.3513642/\sqrt{50}=0.0496904$$`
+
+]
+
+.pull-right[
+![](6_Inferencia_files/figure-html/unnamed-chunk-25-1.png)&lt;!-- --&gt;
+
+`$$\mu=0$$`
+`$$\sigma^2=1$$`
+]
+
+---
+
+# Ej. Población sesgada discreta, n=300
+
+Distribución Geométrica `\(p=0.9\)`, `\(\mu_X=1.111111, \sigma_x=0.3513642\)`
+
+.pull-left[
+![](6_Inferencia_files/figure-html/unnamed-chunk-26-1.png)&lt;!-- --&gt;
+
+
+`$$\overline{X}_{300}= 1.09$$`
+]
+
+.pull-right[
+![](6_Inferencia_files/figure-html/unnamed-chunk-27-1.png)&lt;!-- --&gt;
+
+
+`$$\overline{X}_{300}= 1.1$$`
+]
+
+Tomo 10.000 muestras distintas para estimar las distribución de `\(\overline{X}_{300}\)` 
+
+---
+
+# Ej. Población sesgada discreta, n=300
+
+Distribución Geométrica `\(p=0.9\)`, `\(\mu_X=1.111111, \sigma_x=0.3513642\)`
+
+.pull-left[
+![](6_Inferencia_files/figure-html/unnamed-chunk-28-1.png)&lt;!-- --&gt;
+
+`$$\mu=\mu_X=1.111111$$`
+`$$\sigma=0.3513642/\sqrt{300}=0.02028602$$`
+
+]
+
+.pull-right[
+![](6_Inferencia_files/figure-html/unnamed-chunk-29-1.png)&lt;!-- --&gt;
+
+`$$\mu=0$$`
+`$$\sigma^2=1$$`
+]
+
+---
+
+# Ejemplo
+
+Supongamos que en el ipod tengo 3000 canciones. El histograma adjunto muestra la distribución de la longitud de las canciones del ipod. También sabemos que la longitud promedio de las canciones de mi ipod es de 3.45 minutos con una desviación estándar de 1.63 minutos. 
+
+.center[
+![](6_Inferencia_files/figure-html/unnamed-chunk-30-1.png)&lt;!-- --&gt;
+]
+
+Debo realizar un viaje en auto que dura 6 horas. Preparo una playlist de 100 canciones. ¿Cuál es la probabilidad de que la playlist dure al menos todo el viaje?
+
+---
+
+# Ejemplo
+
+Suponemos que la duración de cada canción es una variable `\(X_1, X_2,...,X_k\)` i.i.d. con media 3.45 minutos y desviación estándar de 1.63 minutos.
+
+Voy a tomar una muestra aleatoria de `\(n=100\)` y necesito que dure todo el viaje (6 horas = 360 minutos). Es decir, necesito que `\(\overline{X}_{100} \ge 3.6\)`
+
+
+Por el TCL se que:
+
+`$$\overline{X}_{100} \sim N(\mu=3.45, \sigma=1.63/\sqrt{100}=0.163)$$`
+Debo averiguar `\(P(\overline{X}_{100}\ge 3.6)\)`
+
+---
+
+# Ejemplo
+
+
+`$$P(\overline{X}_{100}\ge 3.6)=P(Z\ge\frac{3.6-3.45}{1.63/\sqrt{100}})=$$`
+
+--
+
+`$$=P(Z\ge 0.92)=1-P(Z&lt;0.92)=$$`
+
+--
+
+`$$=1-0.8212=0.1788$$`
+
+.center[
+![](6_Inferencia_files/figure-html/unnamed-chunk-31-1.png)&lt;!-- --&gt;
+]
+
+---
+
+# Distribución muestral para una proporción
+
+- La media muestral no es el único estadístico que satisface el TCL.
+
+- ¿Qué ocurre si nos preguntamos por el porcentaje de ciudadanos que votarían por el candidato A?
+
+- O el porcentaje de fumadores en la Argentina?
+
+`$$p=\frac{\# \text{ de fumadores de Argentina}}{\text{población total de Argentina}}$$`
+
+- Cada individuo es un ensayo de Bernoulli. Luego tenemos un experimento binomial.
+
+`$$X=\sum_iX_i \implies p=\frac{\sum_iX_i}{n}$$`
+
+---
+
+# Distribución muestral de `\(\hat{p}\)`
+
+.center[
+![](6_Inferencia_files/figure-html/unnamed-chunk-32-1.png)&lt;!-- --&gt;
+]
+
+---
+
+# Distribución muestral de `\(\hat{p}\)`
+
+- Ya vimos que, a medida que `\(n\)` crece, el TCL nos dice que la distribución normal es una buena aproximación de la suma de variables aleatorias i.i.d.
+
+`\(n*\mu_X\)` y varianza `\(n*\sigma^2\)`
+
+`$$\sum_{i=1}^nX_i \sim N(\mu=n*\mu_X,\sigma^2=\sigma_X^2*n) \quad \text{cuando } n \rightarrow \infty$$`
+
+Como en este caso `\(X_i\)` es un experimento de Bernoulli con media `\(p\)` y varianza `\(p(1-p)\)`, 
+
+`$$\sum_{i=1}^nX_i \sim N(\mu=n*p,\sigma^2=p(1-p)n) \quad \text{cuando } n \rightarrow \infty$$`
+
+Entonces:
+
+`$$\hat{p}_n=\frac{\sum_iX_i}{n}=\frac{Z}{n} \sim N(\mu_{\hat{p}}=p,\sigma_{\hat{p}}=p(1-p)/\sqrt{n})$$`
+
+---
+
+# Distribución muestral de `\(\hat{p}\)`
+
+- Para que la aproximación sea razonablemente buena, es necesario que los `\(X_i\)` no sean muy sesgados. En general, se pide `\(np\ge 10\)` y `\(n(1-p)\ge 10\)`
+
+- Además, se deben cumplir las condiciones generales del TCL:
+
+  + i.i.d. : las observaciones muestrales deben ser independientes
+  
+  + Muestreo aleatorio/ asignación aleatoria
+  
+  + Si la muestra es sin reemplazo, entonces `\(n\le 10\%\)` de la población.
+  
+---
+
+# Ejemplo
+
+La candidata A obtuvo el 50% de los votos en una elección provincial. Si se toma una muestra aleatoria de 100 electores, ¿cuál es la probabilidad  de que más del 55% de los consultados haya votado por la candidata A?
+
+--
+
+Bajo condiciones del TCL 
+
+`$$\hat{p}_n \sim N(\mu_{\hat{p}}=0.5,\sigma_{\hat{p}}=0.5^2/\sqrt{100}=.025)$$`
+
+--
+
+`$$P(\hat{p}&gt;0.55)=P(Z&gt;\frac{0.55-0.5}{0.025}=2)$$`
+
+--
+
+`$$=1-P(Z&lt;2)=1-0.9772=0.0228$$`
+
+.center[
+![](6_Inferencia_files/figure-html/unnamed-chunk-33-1.png)&lt;!-- --&gt;
+]
+
+---
+
+# Distribución muestral de `\(s^2\)`
+
+- Hasta aquí nos ocupamos de hacer inferencia sobre la media y/o la proporción de una población. Ahora nos enfocamos en la **varianza poblacional**.
+
+- Supongamos que extraemos una muestra de tamaño `\(n\)` de una población con media `\(\mu_X\)`y varianza `\(\sigma^2_X\)`. La varianza poblacional es la esperanza de 
+
+`$$\sigma^2_X=E((X-\mu_X)^2)$$`
+
+- `\(\mu_X\)` es desconocida, pero sabemos cómo estimarla a través de `\(\overline{X}\)`. El estimador de `\(\sigma^2_X\)` es:
+
+`$$\hat{\sigma^2_X}=s^2=\frac{1}{n-1}\sum_{i=1}^n(X_i-\overline{X})^2$$`
+
+- `\(\sigma^2_X\)` se denomina varianza muestral y `\(\sigma_X\)` el desvío típico ó desviación estándar muestral.
+
+---
+
+# Distribución muestral de `\(s^2\)`
+
+- Al calcular `\(\sigma^2_X\)` se divide por `\(n-1\)` en lugar de `\(n\)` porque se puede probar que la esperanza de la varianza muestral, i.e. la media de la distribución muestral de la varianza muestral, converge a la varianza poblacional. Matemáticamente:
+
+`$$E(s^2)=\sigma^2_X$$`
+
+- Notar que sólo se afirma que la media de la varianza muestral converge a la varianza poblacional. Pero nada se dijo sobre la forma de la distribución muestral de la varianza muestral.
+
+- Para poder caracterizar la distribución muestral de la varianza muestral se debe saber más acerca de la distribución poblacional `\(X_1,X_2,...,X_n\)`. 
+
+---
+
+# Distribución muestral de `\(s^2\)`
+
+Si **la distribución poblacional subyacente es normal** puede probarse que la variable aleatoria 
+
+`$$\frac{(n-1)s^2}{\sigma^2_X}=\frac{\sum_{i=1}^n(X_i-\overline{X})^2}{\sigma^2_X}=\sum_{i=1}^n(\frac{X_i-\overline{X}}{\sigma_X})^2$$`
+sigue una distribución `\(\chi^2\)` (ji o chi cuadrado) con `\(n-1\)` grados de libertad.
+
+Notar que la distribución `\(\chi^2\)` **sólo está definida para valores positivos**, lo cual resulta adecuado para la varianza muestral, ya que no puede ser negativa.
+
+---
+
+# Distribución muestral de `\(s^2\)`
+
+- La familia de `\(\chi^2\)` está caracterizada por un único parámetro: los grados de libertad a los que llamaremos `\(k\)` y se lo anota como `\(\chi^2_k\)`.
+
+- La media y la varianza de la `\(\chi^2_k\)` son `\(E(\chi^2_k)=k\)` y `\(Var(\chi^2_k)=2k\)`
+
+En nuestro caso la variable aleatoria `\(\frac{(n-1)s^2}{\sigma^2_X}\)` sigue una distribución `\(\chi^2_{n-1}\)`. Esto quiere decir que:
+
+`$$E(\frac{(n-1)s^2}{\sigma^2_X})=n-1 \implies \frac{n-1}{\sigma^2_X}E(s^2)=n-1 \implies E(s^2)=\sigma^2_X$$`
+
+---
+
+# Distribución muestral de `\(s^2\)`
+
+Para hallar la varianza de `\(s^2\)` usamos el hecho de que:
+
+$$Var(\frac{(n-1)s^2}{\sigma^2_X})=2(n-1) \implies $$
+
+$$\implies \frac{(n-1)^2}{\sigma^4_X}Var(s^2)=2(n-1) \implies $$
+
+$$\implies Var(s^2) = \frac{2\sigma^4_X}{n-1} $$
+---
+
+# Distribución muestral de `\(s^2\)`
+
+En resumen, sea `\(s^2\)` la varianza muestral de una muestra aleatoria de `\(n\)` observaciones i.i.d. extraídas de una población con media `\(\mu_X\)` y varianza `\(\sigma^2_X\)`. Entonces se tiene que:
+
+- La distribución muestral de `\(s^2\)` tiene media `\(\sigma^2_X\)`, es decir, `\(E(s^2)=\sigma^2_X\)`.
+
+- La varianza de la distribución muestral de `\(s^2\)` depende de la distribución de la población. Si **la distribución poblacional es normal** entonces:
+
+`$$Var(s^2)=\frac{2\sigma^4_X}{n-1}$$`
+
+- Si **la distribución poblacional es normal**, entonces:
+
+`$$\frac{(n-1)s^2}{\sigma^2_X} \sim \chi^2_{n-1}$$`
+
+
+---
+
+# Funciones de densidad `\(\chi^2\)`
+
+.center[
+![](6_Inferencia_files/figure-html/unnamed-chunk-34-1.png)&lt;!-- --&gt;
+]
+
+---
+
+# Funciones de densidad `\(\chi^2\)`
+
+En la tabla está calculada la cola derecha: `\(P(\chi^2_k&gt;x)\)`
+
+.center[
+![](Imagenes/chi2.jpg)
+]
+
+---
+
+# Ejemplo
+
+Se quiere someter a todos los empleados de cierta institución a una evaluación de 100 preguntas de elección múltiple. Inicialmente en un estudio piloto se someten a este test a 20 empleados elegidos al azar. Supongamos que, para la población completa de todos los empleados, la distribución del número de respuestas correctas sigue una distribución normal con varianza 250. **¿Cuál es la probabilidad de que la varianza muestral sea menor que 100?**
+
+--
+
+`$$P(s^2&lt;120)=P(\frac{(n-1)s^2}{\sigma^2_X}&lt;\frac{19*120}{250})=P(\chi^2_{19}&lt;9.12)$$`
+--
+
+.center[
+![](Imagenes/chi2_2.jpg)
+]
+
+La tabla dice que `\(P(\chi^2_{19}&gt;8.90652)=0.975\)` y `\(P(\chi^2_{19}&gt;10.117)=0.95\)` 
+
+Entonces `\(P(\chi^2_{19}&lt;8.90652)=0.025\)` y `\(P(\chi^2_{19}&lt;10.117)=0.05\)`
+
+`$$0.025&lt;P(s^2&lt;120)&lt;0.05$$`
+
+---
+
+# Ejemplo
+
+Se quiere someter a todos los empleados de cierta institución a una evaluación de 100 preguntas de elección múltiple. Inicialmente en un estudio piloto se someten a este test a 20 empleados elegidos al azar. Supongamos que, para la población completa de todos los empleados, la distribución del número de respuestas correctas sigue una distribución normal con varianza 250. **¿Cuál es la probabilidad de que el desvío típico muestral sea mayor a que 21?**
+
+--
+
+`$$P(s&gt;21)=P(\frac{(n-1)s^2}{\sigma^2_X}&gt;\frac{19*21^2}{250})=P(\chi^2_{19}&gt;33.516)$$`
+
+--
+
+.center[
+![](Imagenes/chi2_3.jpg)
+]
+
+La tabla dice que `\(P(\chi^2_{19}&gt;36.1909)=0.01\)` y `\(P(\chi^2_{19}&gt;32.8523)=0.025\)` 
+
+Entonces `\(0.01&lt;P(s&gt;21)&lt;0.025\)`
+
+---
+
+# Propiedades de los estimadores
+
+- **Parámetro**: es una medida numérica descriptiva de una población. Su valor es casi siempre desconocido.
+
+- **Estadístico/estimador**: un estadístico es cualquier función de una muestra de datos aleatoria proveniente de una población.
+
+- **Estimación**: una estimación es una realización o valor numérico del estimador cuando el mismo es evaluado utilizando los datos de una muestra específica.
+
+- **Un estimador es una variable aleatoria**, ya que hereda la aleatoriedad de la muestra aleatoria, mientras que una estimación es un número no aleatorio.
+
+---
+
+# Propiedades de los estimadores
+
+- Un estimador puntual de un parámetro poblacional es una función de la muestra que genera un único valor llamado estimación puntual.
+
+- Por ejemplo, la media muestral `\(\overline{X}\)` es un estimador puntual de la media poblacional `\(\mu\)`, y el valor que toma `\(\overline{X}\)` para un conjunto específico de datos se llama **estimación puntual** `\(\mu\)`.
+
+- **¿Cómo hacemos para saber cual es el mejor estimador puntual de un parámetro poblacional?**
+
+- Existe un conjunto de criterios con los que se puede evaluar a un estimador. 
+
+- Tres son las propiedades deseables que debería poseer un estimador: **consistencia, insesgamiento (ausencia de sesgo) y eficiencia**.
+
+---
+
+# Insesgamiento
+
+- **Estimador insesgado**: Un estimador puntual `\(\hat{\theta}\)` es un estimador insesgado de un parámetro poblacional si el valor esperado del estimador es igual al parámetro que se desea estimar:
+
+`$$E(\hat{\theta})=\theta$$`
+- Notar que lo que se está afirmando es que **en promedio el estimador estima correctamente al parámetro poblacional**, y no que un determinado valor de `\(\hat{\theta}\)` tenga que ser exactamente el valor correcto de `\(\theta\)`.
+
+- El valor esperado de `\(\hat{\theta}\)` debería ser la media de los valores de `\(\hat{\theta}\)` para todas las muestras posibles que se puedan obtener.
+
+---
+
+# Insesgamiento
+
+- La media muestral es un estimador insesgado de la media poblacional: `\(E(\overline{X})=\mu\)`
+
+- La proporción muestral es un estimador insesgado de la proporción poblacional: `\(E(\hat{p})=p\)`
+
+- La varianza muestral es un estimador insesgado de la varianza poblacional: `\(E(s^2)=\sigma^2\)`
+
+- **Un estimador que no es insesgado es sesgado**.
+
+- Sesgo: Sea `\(\hat{\theta}\)` un estimador de `\(\theta\)`. El sesgo de `\(\hat{\theta}\)` es la diferencia entre su valor esperado y `\(\theta\)`:
+
+`$$Sesgo(\hat{\theta}) = E(\hat{\theta})-\theta$$`
+
+- **El sesgo de un estimador insesgado es 0**.
+
+- El sesgo de un estimador insesgado es cero. 
+
+---
+
+# Insesgamiento
+
+.center[
+![](Imagenes/insesgamiento.jpg)
+]
+
+---
+
+# Eficiencia
+
+- Es deseable que un estimador sea insesgado, pero **puede ocurrir que se disponga de más de un estimador insesgado para un mismo parámetro** (p.ej. la media y la mediana bajo distribución normal, ambos son estimadores inesgados de `\(\mu\)`).
+
+.center[
+![](6_Inferencia_files/figure-html/unnamed-chunk-35-1.png)&lt;!-- --&gt;
+]
+- ¿Cómo elijo en este tipo de situaciones? Lo lógico sería quedarse con aquel estimador que este más concentrado alrededor del parámetro poblacional que se desea estimar.
+
+- Surge entonces la eficiencia de un estimador de la mano de la varianza como medida de concentración
+
+---
+
+# Eficiencia
+
+- Si existen varios estimadores insesgados de un mismo parámetro, **el estimador insesgado que tiene la mínima varianza, es el estimador más eficiente**, o el estimador insesgado de mínima varianza.
+
+- Sean `\(\hat{\theta}_1\)` y `\(\hat{\theta}_2\)` dos estimadores insesgados de `\(\theta\)`, basados en el mismo tamaño de muestra. Se dice entonces que:
+
+  + `\(\hat{\theta}_1\)` es más eficiente que `\(\hat{\theta}_2\)` si `\(Var(\hat{\theta}_1)&lt;Var(\hat{\theta}_2)\)`
+  
+  + La eficiencia relativa de `\(\hat{\theta}_1\)` con respecto a `\(\hat{\theta}_2\)` es el cociente entre sus varianzas:
+  
+  `$$\text{Eficiencia relativa} = \frac{Var(\hat{\theta}_1)}{Var(\hat{\theta}_2)}$$`
+  
+---
+
+# Eficiencia
+
+- Sea `\(X_1, X_2, ...,X_n\)` una muestra aleatoria extraída de una población normal con media `\(\mu\)` y varianza `\(\sigma^2\)` ¿Se debe utilizar la media muestral o la mediana muestral para estimar la media poblacional?
+
+- Asumimos que la población sigue distribución normal y es de gran tamaño en comparación con el tamaño de la muestra, `\(n\)`. Bajo estas condiciones, la mediana es un estimador insesgado. La media muestral `\(\overline{X}\)` es un estimador insesgado de `\(\mu\)`
+
+- Sus varianzas son:
+
+`$$Var(\overline{X})=\frac{\sigma^2}{n} \qquad Var(Mediana)=\frac{\pi}{2}\frac{\sigma^2}{n}=1.57\frac{\sigma^2}{n}$$`
+
+`$$\text{Eficiencia realtiva} =\frac{Var(Mediana)}{Var(\overline{X})}=1.57$$`
+
+---
+
+# Sesgo y Eficiencia
+
+.center[
+![](Imagenes/sesgoyeficiencia.jpg)
+]
+
+---
+
+# Consistencia
+
+- La distribución de un estimador cambia cuando cambia el tamaño de muestra.
+
+- Por eso es importante conocer la propiedad de los estimadores cuando las muestras son grandes, i.e. cuando `\(n \rightarrow \infty\)`. Suelen denominarse como las **propiedades asintóticas de los estimadores**.
+
+- Estas propiedades pueden ser diferentes de las propiedades para muestras finitas vistas anteriormente.
+
+- La más importante de estas propiedades es la consistencia, que se refiere a la variabilidad del estimador respecto al parámetro poblacional a medida que el tamaño de muestra crece.
+
+- Se dice que **un estimador es consistente si proporciona estimaciones que convergen en probabilidad al parámetro poblacional, a medida que** `\(n \rightarrow \infty\)`. 
+
+---
+
+# Consistencia
+
+- Decir que un estimador converge en probabilidad hacia el parámetro que se pretende estimar, significa que a medida que la muestra crece, el valor esperado del estimador debe converger al verdadero valor del parámetro, y que la varianza de este estimador respecto a la varianza poblacional debe hacerse cada vez mas pequeña.
+
+- Esto equivale a decir que el estimador se vuelve insesgado cuando n crece y que la varianza del estimador tiende a cero cuando `\(n \rightarrow \infty\)`.
+
+---
+
+# Propiedades de estimadores
+
+| Parámetro poblacional | Estimador puntual | Propiedades |
+| :---: | :---: | :---: |
+| `\(\mu\)` | `\(\overline{X}\)` | Insesgado de máxima eficiencia (suponiendo normalidad) |
+| `\(\mu\)` | Mediana | Insesgado (suponiendo normalidad) |
+| p | `\(\hat{p}\)` | Insesgado de máxima eficiencia |
+| `\(\sigma^2\)` | `\(s^2\)` | Insesgado de máxima eficiencia (suponiendo normalidad) |
+
+---
+
+# Trade-off sesgo-varianza
+
+- En este curso consideraremos siempre preferible a un estimador insesgado vs. otro insesgado.
+
+- Sin embargo, puede haber situaciones en donde se prefiere un estimador sesgado.
+
+- Esto ocurre cuando el estimador insesgado tiene mucha varianza. Si se encuentra un estimador sesgado (con sesgo no muy grande) de muy poca varianza, puede ser preferible este segundo estimador.
+
+- Muchos algoritmos de **machine learning** utilizan estimadores sesgados pero de varianza muy pequeña y con ellos consiguen predicciones en promedio más precisas que las que se conseguirían con un estimador insesgado de alta varianza.
+
+---
+
+# Trade-off sesgo-varianza
+
+.center[
+![](Imagenes/sesgovarianza1.jpg)
+]
+
+---
+
+# Trade-off sesgo-varianza
+
+.center[
+![](Imagenes/sesgovarianza2.jpg)
+]
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
