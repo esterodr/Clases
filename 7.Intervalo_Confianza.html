@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Intervalos de Confianza</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Esteban Rodríguez" />
+    <script src="libs/header-attrs-2.14/header-attrs.js"></script>
+    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/metropolis.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/metropolis-fonts.css" rel="stylesheet" />
+  </head>
+  <body>
+    <textarea id="source">
+class: left, bottom, inverse, title-slide
+
+.title[
+# Intervalos de Confianza
+]
+.author[
+### Esteban Rodríguez
+]
+.date[
+### Última Actualización: 2022-10-09
+]
+
+---
+
+
+
+
+# ¿Por qué un intervalo de confianza?
+
+- Ya hemos visto los conceptos de población y muestra. 
+
+- Los parámetros poblacionales son la media `\(\mu\)` y la varianza `\(\sigma^2\)`. Son **constantes y generalmente no se conocen**.
+
+- Contrariamente, los estadísticos `\(\overline{X}\)` (media muestral), `\(\hat{p}\)` (proporción muestral) y `\(s^2\)` (la varianza muestral) **son variables aleatorias**, ya que varían de muestra en muestra.
+
+- Es por eso que cuantificamos la incertidumbre asociada al estimador puntual. Ya vimos que, en el caso de la media, esa **incertidumbre se llama error estándar**.
+
+- En definitiva, utilizamos una muestra de la población, para conjeturar sobre la población. Pero **¿qué tan buena es nuestra estimación puntual?** La respuesta a esta pregunta nos la provee el intervalo de confianza.
+
+---
+
+# ¿Por qué un intervalo de confianza?
+
+- **La ventaja** del estimador puntual es que es muy fácil de calcular y fácil de interpretar.
+
+- **La desventaja** es que no tenemos la menor idea de cuan certero y preciso es el estimador.
+
+- Para lidiar con esta incertidumbre, es que se construye un **intervalo de confianza**, el cual provee un posible rango de valores para el parámetro poblacional.
+
+- Si uno provee un estimador puntual va a ser difícil de acertar con el parámetro poblacional. Por el contrario, si uno provee un intervalo de confianza, i.e. un rango de valores, hay más posibilidades que dicho intervalo contenga al verdadero parámetro poblacional.
+
+---
+
+# IC para la media
+
+- Ahora nos focalizamos en el caso donde el **estimador puntual es la media muestral** y el parámetro es la media poblacional.
+
+- Pensemos que disponemos de una muestra, la cual nos provee `\(\overline{X}\)`, nuestra mejor estimación de la media poblacional.
+
+--
+
+- ¿Qué nos dice el TCL para la media muestral? `\(\frac{\overline{X}-\mu_X}{\sigma_X/\sqrt{n}}\sim N(0,1)\)` cuando `\(n \rightarrow \infty\)`
+
+.center[
+![](Imagenes/normal_reglaempirica.jpg)
+]
+
+---
+
+# IC para la media
+
+**¿Cómo se construye un Intervalo de Confianza?**
+
+- Construimos un intervalo de confianza alrededor de la media muestral utilizando la siguiente expresión:
+
+`$$\overline{X} \pm ME = \overline{X} \pm Z_c*\sigma_{\overline{X}}=\overline{X} \pm Z_c*\frac{\sigma_X}{\sqrt{n}}$$`
+- donde:
+
+  + `\(\overline{X}\)` es la media muestral
+  
+  + `\(ME\)` es el Margen de Error
+  
+  + `\(Z_c\)` es el valor Z asociado a una confianza `\(C\%\)`
+  
+  + `\(\sigma_{\overline{X}}\)` el error estándar de la media muestral
+  
+  + `\(\sigma_X\)` el desvío estándar poblacional
+
+- Lo usual para el nivel de confianza es `\(90\%, 95\%, 99\%\)`
+
+---
+
+# IC para la media
+
+- Por ejemplo, para un nivel de confianza del `\(95\%\)`, voy a tomar `\(Z_c=1.96\)`. ¿Por qué este valor?
+
+`$$P(Z&gt;1.96)=0.025 \quad y \quad P(Z&lt;-1.96)=0.025$$`
+
+--
+
+- De todas las muestras que puedo tomar, en el `\(95\%\)` de los casos va a suceder que
+
+`$$\mu_X-1.96*\frac{\sigma_X}{\sqrt{n}}&lt;\overline{X}&lt;\mu_X+1.96*\frac{\sigma_X}{\sqrt{n}}$$`
+
+--
+
+- Dicho de otra forma, **el `\(95\%\)` de los intervalos que construya de la siguiente forma**:
+
+`$$\overline{X} \pm 1.96*\frac{\sigma_X}{\sqrt{n}}$$`
+
+- **van a contener el verdadero valor de `\(\mu\)`**
+
+---
+
+# IC para la media
+
+- El `\(95\%\)` de las muestras o más precisamente el `\(95\%\)` de los intervalos construidos en base a las muestras, contendrán la verdadera media poblacional, dentro del intervalo correspondiente a la  media muestral `\(\pm 1.96\)` errores estándar(SE).
+
+- Por lo tanto **el nivel de confianza es la probabilidad de que el intervalo estimado contenga al verdadero parámetro poblacional**, en nuestro caso la media poblacional.
+
+- Esto es distinto a decir que `\(\mu\)` tiene un `\(95\%\)` de probabilidades de caer dentro del intervalo.
+
+- Se define como **significancia o nivel de significatividad** al valor `\(\alpha=1-C\%\)`. Es decir, se puede hablar indistintamente de un intervalo de confianza al `\(95\%\)` o de un intervalo de confianza con una significatividad del `\(5\%\)`
+
+---
+
+# IC para la media
+
+- En el TP en R se generan múltiples intervalos de confianza al `\(95\%\)` (también para otros niveles de confianza) y se observa que siempre aproximadamente un `\(5\%\)` (u otro valor de `\(\alpha\)`) de los intervalos no contiene al verdadero valor de `\(\mu_X\)`
+
+.center[
+![](Imagenes/ic.jpg)
+]
+
+
+---
+
+# Condiciones para construir IC
+
+- La construcción del intervalo de confianza se basa en el TCL. Por lo tanto se debe cumplir al menos con los mismos requerimientos del TCL
+
+  + i.i.d. : las observaciones muestrales deben ser independientes
+  
+  + Muestreo aleatorio/ asignación aleatoria
+  
+  + Si la muestra es sin reemplazo, entonces n≤10% de la población.
+  
+  + Asimetría/tamaño de la muestra: `\(n&gt;30\)`, o aún más grande si la distribución es asimétrica.
+
+---
+
+# IC para la media
+
+- Sea `\(X_1,X_2,...,X_n\)` una muestra aleatoria de `\(n\)` observaciones extraídas de una población que sigue una distribución con media `\(\mu_X\)` desconocida y varianza conocida `\(\sigma^2_X\)`.
+
+- Supongamos que queremos un intervalo de confianza de la media poblacional al `\(100*(1-\alpha)\%\)`. Si la población es Normal o se cumplen las condiciones del TCL, entonces:
+
+`$$\frac{\overline{X}-\mu_X}{\sigma_X/\sqrt{n}}\sim N(0,1)$$`
+
+--
+
+`$$P(|Z|&lt;Z_{\alpha/2})=P(-Z_{\alpha/2}&lt;Z&lt;Z_{\alpha/2})=1-\alpha$$`
+
+--
+
+`$$P(-Z_{\alpha/2}&lt;\frac{\overline{X}-\mu_X}{\sigma_X/\sqrt{n}}&lt;Z_{\alpha/2})=1-\alpha$$`
+
+--
+
+`$$P(\overline{X}-Z_{\alpha/2}\frac{\sigma_X}{\sqrt{n}}&lt;\mu_X&lt;\overline{X}+Z_{\alpha/2}\frac{\sigma_X}{\sqrt{n}})=1-\alpha$$`
+
+---
+
+# Certeza vs. Precisión
+
+- La precisión se vincula al error estándar mientras que la certeza se relaciona con el nivel de confianza
+
+- Nivel o Región de confianza usuales
+
+| Confianza `\((1-\alpha)\)` | `\(\alpha\)` | `\(\alpha/2\)` |  `\(Z_{\alpha/2}\)` |
+| :---: | :---: | :---: | :---: |
+| `\(90\%\)` | `\(0.10\)` | `\(0.05\)` | `\(1.645\)` |
+| `\(95\%\)` | `\(0.05\)` | `\(0.025\)` | `\(1.96\)` |
+| `\(99\%\)` | `\(0.01\)` | `\(0.005\)` | `\(2.576\)` |
+
+---
+
+# Certeza vs. Precisión
+
+- Si uno quisiera tener certeza de que captura al verdadero valor del parámetro, i.e. la media poblacional `\(\mu\)`, entonces que querríamos ¿un intervalo más amplio o un intervalo más restringido?
+
+.center[
+![](Imagenes/ic2.jpg)
+]
+
+---
+
+# Certeza vs. Precisión
+
+- Por lo tanto si lo que se persigue es **certeza**, entonces se debe **aumentar el nivel de confianza**, pero también **aumenta el ancho del intervalo**.
+
+.center[
+![](Imagenes/ic3.jpg)
+]
+
+- **Mayor certeza** `\(\rightarrow\)` **incrementar el nivel de confianza** pero veremos que hay una **pérdida en precisión**
+
+---
+
+# Certeza vs. Precisión
+
+- ¿Hay alguna desventaja en aumentar el nivel de confianza para tener mayor certidumbre?
+
+`$$\uparrow \text{nivel de confianza} \implies \uparrow \text{ancho} \implies \uparrow \text{certeza y } \downarrow \text{precisión}$$`
+
+- Entonces cómo se resuelve esto. ¿Existe alguna manera de aumentar la certeza sin sacrificar precisión? 
+
+--
+
+`$$\text{incrementando el tamaño de la muestra}$$`
+
+- Al incrementar el tamaño de la muestra disminuye el error estándar del estimador, y por ende se reduce el margen de error sin alterar el nivel de confianza, i.e. sin incrementar el ancho del intervalo.
+
+---
+
+# Ejemplo
+
+- Volviendo al ejemplo de los tiempos en minutos de la maratón de la “2012 Cherry Blossom Run”. Tomamos una muestra de tamaño `\(100\)` y la media muestral resulta `\(\overline{X}=97.19\)`. La desviación estándar de la población es de `\(15.93\)`. ¿Calcule el intervalo de confianza al 90%, 95% y 99% para la media poblacional?
+
+--
+
+Al `\(\color{red}{90\%}\)`
+
+`$$IC: 97.19 \pm \color{red}{1.645}*\frac{15.93}{\sqrt{100}}=97.19\pm 2.62= \color{red}{(94.57, 99.81)}$$`
+--
+
+Al `\(\color{red}{95\%}\)`
+
+`$$IC: 97.19 \pm \color{red}{1.96}*\frac{15.93}{\sqrt{100}}=97.19\pm 3.12= \color{red}{(94.07, 100.31)}$$`
+
+--
+
+Al `\(\color{red}{99\%}\)`
+
+`$$IC: 97.19 \pm \color{red}{2.576}*\frac{15.93}{\sqrt{100}}=97.19\pm 4.10= \color{red}{(93.09, 101.29)}$$`
+
+---
+
+# Ejemplo
+
+- Otra muestra de 100 corredores arroja un valor de `\(\overline{X}=95.15\)`. Compruebe que los que varían son los intervalos y no la media poblacional.
+
+--
+
+Al `\(\color{red}{90\%}\)`
+
+`$$IC: 95.15 \pm \color{red}{1.645}*\frac{15.93}{\sqrt{100}}=95.15\pm 2.62= \color{red}{(92.53, 97.77)}$$`
+
+Al `\(\color{red}{95\%}\)`
+
+`$$IC: 95.15 \pm \color{red}{1.96}*\frac{15.93}{\sqrt{100}}=95.15\pm 3.12= \color{red}{(92.03, 98.27)}$$`
+
+Al `\(\color{red}{99\%}\)`
+
+`$$IC: 95.15 \pm \color{red}{2.576}*\frac{15.93}{\sqrt{100}}=95.15\pm 4.10= \color{red}{(91.05, 99.25)}$$`
+---
+
+# Ejemplo
+
+- **¡Ojo con la interpretación del intervalo!**
+
+  + Hay una probabilidad del 95% de que la verdadera media poblacional este dentro del intervalo `\(\color{red}{INCORRECTO}\)`
+  
+  + Hay una probabilidad del 95% de que cualquier intervalo de confianza generado a partir de una muestra aleatoria de tamaño n contenga a la verdadera media poblacional. `\(\color{green}{CORRECTO}\)`
+
+---
+
+# Ejemplo
+
+- Como tenemos un 95% de probabilidad de que cualquier intervalo de confianza contenga a la media poblacional, entonces tenemos un **5% de probabilidad de que no lo contenga**, en cuyo caso estaríamos cometiendo un **error**.
+
+- Este 5% de probabilidad es conocido como nivel de significación `\(\alpha\)`, o probabilidad de cometer **Error de Tipo I**.
+
+.center[
+![](Imagenes/ic4.png)
+]
+
+---
+
+# Ejercicio
+
+- La General Social Survey de los EE.UU. es una institución que se ocupa de recopilar datos sobre las características demográficas y actitudes de los residentes de USA. 
+
+- Durante el año 2010, la encuestadora entrevistó a 1154 residentes. En base a los resultados de esta encuesta, se construyó un intervalo de confianza del 95% para el número de horas diarias promedio que los residentes americanos dedican al ocio después de un día de trabajo.
+
+- El resultado del intervalo fue de 3.53 a 3.83 horas. 
+
+- ¿Cuál de las siguientes afirmaciones es correcta?
+
+---
+
+# Ejercicio
+
+- 95% de los americanos dedican entre 3.53 y 3.83 horas diarias al ocio después de un día de trabajo.
+
+- 95% de las muestras de 1154 residentes americanos van a arrojar intervalos de confianza que contengan al verdadero número de horas promedio que los americanos dedican al ocio después de un día de trabajo.
+
+- 95% de las veces el verdadero número de horas promedio que los residentes americanos dedican al ocio después de un día de trabajo es 3.53 y 3.83.
+
+- Se tiene una confianza del 95% que los residentes americanos de esta muestra dedican en promedio entre 3.53 y 3.83 horas al ocio después de un día de trabajo.
+
+---
+
+# Ejercicio
+
+- 95% de los americanos dedican entre 3.53 y 3.83 horas diarias al ocio después de un día de trabajo. `\(\color{red}{INCORRECTO}\)`
+
+- 95% de las muestras de 1154 residentes americanos van a arrojar intervalos de confianza que contengan al verdadero número de horas promedio que los americanos dedican al ocio después de un día de trabajo. `\(\color{green}{CORRECTO}\)`
+
+- 95% de las veces el verdadero número de horas promedio que los residentes americanos dedican al ocio después de un día de trabajo es 3.53 y 3.83. `\(\color{red}{INCORRECTO}\)`
+
+- Se tiene una confianza del 95% que los residentes americanos de esta muestra dedican en promedio entre 3.53 y 3.83 horas al ocio después de un día de trabajo. `\(\color{green}{CORRECTO}\)`
+
+---
+
+# Tamaño de la muestra vs. Certeza
+
+- Dado un nivel de confianza e información sobre la variabilidad de la muestra (o de la población), **se puede determinar el tamaño de muestra requerido para alcanzar el margen de error deseado**.
+
+--
+
+`$$ME=Z_{\alpha/2}*\sigma_{\overline{X}}=Z_{\alpha/2}*\frac{\sigma_X}{\sqrt{n}}$$`
+--
+
+- Podemos despejar `\(n\)`
+
+`$$n=\left(\frac{Z_{\alpha/2}*\sigma_X}{ME} \right)^2$$`
+---
+
+# Ejemplo
+
+- Un grupo de investigadores desean evaluar el posible efecto que cierta medicación para epilepsia, recetada a mujeres embarazadas, tiene sobre el desarrollo cognitivo de sus hijos. 
+
+- Como evidencia quieren estimar el coeficiente intelectual de niños de 3 años de edad nacidos de madres que hayan ingerido esta medicación durante el embarazo. Estudios previos sugieren que la desviación estándar del coef. intelectual de los niños de 3 años es de 18 puntos. 
+
+- ¿Qué tamaño debería tener la muestra si se desea un intervalo de confianza del 90% y un margen de error menor o igual a 4 puntos?
+
+--
+
+`$$n=\left(\frac{Z_{\alpha/2}*\sigma_X}{ME} \right)^2=\left(\frac{1.645*18}{4} \right)^2=54.79$$`
+- `\(n\)` debe ser por lo menos 55.
+
+--
+
+- ¿Qué ocurriría con el tamaño de la muestra si se quisiera disminuir el margen de error a 2 puntos?
+
+---
+
+# ¿Qué ocurre si no conocemos `\(\sigma\)`?
+
+- Si no se conoce `\(\sigma\)`, la desviación estándar poblacional, podemos obtener una estimación a partir de la muestra, i.e. reemplazar a `\(\sigma\)` por la desviación estándar muestral, `\(s\)`.
+
+- Para que esto sea válido, necesitamos que la muestra sea suficientemente grande. Por lo menos, `\(n\ge 30\)`
+
+`$$\overline{X} \pm Z_{\alpha/2}*\frac{\sigma_X}{\sqrt{n}} \implies \overline{X} \pm Z_{\alpha/2}*\frac{\color{red}s}{\sqrt{n}}$$`
+---
+
+# IC para una proporción
+
+- También se puede estimar la proporción de una población mediante la construcción de un intervalo de confianza a partir de una muestra.
+
+- Requisitos para aproximar la Binomial a la Normal: observaciones i.i.d. y `\(np\ge 10\)` y `\(n(1-p) \ge 10\)` 
+
+- El intervalo de confianza para la proporción es
+
+`$$\hat{p} \pm Z_{\alpha/2}*\sigma_{\hat{p}} \implies \hat{p} \pm Z_{\alpha/2}*\sqrt{\frac{p(1-p)}{n}}$$`
+
+- Problema: el margen de error depende de `\(p\)` y este parámetro es desconocido.
+
+---
+
+# IC para una proporción
+
+- Solución: estimar el error estándar (SE) utilizando `\(\hat{p}\)`, la proporción basada en la muestra aletoria.
+
+`$$\sigma_{\hat{p}}=\sqrt{\frac{\hat{p}(1-\hat{p})}{n}}$$`
+
+- La muestra no puede ser muy chica. En general, alcanza con mismos criterios del TCL ($np\ge 10$ y `\(n(1-p) \ge 10\)`). Bajo estas condiciones, se cumple aproximadamente con:
+
+`$$\frac{\hat{p}-p}{\sqrt{\frac{\hat{p}(1-\hat{p})}{n}}}\sim N(0,1)$$`
+
+---
+
+# IC para una proporción
+
+- Por lo tanto, si la proporción muestral observada es `\(\hat{p}\)`, se obtiene un intervalo de confianza aproximado de la proporción de la población al `\(100(1-\alpha)\%\)` de confianza de la siguiente manera:
+
+`$$P(|Z|&lt;Z_{\alpha/2})=P(-Z_{\alpha/2}&lt;Z&lt;Z_{\alpha/2})=1-\alpha$$`
+
+--
+
+`$$P(-Z_{\alpha/2}&lt;\frac{\hat{p}-p}{\sqrt{\frac{\hat{p}(1-\hat{p})}{n}}}&lt;Z_{\alpha/2})=1-\alpha$$`
+
+--
+
+`$$P(\hat{p}-Z_{\alpha/2}\sqrt{\frac{\hat{p}(1-\hat{p})}{n}}&lt;p&lt;\hat{p}+Z_{\alpha/2}\sqrt{\frac{\hat{p}(1-\hat{p})}{n}})=1-\alpha$$`
+
+---
+
+# Ejemplo
+
+- Cierta industria decide capacitar a sus empleados en un nuevo programa de adiestramiento en reparación de máquinas. 
+
+- De acuerdo con la experiencia de la empresa, la empresa sabe que una persona que apruebe el examen tiene una alta probabilidad de desempeñarse bien es su puesto. Después de alguna discusiones la empresa acordó basar la evaluación del nuevo método de adiestramiento considerando la proporción de empleados que aprobaron el examen.
+
+- De los 64 empleados que asistieron al curso de capacitación, solo aprobaron el examen 40. Determinar el intervalo de confianza para la proporción poblacional con una confianza del 90%. 
+
+--
+
+`$$\hat{p}=\frac{40}{64}=0.625$$`
+
+--
+
+`$$ME=Z_{\alpha/2}\sqrt{\frac{\hat{p}(1-\hat{p})}{n}}=1.645\sqrt{\frac{0.625(1-0.625)}{64}}=0.0995$$`
+
+--
+
+`$$IC: \hat{p}\pm 0.0995 = (0.5255,0.7245)$$`
+
+---
+
+# Tamaño de la muestra
+
+- Al igual que para la media muestral, se puede determinar el tamaño de muestra requerido para un margen de error deseado.
+
+- ¿Cual es el tamaño de muestra requerido para estimar la proporción de fumadores en Argentina si se desea una confianza del 99% con un margen de error del 5%?
+
+--
+
+`$$ME=Z_{\alpha/2}\sqrt{\frac{p(1-p)}{n}}$$`
+
+--
+
+Despejando `\(n\)`:
+
+`$$n=\left(\frac{Z_{\alpha/2}}{ME} \right)^2p(1-p)$$`
+- Problema: no conocemos `\(p\)`. Todavía no tomamos la muestra, así que tampoco tenemos `\(\hat{p}\)`. Solución: calcular el valor de `\(p\)` que hace máximo a `\(\sigma=\sqrt{\frac{p(1-p)}{n}}\)`
+
+--
+
+- Puede comprobarse que `\(\sigma\)` es máximo para `\(p=0.5\)`
+
+---
+
+# Tamaño de la muestra
+
+- Por lo tanto el tamaño de muestra requerido para un margen de error dado y un nivel de confianza de `\(100(1-\alpha)\%\)` está dado por:
+
+`$$n=\left(\frac{Z_{\alpha/2}}{ME} \right)^20.5(1-0.5)=0.25 \left(\frac{Z_{\alpha/2}}{ME} \right)^2$$`
+- ¿Cual es el tamaño de muestra requerido para estimar la proporción de fumadores en Argentina si se desea una confianza del 99% con un margen de error del 5%?
+
+`$$n=0.25 \left(\frac{2.576}{0.05} \right)^2=663.5776$$`
+
+- Por lo tanto, el 99% de la muestras de 664 encuestados brindaran intervalos de confianza para la verdadera proporción de fumadores en Argentina con un margen de error del 5%.
+
+---
+
+# Ejemplo
+
+- Supongamos que se realiza una encuesta de opinión tras unas elecciones generales sobre las opiniones de los ciudadanos en edad de votar acerca de un cambio del sistema electoral. 
+
+- Se quiere que la encuesta tenga un margen de error del 3% con un nivel de confianza del 95%. ¿Cuántos ciudadanos en edad de votar debe tener la muestra para obtener este margen de error del 3 por ciento?
+
+--
+
+`$$n=0.25 \left(\frac{1.96}{0.03} \right)^2=1067.111$$`
+- Se requieren al menos `\(1067\)` encuestados.
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
