@@ -479,6 +479,239 @@ Despejando `\(n\)`:
 `$$n=0.25 \left(\frac{1.96}{0.03} \right)^2=1067.111$$`
 - Se requieren al menos `\(1067\)` encuestados.
 
+---
+
+# ¿Qué ocurre cuando `\(n&lt;30\)`?
+
+- No siempre se tiene la posibilidad de contar con una muestra grande.
+
+- Vamos a focalizarnos en **muestras pequeñas** cuando el estadístico es la **media muestral**
+
+- Recordemos porque necesitamos una muestra grande. Siempre y cuando las observaciones sean i.i.d., y la distribución poblacional no demasiado asimétrica, **una muestra grande nos aseguraba que**:
+
+  + La distribución muestral de la media se aproximaba razonablemente bien con la distribución normal.
+  
+  + El estimador `\(SE=\frac{s}{\sqrt{n}}\)` es un estimador confiable de `\(\sigma_X\)`, el desvío poblacional que por lo general es desconocido.
+
+---
+
+# ¿Qué ocurre cuando `\(n&lt;30\)`?
+
+- Vimos que si `\(n\)` es grande, y `\(\sigma_X\)` es desconocido, estimamos `\(\sigma_X\)` con `\(s\)`.
+
+- Sin embargo, cuando `\(n\)` es pequeño y `\(\sigma_X\)` es desconocido (casi siempre), también podemos utilizar `\(s\)` como el estimador natural de `\(\sigma_X\)`, pero es **menos confiable**.
+
+- Para mitigar esta mayor incertidumbre en `\(s\)` y continuar reteniendo la confianza deseada en la construcción de los intervalos de confianza, deberíamos entonces **aumentar el ancho del intervalo**.
+
+- Luego, deberíamos trabajar con una distribución que de cuenta de la necesidad de un intervalo más ancho. 
+
+- La distribución conocida como **t de Student** cumple el rol de reemplazar a la distribución normal estandarizada produciendo intervalos de confianza más anchos. Pero sólo la podremos usar en los casos en que la muestra proviene de una población con distribución Normal.
+
+---
+
+# La distribución t de Student
+
+- La **t de Student** también es simétrica alrededor de la media, con forma de campana, pero con colas más pesadas, i.e. es más probable tener más observaciones más allá de 2 desvíos estándar respecto de la media si se la compara con la distr. Normal estándar.
+
+- Las colas más pesadas son las que van a mitigar la mayor incertidumbre originada en el cálculo del SE.
+
+.center[
+![](7.Intervalo_Confianza_files/figure-html/unnamed-chunk-1-1.png)&lt;!-- --&gt;
+]
+
+---
+
+# La distribución t de Student
+
+- La **t de Student** tiene un solo parámetro, llamado **grados de libertad**, que determina cuán pesadas son las colas de la distribución.
+
+- ¿Qué ocurre con la forma de la distribución cuando los grados de libertad se incrementan?
+
+
+.center[
+![](7.Intervalo_Confianza_files/figure-html/unnamed-chunk-2-1.png)&lt;!-- --&gt;
+]
+
+---
+
+# ¿Cuándo se utliza la t de Student?
+
+- Cuando deseamos construir un **intervalo de confianza para la media** y:
+
+  + `\(\sigma\)` es desconocido
+  
+  + Tamaño de la muestra pequeño ($n&lt;30$)
+  
+  + **Se requiere población Normal**
+  
+- El intervalo de confianza se calcula de la misma manera que antes, pero en lugar de `\(Z_{\alpha/2}\)` utilizamos `\(t_{n-1,\alpha/2}\)`
+
+`$$\overline{X} \pm t_{n-1,\alpha/2}*\frac{s}{\sqrt{n}}$$`
+---
+
+# Comparando la N(0,1) con la t
+
+- Buscar los valores críticos que cumplen:
+
+  + `\(P(Z\ge Z_{0.025}=0.025)\)`
+  
+  + `\(P(t\ge t_{50,0.025}=0.025)\)`
+  
+  + `\(P(t\ge t_{10,0.025}=0.025)\)`
+
+---
+
+# Comparando la N(0,1) con la t
+
+- Buscar los valores críticos que cumplen:
+
+  + `\(P(Z\ge Z_{0.025}=0.025) \implies Z_{0.025}=\color{red}{1.96}\)`
+  
+  + `\(P(t\ge t_{50,0.025}=0.025) \implies t_{50,0.025}=\color{red}{2.0086}\)`
+  
+  + `\(P(t\ge t_{10,0.025}=0.0259 \implies t_{10,0.025}=\color{red}{2.2281}\)`
+  
+.center[
+![](Imagenes/t_student1.jpg)
+![](Imagenes/t_student2.jpg)
+]
+  
+---
+
+# Ejemplo
+
+Cierta empresa está implementado un programa de adiestramiento por computadora para sus empleados. Toma una muestra de 15 empleados y mide los tiempos de adiestramiento de cada uno de ellos:
+
+`$$52,44,55,44,45,59,50,54,62,46,54,58,60,62,63$$`
+
+Calcular el intervalo de confianza al 95% para la media poblacional
+
+--
+
+**Debemos suponer que la población es Normal**. La muestra arroja `\(\overline{X}=53.86667\)` y `\(s=6.822931\)`
+
+--
+
+`$$IC: \overline{X} \pm t_{n-1,\alpha/2}*\frac{s}{\sqrt{n}}=$$`
+--
+
+`$$=53.86667\pm 2.1448*\frac{6.822931}{\sqrt{15}}=$$`
+
+--
+
+`$$=53.86667\pm 3.778437 =(50.08823,57.64511)$$`
+
+---
+
+# IC para la varianza
+
+- Supongamos que de una población que sigue una **distribución normal** con varianza `\(\sigma^2\)` se extrae una muestra aleatoria de `\(n\)` observaciones cuya varianza es `\(s^2\)`. Entonces
+
+`$$\chi^2_{n-1}=\frac{(n-1)s^2}{\sigma^2}$$`
+
+- Sigue una distribución `\(\chi^2_{n-1}\)` con `\(n-1\)` grados de libertad
+
+.pull-left[
+Recordemos que:
+
+`$$P(\chi^2_{n-1}&gt;\chi^2_{n-1,\alpha})=\alpha$$`
+]
+
+.pull-right[
+![](Imagenes/chi2_4.jpg)
+]
+
+---
+
+# IC para la varianza
+
+.pull-left[
+Entonces:
+
+`$$P(\chi^2_{n-1}&gt;\chi^2_{n-1,\color{red}{\alpha/2}})=\alpha/2$$`
+
+`$$P(\chi^2_{n-1}&gt;\chi^2_{n-1,\color{red}{1-\alpha/2}})=1-\alpha/2$$`
+`$$P(\chi^2_{n-1}\color{red}&lt;\chi^2_{n-1,\color{red}{1-\alpha/2}})=\alpha/2$$`
+
+]
+
+.pull-right[
+![](Imagenes/chi2_5.jpg)
+]
+
+Finalmente:
+
+`$$P(\chi^2_{n-1,1-\alpha/2}&lt;\chi^2_{n-1}&lt;\chi^2_{n-1,\alpha/2})=1-\alpha/2-\alpha/2=1-\alpha$$`
+
+---
+
+# IC para la varianza
+
+**Ejemplo**: Supongamos que queremos hallar un par de números tal que la probabilidad de que una variable aleatoria chi-cuadrado con 8 grados de libertad se encuentre entre estos números es 0.90.
+
+--
+
+.pull-left[
+![](Imagenes/chi2_6.jpg)
+]
+
+.pull-right[
+![](Imagenes/chi2_7.jpg)
+]
+
+`$$P(\chi^2_{8,0.95}&lt;\chi^2_{8}&lt;\chi^2_{8,0.05})=0.90$$`
+
+`$$P(2.73264&lt;\chi^2_{8}&lt;15.5073)=0.90$$`
+
+---
+
+# IC para la varianza
+
+Supongamos que hay una muestra aleatoria de `\(n\)` observaciones extraídas de una población que sigue una distribución normal de varianza `\(\simga^2\)`. Si la varianza muestral observada es `\(s^2\)`, entonces un intervalo de confianza al `\(100(1-\alpha)\%\)` de la varianza poblacional es:
+
+--
+
+`$$P(\chi^2_{n-1,1-\alpha/2}&lt;\chi^2_{n-1}&lt;\chi^2_{n-1,\alpha/2})=1-\alpha$$`
+
+--
+
+`$$P(\chi^2_{n-1,1-\alpha/2}&lt;\frac{(n-1)s^2}{\sigma^2}&lt;\chi^2_{n-1,\alpha/2})=1-\alpha$$`
+
+--
+
+`$$P \left( \frac{(n-1)s^2}{\chi^2_{n-1,\alpha/2}}&lt;\sigma^2&lt;\frac{(n-1)s^2}{\chi^2_{n-1,1-\alpha/2}} \right) =1-\alpha$$`
+
+---
+
+# Ejemplo
+
+El director de Aceros Norte, quiere evaluar la variación de la temperatura en el nuevo horno eléctrico de la empresa. Se obtiene una muestra aleatoria de 25 temperaturas durante 1 semana y se observa que la varianza muestral es `\(s^2=100\)`. Halle el intervalo de confianza al 95% de la varianza poblacional de la temperatura.
+
+--
+
+Necesitamos suponer **población Normal**.
+
+De tabla sacamos los siguientes valores: `\(\chi^2_{24,0.025}=39.3641\)` y `\(\chi^2_{24,0.975}=12.4012\)`
+
+--
+
+`$$IC: \left( \frac{(n-1)s^2}{\chi^2_{n-1,\alpha/2}}, \frac{(n-1)s^2}{\chi^2_{n-1,1-\alpha/2}}  \right)$$`
+--
+
+`$$IC: \left( \frac{24*100}{39.3641}, \frac{24*100}{12.4012}  \right) = \left( 60.96926, 193.5297  \right)$$`
+---
+
+# Resumiendo...
+
+| Parámetro | Muestra | Población | `\(\sigma\)` | IC |
+| :-------: | :-----: | :-------: | :-----:  | :---: |
+| Media | `\(n\ge 30\)` | Cualquiera | Conocida | `\(\overline{X}\pm Z_{\alpha/2}\frac{\sigma}{\sqrt{n}}\)` |
+| Media | `\(n\ge 30\)` | Cualquiera | Desconocida | `\(\overline{X}\pm Z_{\alpha/2}\frac{s}{\sqrt{n}}\)` |
+| Media | `\(n &lt; 30\)` | Normal | Conocida | `\(\overline{X}\pm Z_{\alpha/2}\sqrt{\frac{\hat{p}(1-\hat{p})}{n}}\)` |
+| Media | `\(n &lt; 30\)` | Normal | Desconocida | `\(\overline{X}\pm t_{n-1,\alpha/2}\frac{s}{\sqrt{n}}\)` |
+| Proporción | `\(np\ge 10\)`, `\(n(1-p)\ge 10\)` |  |  | `\(\hat{p}\pm Z_{\alpha/2}\frac{s}{\sqrt{n}}\)` |
+| Varianza |  | Normal  |  | `\(\left( \frac{(n-1)s^2}{\chi^2_{n-1,\alpha/2}}, \frac{(n-1)s^2}{\chi^2_{n-1,1-\alpha/2}}  \right)\)` |
+
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
