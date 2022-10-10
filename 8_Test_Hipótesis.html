@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Test de Hipótesis</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Esteban Rodríguez" />
+    <script src="libs/header-attrs-2.14/header-attrs.js"></script>
+    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/metropolis.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/metropolis-fonts.css" rel="stylesheet" />
+  </head>
+  <body>
+    <textarea id="source">
+class: left, bottom, inverse, title-slide
+
+.title[
+# Test de Hipótesis
+]
+.author[
+### Esteban Rodríguez
+]
+.date[
+### Última Actualización: 2022-10-10
+]
+
+---
+
+
+
+
+# Ejemplo
+
+- En 1972, como parte de un amplio estudio sobre discriminación de género, se realizó el siguiente experimento.
+
+- Se les brindó a **48 supervisores bancarios de sexo masculino** el mismo CV y se les pidió que evaluén si la persona debía ser promovida a un cargo superior o no, en un ascenso de rutina.
+
+- **Los CV eran todos idénticos**, excepto que a **la mitad** de los supervisores les entregaron CV cuyos postulantes eran **hombres**, mientras que a **la otra mitad** CV cuyos postulantes eran **mujeres**.
+
+- La asignación de los CV a los supervisores fue aleatoria.
+
+- De los 48 CV analizados, se aconsejó promocionar a 35 de ellos.
+
+- El estudio intenta evaluar si existe discriminación de género.
+
+---
+
+# Ejemplo
+
+- Resultados:
+
+| | Promovido | No Promovido | Total
+| :--- | :---: | :---: | :---: |
+| Hombre | 21 | 3 | 24 |
+| Mujer | 14 | 10 | 24 |
+| Total | 35 | 13 | 48 |
+
+- ¿Hubo discriminación de género?
+
+---
+
+# Planteo de las Hipótesis
+
+- Nos enfrentamos a dos alternativas posibles
+
+  + **Nada ocurre aquí (status quo)**: la promoción a un cargo superior y el género del postulante son independientes. No hay discriminación de género. Las diferencias observadas entre las diferentes proporciones es sólo cuestión del azar. `\(\rightarrow\)` **Hipótesis Nula** `\(H_0\)`
+  
+  + **Algo esta pasando aquí**: la promoción a un cargo superior y el género del postulante no son independientes. Hay discriminación de género. Las diferencias observadas entre las diferentes proporciones no se deben al azar. `\(\rightarrow\)` **Hipótesis Alternativa** `\(H_A\)` o `\(H_1\)`
+
+---
+
+# Planteo de las Hipótesis
+
+- El test de hipótesis se parece mucho a un juicio
+
+  + `\(H_0\)` **Hipótesis Nula**: el acusado es inocente
+  
+  + `\(H_A\)` **Hipótesis Alternativa**: el acusado es culpable
+  
+- Se presenta la evidencia `\(\rightarrow\)` Se recogen los datos/muestra
+
+- Luego se evalúa la evidencia `\(\rightarrow\)` ¿Podrían estos datos haber  ocurrido sólo por cuestiones del azar si la hipótesis nula fuese verdadera?
+
+- Si la muestra obtenida es muy improbable de ocurrir bajo `\(H_0\)`, la evidencia nos plantea una duda acerca de la validez de la `\(H_0\)` y puede eventualmente permitir afirmar que `\(H_0\)` es falsa.
+
+---
+
+# Planteo de las Hipótesis
+
+- Si la evidencia no es lo suficientemente contundente para rechazar el supuesto de inocencia, el jurado declara que **no hay evidencia para decir que el acusado es culpable**.
+
+  + El jurado no dice que el acusado es inocente, simplemente porque la evidencia recogida no es suficiente para condenarlo.
+  
+  + De hecho, el acusado puede ser inocente, pero el jurado no tiene manera de afirmarlo con certeza.
+
+- En vocabulario estadístico se dice: **no se puede rechazar la hipótesis nula**
+
+  + Nunca se declara que la hipótesis nula es verdadera, simplemente porque no hay forma de saber si es cierta o no.
+  
+  + Por eso **nunca se acepta la hipótesis nula**: se la rechaza o no se la rechaza.
+  
+---
+
+# Planteo de las Hipótesis
+
+- En un juicio, la carga de la prueba recae sobre la acusación.
+
+- En un test de hipótesis, la carga de la prueba recae sobre hipótesis alternativa
+
+- La hipótesis nula se refiere al status quo. Por lo tanto es la hipótesis alternativa la que uno considera inusual y para la cual debemos reunir pruebas.
+
+---
+
+# En resumen...
+
+- Se comienza con una **hipótesis nula** `\(H_0\)` que representa el status quo.
+
+- Se dispone también de una **hipótesis alternativa** `\(H_A\)` que refiere a nuestra pregunta de investigación, i.e. lo que uno desea evaluar/ testear
+
+- Finalmente uno realiza un test de hipótesis bajo el supuesto de que la `\(H_0\)` **es verdadera**, ya sea **vía simulación** (lo que vamos a hacer a continuación) o **vía métodos teóricos** (lo que estudiaremos luego, basándonos en el TCL) .
+
+- Si los resultados del test sugieren que los datos no brindan evidencia convincente a favor de la hipótesis alternativa `\(H_A\)`, entonces nos quedamos con la hipótesis nula `\(H_0\)`. Si por el contrario, la evidencia es contundente, rechazamos la `\(H_0\)` a favor de la `\(H_A\)`.
+
+---
+
+# La simulación del experimento
+
+- ¿Cómo hacemos para simular el experimento de discriminación de género?
+
+- Bajo el supuesto de independencia (ausencia de discriminación), i.e. es el azar quien “mueve los hilos”. Se tiene que
+
+  + Si el resultado de **la simulación luce similar a los datos del experimento**, luego podemos determinar que las diferencias entre las proporciones de los CV promovidos entre hombres y mujeres es producto del azar; i.e. la promoción a un puesto superior y el género del postulante **son** independientes.
+  
+  + Por el contrario, **si la simulación no luce parecido con los datos observados en el experimento**, luego podemos determinar que las diferencias entre las proporciones de los CV promovidos entre hombres y mujeres no es producto del azar, sino que es consecuencia del género del postulante; i.e. la promoción a un puesto superior y el género del postulante **no son** independientes.
+
+---
+
+# El esquema de simulación
+
+- Disponer de un mazo de cartas de póker. Total 54 cartas
+
+- Descartemos las siguientes cartas:
+
+  + Los 2 jokers (comodines).
+  
+  + 3 de los 4 ases.
+  
+  + 1 carta cualquiera del 2 al 10 (no descartar ninguna figura)
+
+- Así nos quedamos con 48 cartas, igual a la cantidad de CV analizados.
+
+- Consideremos a las figuras y los ases como legajos no promovidos y a los números como legajos promovidos
+
+  + **13 fueron los legajos no promovidos**. Consideremos entonces todas las J,Q y K y el as que nos quedó.
+  
+  + **35 fueron los legajos promovidos**. Consideremos todos los números desde el 2 al 10 que nos quedaron.
+  
+---
+
+# El esquema de simulación
+
+.center[
+![](Imagenes/cartas_simulación.jpg)
+]
+
+---
+
+# El esquema de simulación
+
+- Una vez conformado correctamente el grupo de 48 cartas, **mezclarlo bien**.
+
+--
+
+- Separar luego en dos pilones de 24 cartas cada uno, donde un pilón corresponde a los legajos masculinos y el otro a los legajos femeninos.
+
+--
+
+- Seleccionar el grupo de mujeres y contabilizar cuántos CV fueron promovidos (números del 2 al 10).
+
+--
+
+- Calcular la **diferencia de CV promovidos** en cada grupo:
+
+`$$D = Prom_H-Prom_M$$`
+       
+- Repetir los pasos anteriores muchas veces (100 o más)
+
+- Representar gráficamente las diferencias registradas de las simulaciones, mediante un histograma
+
+- Recordemos que en el caso analizado hubo 21 hombres promovidos y 14 mujeres: diferencia de 7.
+
+---
+
+# El esquema de simulación
+
+- Recordemos cuales eran nuestras hipótesis de trabajo:
+
+  + `\(H_0\)`: la promoción a un cargo superior y el sexo del postulante son independientes. No hay discriminación de género.
+  
+  + `\(H_A\)`: la promoción a un cargo superior y el sexo del postulante no son independientes. Hay discriminación de género
+
+---
+
+# El esquema de simulación
+
+- Utilizando una computadora se puede fácilmente realizar una simulación con 100.000 casos.
+
+.center[
+![](8_Test_Hipótesis_files/figure-html/unnamed-chunk-1-1.png)&lt;!-- --&gt;
+
+En total, hubo 2454 casos donde la diferencia a favor de los hombres fue de 7 o más. Esto representa el 2.454% de los casos.
+
+]
+
+---
+
+# Resumen
+
+- Se especificaron una hipótesis nula y una hipótesis alternativa. La hipótesis alternativa es la que se quiere evaluar.
+
+- Se simuló el experimento asumiendo que la hipótesis nula es verdadera.
+
+- Se evaluó la posibilidad de observar un resultado al menos tan extremo como el observado en los datos originales.
+
+- Y si esto resulta muy poco probable, entonces rechazamos la hipótesis nula a favor de la hipótesis alternativa.
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
