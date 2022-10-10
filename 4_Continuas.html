@@ -20,7 +20,7 @@ class: left, bottom, inverse, title-slide
 ### Esteban Rodríguez
 ]
 .date[
-### Última Actualización: 2022-10-03
+### Última Actualización: 2022-10-10
 ]
 
 ---
@@ -567,11 +567,15 @@ Otra cabeza de zarigüeya arrojó un valor de 83.5 mm. ¿Considera que se trata 
 
 `$$\text{ tenemos que } Z\sim N(0,1)$$`
 
+Demostración: `\(E(Z)=\frac{E(X)}{\sigma}-\frac{\mu}{\sigma}=\frac{\mu}{\sigma}-\frac{\mu}{\sigma}=0\)`
+
+`\(Var(Z)=\frac{Var(X)}{\sigma^2}=\frac{\sigma^2}{\sigma^2}=1\)`
+
 ---
 
 # Distribución Normal Estándar
 
-`$$P(X&lt;1800)=P(\frac{x-\mu}{\sigma}&lt;\frac{1800-1500}{300})=P(Z&lt;1)=0.8413$$`
+`$$P(X&lt;1800)=P\left( \frac{X-\mu}{\sigma}&lt;\frac{1800-1500}{300} \right)=P(Z&lt;1)=0.8413$$`
 
 .center[
 ![](Imagenes/tablanormal.jpg)
@@ -587,7 +591,7 @@ Otra cabeza de zarigüeya arrojó un valor de 83.5 mm. ¿Considera que se trata 
 ![](4_Continuas_files/figure-html/unnamed-chunk-20-1.png)&lt;!-- --&gt;
 ]
 
-`$$P(X&gt;1800)=P(\frac{x-\mu}{\sigma}&gt;\frac{1800-1500}{300})=P(Z&gt;1)=$$`
+`$$P(X&gt;1800)=P\left( \frac{X-\mu}{\sigma}&gt;\frac{1800-1500}{300} \right)=P(Z&gt;1)=$$`
 
 `$$=1-P(Z&lt;1)=1-0.8413=0.1587$$`
 
@@ -602,7 +606,10 @@ Otra cabeza de zarigüeya arrojó un valor de 83.5 mm. ¿Considera que se trata 
 ![](4_Continuas_files/figure-html/unnamed-chunk-21-1.png)&lt;!-- --&gt;
 ]
 
-`$$P(X&gt;1650)=P(Z&gt;\frac{1650-1500}{300})=P(Z&gt;0.5)=$$`
+`$$P(X&gt;1650)=P\left( Z&gt;\frac{1650-1500}{300} \right)=P(Z&gt;0.5)$$`
+De la tabla obtengo que `\(P(Z&lt;0.5)=0.6915\)`, entonces
+
+`$$P(X&gt;1650)=1-P(Z&lt;0.5)=1-0.6915=0.3085$$`
 
 ---
 
@@ -633,7 +640,7 @@ Otra cabeza de zarigüeya arrojó un valor de 83.5 mm. ¿Considera que se trata 
 
 Otro alumno, obtuvo la calificación de 1400 puntos. ¿En que percentil se encuentra?
 
-`$$P(X&lt;1400)=P(Z&lt;\frac{1400-1500}{300})=P(Z&lt;-0.33)=$$`
+`$$P(X&lt;1400)=P\left( Z&lt;\frac{1400-1500}{300} \right)=P(Z&lt;-0.33)=$$`
 
 .pull-left[
 ![](4_Continuas_files/figure-html/unnamed-chunk-23-1.png)&lt;!-- --&gt;
@@ -699,15 +706,21 @@ Supongamos que Ud. rindió el examen E1 y tuvo la grata noticia de que está den
 
 - Ojo que **esta regla es una aproximación**, no es 100% exacta.
 
+--
+
 `$$P(\mu-\sigma&lt;X&lt;\mu+\sigma)=P(-1&lt;Z&lt;1)=P(Z&lt;1)-P(Z&lt;-1)=$$`
 
 `$$=0.8413-(1-0.8413)=\color{red}{0.6826}$$`
+
+--
 
 &lt;br/&gt;
 
 `$$P(\mu-2\sigma&lt;X&lt;\mu+2\sigma)=P(-2&lt;Z&lt;2)=P(Z&lt;2)-P(Z&lt;-2)=$$`
 
 `$$=0.9772-(1-0.9772)=\color{red}{0.9544}$$`
+
+--
 
 &lt;br/&gt;
 
@@ -800,6 +813,22 @@ Molinos Río de la Plata lleva a cabo un control de calidad en su línea embotel
 
 # Aproximación de la Binomial
 
+.pull-left[
+![](4_Continuas_files/figure-html/unnamed-chunk-32-1.png)&lt;!-- --&gt;
+
+![](4_Continuas_files/figure-html/unnamed-chunk-33-1.png)&lt;!-- --&gt;
+]
+
+.pull-right[
+![](4_Continuas_files/figure-html/unnamed-chunk-34-1.png)&lt;!-- --&gt;
+
+![](4_Continuas_files/figure-html/unnamed-chunk-35-1.png)&lt;!-- --&gt;
+]
+
+---
+
+# Aproximación de la Binomial
+
 **Ejemplo**. Aproximadamente el 20% de la población en USA fuma cigarrillos. Una comunidad local cree que la tasa de fumadores dentro de esta comunidad es menor para lo cual decide realizar una encuesta. Se toma una muestra al azar de 400 individuos. La encuesta encuentra sólo 59 individuos entre los 400 encuestados. Suponiendo que la verdadera probabilidad de fumadores en la comunidad fuese 20%, cual es la probabilidad de observar 59 o menos en la muestra de 400?
 
 --
@@ -811,6 +840,8 @@ En principio, `\(X \sim Bi(n=400,p=0.20)\)` y nos preguntan por `\(P(X\le 59)\)`
 Si se nos dificulta realizar el cálculo, podemos aproximar con:
 
 `$$Y\sim N(\mu=400*0.20=80,\sigma=\sqrt{400*.20*.80}=8)$$`
+
+--
 
 Y calculamos:
 
@@ -871,7 +902,7 @@ Como referencia, el cálculo exacto con la Binomial es `\(P(X\le 59)=0.0041\)`
 # Factor de corrección por continuidad
 
 .center[
-![](4_Continuas_files/figure-html/unnamed-chunk-32-1.png)&lt;!-- --&gt;
+![](4_Continuas_files/figure-html/unnamed-chunk-36-1.png)&lt;!-- --&gt;
 
 ]
 
@@ -881,7 +912,7 @@ La probabilidad exacta (Binomial) es la altura de las líneas. Equivale al área
 
 # Factor de corrección por continuidad
 
-`\(X\sim Bi(n,p) \implies Y\sim N(\mu=np, \sigma = \sqrt{n*p*(1-p)}\)`
+$X\sim Bi(n,p) \implies Y\sim N \left( \mu=np, \sigma = \sqrt{n*p*(1-p)} \right) $
 
 `\(P(X=k) \approx P(k-0.5 \le Y \le k+0.5)\)`
 
@@ -905,7 +936,9 @@ La probabilidad exacta (Binomial) es la altura de las líneas. Equivale al área
 
 En principio, `\(X\sim Bi(n=1000,p=0.5)\)` y se nos pregunta `\(P(525 \le X \le 530)\)`
 
-Deberíamos calcular `\({1000\choose 525} 0.5^{1000} + {1000\choose 526} 0.5^{1000} + {1000\choose 527} 0.5^{1000} + {1000\choose 528} 0.5^{1000} + {1000\choose 529} 0.5^{1000} + {1000\choose 530} 0.5^{1000}= 0.03377\)`
+Deberíamos calcular 
+
+`\({1000\choose 525} 0.5^{1000} + {1000\choose 526} 0.5^{1000} + ... + {1000\choose 530} 0.5^{1000}= 0.03377\)`
 
 --
 
