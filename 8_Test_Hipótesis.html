@@ -257,6 +257,96 @@ En total, hubo 2454 casos donde la diferencia a favor de los hombres fue de 7 o 
   
   + El tiempo medio de encendido de los canales de aire es superior a las 6 hs 30’. `\(H_0: \mu \ge 6 hs 30’\)` vs. `\(H_A \mu &lt; 6 hs 30’\)`
 
+---
+
+# Test de Hipótesis
+
+- Posibles formas para las hipótesis nulas y alternativas
+
+  + `\(H_0: \mu=\mu_0\)` vs. `\(H_A: \mu \ne \mu_0\)` `\(\quad \color{red}{\text{Test Bilateral}}\)`
+  
+  + `\(H_0: \mu \le \mu_0\)` vs. `\(H_A: \mu &gt; \mu_0\)` `\(\quad \color{red}{\text{Test Unilateral Derecho}}\)`
+  
+  + `\(H_0: \mu \ge \mu_0\)` vs. `\(H_A: \mu &lt; \mu_0\)` `\(\quad \color{red}{\text{Test Unilateral Izquierdo}}\)`
+
+- No siempre resulta obvio determinar la hipótesis nula y la hipótesis alternativa.
+
+- Notar que la **igualdad** de la expresión `\((=, \ge, \le)\)` aparece siempre en la **hipótesis nula**.
+
+- Tener presente siempre que la alternativa es lo que se trata de establecer mediante la evidencia empírica.
+
+---
+
+# Test Unilateral
+
+**Test de hipótesis de una investigación**
+
+- El rendimiento promedio de determinado auto es de 14 km por litro de combustible. El grupo de I&amp;D dice haber mejorado el rendimiento de un nuevo componente del motor. A tal fin, fabricarán varios de estos componentes y los pondrán a prueba. ¿Cual es la hipótesis nula y alternativa que se desea testear?
+
+  + `\(H_0: \mu=14\)` vs. `\(H_A: \mu \ne 14\)`
+  
+  + `\(H_0: \mu \le 14\)` vs. `\(H_A: \mu &gt; 14\)`
+  
+  + `\(H_0: \mu&gt;14\)` vs. `\(H_A: \mu \le 14\)`
+  
+  + `\(H_0: \mu=14\)` vs. `\(H_A: \mu &gt; 14\)`
+  
+  + `\(H_0: \mu \ge 14\)` vs. `\(H_A: \mu &lt; 14\)`
+
+--
+
+- En los estudios de investigación se debe formular las `\(H_0\)` y `\(H_A\)` de forma tal que el rechazo de `\(H_0\)` respalde la investigación realizada y la acción que van a llevar a cabo. Por lo tanto la hipótesis investigada debe expresarse como alternativa.
+
+
+---
+
+# Test Unilateral
+
+**Prueba de validez de una afirmación**
+
+- Una planta embotelladora afirma que sus botellas de 2 litros contienen un promedio mínimo de 1997 ml. Se selecciona una muestra de botellas y se medirán sus contenidos para investigar la afirmación del fabricante. Plantear `\(H_0\)` y `\(H_A\)`
+
+--
+
+- En estos casos uno asume que la afirmación del fabricante es cierta, a menos que la evidencia empírica demuestre lo contrario.
+
+- Si los resultados de la muestra indican que `\(H_0\)` no se puede rechazar, no hay motivos para dudar de la afirmación del fabricante. Por el contrario si se rechaza `\(H_0\)`, la afirmación de la embotelladora es incorrecta.
+
+- En los estudios de validez de una afirmación, la `\(H_0\)` suele tomar la afirmación como verdadera y es la evidencia la que se encargará de refutarla si esto no es así.
+
+---
+
+# Test Bilateral
+
+**Pruebas en casos de toma de decisiones**
+
+- Hasta aquí vimos como se actuaba cuando se rechazaba `\(H_0\)`. Pero también puede tenerse dos cursos de acciones a tomar, tanto si se rechaza `\(H_0\)` como si no se rechaza `\(H_0\)`.
+
+- Pensemos en un embarque que se acaba de recibir y se debe someter a un control de calidad, para aceptar todo el embarque o regresarlo al proveedor porque no cumple con las especificaciones.
+
+- Supongamos que se tratan de piezas que deben medir 5 cm. Si la longitud promedio de las piezas es mayor o menor a la norma de 5 cm se rechaza el embarque. Plantear `\(H_0\)` y `\(H_A\)`
+
+--
+
+- Si los resultados de la muestra indican que no se puede rechazar `\(H_0\)`, no hay razones para dudar de todo el embarque. Por el contrario se rechazará todo el embarque si la muestra así lo indica. En ambos casos hay cursos de acción a seguir.
+
+---
+
+# Test de Hipótesis sobre `\(\mu\)`
+
+- Se plantean las hipótesis.
+
+- Se toma una muestra y se calcula `\(\overline{X}\)`
+
+- Recordar que, bajo las condiciones del TCL, `\(\overline{X} \sim N(\mu, \sigma/\sqrt{n})\)`
+
+- Pero `\(\mu\)` es desconocido: hasta que alguien nos demuestre lo contrario, tomamos como verdadero al `\(\mu\)` establecido en la `\(H_0\)`
+
+- Ya sea que `\(H_0: \mu=\mu_0\)`, `\(H_0: \mu \ge \mu_0\)` o `\(H_0: \mu \le \mu_0\)`, realizaremos el test suponiendo que la verdadera media es `\(\mu_0\)`
+
+- Por lo tanto, supondremos que la distribución de `\(\overline{X}\)` es `\(N(\mu_0, \sigma/\sqrt{n})\)`
+
+- Luego chequearemos si el valor de `\(\overline{X}\)` obtenido de la muestra es compatible o no con esta hipótesis.
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
