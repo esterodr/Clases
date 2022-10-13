@@ -20,7 +20,7 @@ class: left, bottom, inverse, title-slide
 ### Esteban Rodríguez
 ]
 .date[
-### Última Actualización: 2022-10-11
+### Última Actualización: 2022-10-13
 ]
 
 ---
@@ -347,6 +347,588 @@ En total, hubo 2454 casos donde la diferencia a favor de los hombres fue de 7 o 
 - Por lo tanto, supondremos que la distribución de `\(\overline{X}\)` es `\(N(\mu_0, \sigma/\sqrt{n})\)`
 
 - Luego chequearemos si el valor de `\(\overline{X}\)` obtenido de la muestra es compatible o no con esta hipótesis.
+
+---
+
+# Test Unilateral sobre `\(\mu\)`
+
+`\(H_0: \mu \le \mu_0\)` vs. `\(H_A: \mu &gt; \mu_0\)`
+
+.center[
+![](Imagenes/test1.jpg)
+]
+
+---
+
+# Test Bilateral sobre `\(\mu\)`
+
+`\(H_0: \mu = \mu_0\)` vs. `\(H_A: \mu \ne \mu_0\)`
+
+.center[
+![](Imagenes/test2.jpg)
+]
+
+---
+
+# Errores de Tipo I y Tipo II
+
+- La `\(H_0\)` y la `\(H_A\)` son afirmaciones sobre parámetros poblacionales que compiten entre sí.
+
+- O `\(H_0\)` es verdadera o lo es la `\(H_A\)`, pero no ambas a la vez.
+
+- El investigador tomará una decisión basado en la evidencia empírica recolectada.
+
+- Lo ideal en los test de hipótesis es **no rechazar `\(H_0\)` cuando es verdadera**, y **rechazar `\(H_0\)` cuando es falsa**.
+
+- Pero esto no siempre ocurre. Dado que nos basamos en información muestral **podemos cometer errores**.
+
+---
+
+# Errores de Tipo I y Tipo II
+
+- Dos son los tipos de error que podemos cometer: 
+
+  + Rechazar `\(H_0\)` cuando es verdadera
+  
+  + No rechazar `\(H_0\)` cuando es falsa
+  
+- Por lo general, casi nunca sabemos con certeza qué hipótesis es verdadera, si `\(H_0\)` o `\(H_A\)`, por eso mismo debemos considerar la posibilidad de cometer un error.
+
+`$$P(\text{rechazar } H_0 \text{ cuando } H_0 \text{ es verdadera}) = \text{Error de tipo I}$$`
+
+`$$P(\text{no rechazar } H_0 \text{ cuando } H_0 \text{ es falsa}) = \text{Error de tipo II}$$`
+
+---
+
+# Errores de Tipo I y Tipo II
+
+- ¿Es el error de tipo I más grave que el error de tipo II? ¿O al revés? **Depende del contexto del problema**.
+
+- Ejemplos:
+
+  + `\(H_0\)`: el acusado es inocente vs. `\(H_A\)`: el acusado es culpable
+  
+  + `\(H_0\)`: el avión está en condiciones de volar vs. `\(H_A\)`: el avión debe someterse a reparaciones
+  
+---
+
+# Errores de Tipo I y Tipo II
+
+- El **Error de Tipo I** también es llamado **nivel de significatividad** o `\(\alpha\)`
+
+- Por lo general se trabaja con niveles de significación `\(\alpha=1\%\)` o `\(\alpha=5\%\)`
+
+- Esto significa que en aquellos casos en que `\(H_0\)` es verdadera, no querríamos rechazarla en más del `\(1\%\)` o `\(5\%\)` de los casos respectivamente.
+
+- En otras palabras, trabajando con un nivel de significación del `\(5\%\)`, hay un `\(5\%\)` de posibilidades de rechazar `\(H_0\)` cuando en realidad no deberíamos hacerlo.
+
+- Incrementar `\(\alpha\)` equivale a incrementar el error de tipo I.
+
+- Como el `\(\alpha\)` lo elegimos nosotros, podríamos vernos tentados a elegir siempre el valor mínimo posible.
+
+- Per hay un **trade-off: reducir el error de tipo I implica aumentar el error de tipo II**
+
+---
+
+# Errores de Tipo I y Tipo II
+
+**Test de Hipótesis**
+
+| | No se rechaza `\(H_0\)` | Se rechaza `\(H_0\)` |
+| :--- | :---: | :---: |
+| `\(H_0\)` es Verdadera | **Decisión Correcta**, `\(1-\alpha\)` = nivel de confianza | **Error de Tipo I**, `\(\alpha\)` = nivel de significación |
+| `\(H_0\)` es Falsa | **Error de Tipo II**, `\(\beta\)` | **Decisión Correcta**, `\(1-\beta\)` = potencia del test |
+
+---
+
+# Errores de Tipo I y Tipo II
+
+- Si el `\(\alpha\)` que uno elige es más pequeño que `\(5\%\)`, digamos `\(1\%\)`, es porque uno está actuando con mucha precaución respecto del rechazo de `\(H_0\)`. Es decir, se está siendo muy cauto acerca del rechazo de `\(H_0\)`, en consecuencia se va a demandar evidencia muy contundente en favor de `\(H_A\)` antes de tomar esa decisión.
+
+- Si por el contrario uno cree que el error de tipo II debe ser pequeño, i.e. el error de no rechazar `\(H_0\)` cuando `\(H_A\)` es verdadera, se debería elegir entonces un nivel de significación más alto, porque al incrementar el `\(\alpha\)` disminuye el error de tipo II. El objetivo en este caso es ser cautos respecto a la probabilidad de no rechazar la `\(H_A\)` cuando la `\(H_A\)` es falsa.
+
+- ¿Se pueden disminuir ambos errores simultáneamente?
+
+---
+
+# Errores de Tipo I y Tipo II
+
+.center[
+![](Imagenes/test3.jpg)
+]
+
+---
+
+# Errores de Tipo I y Tipo II
+
+.center[
+![](Imagenes/test4.jpg)
+]
+
+---
+
+# Ejemplo
+
+- Siguiendo con el ejemplo de la maratón. Los organizadores de la carrera afirman en base a sus registros que el tiempo promedio poblacional de carrera es de `\(\mu=94.52\)` minutos con una desviación estándar de `\(\sigma=15.93\)`. Se considera una muestra de `\(100\)` corredores que arrojó un tiempo promedio de `\(\overline{X}=97.19\)`. ¿En base a esta muestra se puede afirmar que el tiempo medio de carrera es superior a `\(\mu_0=94.52\)` minutos?
+
+--
+
+- Dos formas indistintas de plantear las hipótesis:
+
+  + `\(H_0: \mu=94.52\)` vs. `\(H_A: \mu&gt;94.52\)`
+  
+  + `\(H_0: \mu \le 94.52\)` vs. `\(H_A: \mu&gt;94.52\)`
+
+- Lo importante es que esté bien planteada la `\(H_A\)`, ya que es la que va a determinar las zonas de rechazo y aceptación de la `\(H_0\)`.
+
+- `\(H_0\)` y `\(H_A\)` no deben superponerse.
+
+---
+
+# Ejemplo
+
+- `\(H_0: \mu=94.52\)` vs. `\(H_A: \mu&gt;94.52\)`
+
+- `\(n=100\)`, `\(\overline{X}=97.19\)`, `\(\sigma=15.93\)`
+
+- Se establece un nivel de significación con el que se desea trabajar. Por ejemplo, `\(\alpha=5\%\)`, lo que quiere decir que estamos dispuestos a que la probabilidad de cometer de error de tipo I sea `\(5\%\)`.
+
+--
+
+- Buscamos el valor crítico `\(Z_c\)` asociado a un test **unilateral derecho** con un `\(\alpha=5\%\)`, `\(\rightarrow Z_{0.05}=1.645\)`
+
+- Establezo la **Regla de Decisión**:
+
+  + Si `\(Z_{obs} \le 1.645 \rightarrow \text{no Rechazo }H_0\)`
+  
+  + Si `\(Z_{obs} &gt; 1.645 \rightarrow \text{Rechazo }H_0\)`
+
+--
+
+- Calculo `\(Z_{obs}=\frac{\overline{X}-\mu_0}{\sigma/\sqrt{n}}=\frac{97.19-94.52}{15.93/\sqrt{100}}=1.676\)`
+
+- Como `\(Z_{obs}=1.676 &gt; 1.645\)` concluyo que **hay suficiente evidencia para rechazar `\(H_0\)` con una significatividad del `\(5\%\)`**
+
+---
+
+# Test de hipótesis para la media 
+
+- Si `\(H_0: \mu=\mu_0\)` vs. $H_A: \color{red}{\mu&gt;\mu_0} $ se rechaza `\(H_0\)` si:
+
+`$$Z_{obs}=\frac{\overline{X}-\mu_0}{\sigma/\sqrt{n}}\color{red}{&gt;Z_{\alpha}}$$`
+
+--
+
+- Si `\(H_0: \mu=\mu_0\)` vs. `\(H_A: \color{red}{\mu&lt;\mu_0}\)` se rechaza `\(H_0\)` si:
+
+`$$Z_{obs}=\frac{\overline{X}-\mu_0}{\sigma/\sqrt{n}}\color{red}{&lt;-Z_{\alpha}}$$`
+
+--
+
+- Si `\(H_0: \mu=\mu_0\)` vs. `\(H_A: \color{red}{\mu \ne \mu_0}\)` se rechaza `\(H_0\)` si:
+
+`$$Z_{obs}=\frac{\overline{X}-\mu_0}{\sigma/\sqrt{n}}\color{red}{&gt;Z_{\alpha/2}} \quad \text{o si} \quad Z_{obs}=\frac{\overline{X}-\mu_0}{\sigma/\sqrt{n}}\color{red}{&lt;-Z_{\alpha/2}}$$`
+
+---
+
+# Ejemplo
+
+- Una compañía ha producido millones de tubos de TV con una vida útil media de `\(\mu=1200\)` horas y una desviación estándar `\(\sigma=300\)` horas.
+
+- Un nuevo proceso recomendado por el departamento de ingeniería arrojó una `\(\overline{X}=1265\)` para una muestra de `\(100\)` tubos. Si bien esta muestra hace que el nuevo proceso luzca superior, ¿no será sólo una cuestión de variación muestral?. ¿Es el nuevo proceso superior al anterior? Considerar un nivel de significación conservador `\(\alpha=1\%\)`.
+
+--
+
+- `\(H_0: \mu=1200\)` vs. `\(H_A: \mu&gt;1265\)`, `\(n=100\)`, `\(\overline{X}=1265\)`, `\(\sigma=300\)`
+
+--
+
+- `\(Z_{0.01}=2.33\)`. **Regla de Decisión**:
+
+  + Si `\(Z_{obs} \le 2.33 \rightarrow \text{no Rechazo }H_0\)`
+  
+  + Si `\(Z_{obs} &gt; 2.33 \rightarrow \text{Rechazo }H_0\)`
+  
+--
+
+- `\(Z_{obs}=\frac{\overline{X}-\mu_0}{\sigma/\sqrt{n}}=\frac{1265-1200}{300/\sqrt{100}}=2.17\)`
+
+- Concluyo que **no hay suficiente evidencia para rechazar `\(H_0\)` con una significatividad del `\(1\%\)`**
+
+---
+
+# El valor p (p-value)
+
+- El **valor p**, también llamado probabilidad de significación observada, **es la probabilidad asociada al test estadístico `\(Z_{obs}\)` **, que indica cuan adversa es la muestra observada (o muestras aún más extremas) para la `\(H_0\)` especificada, **asumiendo que `\(H_0\)` es correcta**.
+
+- Equivalentemente podemos pensar al valor p como la probabilidad de observar una muestra al menos tan favorable para la `\(H_A\)` como la que se obtuvo, si la `\(H_0\)` es verdadera.
+
+- Matemáticamente, el **valor p o p-value** equivale a
+
+`$$valor-p=P(Z_{obs} \text{ o más extremo} / H_0 \text{ es Verdadera})$$`
+
+---
+
+# El valor p (p-value)
+
+- El valor p se usa para determinar cuando se rechaza `\(H_0\)`
+
+  + Si el `\(valor-p \le \alpha\)` entonces rechazo `\(H_0\)`
+  
+  + Si el `\(valor-p &gt; \alpha\)` entonces no rechazo `\(H_0\)`. 
+  
+- Tener presente que los valores p son probabilidades, luego varían entre 0 y 1.
+
+- Valores p pequeños están asociados a `\(Z_{obs}\)` grandes `\(\rightarrow\)` se rechaza `\(H_0\)`.
+
+- Valores p grandes están asociados a `\(Z_{obs}\)` pequeños `\(\rightarrow\)` no se rechaza `\(H_0\)`.
+
+---
+
+# El valor p (p-value)
+
+.center[
+![](Imagenes/valorp1.jpg)
+]
+
+---
+
+# El valor p (p-value)
+
+.center[
+![](Imagenes/valorp2.jpg)
+]
+
+---
+
+# El valor p en Test Unilateral
+
+- Volviendo a la maratón de Washington, supongamos que cierto grupo dentro de la organización duda de que el tiempo promedio de la carrera sea de 94 minutos 52 segundos. 
+
+- `\(H_0: \mu \le 94.52\)` vs. `\(H_A: \color{red}{\mu &gt; 94.52}\)`
+
+- `\(n=100\)`, `\(\overline{X}=97.19\)`, `\(\sigma=15.93\)`
+
+- Determinar el valor p asociado al estadístico correspondiente.
+
+--
+
+- `\(Z_{obs}=\frac{\overline{X}-\mu_0}{\sigma/\sqrt{n}}=\frac{97.19-94.52}{15.93/\sqrt{100}}=1.676\)`
+
+- `\(valor-p=P(Z&gt;1.676) \approx 1-P(Z&lt;1.68)=1-0.9535=0.0465\)`
+
+---
+
+# El valor p en Test Unilateral
+
+- Volviendo a la maratón de Washington, supongamos que cierto grupo dentro de la organización duda de que el tiempo promedio de la carrera sea de 94 minutos 52 segundos. 
+
+- `\(H_0: \mu = 94.52\)` vs. `\(H_A: \color{red}{\mu \ne 94.52}\)`
+
+- `\(n=100\)`, `\(\overline{X}=97.19\)`, `\(\sigma=15.93\)`
+
+- Determinar el valor p asociado al estadístico correspondiente.
+
+--
+
+- `\(Z_{obs}=\frac{\overline{X}-\mu_0}{\sigma/\sqrt{n}}=\frac{97.19-94.52}{15.93/\sqrt{100}}=1.676\)`
+
+- `\(valor-p=2*P(Z&gt;1.676) \approx 2*(1-P(Z&lt;1.68))=\)`
+
+- `\(2*(1-0.9535)=2*0.0465=0.093\)`
+
+---
+
+# Muestras pequeñas
+
+- Recordemos que cuando `\(n&lt;30\)` se debe asumir que la poblacional es aproximadamente normal.
+
+- Además, si `\(\sigma\)` es desconocido, entonces se debe utilizar `\(s\)` como estimador de `\(\sigma\)`.
+
+- En este caso debemos trabajar con la **t-student** que da cuenta de la menor confianza que se tiene en `\(s\)` por el hecho de tener una muestra con `\(n&lt;30\)`.
+
+`$$t_{obs}=\frac{\overline{X}-\mu_0}{s/\sqrt{n}}$$`
+
+- En lugar de comparar con un `\(Z_c\)` de la Tabla Normal, se compara con un `\(t_{n-1},c\)` de la **t-student**.
+
+- En todo lo demás, el test es igual.
+
+---
+
+# `\(n&lt;30\)`, `\(\sigma \text{ desconocido}\)`, `\(X\sim N\)`
+
+- Si `\(H_0: \mu=\mu_0\)` vs. $H_A: \color{red}{\mu&gt;\mu_0} $ se rechaza `\(H_0\)` si:
+
+`$$t_{obs}=\frac{\overline{X}-\mu_0}{s/\sqrt{n}}\color{red}{&gt;t_{n-1,\alpha}}$$`
+
+--
+
+- Si `\(H_0: \mu=\mu_0\)` vs. `\(H_A: \color{red}{\mu&lt;\mu_0}\)` se rechaza `\(H_0\)` si:
+
+`$$t_{obs}=\frac{\overline{X}-\mu_0}{s/\sqrt{n}}\color{red}{&lt;-t_{n-1,\alpha}}$$`
+
+--
+
+- Si `\(H_0: \mu=\mu_0\)` vs. `\(H_A: \color{red}{\mu \ne \mu_0}\)` se rechaza `\(H_0\)` si:
+
+`$$t_{obs}=\frac{\overline{X}-\mu_0}{s/\sqrt{n}}\color{red}{&gt;t_{n-1,\alpha/2}} \quad \text{o si} \quad t_{obs}=\frac{\overline{X}-\mu_0}{s/\sqrt{n}}\color{red}{&lt;-t_{n-1,\alpha/2}}$$`
+
+---
+
+# Ejemplo
+
+- Las autoridades de una institución educativa publicitan en su página web, que sus cursos escolares son reducidos y con atención personalizada por parte del docente, de aprox. 35 alumnos promedio por curso. Sin embargo, la organización estudiantil del colegio cree que los cursos son demasiado numerosos, lo que dificulta el aprendizaje de los alumnos. Ellos estiman que el tamaño promedio de los cursos es mayor al que dicen las autoridades. Una muestra de 10 cursos dio la siguiente cantidad de alumnos.
+
+`$$42,28,36,47,35,41,33,30,39,48$$`
+
+- Para poder realizar el test, debemos **suponer que la cantidad de alumnos de cada curso sigue una distribución Normal**
+
+- Plantear el test correspondiente y determinar la regla de decisión con nivel de significación `\(\alpha=5\%\)`
+
+- Calcule el valor p para la hipótesis planteada. 
+
+---
+
+# Ejemplo
+
+- `\(H_0: \mu=35\)` vs. `\(H_A: \mu &gt;35\)`
+
+- `\(n=10\)`, `\(\overline{X}=37.90\)`, `\(s=6.74\)`
+
+
+--
+
+
+- `\(t_{9,\alpha=0.05}=1,8331\)`. Regla de Decisión
+
+  + Si `\(t_{obs} \le 1,8331\)` no Rechazo `\(H_0\)`
+  
+  + Si `\(t_{obs} &gt; 1,8331\)` Rechazo `\(H_0\)`
+  
+--
+
+- `\(t_{obs}=\frac{\overline{X}-\mu_0}{s/\sqrt{n}}=\frac{37.9-35}{6.74/\sqrt{10}}=1.36 \rightarrow\)` **No Rechazo `\(H_0\)`**
+
+--
+
+- `\(valor-p=P(t_9&gt;1.36)\)`
+
+.pull-left[
+Por Tabla:
+
+`\(P(t_9&gt;1.0997)=0.15\)`
+
+`\(P(t_9&gt;1.3830)=0.10\)`
+]
+
+.pull-right[
+
+`\(0.10&lt;P(t_9&gt;1.36)&lt;0.15\)`
+
+`\(valor-p &gt; \alpha\)` 
+
+**No Rechazo `\(H_0\)`**
+
+]
+
+---
+
+# Test de Hipótesis para p
+
+- Plantear `\(H_0\)` y `\(H_A\)`
+
+`$$H_0: p=p_0 \text{ vs. } H_A: p\ne p_0, p&gt;p_0, p&lt;p_0$$`. 
+
+- Calcular el estimador puntual `\(\hat{p}\)`
+
+- Chequear las condiciones: `\(n\color{red}{p_0}\ge 10\)` y `\(n(1-\color{red}{p_0})\ge 10\)`
+
+- Calcular el estadístico observado:
+
+`$$Z_{obs}=\frac{p-p_0}{\sqrt{\frac{\color{red}{p_0}(1-\color{red}{p_0})}{n}}}$$`
+
+---
+
+# Test de Hipótesis para p
+
+- Si `\(H_0: p=p_0\)` vs. $H_A: \color{red}{p&gt;p_0} $ se rechaza `\(H_0\)` si:
+
+`$$Z_{obs}=\frac{\hat{p}-p_0}{\sqrt{\frac{\color{red}{p_0}(1-\color{red}{p_0})}{n}}}\color{red}{&gt;Z_{\alpha}}$$`
+
+--
+
+- Si `\(H_0: p=p_0\)` vs. `\(H_A: \color{red}{p&lt;p_0}\)` se rechaza `\(H_0\)` si:
+
+`$$Z_{obs}=\frac{\hat{p}-p_0}{\sqrt{\frac{\color{red}{p_0}(1-\color{red}{p_0})}{n}}}\color{red}{&lt;-Z_{\alpha}}$$`
+
+--
+
+- Si `\(H_0: p=p_0\)` vs. `\(H_A: \color{red}{p \ne p_0}\)` se rechaza `\(H_0\)` si:
+
+`$$Z_{obs}=\frac{\hat{p}-p_0}{\sqrt{\frac{\color{red}{p_0}(1-\color{red}{p_0})}{n}}}\color{red}{&gt;Z_{\alpha/2}} \quad \text{o si} \quad Z_{obs}=\frac{\hat{p}-p_0}{\sqrt{\frac{\color{red}{p_0}(1-\color{red}{p_0})}{n}}}\color{red}{&lt;-Z_{\alpha/2}}$$`
+---
+
+# Test de Hipótesis para p
+
+- Equivalentemente uno puede calcular el `\(valor-p\)` asociado al estadístico `\(Z\)`. Entonces 
+
+  + Si `\(p&lt;\alpha\)` rechazo `\(H_0\)`. Los datos proveen suficiente evidencia en contra de `\(H_0\)`.
+  
+  + Si `\(p\ge \alpha\)` no rechazo `\(H_0\)`. Los datos no proveen suficiente evidencia en contra de `\(H_0\)`.
+
+
+---
+
+# Test de Hipótesis para p
+
+Intervalo de Confianza vs. Test de Hipótesis
+
+|  | Intervalo de Confianza | Test de Hipótesis |
+| :--- | :---: | :---: |
+| Condición para el Test | `\(n\hat{p}\ge 10\)` &lt;br/&gt; `\(n(1-\hat{p})\ge 10\)` | `\(np_0\ge 10\)` &lt;br/&gt; `\(n(1-p_0)\ge 10\)` |
+| Error Estándar | `\(\sqrt{\frac{\hat{p}(1-\hat{p})}{n}}\)` | `\(\sqrt{\frac{p_0(1-p_0)}{n}}\)` |
+
+---
+
+# Ejemplo
+
+- Supongamos General Electric recibe regularmente envíos de unidades de refrigeración para instalar refrigeradores y en los últimos 18 meses, sólo el 2% de ellos han sido unidades deficientes. 
+
+- El proveedor de estas unidades cambia a una nueva planta. Este cambio le preocupa a General Electric y teme por la calidad de las unidades. Por esa razón deciden tomar una muestra al azar de 500 unidades del envío proveniente de la nueva planta del proveedor, y encuentran que 21 de estas unidades son de calidad inferior.
+
+- Calcule el intervalo de confianza al 95% para la proporción de unidades de inferior calidad del envío de la nueva planta.
+
+- Calcule el valor p para la hipótesis nula de que la calidad no ha variado.
+
+---
+
+# Ejemplo
+
+- Intervalo de Confianza:
+
+- `\(\hat{p}=\frac{21}{500}=0.042\)`
+
+- Supuestos `\(n\hat{p}=500*0.042=21\)` y `\(n(1-\hat{p})=500*(1-0.042)=479\)`
+
+- `\(\sigma_{\hat{p}}=\sqrt{\frac{0.042(1-0.042)}{500}}=0.008970619\)`
+
+--
+
+- `\(ME=Z_{\alpha/2}*\sigma_{\hat{p}}=1.96*0.008970619=0.01758241 \approx 0.018\)`
+
+- `\(IC: \hat{p} \pm ME = 0.042 \pm 0.018 \rightarrow (0.024, 0.06)\)`
+
+- El intervalo de confianza al `\(95\%\)` no avala que la proporción de defectuosos sea `\(2\%\)`
+
+---
+
+# Ejemplo
+
+- Test de Hipótesis:
+
+- `\(H_0: p=0.02\)` vs. `\(H_A: p \ne 0.02\)`
+
+- Supuestos `\(np_0=500*0.02=10\)` y `\(n(1-p_0)=500*(1-0.02)=490\)`
+
+- `\(\sigma_{p_0}=\sqrt{\frac{0.02(1-0.02)}{500}}=0.00626099\)`
+
+--
+
+- `\(\hat{p}=\frac{21}{500}=0.042\)`
+
+- `\(Z_{obs}=\frac{\hat{p}-p_0}{\sqrt{\frac{p_0(1-p_0)}{n}}}=\frac{0.042-0.02}{\sqrt{\frac{0.02(1-0.02)}{500}}}=3.513821 \approx 3.51\)`
+
+--
+
+- `\(valor-p=2*P(Z&gt;Z_{obs})=2*P(Z&gt;3.51)=2*(1-P(Z&lt;3.51))=\)`
+
+- `\(=2*(1-0.9998)=0.0004&lt;\alpha\)`
+
+- Hay suficiente evidencia para rechazar `\(H_0\)`
+
+---
+
+# `\(\text{Test de Hipótesis para } \sigma^2\)`
+
+- Ya estudiamos test para la media muestral y para las proporciones muestrales.
+
+- Existen situaciones en las que queremos saber si la varianza poblacional es un valor específico.
+
+- Por ejemplo, en los procesos de control de calidad, esta necesidad es especialmente importante, ya que un proceso con una varianza grande puede producir muchos artículos defectuosos.
+
+- Estudiaremos métodos para evaluar la varianza poblacional `\(\sigma^2\)` en base a la varianza muestral `\(s^2\)` a partir de una muestra aleatoria de `\(n\)` observaciones extraídas de una población que sigue una **distribución normal**.
+
+---
+
+# `\(\text{Test de Hipótesis para } \sigma^2\)`
+
+- Ya vimos que cuando `\(X\)` sigue una distribución Normal, la siguiente variable:
+
+`$$\chi^2_{n-1}=\frac{(n-1)s^2}{\sigma^2}$$`
+
+- sigue una distribución `\(\chi^2\)` con `\(n-1\)` grados de libertad.
+
+- Los test de hipótesis para `\(\sigma^2\)` se basan en pruebas de este estadístico.
+
+---
+
+# `\(\text{Test de Hipótesis para } \sigma^2\)`
+
+- Si `\(H_0: \sigma^2=\sigma^2_0\)` vs. `\(H_A: \color{red}{\sigma^2&gt;\sigma^2_0}\)` se rechaza `\(H_0\)` si:
+
+`$$\chi^2_{obs}=\frac{(n-1)s^2}{\sigma^2_0}\color{red}{&gt;\chi^2_{n-1,\alpha}}$$`
+
+--
+
+- Si `\(H_0: \sigma^2=\sigma^2_0\)` vs. `\(H_A: \color{red}{\sigma^2&lt;\sigma^2_0}\)` se rechaza `\(H_0\)` si:
+
+`$$\chi^2_{obs}=\frac{(n-1)s^2}{\sigma^2_0}\color{red}{&lt;\chi^2_{n-1,1-\alpha}}$$`
+
+--
+
+- Si `\(H_0: \sigma^2=\sigma^2_0\)` vs. `\(H_A: \color{red}{\sigma^2 \ne \sigma^2_0}\)` se rechaza `\(H_0\)` si:
+
+`$$\chi^2_{obs}=\frac{(n-1)s^2}{\sigma^2_0}\color{red}{&gt;\chi^2_{n-1,\alpha/2}} \quad \text{o si} \quad \chi^2_{obs}=\frac{(n-1)s^2}{\sigma^2_0}\color{red}{&lt;\chi^2_{n-1,1-\alpha/2}}$$`
+
+---
+
+# Ejemplo
+
+- Un supervisor de control de calidad sabe que el llenado exacto de las latas puede variar, dado que existen factores incontrolables que afectan este proceso. Si bien el llenado medio es importante, también lo es la varianza. Si `\(\sigma^2\)` es grande puede ocurrir que algunas latas contengan muy poco mientras otras contengan mucho.
+
+- Suponga que los estándares de la empresa exigen que la cantidad de llenado sea de 16 onzas promedio con un desvío estándar menor o igual al 0,1. El supervisor toma una muestra de 10 latas y registra el peso del contenido de cada lata.
+
+`$$15.8,15.95,16.15,16.24,15.85,16.06,16.10,16.04,16.12,16.23$$`
+
+- ¿Proveen estos datos suficiente evidencia para decir que la variabilidad en los pesos responde a los estándares de la empresa? 
+
+---
+
+# Ejemplo
+
+- Debemos suponer población Normal
+
+- `\(H_0: \sigma^2 \le 0.1^2\)` vs. `\(H_A: \sigma^2 &gt; 0.1^2\)`
+
+--
+
+- Suponiendo un `\(\alpha=0.05\)`:
+
+  + `\(\chi^2_{9,0.05}=16.919\)`
+
+- Regla de decisión:
+
+  + Si `\(\chi^2_{obs}\le 16.919\)` no Rechazo `\(H_0\)`
+  
+  + Si `\(\chi^2_{obs} &gt; 16.919\)` Rechazo `\(H_0\)`
+
+--
+
+- `\(s^2=0.02204889\)`
+
+- `\(\chi^2_{obs}=\frac{(n-1)s^2}{\sigma^2_0}=\frac{9*0.02204889}{0.01}=19.844\)`
+
+- Hay suficiente evidencia para Rechazar `\(H_0\)`
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
