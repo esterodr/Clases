@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Test de Hipótesis para 2 muestras</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Esteban Rodríguez" />
+    <script src="libs/header-attrs-2.14/header-attrs.js"></script>
+    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/metropolis.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/metropolis-fonts.css" rel="stylesheet" />
+    <script src="libs/kePrint-0.0.1/kePrint.js"></script>
+    <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+  </head>
+  <body>
+    <textarea id="source">
+class: left, bottom, inverse, title-slide
+
+.title[
+# Test de Hipótesis para 2 muestras
+]
+.author[
+### Esteban Rodríguez
+]
+.date[
+### Última Actualización: 2022-10-14
+]
+
+---
+
+
+
+
+# Test de Hipótesis para 2 muestras
+
+- Hasta ahora estuvimos trabajando con una muestra referenciada a una población. Ahora nos enfocaremos en **dos poblaciones** y por ende **dos muestras**.
+
+- Pensemos en la materia de Estadística de la FCE UBA. Existe la creencia que la mujeres son en general más aplicadas que los hombres. Podríamos tomar una muestra de mujeres y una muestra de hombres que hayan cursado Estadística, y preguntarnos si el rendimiento medio de las mujeres es superior al rendimiento medio de los hombres. 
+
+- ¿Es el `\(m^2\)` promedio del barrio de Palermo más caro que el `\(m^2\)` promedio de Recoleta?
+
+- ¿Es el tiempo de vida de las lámparas llamadas “larga vida” superior al de las lámparas comunes?
+
+- Vamos a ver 4 test distintos
+
+---
+
+# Diferencia de Medias, muestras grandes
+
+- Se asume que se dispone de muestras independientes. La primera población tiene media `\(\mu_X\)` y varianza `\(\sigma^2_X\)`. El tamaño de la muestra aleatoria simple es `\(n_X\)`.
+
+- La segunda población tiene media `\(\mu_Y\)` y varianza `\(\sigma^2_Y\)`. El tamaño de la muestra aleatoria simple es `\(n_Y\)`.
+
+--
+
+- Sean `\(\overline{X}\)` e `\(\overline{Y}\)` las respectivas medias muestrales.
+
+- Entonces `\(\overline{X}-\overline{Y}\)` es el estimador puntual de `\(\mu_X-\mu_Y\)`.
+
+--
+
+`\(E(\overline{X}-\overline{Y})=E(\overline{X})-E(\overline{Y})=\mu_X-\mu_Y\)`
+
+--
+
+`\(Var(\overline{X}-\overline{Y})=Var(\overline{X})+Var(\overline{Y})=\frac{\sigma^2_X}{n_X}+ \frac{\sigma^2_Y}{n_Y} \rightarrow \sigma_{\overline{X}-\overline{Y}}=\sqrt{\frac{\sigma^2_X}{n_X}+ \frac{\sigma^2_Y}{n_Y}}\)`
+
+--
+
+- Vamos a requerir que cada muestra sea mayor o igual a `\(100\)` para que la distribución Normal sea una buena aproximación de la distribución de `\(\overline{X}-\overline{Y}\)`
+
+---
+
+# Diferencia de Medias, muestras grandes
+
+- El estadístico a evaluar es Z
+
+`$$Z=\frac{(\overline{X}-\overline{Y})-(\mu_X-\mu_Y)}{\sqrt{\frac{\sigma^2_X}{n_X}+ \frac{\sigma^2_Y}{n_Y}}}$$`
+- Las hipótesis se pueden plantear comparando las medias o viendo cómo es la diferencia respecto a 0.
+
+.pull-left[
+`\(H_0: \mu_X \le \mu_Y \text{ vs. } H_A: \mu_X&gt;\mu_Y\)`
+
+`\(H_0: \mu_X \ge \mu_Y \text{ vs. } H_A: \mu_X&lt;\mu_Y\)`
+
+`\(H_0: \mu_X = \mu_Y \text{ vs. } H_A: \mu_X \ne \mu_Y\)`
+]
+
+.pull-right[
+`\(H_0: \mu_X - \mu_Y \le 0 \text{ vs. } H_A: \mu_X -\mu_Y &gt;0\)`
+
+`\(H_0: \mu_X - \mu_Y \ge 0 \text{ vs. } H_A: \mu_X -\mu_Y &lt;0\)`
+
+`\(H_0: \mu_X - \mu_Y = 0 \text{ vs. } H_A: \mu_X -\mu_Y \ne 0\)`
+]
+
+---
+
+# Diferencia de Medias, muestras grandes
+
+- `\(H_0: \mu_X - \mu_Y \le 0 \text{ vs. } H_A: \mu_X -\mu_Y &gt;0\)`. Rechazo `\(H_0\)` si
+
+`$$Z_{obs}=\frac{(\overline{X}-\overline{Y})-(\mu_X-\mu_Y)}{\sqrt{\frac{\sigma^2_X}{n_X}+ \frac{\sigma^2_Y}{n_Y}}}&gt;Z_{\alpha}$$`
+
+--
+
+- `\(H_0: \mu_X - \mu_Y \ge 0 \text{ vs. } H_A: \mu_X -\mu_Y &lt;0\)`. Rechazo `\(H_0\)` si
+
+`$$Z_{obs}=\frac{(\overline{X}-\overline{Y})-(\mu_X-\mu_Y)}{\sqrt{\frac{\sigma^2_X}{n_X}+ \frac{\sigma^2_Y}{n_Y}}}&lt;-Z_{\alpha}$$`
+
+--
+
+- `\(H_0: \mu_X - \mu_Y = 0 \text{ vs. } H_A: \mu_X -\mu_Y \ne0\)`. Rechazo `\(H_0\)` si
+
+`$$Z_{obs}=\frac{(\overline{X}-\overline{Y})-(\mu_X-\mu_Y)}{\sqrt{\frac{\sigma^2_X}{n_X}+ \frac{\sigma^2_Y}{n_Y}}}&lt;-Z_{\alpha/2} \quad o \quad Z_{obs}=\frac{(\overline{X}-\overline{Y})-(\mu_X-\mu_Y)}{\sqrt{\frac{\sigma^2_X}{n_X}+ \frac{\sigma^2_Y}{n_Y}}}&gt;Z_{\alpha/2}$$`
+
+---
+
+# Ejemplo
+
+- El equipo de diseño de una red social tiene como objetivo incrementar el tiempo que los usuarios pasan en ella ya que los ingresos dependen de la cantidad de publicidad que les puedan mostrar. Con el fin de incrementar sus ingresos, deciden evaluar un cambio en la interfaz gráfica de la aplicación.
+
+- Del total de los usuarios activos, se toman dos muestras al azar de perfiles de usuarios similares, a los que se denomina grupo A y grupo B. En principio, no informan cuál de los grupos ve la interfaz nueva.
+
+- En el grupo A se asignaron 189 usuarios que arrojaron un tiempo de conexión a la red social promedio de 2580 minutos con un desvió estándar 680 minutos, mientras que el grupo B, conformado por 203 usuarios arrojó un tiempo promedio de conexión de 2708 minutos y desvío estándar de 730 minutos. 
+- ¿Tuvo algún efecto el cambio en la interfaz?
+
+- Plantee el test de hipótesis adecuado. ¿Cuál es el valor  p asociado al estadístico? ¿Cuál sería su conclusión si deciden trabajar al 5% se significación?
+
+---
+
+# Ejemplo
+
+- `\(H_0: \mu_X - \mu_Y = 0 \text{ vs. } H_A: \mu_X -\mu_Y \ne0\)`
+
+- `\(\overline{X}=2580\)`, `\(\sigma_X=680\)`, `\(n_X=189\)`
+
+- `\(\overline{Y}=2708\)`, `\(\sigma_X=730\)`, `\(n_X=203\)`
+
+--
+
+`$$Z_{obs}=\frac{(\overline{X}-\overline{Y})-(\mu_X-\mu_Y)}{\sqrt{\frac{\sigma^2_X}{n_X}+ \frac{\sigma^2_Y}{n_Y}}}=\frac{(2580-2708)-0}{\sqrt{\frac{680^2}{189}+ \frac{730^2}{203}}} \approx -1.80$$`
+
+--
+
+`\(valor-p=2*P(Z&gt;1.8)=2*(1-P(Z&lt;1.8))=2*(1-0.9641)=0.0718\)`
+
+--
+
+- Con un nivel de significación del `\(5\%\)`, no hay evidencia suficiente para rechazar `\(H_0\)`.
+
+---
+
+# Muestras chicas y `\(\sigma^2\)` desconocidas
+
+- En los casos en que no se conocen las varianzas poblacionales y el tamaño de las muestras es pequeño (inferior a 100):
+
+  - Se debe utilizar la t de student.
+  
+  - Se requiere que ambas poblaciones sean normales
+  
+  - Se debe suponer que ambas varianzas son iguales (Hay problemas teóricos si las varianzas poblacionales son distintas).
+
+- A partir de `\(s^2_X\)` y `\(s^2_Y\)` construimos un estimador agrupado para la varianza común a ambas poblaciones:
+
+`$$s^2_p=\frac{(n_X-1)s^2_X + (n_Y-1)s^2_Y}{(n_X+n_Y-2)}$$`
+
+---
+
+# Muestras chicas y `\(\sigma^2\)` desconocidas
+
+- El estadístico será:
+
+`$$t=\frac{(\overline{X}-\overline{Y})-(\mu_X-\mu_Y)}{\sqrt{\frac{s^2_p}{n_X}+ \frac{s^2_p}{n_Y}}}$$`
+
+- El estadístico tiene distribución **t de Student* con `\(n_X+n_Y-2\)` grados de libertad.
+
+---
+
+# Muestras chicas y `\(\sigma^2\)` desconocidas
+
+- `\(H_0: \mu_X - \mu_Y \le 0 \text{ vs. } H_A: \mu_X -\mu_Y &gt;0\)`. Rechazo `\(H_0\)` si
+
+`$$t_{obs}=\frac{(\overline{X}-\overline{Y})-(\mu_X-\mu_Y)}{\sqrt{\frac{s^2_p}{n_X}+ \frac{s^2_p}{n_Y}}}&gt;t_{(n_X+n_Y-2),\alpha}$$`
+
+--
+
+- `\(H_0: \mu_X - \mu_Y \ge 0 \text{ vs. } H_A: \mu_X -\mu_Y &lt;0\)`. Rechazo `\(H_0\)` si
+
+`$$t_{obs}=\frac{(\overline{X}-\overline{Y})-(\mu_X-\mu_Y)}{\sqrt{\frac{s^2_p}{n_X}+ \frac{s^2_p}{n_Y}}}&lt;-t_{(n_X+n_Y-2),\alpha}$$`
+
+---
+
+# Muestras chicas y `\(\sigma^2\)` desconocidas
+
+- `\(H_0: \mu_X - \mu_Y = 0 \text{ vs. } H_A: \mu_X -\mu_Y \ne0\)`. Rechazo `\(H_0\)` si
+
+`$$t_{obs}=\frac{(\overline{X}-\overline{Y})-(\mu_X-\mu_Y)}{\sqrt{\frac{s^2_p}{n_X}+ \frac{s^2_p}{n_Y}}}&lt;-t_{(n_X+n_Y-2),\alpha/2} \quad o$$`
+`$$t_{obs}=\frac{(\overline{X}-\overline{Y})-(\mu_X-\mu_Y)}{\sqrt{\frac{s^2_p}{n_X}+ \frac{s^2_p}{n_Y}}}&gt;t_{(n_X+n_Y-2),\alpha/2}$$`
+---
+
+# Ejemplo
+
+- De acuerdo con los especialistas en marketing, más del 70% de la decisión de compra se da cuando el cliente está frente al producto. De ahí que, las estrategias de ubicación de los productos en la góndola, son claves para el éxito de venta.
+
+- Cierta empresa de venta de bebidas colas encarga un estudio de marketing para evaluar los beneficios que podría brindarle ubicar su producto en punta de góndola vs. la ubicación estándar que suele tener en la góndola.
+
+- El experimento consiste en elegir una cadena de supermercados y estudiar la ventas semanales promedio para las distintas ubicaciones en góndola una semana del mes. La primera población son las ventas registradas, cuando la ubicación es la estándar en góndola, mientras que la segunda población son la ventas correspondientes a la ubicación en la punta de góndola.
+
+---
+
+# Ejemplo
+
+- Las ventas semanales (en unidades) para cada ubicación de góndola fueron:
+
+  + Ubicación estándar: `\(22,34,52,62,30,40,64,84,56,59\)`
+  
+  + Punta de góndola: `\(52,71,76,54,67,83,66,90,77,84\)`
+  
+- Especifique los supuestos que debería asumir para poder realizar el test que evalua si las ventas promedio semanales de la bebida cola difieren por su ubicación en góndola.
+
+- ¿Cual sería su conclusión si decide trabajar al 1% se significación?
+
+---
+
+# Ejemplo
+
+- Necesitamos suponer que ambas poblaciones son normales y que tienen la misma varianza.
+
+--
+
+- `\(H_0: \mu_X - \mu_Y = 0 \text{ vs. } H_A: \mu_X -\mu_Y \ne0\)`
+
+--
+
+- `\(\overline{X}=50.3\)`, `\(\sigma_X=18.72639\)`, `\(n_X=10\)`
+
+- `\(\overline{Y}=72\)`, `\(\sigma_Y=12.54326\)`, `\(n_Y=10\)`
+
+- `\(s^2_p=\frac{(n_X-1)s^2_X + (n_Y-1)s^2_Y}{(n_X+n_Y-2)}=\frac{9*(18.72639)^2 + 9*(12.54326)^2}{(18)}=254.0055\)`
+
+- `\(s_p=15.93755\)`
+
+--
+
+- `\(t_{18,0.005}=2.8609\)`
+
+--
+
+- `\(t_{obs}=\frac{(\overline{X}-\overline{Y})-(\mu_X-\mu_Y)}{\sqrt{\frac{s^2_p}{n_X}+ \frac{s^2_p}{n_Y}}}=\frac{(50.3-72)}{\sqrt{\frac{254.0055}{10}+ \frac{254.0055}{10}}} \approx -3.04\)`
+
+- Hay evidencia suficiente para rechazar `\(H_0\)` con una significatividad del `\(1\%\)`
+
+---
+
+# Datos Apareados
+
+- Supongan que se elige una muestra al azar de individuos y se les solicita que informen el tiempo destinado a la lectura y el tiempo destinado a mirar series/ películas, durante la última semana.
+
+- La información brindada serán pares ordenados: (tiempo de lectura , tiempo de mirar series/pelis) para cada uno de los individuos de la muestra. Por esa razón se llaman **muestras apareadas/ pareadas**.
+
+- La principal diferencia en este tipo de experimento con los planteados anteriormente radica en que se elimina una fuente de variación muestral.
+
+- En los experimentos anteriores disponíamos de 2 muestras. En este caso, se tiene una sola muestra a la que se le hacen dos preguntas.
+
+- Por lo tanto la variación muestral debida al diseño de muestra (dos muestras vs. una muestra) es menor en el caso de muestras apareadas. Por esa razón siempre que se pueda se prefiere el diseño de muestras apareadas.
+
+---
+
+# Datos Apareados
+
+- El interés va a radicar en la diferencia `\(d_i=x_i-y_i\)` para cada par `\((x_i,y_i)\)`.
+
+- Sea `\(\mu_d=\mu_X-\mu_Y\)` la diferencia de la medias poblacionales. 
+
+- Supongamos que se dispone de una muestra de `\(n\)` pares de observaciones. `\(\overline{d}\)` `\(s_d\)` son la media muestral y la desviación típica muestral observadas de las `\(n\)` diferencias observadas$d_i=x_i-y_i$.
+
+- El estadístico para muestras apareadas tiene una distribución t de student con `\(n-1\)` grados de libertad:
+
+`$$t=\frac{\overline{d}-\mu_d}{s_d/\sqrt{n}}$$`
+
+---
+
+# Datos Apareados
+
+- `\(H_0: \mu_d \le 0 \text{ vs. } H_A: \mu_d  &gt;0\)`. Rechazo `\(H_0\)` si
+
+`$$t_{obs}=\frac{\overline{d}-\mu_d}{s_d/\sqrt{n}}&gt;t_{(n-1),\alpha}$$`
+
+--
+
+- `\(H_0: \mu_d \ge 0 \text{ vs. } H_A: \mu_d &lt;0\)`. Rechazo `\(H_0\)` si
+
+`$$t_{obs}=\frac{\overline{d}-\mu_d}{s_d/\sqrt{n}}&lt;-t_{(n-1),\alpha}$$`
+
+---
+
+# Datos Apareados
+
+- `\(H_0: \mu_d = 0 \text{ vs. } H_A: \mu_d \ne0\)`. Rechazo `\(H_0\)` si
+
+`$$t_{obs}=\frac{\overline{d}-\mu_d}{s_d/\sqrt{n}}&lt;-t_{(n-1),\alpha/2} \quad o$$`
+`$$t_{obs}=\frac{\overline{d}-\mu_d}{s_d/\sqrt{n}}&gt;t_{(n-1),\alpha/2}$$`
+
+---
+
+# Ejemplo
+
+- Las autoridades públicas estan interesadas en conocer si hay diferencias en productos de una canasta básica de alimentos antes y después de la implementación de cierto Programa de precios.
+
+- Para una muestra de 15 productos, se relevan los precios durante la semana previa a la implementación del Programa y una semana después de su implementación. El valor promedio de los productos la semana previa vs. el valor promedio de los productos la semana posterior a la implementación del Programa se muestran en la tabla a continuación.
+
+- Plantee el test de hipótesis que considere adecuado y comente si existe alguna diferencia significativa al 10% en favor de la implementación del Programa.
+
+---
+
+# Ejemplo
+
+&lt;table class="table" style="font-size: 14px; margin-left: auto; margin-right: auto;"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:right;"&gt; Producto &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Precio_Anterior &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Precio_Posterior &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 64.5 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 61.2 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 345.0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 235.0 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 120.0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 153.0 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 95.0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 89.0 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 49.0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 57.0 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 6 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 190.0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 189.0 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 7 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 134.0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 129.0 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 8 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 189.0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 169.0 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 9 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 160.0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 179.0 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 10 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 89.0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 122.0 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 11 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 95.0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 105.0 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 12 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 92.0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 75.0 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 13 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 108.0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 99.0 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 14 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 59.0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 65.0 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 15 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 157.0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 139.0 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+---
+
+# Ejemplo
+
+.pull-left[
+&lt;table class="table" style="font-size: 14px; margin-left: auto; margin-right: auto;"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:right;"&gt; Producto &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Precio_Anterior &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Precio_Posterior &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; d &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 64.5 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 61.2 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -3.3 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 345.0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 235.0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -110.0 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 120.0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 153.0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 33.0 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 95.0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 89.0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -6.0 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 49.0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 57.0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 8.0 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 6 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 190.0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 189.0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -1.0 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 7 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 134.0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 129.0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -5.0 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 8 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 189.0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 169.0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -20.0 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 9 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 160.0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 179.0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 19.0 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 10 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 89.0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 122.0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 33.0 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 11 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 95.0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 105.0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 10.0 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 12 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 92.0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 75.0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -17.0 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 13 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 108.0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 99.0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -9.0 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 14 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 59.0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 65.0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 6.0 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 15 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 157.0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 139.0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -18.0 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+]
+
+.pull-right[
+
+$$\overline{d}= -5.3533333 $$
+
+$$s_d= 33.3552495 $$
+]
+
+---
+
+# Ejemplo
+
+- `\(H_0: \mu_d \ge 0 \text{ vs. } H_A: \mu_d &lt;0\)`
+
+- `\(t_{14,0.10}=1.3450 \rightarrow -t_{14,0.10}=-1.3450\)`
+
+--
+
+`$$t_{obs}=\frac{\overline{d}-\mu_d}{s_d/\sqrt{n}}=\frac{-5.3533333}{33.3552495/\sqrt{15}} \approx -0.62$$`
+
+- No hay suficiente evidencia para afirmar que el programa ha conseguido reducir los precios.
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
