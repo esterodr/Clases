@@ -20,7 +20,7 @@ class: left, bottom, inverse, title-slide
 ### Esteban Rodríguez
 ]
 .date[
-### Última Actualización: 2022-10-17
+### Última Actualización: 2022-10-20
 ]
 
 ---
@@ -692,7 +692,7 @@ Debo averiguar `\(P(\overline{X}_{100}\ge 3.6)\)`
 
 ---
 
-# Distribución muestral para p
+# `\(\text{Distribución muestral de } \hat{p}\)`
 
 - La media muestral no es el único estadístico que satisface el TCL.
 
@@ -708,7 +708,7 @@ Debo averiguar `\(P(\overline{X}_{100}\ge 3.6)\)`
 
 ---
 
-# Distribución muestral de `\(\hat{p}\)`
+# `\(\text{Distribución muestral de } \hat{p}\)`
 
 .center[
 ![](6_Inferencia_files/figure-html/unnamed-chunk-32-1.png)&lt;!-- --&gt;
@@ -716,25 +716,31 @@ Debo averiguar `\(P(\overline{X}_{100}\ge 3.6)\)`
 
 ---
 
-# Distribución muestral de `\(\hat{p}\)`
+# `\(\text{Distribución muestral de } \hat{p}\)`
 
 - Ya vimos que, a medida que `\(n\)` crece, el TCL nos dice que la distribución normal es una buena aproximación de la suma de variables aleatorias i.i.d.
 
 `\(n*\mu_X\)` y varianza `\(n*\sigma^2\)`
 
-`$$\sum_{i=1}^nX_i \sim N(\mu=n*\mu_X,\sigma^2=\sigma_X^2*n) \quad \text{cuando } n \rightarrow \infty$$`
+`$$\sum_{i=1}^nX_i \sim N \left( \mu=n*\mu_X,\sigma^2=\sigma_X^2*n \right) \quad \text{cuando } n \rightarrow \infty$$`
+
+--
 
 Como en este caso `\(X_i\)` es un experimento de Bernoulli con media `\(p\)` y varianza `\(p(1-p)\)`, 
 
-`$$\sum_{i=1}^nX_i \sim N(\mu=n*p,\sigma^2=p(1-p)n) \quad \text{cuando } n \rightarrow \infty$$`
+`$$\sum_{i=1}^nX_i \sim N \left( \mu=n*p,\sigma^2=p(1-p)n \right) \quad \text{cuando } n \rightarrow \infty$$`
 
-Entonces:
+Recordemos que esta era la aproximación de una Binomial mediante una Normal.
 
-`$$\hat{p}_n=\frac{\sum_iX_i}{n}=\frac{Z}{n} \sim N(\mu_{\hat{p}}=p,\sigma_{\hat{p}}=p(1-p)/\sqrt{n})$$`
+--
+
+Si llamamos `\(Y\)` a esta variable, entonces:
+
+`$$\hat{p}_n=\frac{\sum_iX_i}{n}=\frac{Y}{n} \sim N \left( \mu_{\hat{p}}=p,\sigma_{\hat{p}}=\frac{p(1-p)}{\sqrt{n}} \right)$$`
 
 ---
 
-# Distribución muestral de `\(\hat{p}\)`
+# `\(\text{Distribución muestral de } \hat{p}\)`
 
 - Para que la aproximación sea razonablemente buena, es necesario que los `\(X_i\)` no sean muy sesgados. En general, se pide `\(np\ge 10\)` y `\(n(1-p)\ge 10\)`
 
@@ -756,7 +762,7 @@ La candidata A obtuvo el 50% de los votos en una elección provincial. Si se tom
 
 Bajo condiciones del TCL 
 
-`$$\hat{p}_n \sim N(\mu_{\hat{p}}=0.5,\sigma_{\hat{p}}=0.5^2/\sqrt{100}=.025)$$`
+`$$\hat{p}_n \sim N(\mu_{\hat{p}}=0.5,\sigma_{\hat{p}}=0.5^2/\sqrt{100}=0.025)$$`
 
 --
 
@@ -776,7 +782,7 @@ Bajo condiciones del TCL
 
 - Hasta aquí nos ocupamos de hacer inferencia sobre la media y/o la proporción de una población. Ahora nos enfocamos en la **varianza poblacional**.
 
-- Supongamos que extraemos una muestra de tamaño `\(n\)` de una población con media `\(\mu_X\)`y varianza `\(\sigma^2_X\)`. La varianza poblacional es la esperanza de 
+- Supongamos que extraemos una muestra de tamaño `\(n\)` de una población con media `\(\mu_X\)` y varianza `\(\sigma^2_X\)`. La varianza poblacional es la esperanza de 
 
 `$$\sigma^2_X=E((X-\mu_X)^2)$$`
 
@@ -784,13 +790,13 @@ Bajo condiciones del TCL
 
 `$$\hat{\sigma^2_X}=s^2=\frac{1}{n-1}\sum_{i=1}^n(X_i-\overline{X})^2$$`
 
-- `\(\sigma^2_X\)` se denomina varianza muestral y `\(\sigma_X\)` el desvío típico ó desviación estándar muestral.
+- `\(s^2\)` se denomina varianza muestral y `\(s\)` el desvío típico ó desviación estándar muestral.
 
 ---
 
 # Distribución muestral de `\(s^2\)`
 
-- Al calcular `\(\sigma^2_X\)` se divide por `\(n-1\)` en lugar de `\(n\)` porque se puede probar que la esperanza de la varianza muestral, i.e. la media de la distribución muestral de la varianza muestral, converge a la varianza poblacional. Matemáticamente:
+- Al calcular `\(\sigma^2_X\)` se divide por `\(n-1\)` en lugar de `\(n\)` porque se puede probar que la esperanza de la varianza muestral, i.e. la media de la distribución muestral de la varianza muestral, converge a la varianza poblacional (haremos una demostració más adelante). Matemáticamente:
 
 `$$E(s^2)=\sigma^2_X$$`
 
@@ -802,12 +808,29 @@ Bajo condiciones del TCL
 
 # Distribución muestral de `\(s^2\)`
 
-Si **la distribución poblacional subyacente es normal** puede probarse que la variable aleatoria 
+Si **la distribución poblacional subyacente es normal**, se puede construir una la variable aleatoria:
 
-`$$\frac{(n-1)s^2}{\sigma^2_X}=\frac{\sum_{i=1}^n(X_i-\overline{X})^2}{\sigma^2_X}=\sum_{i=1}^n(\frac{X_i-\overline{X}}{\sigma_X})^2$$`
-sigue una distribución `\(\chi^2\)` (ji o chi cuadrado) con `\(n-1\)` grados de libertad.
+`$$\frac{(n-1)s^2}{\sigma^2_X}=$$`
+
+---
+
+# Distribución muestral de `\(s^2\)`
+
+Si **la distribución poblacional subyacente es normal**, se puede construir una la variable aleatoria:
+
+`$$\frac{(n-1)s^2}{\sigma^2_X}=\frac{\sum_{i=1}^n(X_i-\overline{X})^2}{\sigma^2_X}=$$`
+
+---
+
+# Distribución muestral de `\(s^2\)`
+
+Si **la distribución poblacional subyacente es normal**, se puede construir una la variable aleatoria:
+
+`$$\frac{(n-1)s^2}{\sigma^2_X}=\frac{\sum_{i=1}^n(X_i-\overline{X})^2}{\sigma^2_X}=\sum_{i=1}^n \left( \frac{X_i-\overline{X}}{\sigma_X} \right) ^2$$`
+que es **la suma del cuadrado de variables normales**, la cual se puede probar que sigue una distribución `\(\chi^2\)` (ji o chi cuadrado) con `\(n-1\)` grados de libertad.
 
 Notar que la distribución `\(\chi^2\)` **sólo está definida para valores positivos**, lo cual resulta adecuado para la varianza muestral, ya que no puede ser negativa.
+
 
 ---
 
@@ -817,9 +840,26 @@ Notar que la distribución `\(\chi^2\)` **sólo está definida para valores posi
 
 - La media y la varianza de la `\(\chi^2_k\)` son `\(E(\chi^2_k)=k\)` y `\(Var(\chi^2_k)=2k\)`
 
+--
+
 En nuestro caso la variable aleatoria `\(\frac{(n-1)s^2}{\sigma^2_X}\)` sigue una distribución `\(\chi^2_{n-1}\)`. Esto quiere decir que:
 
-`$$E(\frac{(n-1)s^2}{\sigma^2_X})=n-1 \implies \frac{n-1}{\sigma^2_X}E(s^2)=n-1 \implies E(s^2)=\sigma^2_X$$`
+`$$E \left( \frac{(n-1)s^2}{\sigma^2_X} \right)=n-1 \implies$$`
+
+
+---
+
+# Distribución muestral de `\(s^2\)`
+
+- La familia de `\(\chi^2\)` está caracterizada por un único parámetro: los grados de libertad a los que llamaremos `\(k\)` y se lo anota como `\(\chi^2_k\)`.
+
+- La media y la varianza de la `\(\chi^2_k\)` son `\(E(\chi^2_k)=k\)` y `\(Var(\chi^2_k)=2k\)`
+
+
+En nuestro caso la variable aleatoria `\(\frac{(n-1)s^2}{\sigma^2_X}\)` sigue una distribución `\(\chi^2_{n-1}\)`. Esto quiere decir que:
+
+`$$E \left( \frac{(n-1)s^2}{\sigma^2_X} \right)=n-1 \implies \frac{n-1}{\sigma^2_X}E(s^2)=n-1 \implies E(s^2)=\sigma^2_X$$`
+
 
 ---
 
@@ -827,9 +867,12 @@ En nuestro caso la variable aleatoria `\(\frac{(n-1)s^2}{\sigma^2_X}\)` sigue un
 
 Para hallar la varianza de `\(s^2\)` usamos el hecho de que:
 
-$$Var(\frac{(n-1)s^2}{\sigma^2_X})=2(n-1) \implies $$
+`$$Var \left( \frac{(n-1)s^2}{\sigma^2_X} \right) =2(n-1) \implies$$`
+
+--
 
 $$\implies \frac{(n-1)^2}{\sigma^4_X}Var(s^2)=2(n-1) \implies $$
+--
 
 $$\implies Var(s^2) = \frac{2\sigma^4_X}{n-1} $$
 ---
@@ -875,7 +918,7 @@ Se quiere someter a todos los empleados de cierta institución a una evaluación
 
 --
 
-`$$P(s^2&lt;120)=P(\frac{(n-1)s^2}{\sigma^2_X}&lt;\frac{19*120}{250})=P(\chi^2_{19}&lt;9.12)$$`
+`$$P(s^2&lt;120)=P \left( \frac{(n-1)s^2}{\sigma^2_X}&lt;\frac{19*120}{250} \right) =P(\chi^2_{19}&lt;9.12)$$`
 --
 
 .center[
@@ -896,7 +939,7 @@ Se quiere someter a todos los empleados de cierta institución a una evaluación
 
 --
 
-`$$P(s&gt;21)=P(\frac{(n-1)s^2}{\sigma^2_X}&gt;\frac{19*21^2}{250})=P(\chi^2_{19}&gt;33.516)$$`
+`$$P(s&gt;21)=P \left( \frac{(n-1)s^2}{\sigma^2_X}&gt;\frac{19*21^2}{250} \right) =P(\chi^2_{19}&gt;33.516)$$`
 
 --
 
