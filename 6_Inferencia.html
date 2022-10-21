@@ -20,7 +20,7 @@ class: left, bottom, inverse, title-slide
 ### Esteban Rodríguez
 ]
 .date[
-### Última Actualización: 2022-10-20
+### Última Actualización: 2022-10-21
 ]
 
 ---
@@ -704,7 +704,7 @@ Debo averiguar `\(P(\overline{X}_{100}\ge 3.6)\)`
 
 - Cada individuo es un ensayo de Bernoulli. Luego tenemos un experimento binomial.
 
-`$$X=\sum_iX_i \implies p=\frac{\sum_iX_i}{n}$$`
+`$$X=\sum_iX_i \implies \hat{p}=\frac{\sum_iX_i}{n}$$`
 
 ---
 
@@ -728,7 +728,7 @@ Debo averiguar `\(P(\overline{X}_{100}\ge 3.6)\)`
 
 Como en este caso `\(X_i\)` es un experimento de Bernoulli con media `\(p\)` y varianza `\(p(1-p)\)`, 
 
-`$$\sum_{i=1}^nX_i \sim N \left( \mu=n*p,\sigma^2=p(1-p)n \right) \quad \text{cuando } n \rightarrow \infty$$`
+`$$\sum_{i=1}^nX_i \sim N \left( \mu=n*p,\sigma^2=p*(1-p)*n \right) \quad \text{cuando } n \rightarrow \infty$$`
 
 Recordemos que esta era la aproximación de una Binomial mediante una Normal.
 
@@ -736,7 +736,7 @@ Recordemos que esta era la aproximación de una Binomial mediante una Normal.
 
 Si llamamos `\(Y\)` a esta variable, entonces:
 
-`$$\hat{p}_n=\frac{\sum_iX_i}{n}=\frac{Y}{n} \sim N \left( \mu_{\hat{p}}=p,\sigma_{\hat{p}}=\frac{p(1-p)}{\sqrt{n}} \right)$$`
+`$$\hat{p}_n=\frac{\sum_iX_i}{n}=\frac{Y}{n} \sim N \left( \mu_{\hat{p}}=p,\sigma_{\hat{p}}=\sqrt{ \frac{p(1-p)}{n}} \right)$$`
 
 ---
 
@@ -762,15 +762,15 @@ La candidata A obtuvo el 50% de los votos en una elección provincial. Si se tom
 
 Bajo condiciones del TCL 
 
-`$$\hat{p}_n \sim N(\mu_{\hat{p}}=0.5,\sigma_{\hat{p}}=0.5^2/\sqrt{100}=0.025)$$`
+`$$\hat{p}_n \sim N \left( \mu_{\hat{p}}=0.5,\sigma_{\hat{p}}=\sqrt{\frac{0.5^2}{100}}=\frac{0.5}{10}=0.05 \right)$$`
 
 --
 
-`$$P(\hat{p}&gt;0.55)=P(Z&gt;\frac{0.55-0.5}{0.025}=2)$$`
+`$$P(\hat{p}&gt;0.55)=P \left( Z&gt;\frac{0.55-0.5}{0.05}=1 \right)$$`
 
 --
 
-`$$=1-P(Z&lt;2)=1-0.9772=0.0228$$`
+`$$=1-P(Z&lt;2)=1-0.8413=0.1587$$`
 
 .center[
 ![](6_Inferencia_files/figure-html/unnamed-chunk-33-1.png)&lt;!-- --&gt;
@@ -918,18 +918,18 @@ Se quiere someter a todos los empleados de cierta institución a una evaluación
 
 --
 
-`$$P(s^2&lt;120)=P \left( \frac{(n-1)s^2}{\sigma^2_X}&lt;\frac{19*120}{250} \right) =P(\chi^2_{19}&lt;9.12)$$`
+`$$P(s^2&lt;120)=P \left( \frac{(n-1)s^2}{\sigma^2_X}&lt;\frac{19*100}{250} \right) =P(\chi^2_{19}&lt;7.6)$$`
 --
 
 .center[
 ![](Imagenes/chi2_2.jpg)
 ]
 
-La tabla dice que `\(P(\chi^2_{19}&gt;8.90652)=0.975\)` y `\(P(\chi^2_{19}&gt;10.117)=0.95\)` 
+La tabla dice que `\(P(\chi^2_{19}&gt;6.844)=0.995\)` y `\(P(\chi^2_{19}&gt;7.63273)=0.99\)` 
 
-Entonces `\(P(\chi^2_{19}&lt;8.90652)=0.025\)` y `\(P(\chi^2_{19}&lt;10.117)=0.05\)`
+Entonces `\(P(\chi^2_{19}&lt;6.844)=0.005\)` y `\(P(\chi^2_{19}&lt;7.63273)=0.01\)`
 
-`$$0.025&lt;P(s^2&lt;120)&lt;0.05$$`
+`$$0.005&lt;P(s^2&lt;120)&lt;0.01$$`
 
 ---
 
