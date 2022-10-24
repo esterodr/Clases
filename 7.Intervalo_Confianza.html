@@ -20,7 +20,7 @@ class: left, bottom, inverse, title-slide
 ### Esteban Rodríguez
 ]
 .date[
-### Última Actualización: 2022-10-09
+### Última Actualización: 2022-10-24
 ]
 
 ---
@@ -135,6 +135,49 @@ class: left, bottom, inverse, title-slide
 ![](Imagenes/ic.jpg)
 ]
 
+---
+
+# IC para la media
+
+- Para un nivel de confianza del `\(90\%\)`, voy a tomar `\(Z_c=1.645\)`. ¿Por qué este valor?
+
+`$$P(Z&gt;1.645)=0.05 \quad y \quad P(Z&lt;-1.645)=0.05$$`
+
+--
+
+- De todas las muestras que puedo tomar, en el `\(90\%\)` de los casos va a suceder que
+
+`$$\mu_X-1.645*\frac{\sigma_X}{\sqrt{n}}&lt;\overline{X}&lt;\mu_X+1.645*\frac{\sigma_X}{\sqrt{n}}$$`
+
+--
+
+- Dicho de otra forma, **el `\(90\%\)` de los intervalos que construya de la siguiente forma**:
+
+`$$\overline{X} \pm 1.645*\frac{\sigma_X}{\sqrt{n}}$$`
+
+- **van a contener el verdadero valor de `\(\mu\)`**
+
+---
+
+# IC para la media
+
+- Para un nivel de confianza del `\(99\%\)`, voy a tomar `\(Z_c=2.576\)`. ¿Por qué este valor?
+
+`$$P(Z&gt;2.576)=0.005 \quad y \quad P(Z&lt;-2.576)=0.005$$`
+
+--
+
+- De todas las muestras que puedo tomar, en el `\(99\%\)` de los casos va a suceder que
+
+`$$\mu_X-2.576*\frac{\sigma_X}{\sqrt{n}}&lt;\overline{X}&lt;\mu_X+2.576*\frac{\sigma_X}{\sqrt{n}}$$`
+
+--
+
+- Dicho de otra forma, **el `\(99\%\)` de los intervalos que construya de la siguiente forma**:
+
+`$$\overline{X} \pm 2.576*\frac{\sigma_X}{\sqrt{n}}$$`
+
+- **van a contener el verdadero valor de `\(\mu\)`**
 
 ---
 
@@ -667,7 +710,7 @@ Finalmente:
 
 # IC para la varianza
 
-Supongamos que hay una muestra aleatoria de `\(n\)` observaciones extraídas de una población que sigue una distribución normal de varianza `\(\simga^2\)`. Si la varianza muestral observada es `\(s^2\)`, entonces un intervalo de confianza al `\(100(1-\alpha)\%\)` de la varianza poblacional es:
+Supongamos que hay una muestra aleatoria de `\(n\)` observaciones extraídas de una población que sigue una distribución normal de varianza `\(\sigma^2\)`. Si la varianza muestral observada es `\(s^2\)`, entonces un intervalo de confianza al `\(100(1-\alpha)\%\)` de la varianza poblacional es:
 
 --
 
