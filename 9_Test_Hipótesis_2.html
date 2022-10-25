@@ -22,7 +22,7 @@ class: left, bottom, inverse, title-slide
 ### Esteban Rodríguez
 ]
 .date[
-### Última Actualización: 2022-10-14
+### Última Actualización: 2022-10-25
 ]
 
 ---
@@ -531,6 +531,89 @@ $$s_d= 33.3552495 $$
 `$$t_{obs}=\frac{\overline{d}-\mu_d}{s_d/\sqrt{n}}=\frac{-5.3533333}{33.3552495/\sqrt{15}} \approx -0.62$$`
 
 - No hay suficiente evidencia para afirmar que el programa ha conseguido reducir los precios.
+
+---
+
+# Diferencia de proporciones
+
+- **Ejemplo**: Se quiere evaluar si la proporción de individuos que utilizan Spotify es la misma que utiliza Deezer, en Argentina.
+
+- Se tien una nuestra aleatoria de `\(n_X\)` observaciones procedente de una población con probabilidad `\(p_X\)` de éxito y una segunda muestra aleatoria independiente de `\(n_Y\)` observaciones procedentes de una población con probabilidad `\(p_Y\)` de éxito. 
+
+- Sabemos, por lo visto en las clases anteriores, que cuando se cumplen ciertas condiciones, la distribución normal es una buena aproximación de la distribución de la proporción muestral.
+
+---
+
+# Diferencia de proporciones
+
+- Por lo tanto
+
+`$$Z=\frac{(\hat{p_X}-\hat{p_Y})-(p_X-p_Y)}{\sqrt{\frac{p_X(1-p_X)}{n_X}+\frac{p_Y(1-p_Y)}{n_Y}}}$$`
+- Sigue una distribución Normal Estándar
+
+- Dado que se desconocen `\(p_X\)` y `\(p_Y\)`, se considerará un promedio ponderado de ambas `\(p_0\)` para calcular el desvío del estadístico.
+
+---
+
+# Diferencia de proporciones
+
+`$$p_0=\frac{n_X\hat{p_X}+n_Y\hat{p_Y}}{n_X+n_Y}$$`
+Y entonces el estadístico resulta en:
+
+`$$Z=\frac{(\hat{p_X}-\hat{p_Y})-(p_X-p_Y)}{\sqrt{\frac{p_0(1-p_0)}{n_X}+\frac{p_0(1-p_0)}{n_Y}}}$$`
+
+---
+
+# Diferencia de proporciones
+
+- `\(H_0: \hat{p_X}-\hat{p_Y} \le 0 \text{ vs. } H_A: \hat{p_X}-\hat{p_Y}  &gt;0\)`. Rechazo `\(H_0\)` si
+
+`$$Z_{obs}=\frac{(\hat{p_X}-\hat{p_Y})-(p_X-p_Y)}{\sqrt{\frac{p_0(1-p_0)}{n_X}+\frac{p_0(1-p_0)}{n_Y}}}&gt;Z_{\alpha}$$`
+
+--
+
+- `\(H_0: \hat{p_X}-\hat{p_Y} \ge 0 \text{ vs. } H_A: \hat{p_X}-\hat{p_Y} &lt;0\)`. Rechazo `\(H_0\)` si
+
+`$$Z_{obs}=\frac{(\hat{p_X}-\hat{p_Y})-(p_X-p_Y)}{\sqrt{\frac{p_0(1-p_0)}{n_X}+\frac{p_0(1-p_0)}{n_Y}}}&lt;-Z_{\alpha}$$`
+
+---
+
+# Datos Apareados
+
+- `\(H_0: \hat{p_X}-\hat{p_Y} = 0 \text{ vs. } H_A: \hat{p_X}-\hat{p_Y} \ne0\)`. Rechazo `\(H_0\)` si
+
+`$$Z_{obs}=\frac{(\hat{p_X}-\hat{p_Y})-(p_X-p_Y)}{\sqrt{\frac{p_0(1-p_0)}{n_X}+\frac{p_0(1-p_0)}{n_Y}}}&lt;-Z_{\alpha/2} \quad o$$`
+`$$Z_{obs}=\frac{(\hat{p_X}-\hat{p_Y})-(p_X-p_Y)}{\sqrt{\frac{p_0(1-p_0)}{n_X}+\frac{p_0(1-p_0)}{n_Y}}}&gt;Z_{\alpha/2}$$`
+---
+
+# Ejemplo
+
+- Se dispone de dos muestras de hombres y mujeres para comparar la cantidad de tareas domésticas realizadas por hombres y mujeres en matrimonios donde ambos aportan económicamente al hogar (American Journal of Sociology, septiembre 1994).
+
+- De la muestra de 1645 hombres, el 67.5% de los hombres consideraba que la division de tareas era justa, mientras que de las 1691 mujeres muestreadas, el 60.8% sentían que la división de tareas era justa.
+
+- ¿Es mayor la proporción de hombres que sentían que la division del trabajo doméstico era justa que la proporción correspondiente de mujeres? Respalde su conclusión con una prueba estadística con error de tipo I del 5%.
+
+---
+
+# Ejemplo
+
+- `\(H_0: \hat{p_H}-\hat{p_M} \le 0 \text{ vs. } H_A: \hat{p_H}-\hat{p_M} &gt;0\)`
+
+- `\(Z_{0.05}=1.645\)`
+
+--
+
+- `\(p_H=0.675\)`, `\(p_M=0.608\)`, `\(n_H=1645\)`, `\(n_M=1691\)`
+
+- `\(p_0=\frac{n_X\hat{p_X}+n_Y\hat{p_Y}}{n_X+n_Y}=\frac{1645*0.675+1691*0.608}{1645+1691} \approx 0.641\)`
+
+--
+
+`$$Z_{obs}=\frac{(\hat{p_X}-\hat{p_Y})-(p_X-p_Y)}{\sqrt{\frac{p_0(1-p_0)}{n_X}+\frac{p_0(1-p_0)}{n_Y}}}=\frac{(0.675-0.608)}{\sqrt{\frac{0.641(1-0.641)}{1645}+\frac{0.608(1-0.608)}{1691}}}\approx 3.998$$`
+
+- Hay suficiente evidencia para rechazar `\(H_0\)` y afirmar que la proporción de hombres que considera que la división de tareas es justa es superior a la proporción de mujeres.
+
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
