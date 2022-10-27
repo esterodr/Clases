@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Análisis de Regresión</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Esteban Rodríguez" />
+    <script src="libs/header-attrs-2.14/header-attrs.js"></script>
+    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/metropolis.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/metropolis-fonts.css" rel="stylesheet" />
+  </head>
+  <body>
+    <textarea id="source">
+class: left, bottom, inverse, title-slide
+
+.title[
+# Análisis de Regresión
+]
+.author[
+### Esteban Rodríguez
+]
+.date[
+### Última Actualización: 2022-10-27
+]
+
+---
+
+
+
+
+# Origen del término regresión
+
+- Francis Galton acuñó el término regresión en un ensayo famoso de 1886.
+
+.center[
+*“La estatura de los niños de padres de determinada estatura tienden a regresar a la estatura promedio de la población total”*
+]
+
+- La ley de regresión universal de Galton fue confirmada por su amigo Karl Pearson, quien reunió más de 1000 registros de estaturas de miembros de grupos familiares, confirmando la teoría de Galton, que llamó **“regresión a la mediocridad”**
+
+--
+
+- La interpretación moderna del término regresión en muy diferente. 
+
+- El análisis de regresión trata del estudio de la dependencia de una variable (variable dependiente) respecto de una o más variables (variables explicativas) con el objetivo de estimar o predecir la media o valor promedio poblacional de la variable dependiente en términos de los valores conocidos o fijos (en muestras repetidas) de las variables explicativas.
+
+---
+
+# Origen del término regresión
+
+- A Francis Galton le interesaba las razones de estabilidad en la distribución de las estaturas dentro de una población 
+
+.pull-left[
+
+.center[
+![](Imagenes/galton.jpg)
+]
+]
+
+.pull-right[
+En el enfoque moderno de regresión, el interés radica en conocer como cambia la estatura promedio de los hijos a partir del conocimiento de la estatura de sus padres, i.e. predecir la estatura de los hijos a partir de la estatura de los padres. 
+]
+
+---
+
+# Ejemplos en Economía
+
+- La dependencia del consumo personal respecto del ingreso personal neto disponible (después de impuestos). Con un análisis de este tipo se calcula la propensión marginal a consumir (PMC), i.e. el cambio promedio del consumo ante un cambio de una unidad monetaria en el ingreso real.
+
+--
+
+- Un monopolista que puede fijar precio o cantidad (pero no ambos factores) y quiera conocer la demanda de un bien con diversos precios. Tal experimento permite estimar la elasticidad precio de la demanda del bien, i.e. la respuesta a variaciones del precio, y permite determinar el precio que maximiza las ganancias. 
+
+---
+
+# Ejemplos en Economía
+
+- Cual es la tasa de cambio de los salarios nominales en relación con la tasa de desempleo?. La representación de esta relación es la célebre curva de Phillips, que relaciona los cambios en los salarios nominales con la tasa de desempleo. Un diagrama de dispersión de este tipo permite al economista laboral predecir el cambio promedio en los salarios nominales con una cierta tasa de desempleo. Tal conocimiento sirve para establecer supuestos sobre el proceso inflacionario en una economía, pues es probable que los incrementos en los salarios monetarios se reflejen en incrementos de precios.
+
+--
+
+- En economía monetaria se sabe que, si se mantienen constantes otros factores, cuanto mayor sea la tasa de inflación `\(\pi\)`, menor será la proporción `\(k\)` del ingreso que la gente deseará mantener en forma de dinero. Un análisis cuantitativo de esta relación permite predecir la cantidad de dinero, como proporción del ingreso, que la gente deseará mantener con diversas tasas de inflación.
+
+---
+
+# Regresión y causalidad
+
+- El análisis de regresión tiene que ver con la dependencia de una variable respecto de otras variables, pero esto no necesariamente implica causalidad.
+
+- “Una relación estadística, por más fuerte y sugerente que sea, nunca podrá establecer una conexión causal: nuestras ideas de causalidad deben provenir de cuestiones externas y, en último término, de una u otra teoría” (M. G. Kendall y A. Stuart, The Advanced Theory of Statistics)
+
+- **Una relación estadística por sí misma no implica causalidad**: hay que recurrir al sentido común o a cuestiones teóricas.
+
+  + El rendimiento del cultivo depende de la lluvia (sentido común)
+  
+  + El consumo depende del ingreso real disponible (teoría económica)
+  
+---
+
+# Regresión y correlación
+
+- El análisis de correlación se relaciona con el de regresión, aunque conceptualmente los dos son muy diferentes.
+
+- En el **análisis de correlación**, el objetivo principal es medir la fuerza o el grado de asociación lineal entre dos variables. Recordemos que el coeﬁciente de correlación, mide esta fuerza de asociación (lineal).
+
+- En el **análisis de regresión**, en cambio, se trata de estimar o predecir el valor promedio de una variable con base en los valores ﬁjos en muestras repetidas de otras variables.
+
+---
+
+# Regresión y correlación
+
+- La regresión y la correlación presentan diferencias que vale la pena destacar.
+
+- En el análisis de regresión hay una **asimetría** en el tratamiento a las variables dependientes y explicativas. La variable dependiente es aleatoria o estocástica, i.e., tiene una distribución de probabilidad. Las variables explicativas se asumen que toman valores fijos (en muestras repetidas).
+
+- En el análisis de correlación, se tratan dos variables cualesquiera en forma **simétrica** y se asume que ambas variables son aleatorias.
+
+- La teoría de correlación asume aleatoriedad de las variables.
+
+- Gran parte de la teoría de regresión está condicionada al supuesto de que la variable dependiente es estocástica y que las variables explicativas son fijas o no estocásticas
+
+---
+
+# Terminología
+
+| Variable dependiente | vs. | Variable independiente |
+| :---: | :---: | :---: |
+| Explicada | vs. | Explicativa |
+| Predicha | vs. | Predictora |
+| Regresada | vs. | Regresora |
+| Respuesta | vs. | Estímulo |
+| Endógena | vs. | Exógena |
+| Resultado | vs. | Covariante |
+| Controlada | vs. | de Control |
+
+---
+
+# Regresión con 2 variables
+
+- El análisis de regresión relaciona la estimación o predicción de la media (de la población) o valor promedio de la variable dependiente, con base en los valores conocidos o fijos de las variables explicativas.
+
+- A modo de ejemplo, vamos a trabajar con datos de la última ["Encuesta Nacional de Gastos y Hogares 2017/2018"](https://www.indec.gob.ar/indec/web/Institucional-Indec-BasesDeDatos-4)
+
+- Vamos a considerar las siguientes variables:
+
+  + `\(X: \text{ingreso del Hogar} \rightarrow\)` Regresor / Variable Independiente / Variable Explicativa 
+  
+  + `\(Y: \text{gasto del Hogar} \rightarrow\)` Regresada / Variable Dependiente / Variable Explicada 
+
+---
+
+# Regresión con 2 variables
+
+- Vamos a comenzar tomando una muestra aleatoria de tamaño `\(n=100\)` de la base de datos.
+
+- Supongamos por el momento que la muestra se trata de la población.
+
+- Dejemos para más adelante como evaluar el impacto de diferentes muestras en nuestras estimaciones.
+
+---
+
+# Regresión con 2 variables
+
+.center[
+![](10_Regresion_files/figure-html/unnamed-chunk-1-1.png)&lt;!-- --&gt;
+]
+
+---
+
+# Esperanza condicional/incondicional
+
+
+|Ingreso de los Hogares | Gasto Promedio| Ingreso Promedio| Cantidad de Hogares|
+|:----------------------|--------------:|----------------:|-------------------:|
+|Hasta 5000             |          11810|             3371|                   3|
+|Entre 5000 y 10000     |           6374|             7004|                   8|
+|Entre 10000 y 15000    |          19013|            13855|                  11|
+|Entre 15000 y 20000    |          20987|            18008|                  20|
+|Entre 20000 y 25000    |          21669|            22396|                  14|
+|Entre 25000 y 30000    |          25851|            27980|                  10|
+|Entre 30000 y 35000    |          25909|            32110|                   6|
+|Entre 35000 y 40000    |          23390|            37110|                  11|
+|Entre 40000 y 45000    |          50738|            40173|                   1|
+|Más de 45000           |          42772|            65631|                  16|
+|Total                  |          24250|            28632|                 100|
+
+
+---
+
+# Esperanza condicional/incondicional
+
+- ¿Cual es el valor esperado del gasto mensual de un hogar?
+
+`$$E(Y) = ...$$`
+
+---
+
+# Esperanza condicional/incondicional
+
+- ¿Cual es el valor esperado del gasto mensual de un hogar?
+
+$$E(Y) = 24250 $$
+
+- ¿Cual es el valor esperado del gasto mensual de un hogar cuyos ingresos promedios rondan los $12500?
+
+`$$E(Y/X=12500) = ...$$`
+
+---
+
+# Esperanza condicional/incondicional
+
+- ¿Cual es el valor esperado del gasto mensual de un hogar?
+
+$$E(Y) = 24250 $$
+
+- ¿Cual es el valor esperado del gasto mensual de un hogar cuyos ingresos promedios rondan los $12500?
+
+`$$E(Y/X=12500) \approx 19013$$`
+
+- El análisis de regresión intenta estimar estas esperanzas condicionales
+
+---
+
+# Esperanza condicional/incondicional
+
+.center[
+![](10_Regresion_files/figure-html/unnamed-chunk-3-1.png)&lt;!-- --&gt;
+]
+
+---
+
+# Esperanza condicional/incondicional
+
+.center[
+![](10_Regresion_files/figure-html/unnamed-chunk-4-1.png)&lt;!-- --&gt;
+]
+
+---
+
+# Función de regresión poblacional (FRP)
+
+- Lo que acabamos de ver nos dice que la esperanza condiconal de `\(Y\)` dado `\(X_i\)` es una función `\(X_i\)`. Matemáticamente:
+
+`$$E(Y/X_i)=f(X_i)$$`
+
+- donde `\(f(X_i)\)` es una funcón de `\(X_i\)`
+
+- A `\(E(Y/X_i)=f(X_i)\)` se la conoce como **función de esperanza condicional (FEC)**, **función de regresión poblacional (FRP)** o directamente **regresión poblacional (RP)**.
+
+- En el ejemplo que acabamos de ver, `\(E(Y/X_i)=f(X_i)\)` es una función lineal de `\(X_i\)` (una recta). Esto no necesariamente es así.
+
+---
+
+# Función de regresión poblacional (FRP)
+
+- ¿Qué forma adopta la función `\(f(X_i)\)`?
+
+- Esta pregunta es importante porque dada vez disponemos de toda la población para efectuar el análisis.
+
+- La forma de la FRP es, por consiguiente, una pregunta empírica, aunque la teoría puede ayudar.
+
+- En nuestro caso, las teorías económicas más simples sobre el consumo sostienen que tiene una relación lineal con el ingreso, con lo cual podríamos aproximar a la esperanza condicional con:
+
+`$$E(Y/X_i)=f(X_i)=\beta_1+\beta_2*X_i$$`
+
+- donde `\(\beta_1\)` (intercepto) y `\(\beta_2\)` (pendiente) son **parámetros no conocidos pero fijos** que se denominan coeficientes de regresión.
+
+---
+
+# Función de regresión poblacional (FRP)
+
+- `\(E(Y/X_i)=f(X_i)=\beta_1+\beta_2*X_i\)` se conoce como **función de regresión poblacional lineal**, modelo de regresión poblacional lineal o simplemente **modelo de regresión lineal**.
+
+- ¿Cuál es el objetivo del Análisis de Regresión? Estimar los valores desconocidos de `\(\beta_1\)` y `\(\beta_2\)` en base a los valores observados de `\(Y\)` y `\(X\)`.
+
+- Así como la media de una variable aleatoria es una característica desconocida de de una distribución poblacional, **la pendiente de la recta que relaciona `\(X\)` e `\(Y\)` es una característica desconocida de la distribución poblacional conjunta de `\(X\)` e `\(Y\)`**.
+
+- El problema estadístico consiste en **estimar la pendiente**, es decir, estimar el efecto sobre `\(Y\)` de una unidad de cambio en `\(X\)`, usando los datos muestrales de ambas variables.
+
+---
+
+# FRP estocástica
+
+- Al analizar el gráfico, se observa que, a medidda que aumenta el ingreso familiar, el consumo familiar, en promedio también aumenta.
+
+- ¿Qué sucede con el consumo de una familia en particular en relación con su nivel de ingreso? No siempre aumenta cuando aumenta el ingreso.
+
+- Sin embargo, el **consumo promedio** de las familias con ingreso de `\(20.000\)` es mayor al **consumo promedio** de las familias con ingreso `\(10.000\)`
+
+- ¿Qué se puede decir entonces sobre la relación entre el consumo familiar y un determinado nivel de ingresos?
+
+- Para un nivel de ingresos dados `\(X_i\)`, el consumo tiende a agruparse alrededor de su esperanza condicional.
+
+---
+
+# FRP estocástica
+
+.center[
+![](10_Regresion_files/figure-html/unnamed-chunk-5-1.png)&lt;!-- --&gt;
+]
+
+---
+
+# FRP estocástica
+
+`$$Y_i=E(Y/X_i)+\varepsilon_i=\beta_1+\beta_2*X_i+\varepsilon_i$$`
+
+`$$\varepsilon_i=Y_i-E(Y/X_i)$$`
+
+- ¿Qué representa `\(\varepsilon_i\)`?
+
+- Recordemos que estamos tratando de predecir el consumo promedio a partir del nivel de ingreso promedio. Pueden existir otros factores que también influyan en el nivel de consumo, además del ingreso. Consideremos a todos estos factores juntos representados en `\(\varepsilon_i\)`.
+
+- Técnicamente, `\(\varepsilon_i\)` se conoce como **perturbación estocástica** o **término de error estocástico**.
+
+- `\(\varepsilon_i\)` es una variable aleatoria **no observable** que toma valores positivos o negativos.
+
+---
+
+# FRP estocástica
+
+- ¿Cómo se interpreta la ecuación `\(Y_i=E(Y/X_i)+\varepsilon_i\)`?
+
+- Se puede decir que el gasto de una familia en particular, según su nivel de ingreso, se expresa como la suma de dos componentes:
+
+  + `\(E(Y/X_i)\)`, que es simplemente el consumo promedio de todas las familias con el mismo nivel de ingreso, es el **componente sistémico**
+  
+  + `\(\varepsilon_i\)` es el **componente aleatorio o no sistémico**
+  
+---
+
+# Perturbación estocástica
+
+- El término de error `\(\varepsilon_i\)` resume también a todas las variables que se omiten en el modelo, pero que, en conjunto, afectan a `\(Y\)`.
+
+- La pregunta obvia es: ¿por qué no se introducen explícitamente estas variables en el modelo? 
+
+- ¿Por qué no se crea un modelo de regresión múltiple con tantas variables como sea posible?
+
+- Se podría intentar tener un modelo más sofisticado, pero **no es tan sencillo**.
+
+---
+
+# Perturbación estocástica
+
+- ¿Por qué no se crea un modelo de regresión múltiple con tantas variables como sea posible?
+
+  + Vaguedad de la teoría
+  
+  + Falta de disponibilidad de datos
+  
+  + Variables centrales y variables periféricas
+  
+  + Aleatoriedad intrínseca en el comportamiento humano
+  
+  + Variables proxy inadecuadas
+  
+  + Principio de parsimonia (principio de la [navaja de Ockham](https://es.wikipedia.org/wiki/Navaja_de_Ockham))
+  
+  + Forma funcional incorrecta
+
+---
+
+# Resumiendo
+
+- El modelo de regresión lineal es 
+
+`$$Y_i=\beta_1+\beta_2*X_i+\varepsilon_i$$`
+
+donde:
+
+  + `\(Y_i\)` es la variable dependiente o explicada
+  
+  + `\(X_i\)` es la variable independiente o explicativa
+  
+  + `\(\beta_1+\beta_2*X_i\)` es la recta de regresión poblacional o FRP
+  
+  + `\(\beta_1\)` es el intercepto de la recta de regresión poblacional
+  
+  + `\(\beta_2\)` es la pendiente de la recta de regresión poblacional
+  
+  + `\(\varepsilon_i\)` es la perturbación estocástica o término de error
+  
+---
+
+# Interpretación de los parámetros
+
+- La pendiente `\(\beta_2\)` mide el cambio marginal en `\(Y\)` asociado a un cambio en una unidad en `\(X\)`.
+
+- El intercepto, `\(\beta_1\)`, es el valor de la recta de regresión cuando `\(X=0\)`. En algunas regresiones el intercepto tiene una interpretación útil. En otras (como en este caso) no tiene ningún significado económico. En estos casos se lo piensa desde la matemática, como el coeficiente que determina el nivel de la recta de regresión.
+
+- El otro factor es el `\(\varepsilon_i\)`, o término de error. Incorpora todos los otros factores que afectan los gastos y que no dependen del ingreso. Se trata de un término no observable.
+
+---
+
+# Función de regresión muestral
+
+- Hasta ahora estuvimos trabajando con una muestra tomada al azar, pero asumimos que se trataba de la población.
+
+- La realidad es que la población no la conocemos. Y lo que estamos tratando de estimar es la función (recta) de regresión poblacional (FRP) que desconocemos.
+
+- Lo mejor que podemos hacer es estimar la FRP mediante una muestra, a la que llamaremos función (recta) de regresión muestral (FRM).
+
+- ¿Se puede estimar la FRP a partir de los datos de la muestra?
+
+- ¿Será precisa esta estimación de la FRP? Incertidumbre muestral.
+
+- Tomemos otra muestra aleatoria de `\(n=100\)` y veamos que ocurre.
+
+---
+
+# Función de regresión muestral
+
+![](10_Regresion_files/figure-html/unnamed-chunk-6-1.png)&lt;!-- --&gt;
+
+---
+
+# Función de regresión muestral
+
+![](10_Regresion_files/figure-html/unnamed-chunk-7-1.png)&lt;!-- --&gt;
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

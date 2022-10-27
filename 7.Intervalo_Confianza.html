@@ -20,7 +20,7 @@ class: left, bottom, inverse, title-slide
 ### Esteban Rodríguez
 ]
 .date[
-### Última Actualización: 2022-10-24
+### Última Actualización: 2022-10-27
 ]
 
 ---
@@ -315,6 +315,16 @@ Al `\(\color{red}{99\%}\)`
 
 - **¡Ojo con la interpretación del intervalo!**
 
+  + Hay una probabilidad del 95% de que la verdadera media poblacional este dentro del intervalo 
+  
+  + Hay una probabilidad del 95% de que cualquier intervalo de confianza generado a partir de una muestra aleatoria de tamaño n contenga a la verdadera media poblacional. 
+  
+---
+
+# Ejemplo
+
+- **¡Ojo con la interpretación del intervalo!**
+
   + Hay una probabilidad del 95% de que la verdadera media poblacional este dentro del intervalo `\(\color{red}{INCORRECTO}\)`
   
   + Hay una probabilidad del 95% de que cualquier intervalo de confianza generado a partir de una muestra aleatoria de tamaño n contenga a la verdadera media poblacional. `\(\color{green}{CORRECTO}\)`
@@ -402,7 +412,7 @@ Al `\(\color{red}{99\%}\)`
 
 ---
 
-# ¿Qué ocurre si no conocemos `\(\sigma\)`?
+# `\(\text{¿Qué ocurre si no conocemos } \sigma\)`?
 
 - Si no se conoce `\(\sigma\)`, la desviación estándar poblacional, podemos obtener una estimación a partir de la muestra, i.e. reemplazar a `\(\sigma\)` por la desviación estándar muestral, `\(s\)`.
 
@@ -431,7 +441,7 @@ Al `\(\color{red}{99\%}\)`
 
 `$$\sigma_{\hat{p}}=\sqrt{\frac{\hat{p}(1-\hat{p})}{n}}$$`
 
-- La muestra no puede ser muy chica. En general, alcanza con mismos criterios del TCL ($np\ge 10$ y `\(n(1-p) \ge 10\)`). Bajo estas condiciones, se cumple aproximadamente con:
+- La muestra no puede ser muy chica. En general, alcanza con mismos criterios del TCL ( `\(np\ge 10\)` y `\(n(1-p) \ge 10\)`). Bajo estas condiciones, se cumple aproximadamente con:
 
 `$$\frac{\hat{p}-p}{\sqrt{\frac{\hat{p}(1-\hat{p})}{n}}}\sim N(0,1)$$`
 
@@ -457,7 +467,7 @@ Al `\(\color{red}{99\%}\)`
 
 - Cierta industria decide capacitar a sus empleados en un nuevo programa de adiestramiento en reparación de máquinas. 
 
-- De acuerdo con la experiencia de la empresa, la empresa sabe que una persona que apruebe el examen tiene una alta probabilidad de desempeñarse bien es su puesto. Después de alguna discusiones la empresa acordó basar la evaluación del nuevo método de adiestramiento considerando la proporción de empleados que aprobaron el examen.
+- De acuerdo con la experiencia, la empresa sabe que una persona que apruebe el examen tiene una alta probabilidad de desempeñarse bien es su puesto. Después de alguna discusiones la empresa acordó basar la evaluación del nuevo método de adiestramiento considerando la proporción de empleados que aprobaron el examen.
 
 - De los 64 empleados que asistieron al curso de capacitación, solo aprobaron el examen 40. Determinar el intervalo de confianza para la proporción poblacional con una confianza del 90%. 
 
