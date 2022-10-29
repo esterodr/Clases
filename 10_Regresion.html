@@ -20,7 +20,7 @@ class: left, bottom, inverse, title-slide
 ### Esteban Rodríguez
 ]
 .date[
-### Última Actualización: 2022-10-27
+### Última Actualización: 2022-10-29
 ]
 
 ---
@@ -418,6 +418,472 @@ donde:
 # Función de regresión muestral
 
 ![](10_Regresion_files/figure-html/unnamed-chunk-7-1.png)&lt;!-- --&gt;
+
+---
+
+# Función de regresión muestral
+
+- FRP: `\(Y=E(Y/X_i)=\beta_1+\beta_2*X_i\)`
+
+- FRM: `\(\hat{Y_i}=\hat{\beta_1}+\hat{\beta_2}*X_i\)` donde:
+
+  + `\(\hat{Y_i}\)` es el estimador de `\(E(Y/X_i)\)`
+  
+  + `\(\hat{\beta_1}\)` es el estimador de `\(\beta_1\)`
+  
+  + `\(\hat{\beta_2}\)` es el estimador de `\(\beta_2\)`
+  
+- Recordemos que un estimador no es otra cosa que una función de la muestra.
+
+- Si calculamos la diferencia entre el valor observado del gasto `\(Y_i\)` y el valor predicho por la FRM, `\(\hat{Y_i}\)`, se obtiene el error o residuo que llamaremos `\(e_i=Y_i-\hat{Y_i}=Y_i-(\hat{\beta_1}+\hat{\beta_2}X_i)\)`
+
+---
+
+# Función de regresión muestral
+
+- **Aclaración:**
+
+  + El residuo `\(e_i\)` no es la perturbación estocástica o término de error del modelo `\(\varepsilon_i\)`, sino que se trata de una **medida combinada** de error del modelo y de los errores que se deben a que `\(\hat{\beta_1}\)` y `\(\hat{\beta_2}\)` son estimaciones muestrales y, por ende, están sujetas a la variación debida al azar, lo cual a su vez le otorga variación al valor predicho `\(\hat{Y_i}\)`
+
+
+---
+
+# Función de regresión muestral
+
+.center[
+![](Imagenes/frm.jpg)
+]
+
+---
+
+# Regresión Lineal
+
+- La regresión lineal brinda dos resultados importantes:
+
+  + Los valores predichos `\(\hat{Y_i}\)` de la variable dependiente en función de la variable independiente `\(X_i\)`.
+  
+  + El cambio marginal de la variable dependiente (gasto) que reporta `\(\hat{\beta_2}\)` ante un cambio unitario de la variable independiente (ingreso).
+
+---
+
+# Regresión Lineal
+
+- Dos son los métodos de estimación mas frecuentes: 
+
+  + El método de mínimos cuadrados ordinarios (MCO) o “ordinary least squares” (OLS).
+  
+  + El método de máxima verosimilitud o “maximun likelihood”.
+  
+- Bajo determinadas condiciones ambos métodos arrojan los mismos estimadores para `\(\hat{\beta_1}\)` y `\(\hat{\beta_2}\)`
+
+- Nosotros vamos a utilizar MCO para estimar `\(\hat{\beta_1}\)` y `\(\hat{\beta_2}\)`
+
+- Este método fue desarrollado por Gauss (S. XVIII) y es el método de estimación mas utilizado en la práctica. Además es un método que tiene propiedades deseables desde el punto de vista estadístico (consistencia e insesgadez de `\(\hat{\beta_1}\)` y `\(\hat{\beta_2}\)`).
+
+---
+
+# Regresión Lineal
+
+- Recordemos que la FRP es `\(Y_i=\beta_1+\beta_2X_i+\varepsilon_i\)`
+
+- Sin embargo la FRP no es observable y debemos estimarla mediante una muestra con la FRM:
+
+  + `\(Y_i=\hat{\beta_1}+\hat{\beta_2}X_i+e_i\)`
+  
+  + `\(Y_i=\hat{Y_i}+e_i\)`
+  
+  + `\(e_i=Y_i-\hat{Y_i}\)`
+  
+  + `\(e_i=Y_i-(\hat{\beta_1}+\hat{\beta_2}X_i)\)`
+  
+  + `\(e_i=Y_i-\hat{\beta_1}-\hat{\beta_2}X_i\)`
+
+---
+
+# Regresión Lineal
+
+.center[
+![](Imagenes/frm2.png)
+]
+
+---
+
+# Estimación por MCO
+
+`$$\text{minimizar:} \sum_{i=1}^ne_i^2 = \text{minimizar:} \sum_{i=1}^n(Y_i-\hat{Y_i})^2=\text{minimizar:} \sum_{i=1}^n(Y_i-\hat{\beta_1}-\hat{\beta_2}X_i)^2$$`
+
+--
+
+- Se deriva respecto de los valores desconocidos `\(\hat{\beta_1}\)`y `\(\hat{\beta_2}\)` y se iguala a cero:
+
+`$$\frac{\partial \left( \sum_{i=1}^ne_i^2 \right) }{\partial \hat{\beta_1}}=-2\sum_{i=1}^n(Y_i-\hat{\beta_1}-\hat{\beta_2}X_i)=0$$`
+
+`$$\frac{\partial \left( \sum_{i=1}^ne_i^2 \right) }{\partial \hat{\beta_2}}=-2\sum_{i=1}^n(Y_i-\hat{\beta_1}-\hat{\beta_2}X_i)X_i=0$$`
+
+---
+
+# Estimación por MCO
+
+Con un poco de álgebra se llega a que la solución del sistema de ecuaciones es:
+
+`$$\hat{\beta_2}=\frac{\sum_{i=1}^n(X_i-\overline{X})(Y_i-\overline{Y})}{\sum_{i=1}^n(X_i-\overline{X})^2}=\frac{S_{XY}}{S^2_X}=\rho_{XY}\frac{S_Y}{S_X}$$`
+
+`$$\hat{\beta_1}=\overline{Y}-\hat{\beta_2}\overline{X}$$`
+---
+
+# Estimación por MCO
+
+- Notar que la recta de regresión siempre pasa por `\((\overline{X},\overline{Y})\)`
+
+--
+
+- Recordemos que `\(\hat{\beta_1}=\overline{Y}-\hat{\beta_2}\overline{X}\)`
+
+- Sustituyendo `\(\hat{\beta_1}\)` en la recta de regresión `\(\hat{Y_i}=\hat{\beta_1}+\hat{\beta_2}X_i\)` se tiene:
+
+  + `\(\hat{Y_i}=\overline{Y}-\hat{\beta_2}\overline{X}+\hat{\beta_2}X_i\)`
+
+  + `\(\hat{Y_i}=\overline{Y}+\hat{\beta_2}(X_i-\overline{X})\)`
+  
+- Por lo tanto, cuando `\(X_i=\overline{X}\)` se tiene que `\(Y_i=\overline{Y}\)` y entonces la recta pasa siempre por `\((\overline{X},\overline{Y})\)`
+
+---
+
+# Estimación por MCO
+
+- Para estimar la recta de regresión se suele utilizar algún software especializado:
+
+  + R / Python / Julia
+  
+  + Stata / Eviews / Matlab
+  
+  + y muchos más.
+  
+- El formato de la salida difiere de un software a otro, pero están siempre presentes los principales elementos.
+
+- Veamos algunos ejemplos.
+
+---
+
+# Estimación por MCO en R (muestra 1)
+
+
+```r
+## Resultados de la regresión con la Muestra 1
+
+summary(fit)
+```
+
+```
+## 
+## Call:
+## lm(formula = gastot ~ ingtoth, data = muestra)
+## 
+## Residuals:
+##    Min     1Q Median     3Q    Max 
+## -41928  -8024  -3999   4812  89860 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) 9845.4494  2979.5278   3.304  0.00133 ** 
+## ingtoth        0.5031     0.0863   5.830 7.12e-08 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 16650 on 98 degrees of freedom
+## Multiple R-squared:  0.2575,	Adjusted R-squared:  0.2499 
+## F-statistic: 33.98 on 1 and 98 DF,  p-value: 7.123e-08
+```
+
+---
+
+# Estimación por MCO en R (muestra 2)
+
+
+```r
+## Resultados de la regresión con la Muestra 2
+
+summary(fit2)
+```
+
+```
+## 
+## Call:
+## lm(formula = gastot ~ ingtoth, data = muestra2)
+## 
+## Residuals:
+##    Min     1Q Median     3Q    Max 
+## -36034  -6024  -2671   3325  37669 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) 9.647e+03  1.651e+03   5.842 6.73e-08 ***
+## ingtoth     3.654e-01  4.716e-02   7.748 8.71e-12 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 10980 on 98 degrees of freedom
+## Multiple R-squared:  0.3799,	Adjusted R-squared:  0.3735 
+## F-statistic: 60.03 on 1 and 98 DF,  p-value: 8.714e-12
+```
+
+---
+
+# Estimación por MCO en R (muestra 3)
+
+
+```r
+## Resultados de la regresión con la Muestra 3
+
+summary(fit3)
+```
+
+```
+## 
+## Call:
+## lm(formula = gastot ~ ingtoth, data = muestra3)
+## 
+## Residuals:
+##    Min     1Q Median     3Q    Max 
+## -33805  -5873  -1496   3763  44480 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) 4.585e+03  2.147e+03   2.135   0.0352 *  
+## ingtoth     6.714e-01  6.105e-02  10.997   &lt;2e-16 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 13400 on 98 degrees of freedom
+## Multiple R-squared:  0.5524,	Adjusted R-squared:  0.5478 
+## F-statistic: 120.9 on 1 and 98 DF,  p-value: &lt; 2.2e-16
+```
+
+---
+
+# Estimación por MCO en Eviews
+
+.center[
+![](Imagenes/eviews1.jpg)
+]
+
+---
+
+# Estimación por MCO en Eviews
+
+.center[
+![](Imagenes/eviews2.jpg)
+]
+
+- ¿Cómo se obtiene `\(\hat{Y_i}\)`
+
+`$$\hat{Y_i}=1534.152+0.588552*X_i$$`
+
+---
+
+# `\(\text{Poder explicativo: el } R^2\)`
+
+- El `\(R^2\)` es una medida que varía entre 0 y 1, y da cuenta de la fracción de la variabilidad de `\(Y_i\)` que es explicada por `\(X_i\)`.
+
+- Las definiciones de valor predicho y residuo nos permiten expresar a `\(Y_i\)` como la suma:
+
+`$$Y_i=\hat{Y_i}+e_i$$`
+
+- Una de las propiedades de MCO es que el promedio muestral de los residuos `\(e_i\)` es 0.
+
+--
+
+`$$\frac{\sum_{i=1}^ne_i}{n}=\frac{\sum_{i=1}^n\hat{Y_i}}{n}-\frac{\sum_{i=1}^nY_i}{n}=\frac{\sum_{i=1}^n(\hat{\beta_1}+\hat{\beta_2}X_i)}{n}-\overline{Y}=$$`
+--
+
+`$$=\frac{\sum_{i=1}^n(\overline{Y}-\hat{\beta_2}\overline{X}+\hat{\beta_2}X_i)}{n}-\overline{Y}=\frac{n\overline{Y}}{n}-\frac{n\hat{\beta_2}\overline{X}}{n}+\frac{n\hat{\beta_2}\overline{X}}{n}-\overline{Y}=0$$`
+
+---
+
+# `\(\text{Poder explicativo: el } R^2\)`
+
+- Definamos tres sumas al cuadrado que nos permitirán definir `\(R^2\)`
+
+- Ellas son la **suma de cuadrados total SCT**, la **suma de cuadrados explicada SCE** y la **suma de cuadrados de residuos SCR**.
+
+  + `\(SCT=\sum_{i=1}^n(Y_i-\overline{Y})^2\)`
+  
+  + `\(SCE=\sum_{i=1}^n(\hat{Y_i}-\overline{Y})^2\)`
+  
+  + `\(SCR=\sum_{i=1}^n(Y_i-\hat{Y_i})^2\)`
+
+- Notar que `\((Y_i-\overline{Y})=(\hat{Y_i}-\overline{Y})+(Y_i-\hat{Y_i})\)`
+
+--
+
+- `\(\sum_{i=1}^n(Y_i-\overline{Y})^2=\sum_{i=1}^n(\hat{Y_i}-\overline{Y})^2+\sum_{i=1}^n(Y_i-\hat{Y_i})^2+2\sum_{i=1}^n(\hat{Y_i}-\overline{Y})(Y_i-\hat{Y_i})\)`
+
+- Puede demostrarse que el último término es 0, por lo que resulta:
+
+`$$SCT=SCE+SCR$$`
+
+---
+
+# `\(\text{Poder explicativo: el } R^2\)`
+
+`$$SCT=SCE+SCR$$`
+
+- Dividiendo por `\(SCT\)` tenemos:
+
+`$$1=\frac{SCE}{SCT}+\frac{SCR}{SCT}$$`
+- Definimos al `\(R^2\)` como:
+
+`$$R^2=\frac{SCE}{SCT}=1-\frac{SCR}{SCT}$$`
+
+- El `\(R^2\)` de una regresión de `\(Y\)` sobre un único regresor `\(X\)`, es igual al cuadrado del coeficiente de regresión entre `\(X\)` e `\(Y\)`: `\(R^2=\rho_{XY}^2\)`.
+
+
+---
+
+# `\(\text{Poder explicativo: el } R^2\)`
+
+.center[
+![](Imagenes/r2.jpg)
+]
+
+---
+
+# `\(\text{Poder explicativo: el } R^2\)`
+
+- `\(0 \le R^2 \le 1\)`, se lo suele expresar como porcentaje.
+
+- Ya habíamos visto que `\(\hat{Y_i}-\overline{Y}=\hat{\beta_2}(X_i-\overline{X})\)`, entonces tenemos que `\(SCE=\hat{\beta_2}\sum_{i=1}^n(X_i-\overline{X})^2\)`
+
+- Esto implica que si `\(\hat{\beta_2}=0\)` entonces `\(X\)` no explica nada de la variabilidad de `\(Y\)`, los valores predichos de `\(Y\)` basados en la regresión son exactamente `\(\overline{Y}\)`. Por lo tanto la `\(SCE=0\)` y el `\(R^2=0\)`.
+
+- Por el contrario si `\(X\)` explica toda la variabilidad de la `\(Y\)`, el `\(R^2=1\)`
+
+---
+
+# Inferencia sobre los parámetros
+
+- Notar que la estimación puntual de `\(\hat{\beta_1}\)` y `\(\hat{\beta_2}\)` que brinda el método de MCO, fue obtenida sólo desarrollos matemáticos. La estadística no intervino en la obtención de estos coeficientes.
+
+- Pero si el objetivo es algo más que obtener estimadores puntuales para `\(\hat{\beta_1}\)` y `\(\hat{\beta_2}\)`, y lo que se desea es inferir sobre los parámetros poblaciones desconocidos `\(\beta_1\)` y `\(\beta_2\)` a partir de sus contrapartes muestrales, entonces vamos a tener que recurrir a mas información respecto de la forma en que se generan los `\(Y_i\)`.
+
+- Pero `\(Y_i=\beta_1 + \beta_2 X_i + \varepsilon_i\)`, entonces depende de `\(X_i\)` y `\(\varepsilon_i\)`.
+
+- Por lo tanto, hay que hacer supuestos sobre la forma en que se generan `\(X_i\)` y `\(\varepsilon_i\)`.
+
+---
+
+# Inferencia sobre los parámetros
+
+- Se trata de los supuestos del modelo de **Gauss-Markov**.
+
+- Estos supuestos parecen bastante abstractos. Pero tratar de entenderlos es escencial para comprender cuando MCO arroja estimaciones de los coeficientes de regresión de utilidad.
+
+---
+
+# Supuestos de Gauss-Markov
+
+- **Supuesto 1**: La distribución condicional de `\(\varepsilon_i\)` dado `\(X_i\)` tiene media cero, i.e. `\(E(\varepsilon_i/X_i)=0\)` y `\(E(\varepsilon_i)=0\)` si las `\(X_i\)` son no estocásticas.
+
+- **Supuesto 2**: `\((X_i,Y_i)\)` es una muestra i.i.d. para `\(i=1,…,n\)` extraída de la distribución conjunta de `\(X_i\)` e `\(Y_i\)`.
+
+- **Supuesto 3**: `\(X_i\)` y `\(\varepsilon_i\)` tienen momentos finitos de orden 4, i.e. `\(0&lt;E(X_i^4)&lt;\infty\)` y `\(0&lt;E(\varepsilon_i^4)&lt;\infty\)`. Este supuesto limita la probabilidad de tener valores extremos de `\((X_i,Y_i)\)`.
+
+- **Supuesto 4**: Los `\(\varepsilon_i\)` son variables aleatorias que tienen media 0 y varianza constante. `\(E(\varepsilon_i)=0\)` y `\(Var(\varepsilon_i)=\sigma^2\)`
+
+---
+
+# El error standard de la regresión
+
+- La suma de los cuadrados de los errores se utiliza para obtener una estimación de la varianza del error del modelo `\(\varepsilon_i\)`, que a su vez esta varianza nos va a servir para realizar la inferencia estadística del modelo de regresión.
+
+- De acuerdo al supuesto 4 `\(E(\varepsilon_i)=0\)` y `\(Var(\varepsilon_i)=\sigma^2\)`
+
+- Una estimación de la varianza del error del modelo esta dada por 
+
+`$$\hat{\sigma}^2=\frac{\sum_{i=1}^ne_i^2}{n-2}=\frac{SCR}{n-2}$$`
+
+- Se divide por `\(n-2\)` porque se estimaron dos parámetros `\(\hat{\beta_1}\)` y `\(\hat{\beta_2}\)`
+
+- Este estimador de la varianza del error del modelo es **la base para la inferencia estadística en el modelo de regresión**.
+
+---
+
+# El error standard de la regresión
+
+.center[
+![](Imagenes/eviews3.jpg)
+]
+
+---
+
+# Inferencia estadística
+
+- Se debe tener presente que, en el análisis de regresión, el objetivo no solo consiste en estimar la FRM, sino utilizar la FRM para realizar inferencia sobre la FRP.
+
+- Por ejemplo, querríamos saber cuan cerca esta `\(\hat{\beta_2}\)` del verdadero `\(\beta_2\)` o `\(\hat{\sigma}^2\)` del verdadero `\(\sigma^2\)`.
+
+- A partir de los supuestos de Gauss Markov sumado a la normalidad de los `\(\varepsilon_i\)` se pueden demostrar las propiedades de los estimadores `\(\hat{\beta_1}\)`, `\(\hat{\beta_2}\)` y `\(\hat{\sigma}^2\)`:
+
+  + Son insesgados
+  
+  + Son de mínima varianza en la clase de estimadores insesgados, i.e. son eficientes
+  
+  + Son consistentes (a medida que el tamaño de muestra crece a `\(\infty\)`, convergen a los valores poblacionales. 
+
+---
+
+# `\(\text{Test de Hipótesis para } \beta_1 \text{ y } \beta_2\)`
+
+- Dadas las propiedades de los estimadores, se pueden realizar los siguientes Test de Hipótesis:
+
+`$$H_0: \beta_1=0 \text{ vs. } H_A: \beta_1 \ne 0$$`
+
+`$$y$$`
+
+`$$H_0: \beta_2=0 \text{ vs. } H_A: \beta_2 \ne 0$$`
+
+- Todos los paquetes estadísticos realizan estos tests.
+
+---
+
+# `\(\text{Test de Hipótesis para } \beta_1 \text{ y } \beta_2\)`
+
+.center[
+![](Imagenes/eviews4.jpg)
+]
+
+---
+
+# `\(\text{Test de Hipótesis para } \beta_1 \text{ y } \beta_2\)`
+
+
+
+```r
+## Resultados de la regresión con la Muestra 1
+
+summary(fit)
+```
+
+```
+## 
+## Call:
+## lm(formula = gastot ~ ingtoth, data = muestra)
+## 
+## Residuals:
+##    Min     1Q Median     3Q    Max 
+## -41928  -8024  -3999   4812  89860 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) 9845.4494  2979.5278   3.304  0.00133 ** 
+## ingtoth        0.5031     0.0863   5.830 7.12e-08 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 16650 on 98 degrees of freedom
+## Multiple R-squared:  0.2575,	Adjusted R-squared:  0.2499 
+## F-statistic: 33.98 on 1 and 98 DF,  p-value: 7.123e-08
+```
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
