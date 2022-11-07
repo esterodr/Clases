@@ -20,7 +20,7 @@ class: left, bottom, inverse, title-slide
 ### Esteban Rodríguez
 ]
 .date[
-### Última Actualización: 2022-10-13
+### Última Actualización: 2022-11-07
 ]
 
 ---
@@ -511,23 +511,83 @@ En total, hubo 2454 casos donde la diferencia a favor de los hombres fue de 7 o 
 
 ---
 
-# Test de hipótesis para la media 
+# Ejemplo
 
-- Si `\(H_0: \mu=\mu_0\)` vs. $H_A: \color{red}{\mu&gt;\mu_0} $ se rechaza `\(H_0\)` si:
-
-`$$Z_{obs}=\frac{\overline{X}-\mu_0}{\sigma/\sqrt{n}}\color{red}{&gt;Z_{\alpha}}$$`
+- Una empresa de neumáticos afirma que sus productos duran, en promedio, al menos 28.000 km. Las pruebas con 64 neumáticos dan como resultado una duración media de 27.800 km, con una desviación estándar de 1.000 km. Comprobar si hay evidencia suficiente para rechazar la afirmación de la empresa, con un nivel de significación del 10%.
 
 --
 
-- Si `\(H_0: \mu=\mu_0\)` vs. `\(H_A: \color{red}{\mu&lt;\mu_0}\)` se rechaza `\(H_0\)` si:
+- Dos formas indistintas de plantear las hipótesis:
 
-`$$Z_{obs}=\frac{\overline{X}-\mu_0}{\sigma/\sqrt{n}}\color{red}{&lt;-Z_{\alpha}}$$`
+  + `\(H_0: \mu=28000\)` vs. `\(H_A: \mu&lt;28000\)`
+  
+  + `\(H_0: \mu \ge 28000\)` vs. `\(H_A: \mu&lt;28000\)`
+
+---
+
+# Ejemplo
+
+- `\(H_0: \mu=28000\)` vs. `\(H_A: \mu&lt;28000\)`
+
+- `\(n=64\)`, `\(\overline{X}=27800\)`, `\(s=1000\)`
+
+- Nivel de significación `\(\alpha=10\%\)`, lo que quiere decir que estamos dispuestos a que la probabilidad de cometer de error de tipo I sea `\(10\%\)`.
 
 --
 
-- Si `\(H_0: \mu=\mu_0\)` vs. `\(H_A: \color{red}{\mu \ne \mu_0}\)` se rechaza `\(H_0\)` si:
+- Buscamos el valor crítico `\(Z_c\)` asociado a un test **unilateral izquierdo** con un `\(\alpha=10\%\)`, `\(\rightarrow Z_{0.90}=-1.28\)`
 
-`$$Z_{obs}=\frac{\overline{X}-\mu_0}{\sigma/\sqrt{n}}\color{red}{&gt;Z_{\alpha/2}} \quad \text{o si} \quad Z_{obs}=\frac{\overline{X}-\mu_0}{\sigma/\sqrt{n}}\color{red}{&lt;-Z_{\alpha/2}}$$`
+- Establezo la **Regla de Decisión**:
+
+  + Si `\(Z_{obs} \ge -1.28 \rightarrow \text{no Rechazo }H_0\)`
+  
+  + Si `\(Z_{obs} &lt; -1.28 \rightarrow \text{Rechazo }H_0\)`
+
+--
+
+- Calculo `\(Z_{obs}=\frac{\overline{X}-\mu_0}{s/\sqrt{n}}=\frac{27800-28000}{1000/\sqrt{64}}=-1.6\)`
+
+- Como `\(Z_{obs}=-1.6 &lt; -1.28\)` concluyo que **hay suficiente evidencia para rechazar `\(H_0\)` con una significatividad del `\(10\%\)`**
+
+
+---
+
+# Ejemplo
+
+- Un banco quiere analizar si las comisiones que cobra a sus clientes por operaciones en el mercado bursátil difieren significativamente de las que cobra la competencia, cuya media es de 12 euros mensuales con una desviación estándar de 4,3 euros. Este banco toma una muestra de 90 operaciones bursátiles y observa que la comisión promedio es de 12,6 euros. Contrastar, al nivel de significación del 5%, que este banco no difiere significativamente en el cobro de comisiones por operaciones en la Bolsa con respecto a la competencia.
+
+--
+
+- Test Bilateral:
+
+  + `\(H_0: \mu=12\)` vs. `\(H_A: \mu \ne 12\)`
+  
+  
+---
+
+# Ejemplo
+
+- `\(H_0: \mu=12\)` vs. `\(H_A: \mu \ne 12\)`
+
+- `\(n=90\)`, `\(\overline{X}=12.6\)`, `\(\sigma=4.3\)`
+
+- Nivel de significación `\(\alpha=5\%\)`, lo que quiere decir que estamos dispuestos a que la probabilidad de cometer de error de tipo I sea `\(5\%\)`.
+
+--
+
+- Buscamos el valor crítico `\(Z_c\)` asociado a un test **bilateral** con un `\(\alpha=5\%\)`, `\(\rightarrow Z_{0.975}=1.96\)`
+
+- Establezo la **Regla de Decisión**:
+
+  + Si `\(-1.96 \le Z_{obs} \le 1.96 \rightarrow \text{no Rechazo }H_0\)`
+  
+  + Si `\(Z_{obs} &lt; -1.96 \text{ o } Z_{obs} &gt; 1.96 \rightarrow \text{Rechazo }H_0\)`
+
+--
+
+- Calculo `\(Z_{obs}=\frac{\overline{X}-\mu_0}{s/\sqrt{n}}=\frac{12.6-12}{4.3/\sqrt{90}}=1.324\)`
+
+- Como `\(-1.96 \le Z_{obs}=1.324 \le 1.96\)` concluyo que **no hay suficiente evidencia para rechazar `\(H_0\)` con una significatividad del `\(5\%\)`**
 
 ---
 
@@ -555,6 +615,28 @@ En total, hubo 2454 casos donde la diferencia a favor de los hombres fue de 7 o 
 
 - Concluyo que **no hay suficiente evidencia para rechazar `\(H_0\)` con una significatividad del `\(1\%\)`**
 
+
+---
+
+# Test de hipótesis para la media 
+
+- Si `\(H_0: \mu=\mu_0\)` vs. `\(H_A: \color{red}{\mu&gt;\mu_0}\)` se rechaza `\(H_0\)` si:
+
+`$$Z_{obs}=\frac{\overline{X}-\mu_0}{\sigma/\sqrt{n}}\color{red}{&gt;Z_{\alpha}}$$`
+
+--
+
+- Si `\(H_0: \mu=\mu_0\)` vs. `\(H_A: \color{red}{\mu&lt;\mu_0}\)` se rechaza `\(H_0\)` si:
+
+`$$Z_{obs}=\frac{\overline{X}-\mu_0}{\sigma/\sqrt{n}}\color{red}{&lt;-Z_{\alpha}}$$`
+
+--
+
+- Si `\(H_0: \mu=\mu_0\)` vs. `\(H_A: \color{red}{\mu \ne \mu_0}\)` se rechaza `\(H_0\)` si:
+
+`$$Z_{obs}=\frac{\overline{X}-\mu_0}{\sigma/\sqrt{n}}\color{red}{&gt;Z_{\alpha/2}} \quad \text{o si} \quad Z_{obs}=\frac{\overline{X}-\mu_0}{\sigma/\sqrt{n}}\color{red}{&lt;-Z_{\alpha/2}}$$`
+
+
 ---
 
 # El valor p (p-value)
@@ -571,7 +653,7 @@ En total, hubo 2454 casos donde la diferencia a favor de los hombres fue de 7 o 
 
 # El valor p (p-value)
 
-- El valor p se usa para determinar cuando se rechaza `\(H_0\)`
+- El valor p se usa para determinar cuándo se rechaza `\(H_0\)`
 
   + Si el `\(valor-p \le \alpha\)` entonces rechazo `\(H_0\)`
   
@@ -649,7 +731,7 @@ En total, hubo 2454 casos donde la diferencia a favor de los hombres fue de 7 o 
 
 `$$t_{obs}=\frac{\overline{X}-\mu_0}{s/\sqrt{n}}$$`
 
-- En lugar de comparar con un `\(Z_c\)` de la Tabla Normal, se compara con un `\(t_{n-1},c\)` de la **t-student**.
+- En lugar de comparar con un `\(Z_c\)` de la Tabla Normal, se compara con un `\(t_{n-1,c}\)` de la **t-student**.
 
 - En todo lo demás, el test es igual.
 
@@ -657,7 +739,7 @@ En total, hubo 2454 casos donde la diferencia a favor de los hombres fue de 7 o 
 
 # `\(n&lt;30\)`, `\(\sigma \text{ desconocido}\)`, `\(X\sim N\)`
 
-- Si `\(H_0: \mu=\mu_0\)` vs. $H_A: \color{red}{\mu&gt;\mu_0} $ se rechaza `\(H_0\)` si:
+- Si `\(H_0: \mu=\mu_0\)` vs. `\(H_A: \color{red}{\mu&gt;\mu_0}\)` se rechaza `\(H_0\)` si:
 
 `$$t_{obs}=\frac{\overline{X}-\mu_0}{s/\sqrt{n}}\color{red}{&gt;t_{n-1,\alpha}}$$`
 
@@ -730,6 +812,42 @@ Por Tabla:
 **No Rechazo `\(H_0\)`**
 
 ]
+
+---
+
+# Ejemplo
+
+-  El propietario de un autómovil sospecha que su vehículo tiene un consumo medio de combustible en carretera inferior a los 5,6 litros /100 km, que es lo que el fabricante indica en su publicidad. Para apoyar empíricamente su sospecha observa el consumo medio en 11 viajes seleccionados aleatoriamente entre todos los que realiza en el año, obteniendo los siguientes resultados:
+
+`$$6.1,5.5,5.1,6.0, 5.9,5.2,5.8,5.3,5.2,5.9,5.3$$`
+
+- Para poder realizar el test, debemos **suponer que el consumo de combustible en carretera sigue una distribución Normal**
+
+- Plantear el test correspondiente y determinar la regla de decisión con nivel de significación `\(\alpha=5\%\)`
+
+
+---
+
+# Ejemplo
+
+- `\(H_0: \mu=5.6\)` vs. `\(H_A: \mu &lt;5.6\)`
+
+- `\(n=11\)`, `\(\overline{X}=5.573\)`, `\(s=0.372\)`
+
+
+--
+
+
+- `\(t_{10,\alpha=0.95}=-1.8125\)`. Regla de Decisión
+
+  + Si `\(t_{obs} \ge -1.8125\)` no Rechazo `\(H_0\)`
+  
+  + Si `\(t_{obs} &lt; -1.8125\)` Rechazo `\(H_0\)`
+  
+--
+
+- `\(t_{obs}=\frac{\overline{X}-\mu_0}{s/\sqrt{n}}=\frac{5.573-5.6}{0.372/\sqrt{11}}=-0.24 \rightarrow\)` **No Rechazo `\(H_0\)`**
+
 
 ---
 
