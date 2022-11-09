@@ -20,7 +20,7 @@ class: left, bottom, inverse, title-slide
 ### Esteban Rodríguez
 ]
 .date[
-### Última Actualización: 2022-11-07
+### Última Actualización: 2022-11-09
 ]
 
 ---
@@ -701,7 +701,7 @@ En total, hubo 2454 casos donde la diferencia a favor de los hombres fue de 7 o 
 
 ---
 
-# El valor p en Test Unilateral
+# El valor p en Test Bilateral
 
 - Volviendo a la maratón de Washington, supongamos que cierto grupo dentro de la organización duda de que el tiempo promedio de la carrera sea de 94 minutos 52 segundos. 
 
@@ -966,6 +966,38 @@ Intervalo de Confianza vs. Test de Hipótesis
 
 ---
 
+# Ejemplo
+
+- Un artículo reciente, publicado en el diario USA today, indica que el 70% de los egresados de una universidad consigue trabajo dentro del año de haberse graduado. En una investigación a 200 egresados recientes de su universidad, se encontró que 130 habían conseguido trabajo. ¿Puede concluirse en el nivel de significancia 0,01, que en su universidad la proporción de graduados que consigue trabajo el primer año es menor?
+
+---
+
+# Ejemplo
+
+- Test de Hipótesis:
+
+- `\(H_0: p=0.70\)` vs. `\(H_A: p &lt; 0.70\)`
+
+- Supuestos `\(np_0=200*0.70=140\)` y `\(n(1-p_0)=200*(1-0.70)=60\)`
+
+- `\(\sigma_{p_0}=\sqrt{\frac{0.70(1-0.70)}{200}}=0.0324037\)`
+
+--
+
+- `\(\hat{p}=\frac{130}{200}=0.65\)`
+
+- `\(Z_{obs}=\frac{\hat{p}-p_0}{\sqrt{\frac{p_0(1-p_0)}{n}}}=\frac{0.65-0.7}{\sqrt{\frac{0.7(1-0.7)}{200}}}=-1.543034 \approx -1.54\)`
+
+--
+
+- `\(valor-p=P(Z&lt;Z_{obs})=P(Z&lt;-1.54)=P(Z&gt;1.54)=\)`
+
+- `\(=1-P(Z&lt;1.54)=1-0.9382=0.0618&gt;\alpha\)`
+
+- No hay suficiente evidencia para rechazar `\(H_0\)`
+
+---
+
 # `\(\text{Test de Hipótesis para } \sigma^2\)`
 
 - Ya estudiamos test para la media muestral y para las proporciones muestrales.
@@ -1047,6 +1079,42 @@ Intervalo de Confianza vs. Test de Hipótesis
 - `\(\chi^2_{obs}=\frac{(n-1)s^2}{\sigma^2_0}=\frac{9*0.02204889}{0.01}=19.844\)`
 
 - Hay suficiente evidencia para Rechazar `\(H_0\)`
+
+---
+
+# Ejemplo
+
+- Un fabricante de baterías garantiza que su producto dura en promedio 2,5 años con una desviación estándar de 0,8 años. Si se toma una muestra aleatoria de 8 baterías y resultó con un promedio muestral de 2,8 y `\(s=1,2\)` ¿con la evidencia tomada tiene razón el fabricante respecto a la desviación estándar poblacional? Utilice un nivel de significancia de 0,01. 
+
+
+---
+
+# Ejemplo
+
+- Debemos suponer población Normal
+
+- `\(H_0: \sigma^2 = 0.8^2\)` vs. `\(H_A: \sigma^2 \ne 0.8^2\)`
+
+--
+
+- Suponiendo un `\(\alpha=0.01\)`:
+
+  + `\(\chi^2_{7,0.005}=20.2777\)`
+  
+  + `\(\chi^2_{7,0.995}=0.9893\)`
+
+- Regla de decisión:
+
+  + Si `\(0.9893 \le \chi^2_{obs}\le 20.2777\)` no Rechazo `\(H_0\)`
+  
+  + Si `\(\chi^2_{obs} &gt; 20.2777\)` o `\(\chi^2_{obs} &lt; 0.9893\)` Rechazo `\(H_0\)`
+
+--
+
+- `\(\chi^2_{obs}=\frac{(n-1)s^2}{\sigma^2_0}=\frac{7*(1.2)^2}{(0.8)^2}=15.75\)`
+
+- No hay suficiente evidencia para Rechazar `\(H_0\)`
+
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
